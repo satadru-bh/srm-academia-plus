@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import {
   Users,
@@ -12,6 +13,12 @@ import {
 } from 'lucide-react';
 import { FACULTY_DIRECTORY } from '../../data/facultyDirectory';
 import { matchStudentFaculty } from '../../utils/facultyMatcher';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  SpringPress,
+} from '../common/motion';
 
 type FacultyFilter = 'all' | 'my-faculty' | 'advisors' | 'computing' | 'mathematics' | 'engineering' | 'sciences';
 
@@ -175,7 +182,7 @@ export const FacultyFinderBentoView: React.FC = () => {
 
         {/* Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs lowercase scrollbar-none">
-          <button
+          <SpringPress
             onClick={() => handleFilterChange('all')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'all'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -183,8 +190,8 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             all ({FACULTY_DIRECTORY.length})
-          </button>
-          <button
+          </SpringPress>
+          <SpringPress
             onClick={() => handleFilterChange('my-faculty')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'my-faculty'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -192,8 +199,8 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             my teachers & advisors ({stats.myCount})
-          </button>
-          <button
+          </SpringPress>
+          <SpringPress
             onClick={() => handleFilterChange('computing')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'computing'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -201,8 +208,8 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             computing tech
-          </button>
-          <button
+          </SpringPress>
+          <SpringPress
             onClick={() => handleFilterChange('mathematics')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'mathematics'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -210,8 +217,8 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             mathematics
-          </button>
-          <button
+          </SpringPress>
+          <SpringPress
             onClick={() => handleFilterChange('engineering')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'engineering'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -219,8 +226,8 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             engineering
-          </button>
-          <button
+          </SpringPress>
+          <SpringPress
             onClick={() => handleFilterChange('sciences')}
             className={`px-3 py-1 rounded-xl transition-colors cursor-pointer shrink-0 ${activeFilter === 'sciences'
               ? 'bg-black/10 dark:bg-white/10 font-bold text-[#111111] dark:text-[#FAFAFA]'
@@ -228,12 +235,12 @@ export const FacultyFinderBentoView: React.FC = () => {
               }`}
           >
             sciences & health
-          </button>
+          </SpringPress>
         </div>
       </div>
 
       {/* 3. Faculty Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredFaculty.length === 0 ? (
           <div className="col-span-full bento-card p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase">
             no faculty members found matching "{searchQuery}".
@@ -251,220 +258,237 @@ export const FacultyFinderBentoView: React.FC = () => {
               .slice(0, 2) || 'FA';
 
             return (
-              <div
-                key={f.id}
-                className="bento-card p-5 sm:p-6 flex flex-col justify-between space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all group"
-              >
-                {/* Top Section: Avatar, Name, Role */}
-                <div className="space-y-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center space-x-3 min-w-0">
-                      {/* Avatar */}
-                      {f.avatarUrl ? (
-                        <img
-                          src={f.avatarUrl}
-                          alt={f.name}
-                          loading="lazy"
-                          className="w-10 h-10 rounded-2xl object-cover border border-black/[0.06] dark:border-white/[0.06] shrink-0"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLElement).style.display = 'none';
-                          }}
-                        />
-                      ) : (
-                        <div className="w-10 h-10 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] flex items-center justify-center font-bold text-xs text-[#111111] dark:text-[#FAFAFA] shrink-0">
-                          {initials}
-                        </div>
-                      )}
+              <StaggerItem key={f.id}>
+                <InteractiveBentoCard
+                  className="p-5 sm:p-6 flex flex-col justify-between space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all group h-full"
+                >
+                  {/* Top Section: Avatar, Name, Role */}
+                  <div className="space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center space-x-3 min-w-0">
+                        {/* Avatar */}
+                        {f.avatarUrl ? (
+                          <img
+                            src={f.avatarUrl}
+                            alt={f.name}
+                            loading="lazy"
+                            className="w-10 h-10 rounded-2xl object-cover border border-black/[0.06] dark:border-white/[0.06] shrink-0"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLElement).style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] flex items-center justify-center font-bold text-xs text-[#111111] dark:text-[#FAFAFA] shrink-0">
+                            {initials}
+                          </div>
+                        )}
 
-                      <div className="min-w-0">
-                        <div className="flex items-center space-x-2">
-                          <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
-                            {f.name}
-                          </h3>
+                        <div className="min-w-0">
+                          <div className="flex items-center space-x-2">
+                            <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
+                              {f.name}
+                            </h3>
+                          </div>
+                          <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
+                            {f.designation}
+                          </p>
                         </div>
-                        <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
-                          {f.designation}
-                        </p>
                       </div>
-                    </div>
 
-                    {/* Role Badge */}
-                    {f.roleBadge && (
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full border shrink-0 lowercase ${getRoleBadgeStyle(f.roleBadge)}`}>
-                        {f.roleBadge}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Department */}
-                  {f.department && (
-                    <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate">
-                      {f.department}
-                    </div>
-                  )}
-
-                  {/* Specialization Area */}
-                  {f.specialization && (
-                    <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase line-clamp-2">
-                      specialization: {f.specialization}
-                    </div>
-                  )}
-
-                  {/* Cabin Location Pill (Only if present in data) */}
-                  {f.cabin && (
-                    <div className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex items-center space-x-2 text-xs">
-                      <MapPin className="w-3.5 h-3.5 text-[#71717A] dark:text-[#A1A1AA] shrink-0" />
-                      <span className="font-bold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
-                        {f.cabin}
-                      </span>
-                      {f.building && (
-                        <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate">
-                          ({f.building})
+                      {/* Role Badge */}
+                      {f.roleBadge && (
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full border shrink-0 lowercase ${getRoleBadgeStyle(f.roleBadge)}`}>
+                          {f.roleBadge}
                         </span>
                       )}
                     </div>
-                  )}
 
-                  {/* Courses Taught (if any) */}
-                  {f.coursesTaught && f.coursesTaught.length > 0 && (
-                    <div className="space-y-1.5 pt-1">
-                      <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase block">
-                        courses taught:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {f.coursesTaught.map(c => (
-                          <span
-                            key={c.code}
-                            title={c.title}
-                            className="text-[10px] px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] text-[#111111] dark:text-[#FAFAFA] lowercase flex items-center space-x-1.5"
-                          >
-                            <span className="font-semibold">{c.code}</span>
-                            {c.title && (
-                              <span className="text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[200px]">
-                                • {c.title.toLowerCase()}
-                              </span>
-                            )}
-                          </span>
-                        ))}
+                    {/* Department */}
+                    {f.department && (
+                      <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate">
+                        {f.department}
                       </div>
-                    </div>
-                  )}
-
-                  {/* Contact Info: Visible Email and Phone if available */}
-                  {(f.email || f.phone) && (
-                    <div className="space-y-1.5 pt-1 text-xs">
-                      {f.email && (
-                        <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
-                          <Mail className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
-                          <a
-                            href={`mailto:${f.email}`}
-                            title={`Send email to ${f.name}`}
-                            className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate lowercase"
-                          >
-                            {f.email}
-                          </a>
-                        </div>
-                      )}
-                      {f.phone && (
-                        <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
-                          <Phone className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
-                          <a
-                            href={`tel:${f.phone.replace(/\s+/g, '')}`}
-                            title={`Call ${f.name}`}
-                            className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate"
-                          >
-                            {f.phone}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Section: Contact & Quick Actions */}
-                <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between gap-2">
-                  <div className="flex items-center space-x-2 min-w-0">
-                    {/* Mailto Action */}
-                    {f.email && (
-                      <a
-                        href={`mailto:${f.email}`}
-                        title={`Send email to ${f.email}`}
-                        className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
-                      >
-                        <Mail className="w-3.5 h-3.5" />
-                      </a>
                     )}
 
-                    {/* Tel Action (if available) */}
-                    {f.phone && (
-                      <a
-                        href={`tel:${f.phone.replace(/\s+/g, '')}`}
-                        title={`Call ${f.phone}`}
-                        className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                      </a>
+                    {/* Specialization Area */}
+                    {f.specialization && (
+                      <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase line-clamp-2">
+                        specialization: {f.specialization}
+                      </div>
                     )}
 
-                    {/* Copy Email Button (if available) */}
-                    {f.email && (
-                      <button
-                        type="button"
-                        onClick={() => copyToClipboard(f.email!, f.id)}
-                        title="Copy official email"
-                        className="px-2 py-1 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] hover:bg-black/5 dark:hover:bg-white/5 text-[10px] text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] flex items-center space-x-1 transition-colors cursor-pointer"
+                    {/* Cabin Location Pill (Only if present in data) */}
+                    {f.cabin && (
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex items-center space-x-2 text-xs"
                       >
-                        {copiedId === f.id ? (
-                          <>
-                            <Check className="w-3 h-3 text-emerald-400" />
-                            <span>copied</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-3 h-3" />
-                            <span className="truncate max-w-[120px]">{f.email}</span>
-                          </>
+                        <MapPin className="w-3.5 h-3.5 text-[#71717A] dark:text-[#A1A1AA] shrink-0" />
+                        <span className="font-bold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
+                          {f.cabin}
+                        </span>
+                        {f.building && (
+                          <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate">
+                            ({f.building})
+                          </span>
                         )}
-                      </button>
+                      </motion.div>
                     )}
 
-                    {/* Profile URL Link */}
-                    {f.profileUrl && (
-                      <a
-                        href={f.profileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="View official profile on SRM portal"
-                        className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors flex items-center space-x-1"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="text-[10px] lowercase hidden sm:inline">profile</span>
-                      </a>
+                    {/* Courses Taught (if any) */}
+                    {f.coursesTaught && f.coursesTaught.length > 0 && (
+                      <div className="space-y-1.5 pt-1">
+                        <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase block">
+                          courses taught:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {f.coursesTaught.map(c => (
+                            <span
+                              key={c.code}
+                              title={c.title}
+                              className="text-[10px] px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] text-[#111111] dark:text-[#FAFAFA] lowercase flex items-center space-x-1.5"
+                            >
+                              <span className="font-semibold">{c.code}</span>
+                              {c.title && (
+                                <span className="text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[200px]">
+                                  • {c.title.toLowerCase()}
+                                </span>
+                              )}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Contact Info: Visible Email and Phone if available */}
+                    {(f.email || f.phone) && (
+                      <div className="space-y-1.5 pt-1 text-xs">
+                        {f.email && (
+                          <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
+                            <Mail className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
+                            <a
+                              href={`mailto:${f.email}`}
+                              title={`Send email to ${f.name}`}
+                              className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate lowercase"
+                            >
+                              {f.email}
+                            </a>
+                          </div>
+                        )}
+                        {f.phone && (
+                          <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
+                            <Phone className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
+                            <a
+                              href={`tel:${f.phone.replace(/\s+/g, '')}`}
+                              title={`Call ${f.name}`}
+                              className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate"
+                            >
+                              {f.phone}
+                            </a>
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
 
-                  {f.empId && (
-                    <span className="text-[10px] text-[#71717A] dark:text-[#52525B] shrink-0">
-                      id: {f.empId}
-                    </span>
-                  )}
-                </div>
-              </div>
+                  {/* Bottom Section: Contact & Quick Actions */}
+                  <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between gap-2">
+                    <div className="flex items-center space-x-2 min-w-0">
+                      {/* Mailto Action */}
+                      {f.email && (
+                        <motion.a
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.92 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                          href={`mailto:${f.email}`}
+                          title={`Send email to ${f.email}`}
+                          className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
+                        >
+                          <Mail className="w-3.5 h-3.5" />
+                        </motion.a>
+                      )}
+
+                      {/* Tel Action (if available) */}
+                      {f.phone && (
+                        <motion.a
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.92 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                          href={`tel:${f.phone.replace(/\s+/g, '')}`}
+                          title={`Call ${f.phone}`}
+                          className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                        </motion.a>
+                      )}
+
+                      {/* Copy Email Button (if available) */}
+                      {f.email && (
+                        <SpringPress
+                          onClick={() => copyToClipboard(f.email!, f.id)}
+                          scaleHover={1.04}
+                          scaleTap={0.96}
+                          title="Copy official email"
+                          className="px-2 py-1 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] hover:bg-black/5 dark:hover:bg-white/5 text-[10px] text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] flex items-center space-x-1 transition-colors cursor-pointer"
+                        >
+                          {copiedId === f.id ? (
+                            <>
+                              <Check className="w-3 h-3 text-emerald-400" />
+                              <span>copied</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3 h-3" />
+                              <span className="truncate max-w-[120px]">{f.email}</span>
+                            </>
+                          )}
+                        </SpringPress>
+                      )}
+
+                      {/* Profile URL Link */}
+                      {f.profileUrl && (
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                          href={f.profileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="View official profile on SRM portal"
+                          className="p-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors flex items-center space-x-1"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span className="text-[10px] lowercase hidden sm:inline">profile</span>
+                        </motion.a>
+                      )}
+                    </div>
+
+                    {f.empId && (
+                      <span className="text-[10px] text-[#71717A] dark:text-[#52525B] shrink-0">
+                        id: {f.empId}
+                      </span>
+                    )}
+                  </div>
+                </InteractiveBentoCard>
+              </StaggerItem>
             );
           })
         )}
-      </div>
+      </StaggerContainer>
 
       {/* 4. Load More Button */}
       {visibleCount < filteredFaculty.length && (
         <div className="pt-4 pb-12 flex flex-col items-center justify-center space-y-2">
-          <button
-            type="button"
+          <SpringPress
             onClick={() => setVisibleCount((prev) => prev + 60)}
+            scaleHover={1.02}
+            scaleTap={0.98}
             className="px-6 py-2.5 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-xs font-medium text-[#111111] dark:text-[#FAFAFA] lowercase transition-colors cursor-pointer"
           >
             load more ({Math.min(60, filteredFaculty.length - visibleCount)} more)
-          </button>
+          </SpringPress>
           <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase">
             showing {visibleFaculty.length} of {filteredFaculty.length.toLocaleString()} faculty members
           </span>

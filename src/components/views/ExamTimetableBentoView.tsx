@@ -5,6 +5,12 @@ import { useSession } from '../../context/SessionContext';
 import { OFFICIAL_EXAM_TIMETABLE } from '../../data/examTimetable';
 import { ExamTimetableItem } from '../../api/types';
 import { Clock, AlertCircle, Edit3, X, RotateCcw } from 'lucide-react';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  SpringPress,
+} from '../common/motion';
 
 const STORAGE_KEY = 'academia_plus_exam_schedule_v3';
 
@@ -96,13 +102,13 @@ export const ExamTimetableBentoView: React.FC = () => {
 
         {/* Date / Subject Sync Button */}
         <div className="flex items-center space-x-2">
-          <button
+          <SpringPress
             onClick={() => setIsEditorOpen(true)}
-            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase"
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase cursor-pointer"
           >
             <Edit3 className="w-3.5 h-3.5" />
             <span>edit / sync dates</span>
-          </button>
+          </SpringPress>
         </div>
       </div>
 
@@ -111,18 +117,29 @@ export const ExamTimetableBentoView: React.FC = () => {
         
         {/* 1. Next Upcoming Exam Hero Tile (col-span-12 lg:col-span-7) */}
         {nextExam && (
-          <div className="col-span-12 lg:col-span-7 bento-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+          <InteractiveBentoCard className="col-span-12 lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-amber-500/20 glow-amber">
+            {/* Ambient Breathing Pulse */}
+            <motion.div
+              animate={{ opacity: [0.2, 0.45, 0.2], scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+              className="absolute -top-16 -right-16 w-72 h-72 bg-amber-500/10 dark:bg-amber-400/10 rounded-full blur-3xl pointer-events-none"
+            />
+
             <div className="flex items-center justify-between gap-2 z-10">
               <span className="text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase">
                 next examination
               </span>
-              <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20 text-xs font-bold lowercase">
+              <motion.span
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+                className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/20 text-xs font-bold lowercase"
+              >
                 {nextExam.examDate}
-              </span>
+              </motion.span>
             </div>
 
             <div className="my-6 z-10">
-              <div className="flex items-center space-x-2 text-xs text-amber-400 font-bold mb-1.5">
+              <div className="flex items-center space-x-2 text-xs text-amber-500 dark:text-amber-400 font-bold mb-1.5">
                 <span>{nextExam.courseCode}</span>
                 <span>•</span>
                 <span>slot {nextExam.slot}</span>
@@ -144,11 +161,11 @@ export const ExamTimetableBentoView: React.FC = () => {
                 <span className="font-bold text-[#111111] dark:text-[#FAFAFA]">{nextExam.session} • {nextExam.timeRange}</span>
               </div>
             </div>
-          </div>
+          </InteractiveBentoCard>
         )}
 
         {/* 2. Candidate Information (col-span-12 lg:col-span-5) */}
-        <div className="col-span-12 lg:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between">
+        <InteractiveBentoCard className="col-span-12 lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase block">
               student credentials
@@ -175,10 +192,10 @@ export const ExamTimetableBentoView: React.FC = () => {
               <span className="font-bold text-emerald-400 lowercase">srmist, kattankulathur</span>
             </div>
           </div>
-        </div>
+        </InteractiveBentoCard>
 
         {/* 3. Chronological Exam Schedule Cards (col-span-12) */}
-        <div className="col-span-12 bento-card p-6 sm:p-8">
+        <InteractiveBentoCard className="col-span-12 p-6 sm:p-8">
           <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
             <div>
               <h2 className="text-base sm:text-lg font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
@@ -190,53 +207,54 @@ export const ExamTimetableBentoView: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {validExams.map((ex) => (
-              <div
-                key={ex.courseCode}
-                className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between space-y-4"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="px-2.5 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[11px] font-bold text-[#111111] dark:text-[#FAFAFA]">
-                      {ex.courseCode}
-                    </span>
-                    <span className="text-xs font-bold text-emerald-400 tabular-nums">
-                      {ex.examDate}
-                    </span>
+              <StaggerItem key={ex.courseCode}>
+                <InteractiveBentoCard
+                  className="p-5 flex flex-col justify-between space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="px-2.5 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[11px] font-bold text-[#111111] dark:text-[#FAFAFA]">
+                        {ex.courseCode}
+                      </span>
+                      <span className="text-xs font-bold text-emerald-400 tabular-nums">
+                        {ex.examDate}
+                      </span>
+                    </div>
+
+                    <h3 className="text-sm font-bold lowercase text-[#111111] dark:text-[#FAFAFA] mt-2.5 leading-snug">
+                      {ex.courseTitle}
+                    </h3>
+
+                    <div className="flex items-center space-x-2 mt-2 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
+                      <span>slot {ex.slot}</span>
+                      <span>•</span>
+                      <span className="lowercase">{ex.examType}</span>
+                    </div>
                   </div>
 
-                  <h3 className="text-sm font-bold lowercase text-[#111111] dark:text-[#FAFAFA] mt-2.5 leading-snug">
-                    {ex.courseTitle}
-                  </h3>
-
-                  <div className="flex items-center space-x-2 mt-2 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                    <span>slot {ex.slot}</span>
-                    <span>•</span>
-                    <span className="lowercase">{ex.examType}</span>
+                  <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs">
+                    <span className="text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{ex.session} session</span>
+                    </span>
+                    <span className="text-[#111111] dark:text-[#FAFAFA] font-bold">{ex.timeRange}</span>
                   </div>
-                </div>
-
-                <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs">
-                  <span className="text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{ex.session} session</span>
-                  </span>
-                  <span className="text-[#111111] dark:text-[#FAFAFA] font-bold">{ex.timeRange}</span>
-                </div>
-              </div>
+                </InteractiveBentoCard>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </StaggerContainer>
+        </InteractiveBentoCard>
 
         {/* 4. University Examination Rules Tile (col-span-12) */}
-        <div className="col-span-12 p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#71717A] dark:text-[#A1A1AA]">
+        <InteractiveBentoCard className="col-span-12 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#71717A] dark:text-[#A1A1AA]">
           <div className="flex items-center space-x-2">
             <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
             <span className="lowercase">reporting cutoff: candidates must report 30 minutes prior to session start (01:30 pm for an session).</span>
           </div>
           <span className="text-[#71717A] dark:text-[#A1A1AA] lowercase shrink-0">non-programmable calculators permitted</span>
-        </div>
+        </InteractiveBentoCard>
 
       </div>
 
@@ -322,31 +340,37 @@ export const ExamTimetableBentoView: React.FC = () => {
               </div>
 
               <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
-                <button
+                <SpringPress
                   onClick={handleResetDefaults}
-                  className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase"
+                  scaleHover={1.02}
+                  scaleTap={0.97}
+                  className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>reset to defaults</span>
-                </button>
+                </SpringPress>
 
                 <div className="flex items-center space-x-2">
-                  <button
+                  <SpringPress
                     onClick={() => setIsEditorOpen(false)}
-                    className="px-4 py-2 rounded-2xl text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] lowercase transition-colors"
+                    scaleHover={1.02}
+                    scaleTap={0.97}
+                    className="px-4 py-2 rounded-2xl text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] lowercase transition-colors cursor-pointer"
                   >
-                    cancel
-                  </button>
-                  <button
+                    <span>cancel</span>
+                  </SpringPress>
+                  <SpringPress
                     onClick={handleSaveEditor}
+                    scaleHover={1.03}
+                    scaleTap={0.96}
                     style={{
                       backgroundColor: 'var(--color-accent)',
                       color: 'var(--color-accent-text)'
                     }}
-                    className="px-5 py-2 rounded-2xl text-xs font-bold lowercase hover:opacity-90 transition-opacity shadow-sm"
+                    className="px-5 py-2 rounded-2xl text-xs font-bold lowercase hover:opacity-90 transition-opacity shadow-sm cursor-pointer"
                   >
-                    save changes
-                  </button>
+                    <span>save changes</span>
+                  </SpringPress>
                 </div>
               </div>
             </motion.div>

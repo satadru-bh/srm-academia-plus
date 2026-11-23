@@ -21,6 +21,12 @@ import {
   X
 } from 'lucide-react';
 import { PdfViewerModal } from '../modals/PdfViewerModal';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  SpringPress,
+} from '../common/motion';
 
 export const NotesBentoView: React.FC = () => {
   const { user, inspectedNotesSubjectId, setInspectedNotesSubjectId } = useSession();
@@ -199,44 +205,44 @@ export const NotesBentoView: React.FC = () => {
             { id: 'papers', label: 'past papers' },
             { id: 'syllabus', label: 'syllabus' }
           ].map((cat) => (
-            <button
+            <SpringPress
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id as any)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-medium lowercase whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-medium lowercase whitespace-nowrap transition-colors cursor-pointer ${
                 selectedCategory === cat.id
                   ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] font-bold'
                   : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
               }`}
             >
-              {cat.label}
-            </button>
+              <span>{cat.label}</span>
+            </SpringPress>
           ))}
         </div>
 
         {/* Semester Chips */}
         <div className="flex items-center space-x-1 p-1 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] overflow-x-auto">
-          <button
+          <SpringPress
             onClick={() => setSelectedSemester('all')}
-            className={`px-2.5 py-1 rounded-xl text-xs lowercase transition-colors ${
+            className={`px-2.5 py-1 rounded-xl text-xs lowercase transition-colors cursor-pointer ${
               selectedSemester === 'all'
                 ? 'bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA] font-bold shadow-xs'
                 : 'text-[#71717A] dark:text-[#A1A1AA]'
             }`}
           >
-            all sem
-          </button>
+            <span>all sem</span>
+          </SpringPress>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-            <button
+            <SpringPress
               key={sem}
               onClick={() => setSelectedSemester(sem)}
-              className={`px-2 py-1 rounded-xl text-xs lowercase transition-colors ${
+              className={`px-2 py-1 rounded-xl text-xs lowercase transition-colors cursor-pointer ${
                 selectedSemester === sem
                   ? 'bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA] font-bold shadow-xs'
                   : 'text-[#71717A] dark:text-[#A1A1AA]'
               }`}
             >
-              s{sem}
-            </button>
+              <span>s{sem}</span>
+            </SpringPress>
           ))}
         </div>
       </div>
@@ -253,62 +259,63 @@ export const NotesBentoView: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {enrolledSubjectMatches.map((item) => {
               const entry = item.catalogueEntry;
               const title = formatCourseTitle(item.courseTitle);
 
               return (
-                <div
-                  key={item.courseCode}
-                  className="bento-card p-5 flex flex-col justify-between space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all"
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 font-bold text-xs text-[#111111] dark:text-[#FAFAFA]">
-                        {item.courseCode}
-                      </span>
-                      {entry && (
-                        <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                          {entry.counts.total} files total
+                <StaggerItem key={item.courseCode}>
+                  <InteractiveBentoCard
+                    className="p-5 flex flex-col justify-between space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all h-full"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 font-bold text-xs text-[#111111] dark:text-[#FAFAFA]">
+                          {item.courseCode}
                         </span>
+                        {entry && (
+                          <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
+                            {entry.counts.total} files total
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase leading-snug">
+                        {title}
+                      </h3>
+
+                      {entry && (
+                        <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
+                          {entry.counts.notes} notes • {entry.counts.papers} pyqs • {entry.counts.syllabus} syllabus
+                        </div>
                       )}
                     </div>
 
-                    <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase leading-snug">
-                      {title}
-                    </h3>
-
-                    {entry && (
-                      <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
-                        {entry.counts.notes} notes • {entry.counts.papers} pyqs • {entry.counts.syllabus} syllabus
+                    {entry ? (
+                      <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+                        <SpringPress
+                          onClick={() => {
+                            setInspectedSubject(entry);
+                            setInspectedSubFilter('all');
+                            setInspectedSearch('');
+                          }}
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] transition-colors cursor-pointer"
+                        >
+                          <span>browse all {entry.counts.total} files</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </SpringPress>
+                      </div>
+                    ) : (
+                      <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] text-[11px] text-[#71717A] dark:text-[#52525B]">
+                        practical / lab coursework
                       </div>
                     )}
-                  </div>
-
-                  {entry ? (
-                    <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
-                      <button
-                        onClick={() => {
-                          setInspectedSubject(entry);
-                          setInspectedSubFilter('all');
-                          setInspectedSearch('');
-                        }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] transition-colors cursor-pointer"
-                      >
-                        <span>browse all {entry.counts.total} files</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] text-[11px] text-[#71717A] dark:text-[#52525B]">
-                      practical / lab coursework
-                    </div>
-                  )}
-                </div>
+                  </InteractiveBentoCard>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </section>
       )}
 
@@ -331,40 +338,41 @@ export const NotesBentoView: React.FC = () => {
             no subjects match your current search query or semester filter.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredSubjects.map((subject) => (
-              <div
-                key={subject.id}
-                onClick={() => {
-                  setInspectedSubject(subject);
-                  setInspectedSubFilter('all');
-                  setInspectedSearch('');
-                }}
-                className="bento-card p-5 flex flex-col justify-between space-y-3.5 hover:border-black/20 dark:hover:border-white/20 transition-all cursor-pointer group"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
-                      {subject.semester ? `sem ${subject.semester}` : 'core / elective'}
-                    </span>
+              <StaggerItem key={subject.id}>
+                <InteractiveBentoCard
+                  onClick={() => {
+                    setInspectedSubject(subject);
+                    setInspectedSubFilter('all');
+                    setInspectedSearch('');
+                  }}
+                  className="p-5 flex flex-col justify-between space-y-3.5 hover:border-black/20 dark:hover:border-white/20 transition-all cursor-pointer group h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
+                        {subject.semester ? `sem ${subject.semester}` : 'core / elective'}
+                      </span>
 
-                    <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                      {subject.counts.total} files
-                    </span>
+                      <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
+                        {subject.counts.total} files
+                      </span>
+                    </div>
+
+                    <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase leading-snug group-hover:underline underline-offset-2">
+                      {subject.name}
+                    </h3>
                   </div>
 
-                  <h3 className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase leading-snug group-hover:underline underline-offset-2">
-                    {subject.name}
-                  </h3>
-                </div>
-
-                <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA]">
-                  <span>{subject.counts.notes} notes • {subject.counts.papers} pyqs</span>
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </div>
+                  <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA]">
+                    <span>{subject.counts.notes} notes • {subject.counts.papers} pyqs</span>
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </InteractiveBentoCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         )}
       </section>
 
@@ -427,17 +435,17 @@ export const NotesBentoView: React.FC = () => {
                     { id: 'papers', label: `pyqs (${inspectedSubject.counts.papers})` },
                     { id: 'syllabus', label: `syllabus (${inspectedSubject.counts.syllabus})` }
                   ].map((tab) => (
-                    <button
+                    <SpringPress
                       key={tab.id}
                       onClick={() => setInspectedSubFilter(tab.id as any)}
-                      className={`px-2.5 py-1 rounded-lg transition-colors ${
+                      className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer ${
                         inspectedSubFilter === tab.id
                           ? 'bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA] font-bold shadow-xs'
                           : 'text-[#71717A] dark:text-[#A1A1AA]'
                       }`}
                     >
-                      {tab.label}
-                    </button>
+                      <span>{tab.label}</span>
+                    </SpringPress>
                   ))}
                 </div>
 
@@ -461,9 +469,12 @@ export const NotesBentoView: React.FC = () => {
                   </div>
                 ) : (
                   inspectedFiles.map((item, idx) => (
-                    <div
+                    <motion.div
                       key={idx}
-                      className="py-3 px-3 rounded-2xl hover:bg-black/[0.02] dark:hover:bg-white/[0.02] flex items-center justify-between gap-3 transition-colors group"
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="py-3 px-3 rounded-2xl hover:bg-black/[0.02] dark:hover:bg-white/[0.02] flex items-center justify-between gap-3 transition-colors group cursor-pointer"
                     >
                       <div className="flex items-center space-x-3 min-w-0">
                         <div className="w-8 h-8 rounded-xl bg-black/5 dark:bg-white/5 flex items-center justify-center shrink-0 text-[#71717A] dark:text-[#A1A1AA]">
@@ -484,13 +495,18 @@ export const NotesBentoView: React.FC = () => {
 
                       {/* File Action Buttons */}
                       <div className="flex items-center space-x-1.5 shrink-0">
-                        <button
+                        <SpringPress
                           onClick={() => openViewer(item.formattedTitle, inspectedSubject.name, item.file.url, item.kind)}
+                          scaleHover={1.02}
+                          scaleTap={0.96}
                           className="px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] font-medium transition-colors cursor-pointer"
                         >
-                          view
-                        </button>
-                        <a
+                          <span>view</span>
+                        </SpringPress>
+                        <motion.a
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.94 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                           href={item.file.url.replace('/preview', '/view')}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -498,9 +514,9 @@ export const NotesBentoView: React.FC = () => {
                           title="Open in Google Drive"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
+                        </motion.a>
                       </div>
-                    </div>
+                    </motion.div>
                   ))
                 )}
               </div>

@@ -12,6 +12,13 @@ import {
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  SpringPress,
+} from '../common/motion';
 
 export const CalendarBentoView: React.FC = () => {
   const { timetable } = useSession();
@@ -144,17 +151,17 @@ export const CalendarBentoView: React.FC = () => {
         {/* Filter Pills */}
         <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-[#FFFFFF] dark:bg-[#131316] border border-black/[0.06] dark:border-white/[0.06]">
           {(['all', 'exam', 'holiday', 'milestone', 'cultural'] as const).map(cat => (
-            <button
+            <SpringPress
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded-xl text-xs lowercase transition-colors ${
+              className={`px-3 py-1.5 rounded-xl text-xs lowercase transition-colors cursor-pointer ${
                 selectedCategory === cat
                   ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] font-bold'
                   : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] font-medium'
               }`}
             >
-              {cat}
-            </button>
+              <span>{cat}</span>
+            </SpringPress>
           ))}
         </div>
       </div>
@@ -163,7 +170,7 @@ export const CalendarBentoView: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[minmax(180px,auto)] [grid-auto-flow:dense]">
         
         {/* 1. Monthly Calendar Grid (col-span-12 lg:col-span-7) */}
-        <div className="col-span-12 lg:col-span-7 bento-card p-6 sm:p-8 flex flex-col justify-between">
+        <InteractiveBentoCard className="col-span-12 lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
           <div>
             {/* Month Header Nav */}
             <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
@@ -174,27 +181,32 @@ export const CalendarBentoView: React.FC = () => {
                 </h2>
               </div>
               <div className="flex items-center space-x-1.5">
-                <button
-                  type="button"
+                <SpringPress
                   onClick={handleGoToToday}
+                  scaleHover={1.04}
+                  scaleTap={0.96}
                   className="px-2.5 py-1 text-xs font-medium rounded-xl border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-[#FAFAFA] transition-colors cursor-pointer mr-1"
                 >
-                  today
-                </button>
-                <button
+                  <span>today</span>
+                </SpringPress>
+                <SpringPress
                   onClick={handlePrevMonth}
-                  className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors"
+                  scaleHover={1.08}
+                  scaleTap={0.92}
+                  className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors cursor-pointer"
                   aria-label="previous month"
                 >
                   <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
+                </SpringPress>
+                <SpringPress
                   onClick={handleNextMonth}
-                  className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors"
+                  scaleHover={1.08}
+                  scaleTap={0.92}
+                  className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors cursor-pointer"
                   aria-label="next month"
                 >
                   <ChevronRight className="w-4 h-4" />
-                </button>
+                </SpringPress>
               </div>
             </div>
 
@@ -231,10 +243,14 @@ export const CalendarBentoView: React.FC = () => {
                 const hasExam = hasEvents.some(e => e.category === 'exam');
 
                 return (
-                  <button
+                  <motion.button
                     key={dateStr}
+                    type="button"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     onClick={() => setSelectedDate(dateStr)}
-                    className={`h-14 sm:h-16 p-1 sm:p-1.5 rounded-2xl flex flex-col justify-between items-center transition-all ${
+                    className={`h-14 sm:h-16 p-1 sm:p-1.5 rounded-2xl flex flex-col justify-between items-center transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-black text-white dark:bg-white dark:text-black shadow-md font-bold'
                         : 'bg-black/[0.02] dark:bg-white/[0.02] hover:bg-black/5 dark:hover:bg-white/5 border border-black/[0.04] dark:border-white/[0.04]'
@@ -266,7 +282,7 @@ export const CalendarBentoView: React.FC = () => {
                         </div>
                       )}
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -274,27 +290,27 @@ export const CalendarBentoView: React.FC = () => {
 
           {/* Legend */}
           <div className="flex flex-wrap items-center gap-4 pt-4 mt-4 border-t border-black/[0.06] dark:border-white/[0.06] text-xs text-[#71717A] dark:text-[#A1A1AA]">
-            <span className="flex items-center space-x-1.5">
+            <motion.span whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} className="flex items-center space-x-1.5 cursor-default">
               <span className="w-2 h-2 rounded-full bg-amber-400" />
               <span>examinations</span>
-            </span>
-            <span className="flex items-center space-x-1.5">
+            </motion.span>
+            <motion.span whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} className="flex items-center space-x-1.5 cursor-default">
               <span className="w-2 h-2 rounded-full bg-rose-400" />
               <span>holidays</span>
-            </span>
-            <span className="flex items-center space-x-1.5">
+            </motion.span>
+            <motion.span whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} className="flex items-center space-x-1.5 cursor-default">
               <span className="w-2 h-2 rounded-full bg-indigo-400" />
               <span>milestones</span>
-            </span>
-            <span className="flex items-center space-x-1.5">
+            </motion.span>
+            <motion.span whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }} className="flex items-center space-x-1.5 cursor-default">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>fests</span>
-            </span>
+            </motion.span>
           </div>
-        </div>
+        </InteractiveBentoCard>
 
         {/* 2. Selected Date Detail (col-span-12 lg:col-span-5) */}
-        <div className="col-span-12 lg:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between">
+        <InteractiveBentoCard className="col-span-12 lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
               <span className="text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase">
@@ -306,7 +322,11 @@ export const CalendarBentoView: React.FC = () => {
             </div>
 
             {/* Day Order / Holiday Status Banner */}
-            <div className="my-4 p-4 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06]">
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="my-4 p-4 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06]"
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-sm font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
@@ -325,7 +345,7 @@ export const CalendarBentoView: React.FC = () => {
                   {selectedDayInfo.isWorkingDay ? 'classes scheduled' : 'recess'}
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Events on this date */}
             {selectedEvents.length > 0 && (
@@ -334,7 +354,12 @@ export const CalendarBentoView: React.FC = () => {
                   scheduled milestones on this date
                 </span>
                 {selectedEvents.map(e => (
-                  <div key={e.id} className="p-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04]">
+                  <motion.div
+                    key={e.id}
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    className="p-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04]"
+                  >
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">{e.title}</span>
                       <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getCategoryBadge(e.category)}`}>
@@ -344,7 +369,7 @@ export const CalendarBentoView: React.FC = () => {
                     <p className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] mt-1 lowercase">
                       {e.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}
@@ -361,7 +386,13 @@ export const CalendarBentoView: React.FC = () => {
                   </div>
                 ) : (
                   selectedClasses.map((s, idx) => (
-                    <div key={idx} className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs">
+                    <motion.div
+                      key={idx}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-xs"
+                    >
                       <div className="min-w-0 pr-2">
                         <div className="font-semibold truncate lowercase text-[#111111] dark:text-[#FAFAFA]">
                           {formatCourseTitle(s.courseTitle)}
@@ -373,16 +404,16 @@ export const CalendarBentoView: React.FC = () => {
                       <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] shrink-0">
                         {s.room}
                       </span>
-                    </div>
+                    </motion.div>
                   ))
                 )}
               </div>
             </div>
           </div>
-        </div>
+        </InteractiveBentoCard>
 
         {/* 3. Upcoming Semester Milestones & Examinations (col-span-12) */}
-        <div className="col-span-12 bento-card p-6 sm:p-8">
+        <InteractiveBentoCard className="col-span-12 p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06] gap-3">
             <div>
               <h2 className="text-base sm:text-lg font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
@@ -396,8 +427,7 @@ export const CalendarBentoView: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-1.5 self-start sm:self-center">
-              <button
-                type="button"
+              <SpringPress
                 onClick={() => setShowUpcomingOnly(true)}
                 className={`px-2.5 py-1 rounded-xl text-xs lowercase transition-colors cursor-pointer ${
                   showUpcomingOnly
@@ -405,10 +435,9 @@ export const CalendarBentoView: React.FC = () => {
                     : 'text-[#71717A] dark:text-[#A1A1AA] hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
               >
-                upcoming only
-              </button>
-              <button
-                type="button"
+                <span>upcoming only</span>
+              </SpringPress>
+              <SpringPress
                 onClick={() => setShowUpcomingOnly(false)}
                 className={`px-2.5 py-1 rounded-xl text-xs lowercase transition-colors cursor-pointer ${
                   !showUpcomingOnly
@@ -416,8 +445,8 @@ export const CalendarBentoView: React.FC = () => {
                     : 'text-[#71717A] dark:text-[#A1A1AA] hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
               >
-                all semester
-              </button>
+                <span>all semester</span>
+              </SpringPress>
             </div>
           </div>
 
@@ -426,42 +455,43 @@ export const CalendarBentoView: React.FC = () => {
               no upcoming milestones or deadlines scheduled for this category.
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
               {filteredEvents.map(e => (
-                <div
-                  key={e.id}
-                  onClick={() => setSelectedDate(e.date)}
-                  className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] hover:border-black/20 dark:hover:border-white/20 cursor-pointer transition-all flex flex-col justify-between space-y-3"
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getCategoryBadge(e.category)}`}>
-                        {e.category}
-                      </span>
-                      <span className="text-xs font-bold text-[#111111] dark:text-[#FAFAFA]">
-                        {e.date}
-                      </span>
+                <StaggerItem key={e.id}>
+                  <InteractiveBentoCard
+                    onClick={() => setSelectedDate(e.date)}
+                    className="p-4 flex flex-col justify-between space-y-3 cursor-pointer h-full hover:border-black/20 dark:hover:border-white/20 transition-all"
+                  >
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${getCategoryBadge(e.category)}`}>
+                          {e.category}
+                        </span>
+                        <span className="text-xs font-bold text-[#111111] dark:text-[#FAFAFA]">
+                          {e.date}
+                        </span>
+                      </div>
+
+                      <h3 className="text-sm font-bold lowercase text-[#111111] dark:text-[#FAFAFA] mt-2">
+                        {e.title}
+                      </h3>
+                      <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-1 leading-relaxed">
+                        {e.description}
+                      </p>
                     </div>
 
-                    <h3 className="text-sm font-bold lowercase text-[#111111] dark:text-[#FAFAFA] mt-2">
-                      {e.title}
-                    </h3>
-                    <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-1 leading-relaxed">
-                      {e.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-[11px]">
-                    <span className="text-[#71717A] dark:text-[#A1A1AA] lowercase">
-                      {e.isWorkingDay ? (e.dayOrder ? `day order ${e.dayOrder}` : 'instructional') : 'non-working'}
-                    </span>
-                    <span className="text-indigo-400 lowercase">select date →</span>
-                  </div>
-                </div>
+                    <div className="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-[11px]">
+                      <span className="text-[#71717A] dark:text-[#A1A1AA] lowercase">
+                        {e.isWorkingDay ? (e.dayOrder ? `day order ${e.dayOrder}` : 'instructional') : 'non-working'}
+                      </span>
+                      <span className="text-indigo-400 lowercase">select date →</span>
+                    </div>
+                  </InteractiveBentoCard>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           )}
-        </div>
+        </InteractiveBentoCard>
 
       </div>
     </div>
