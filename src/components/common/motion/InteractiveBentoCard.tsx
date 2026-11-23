@@ -8,6 +8,7 @@ export interface InteractiveBentoCardProps {
   enableTilt?: boolean;
   style?: React.CSSProperties;
   id?: string;
+  layout?: boolean | 'position' | 'size' | 'preserve-aspect';
 }
 
 export const InteractiveBentoCard: React.FC<InteractiveBentoCardProps> = ({
@@ -17,6 +18,7 @@ export const InteractiveBentoCard: React.FC<InteractiveBentoCardProps> = ({
   enableTilt = true,
   style,
   id,
+  layout,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -69,6 +71,7 @@ export const InteractiveBentoCard: React.FC<InteractiveBentoCardProps> = ({
     <motion.div
       ref={cardRef}
       id={id}
+      layout={layout}
       onClick={onClick}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}

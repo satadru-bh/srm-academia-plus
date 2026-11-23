@@ -10,6 +10,7 @@ export interface StaggerContainerProps {
 export interface StaggerItemProps {
   children?: React.ReactNode;
   className?: string;
+  layout?: boolean | 'position' | 'size' | 'preserve-aspect';
 }
 
 const getContainerVariants = (delay: number = 0, reduceMotion: boolean): Variants => ({
@@ -62,12 +63,13 @@ export const StaggerContainer: React.FC<StaggerContainerProps> = ({
 export const StaggerItem: React.FC<StaggerItemProps> = ({
   children,
   className = '',
+  layout,
 }) => {
   const shouldReduceMotion = !!useReducedMotion();
   const variants = getItemVariants(shouldReduceMotion);
 
   return (
-    <motion.div variants={variants} className={className}>
+    <motion.div variants={variants} layout={layout} className={className}>
       {children}
     </motion.div>
   );

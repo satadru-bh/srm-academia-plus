@@ -11,6 +11,13 @@ import {
   Search, 
   RotateCcw
 } from 'lucide-react';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  AnimatedNumber,
+  SpringPress
+} from '../common/motion';
 
 export const AttendanceBentoView: React.FC = () => {
   const { 
@@ -81,15 +88,15 @@ export const AttendanceBentoView: React.FC = () => {
         {/* Toolbar: Predictor Button, Custom Target Setter & Search */}
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Attendance Predictor Button */}
-          <button
+          <SpringPress
             onClick={() => setIsPredictorOpen(true)}
             className="flex items-center space-x-2 px-4 py-2 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-semibold text-xs lowercase shadow-sm hover:opacity-90 transition-opacity"
           >
             <span>attendance predictor</span>
-          </button>
+          </SpringPress>
 
           {/* Custom Attendance Target Setter Button */}
-          <button
+          <SpringPress
             onClick={() => setIsTargetModalOpen(true)}
             className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-2xl text-xs font-semibold lowercase transition-all shadow-sm ${
               attendanceTargetPercent !== 75
@@ -102,17 +109,17 @@ export const AttendanceBentoView: React.FC = () => {
             {attendanceTargetPercent !== 75 && (
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
             )}
-          </button>
+          </SpringPress>
 
           {appliedPredictions && (
-            <button
+            <SpringPress
               onClick={() => setAppliedPredictions(null)}
               className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20 text-xs font-medium lowercase"
               title="reset simulated forecast"
             >
               <RotateCcw className="w-3 h-3" />
               <span>forecast active (reset)</span>
-            </button>
+            </SpringPress>
           )}
 
           {/* Search */}
@@ -130,7 +137,7 @@ export const AttendanceBentoView: React.FC = () => {
       </div>
 
       {/* Dynamic Urgency Bento Grid: grid-auto-flow: dense */}
-      <div className="grid grid-cols-12 gap-5 [grid-auto-flow:dense]">
+      <StaggerContainer className="grid grid-cols-12 gap-5 [grid-auto-flow:dense]">
         {filteredCourses.map((course) => {
           const applied = appliedPredictions ? appliedPredictions[course.courseCode] : null;
           const displayPercent = applied ? applied.percent : course.attendancePercent;
@@ -148,137 +155,149 @@ export const AttendanceBentoView: React.FC = () => {
             : 'col-span-12 sm:col-span-6 lg:col-span-4';
 
           return (
-            <motion.div
-              layout
+            <StaggerItem
               key={course.courseCode}
-              id={`attendance-card-${course.courseCode}`}
-              className={`${colSpanClass} bento-card p-6 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300 ${
-                focusedCourseCode === course.courseCode
-                  ? 'ring-2 ring-black dark:ring-white ring-offset-2 dark:ring-offset-black'
-                  : ''
-              } ${
-                isDanger 
-                  ? 'border-rose-500/20 glow-rose' 
-                  : isBorderline 
-                  ? 'border-amber-500/20 glow-amber' 
-                  : ''
-              }`}
+              layout
+              className={`${colSpanClass} h-full`}
             >
-              <div>
-                {/* Header row: Course Code & Margin Status */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[11px] px-2.5 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[#111111] dark:text-[#FAFAFA] font-bold">
-                      {course.courseCode}
-                    </span>
-                    <span className="text-xs text-[#71717A] dark:text-[#A1A1AA] uppercase">
-                      slot {course.slot}
-                    </span>
-                  </div>
-
-                  {/* Margin Guidance Large Number */}
-                  <div className="text-right">
-                    <div className="flex items-baseline justify-end space-x-1">
-                      <span
-                        className={`text-2xl sm:text-3xl font-black tracking-tight tabular-nums ${
-                          isDanger
-                            ? 'text-rose-500 dark:text-rose-400'
-                            : isBorderline
-                            ? 'text-amber-500 dark:text-amber-400'
-                            : 'text-emerald-500 dark:text-emerald-400'
-                        }`}
-                      >
-                        {isDanger ? marginInfo.required : (marginInfo.margin > 0 ? `+${marginInfo.margin}` : `${marginInfo.margin}`)}
+              <InteractiveBentoCard
+                layout
+                id={`attendance-card-${course.courseCode}`}
+                className={`p-6 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300 ${
+                  focusedCourseCode === course.courseCode
+                    ? 'ring-2 ring-black dark:ring-white ring-offset-2 dark:ring-offset-black'
+                    : ''
+                } ${
+                  isDanger 
+                    ? 'border-rose-500/20 glow-rose' 
+                    : isBorderline 
+                    ? 'border-amber-500/20 glow-amber' 
+                    : ''
+                }`}
+              >
+                <div>
+                  {/* Header row: Course Code & Margin Status */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-[11px] px-2.5 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[#111111] dark:text-[#FAFAFA] font-bold">
+                        {course.courseCode}
                       </span>
-                      <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase">
-                        {isDanger ? 'needed' : 'margin'}
+                      <span className="text-xs text-[#71717A] dark:text-[#A1A1AA] uppercase">
+                        slot {course.slot}
                       </span>
                     </div>
-                  </div>
-                </div>
 
-                {/* Course Title with uniform height */}
-                <div className="min-h-[2.5rem] flex items-center">
-                  <h2 className="text-base sm:text-lg font-bold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase line-clamp-2">
-                    {formatCourseTitle(course.courseTitle)}
-                  </h2>
-                </div>
-
-                {/* Faculty & Room with consistent height */}
-                <div className="mt-2 min-h-[1.5rem] text-xs text-[#71717A] dark:text-[#A1A1AA] flex flex-wrap items-center gap-x-3 gap-y-1 font-medium">
-                  {course.facultyName && (
-                    <span className="flex items-center space-x-1">
-                      <User className="w-3 h-3" />
-                      <span className="truncate">{course.facultyName}</span>
-                    </span>
-                  )}
-                  {course.roomNo && (
-                    <span className="flex items-center space-x-1">
-                      <Building className="w-3 h-3" />
-                      <span>{course.roomNo}</span>
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Data Display & Progress Bar */}
-              <div className="mt-6 space-y-3">
-                <div className="flex items-end justify-between">
-                  <div>
-                    <div className="text-3xl sm:text-4xl font-extrabold tracking-tight tabular-nums text-[#111111] dark:text-[#FAFAFA]">
-                      {displayPercent}%
+                    {/* Margin Guidance Large Number */}
+                    <div className="text-right">
+                      <div className="flex items-baseline justify-end space-x-1">
+                        <span
+                          className={`text-2xl sm:text-3xl font-black tracking-tight tabular-nums ${
+                            isDanger
+                              ? 'text-rose-500 dark:text-rose-400'
+                              : isBorderline
+                              ? 'text-amber-500 dark:text-amber-400'
+                              : 'text-emerald-500 dark:text-emerald-400'
+                          }`}
+                        >
+                          {isDanger ? (
+                            <AnimatedNumber value={marginInfo.required} />
+                          ) : (
+                            <AnimatedNumber
+                              value={marginInfo.margin}
+                              prefix={marginInfo.margin > 0 ? '+' : ''}
+                            />
+                          )}
+                        </span>
+                        <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] lowercase">
+                          {isDanger ? 'needed' : 'margin'}
+                        </span>
+                      </div>
                     </div>
-                    {applied && (
-                      <span className="text-xs text-amber-500 dark:text-amber-400 lowercase">
-                        predicted (was {course.attendancePercent}%)
+                  </div>
+
+                  {/* Course Title with uniform height */}
+                  <div className="min-h-[2.5rem] flex items-center">
+                    <h2 className="text-base sm:text-lg font-bold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase line-clamp-2">
+                      {formatCourseTitle(course.courseTitle)}
+                    </h2>
+                  </div>
+
+                  {/* Faculty & Room with consistent height */}
+                  <div className="mt-2 min-h-[1.5rem] text-xs text-[#71717A] dark:text-[#A1A1AA] flex flex-wrap items-center gap-x-3 gap-y-1 font-medium">
+                    {course.facultyName && (
+                      <span className="flex items-center space-x-1">
+                        <User className="w-3 h-3" />
+                        <span className="truncate">{course.facultyName}</span>
+                      </span>
+                    )}
+                    {course.roomNo && (
+                      <span className="flex items-center space-x-1">
+                        <Building className="w-3 h-3" />
+                        <span>{course.roomNo}</span>
                       </span>
                     )}
                   </div>
+                </div>
 
-                  <div className="text-right text-xs text-[#71717A] dark:text-[#A1A1AA] tabular-nums">
+                {/* Data Display & Progress Bar */}
+                <div className="mt-6 space-y-3">
+                  <div className="flex items-end justify-between">
                     <div>
-                      <span className="font-bold text-[#111111] dark:text-[#FAFAFA]">{course.hoursPresent}</span>
-                      <span> / {course.hoursConducted} hrs</span>
+                      <div className="text-3xl sm:text-4xl font-extrabold tracking-tight tabular-nums text-[#111111] dark:text-[#FAFAFA]">
+                        <AnimatedNumber value={displayPercent} decimals={1} suffix="%" />
+                      </div>
+                      {applied && (
+                        <span className="text-xs text-amber-500 dark:text-amber-400 lowercase">
+                          predicted (was {course.attendancePercent}%)
+                        </span>
+                      )}
                     </div>
-                    <div className="text-[11px] lowercase text-[#71717A] dark:text-[#A1A1AA] mt-0.5">
-                      {course.hoursAbsent} hrs absent
+
+                    <div className="text-right text-xs text-[#71717A] dark:text-[#A1A1AA] tabular-nums">
+                      <div>
+                        <span className="font-bold text-[#111111] dark:text-[#FAFAFA]">{course.hoursPresent}</span>
+                        <span> / {course.hoursConducted} hrs</span>
+                      </div>
+                      <div className="text-[11px] lowercase text-[#71717A] dark:text-[#A1A1AA] mt-0.5">
+                        {course.hoursAbsent} hrs absent
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Single Subtle Clean Hairline Progress Bar */}
-                <div className="w-full h-1.5 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden relative">
-                  <motion.div
-                    className={`h-full rounded-full ${
-                      isDanger
-                        ? 'bg-gradient-to-r from-rose-500 to-rose-400'
-                        : isBorderline
-                        ? 'bg-gradient-to-r from-amber-500 to-amber-400'
-                        : 'bg-gradient-to-r from-emerald-500 to-teal-400'
-                    }`}
-                    animate={{ width: `${Math.min(100, Math.max(0, displayPercent))}%` }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                  {/* Target Cutoff Marker */}
-                  <div
-                    className="absolute top-0 bottom-0 w-0.5 bg-white dark:bg-black z-10 opacity-75"
-                    style={{ left: `${attendanceTargetPercent}%` }}
-                    title={`${attendanceTargetPercent}% target threshold`}
-                  />
-                </div>
+                  {/* Single Subtle Clean Hairline Progress Bar */}
+                  <div className="w-full h-1.5 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden relative">
+                    <motion.div
+                      className={`h-full rounded-full ${
+                        isDanger
+                          ? 'bg-gradient-to-r from-rose-500 to-rose-400'
+                          : isBorderline
+                          ? 'bg-gradient-to-r from-amber-500 to-amber-400'
+                          : 'bg-gradient-to-r from-emerald-500 to-teal-400'
+                      }`}
+                      animate={{ width: `${Math.min(100, Math.max(0, displayPercent))}%` }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                    {/* Target Cutoff Marker */}
+                    <div
+                      className="absolute top-0 bottom-0 w-0.5 bg-white dark:bg-black z-10 opacity-75"
+                      style={{ left: `${attendanceTargetPercent}%` }}
+                      title={`${attendanceTargetPercent}% target threshold`}
+                    />
+                  </div>
 
-                <div className="flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] pt-1">
-                  <span>
-                    {attendanceTargetPercent === 75
-                      ? 'minimum 75% required'
-                      : `target ${attendanceTargetPercent}% (srm min: 75%)`}
-                  </span>
+                  <div className="flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] pt-1">
+                    <span>
+                      {attendanceTargetPercent === 75
+                        ? 'minimum 75% required'
+                        : `target ${attendanceTargetPercent}% (srm min: 75%)`}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </InteractiveBentoCard>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
 
       {/* Custom Attendance Target Setter Modal */}
       <AttendanceTargetModal
