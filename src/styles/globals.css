@@ -8,6 +8,7 @@
   html {
     scrollbar-gutter: stable;
     overflow-y: scroll;
+    overflow-x: clip;
   }
 
   body {
@@ -17,8 +18,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.011em;
-    overflow-x: hidden;
-    width: 100%;
   }
 
   * {

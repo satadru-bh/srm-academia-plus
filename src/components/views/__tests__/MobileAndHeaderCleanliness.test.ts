@@ -85,11 +85,31 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(html).toContain('href="/icon-192.png?v=');
   });
 
-  it('TimetableBentoView conditionally renders exportRef only during active export via createPortal to prevent ghosting', () => {
+  it('TimetableBentoView exports high-res timetable using native Canvas 2D engine with zero DOM ghosting', () => {
     const timetable = fs.readFileSync(path.resolve(__dirname, '../TimetableBentoView.tsx'), 'utf-8');
     expect(timetable).toContain('isExporting');
-    expect(timetable).toContain('createPortal');
-    expect(timetable).toContain('ref={exportRef}');
+    expect(timetable).toContain("document.createElement('canvas')");
+    expect(timetable).toContain('canvas.toBlob');
+    expect(timetable).toContain('drawRoundedBox');
+    expect(timetable).not.toContain('html2canvas');
+  });
+
+  it('FloatingDock popover menu is explicitly anchored with fixed bottom-20 directly above the dock', () => {
+    const dock = fs.readFileSync(path.resolve(__dirname, '../../layout/FloatingDock.tsx'), 'utf-8');
+    expect(dock).toContain('fixed bottom-20 left-1/2 -translate-x-1/2');
+    expect(dock).toContain('w-[calc(100vw-32px)]');
+  });
+
+  it('SessionContext clears focusedCourseCode on tab navigation to prevent auto-opening subject details', () => {
+    const session = fs.readFileSync(path.resolve(__dirname, '../../../context/SessionContext.tsx'), 'utf-8');
+    expect(session).toContain('setFocusedCourseCode(null)');
+    expect(session).toContain('setActiveTabState(tab)');
+  });
+
+  it('globals.css avoids body overflow-x hidden to preserve mobile position fixed coordinates', () => {
+    const css = fs.readFileSync(path.resolve(__dirname, '../../../styles/globals.css'), 'utf-8');
+    expect(css).toContain('overflow-x: clip;');
+    expect(css).not.toMatch(/body\s*\{[^}]*overflow-x:\s*hidden/);
   });
 
   it('App implements mobile swipe navigation with spring physics and jitter-free layout', () => {

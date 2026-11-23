@@ -121,7 +121,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return false;
   });
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty'>('overview');
+  const [activeTab, setActiveTabState] = useState<'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty'>('overview');
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = window.localStorage.getItem('cw_theme_v3') as ThemeMode;
@@ -171,18 +171,23 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [inspectedNotesSubjectId, setInspectedNotesSubjectId] = useState<string | null>(null);
   const [focusedCourseCode, setFocusedCourseCode] = useState<string | null>(null);
 
+  const setActiveTab = useCallback((tab: 'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty') => {
+    setActiveTabState(tab);
+    setFocusedCourseCode(null);
+  }, []);
+
   const openNotesSubject = useCallback((subjectIdOrCode: string) => {
-    setActiveTab('notes');
+    setActiveTabState('notes');
     setInspectedNotesSubjectId(subjectIdOrCode);
   }, []);
 
   const openCourseAttendance = useCallback((courseCode: string) => {
-    setActiveTab('attendance');
+    setActiveTabState('attendance');
     setFocusedCourseCode(courseCode);
   }, []);
 
   const openCourseMarks = useCallback((courseCode: string) => {
-    setActiveTab('marks');
+    setActiveTabState('marks');
     setFocusedCourseCode(courseCode);
   }, []);
 

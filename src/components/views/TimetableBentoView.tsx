@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter, Download } from 'lucide-react';
 import { TimetableSlot, hasAssignedVenue } from '../../api/types';
@@ -12,7 +11,6 @@ export const TimetableBentoView: React.FC = () => {
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder > 0 ? currentDayOrder : 1);
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const timetableRef = useRef<HTMLDivElement>(null);
-  const exportRef = useRef<HTMLDivElement>(null);
 
   // Automatic batch detection from student profile (locks to allocated batch)
   const activeBatch = user?.profile?.batch
@@ -160,36 +158,265 @@ export const TimetableBentoView: React.FC = () => {
 
   const handleExport = async () => {
     setIsExporting(true);
-    // Allow React state update and DOM to mount portaled exportRef before capturing
-    await new Promise((r) => setTimeout(r, 120));
-    const target = exportRef.current;
-    if (!target) {
-      setIsExporting(false);
-      return;
-    }
     try {
       if (typeof document !== 'undefined' && document.fonts) {
         await document.fonts.ready;
       }
-      const html2canvas = (await import('html2canvas')).default;
-      const canvas = await (html2canvas as any)(target, {
-        backgroundColor: '#FFFFFF',
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        width: 1400,
-        height: target.offsetHeight || 800,
-        windowWidth: 1400,
-        x: 0,
-        y: 0
+
+      // Standalone, robust HTML5 Canvas 2D engine: 100% immune to DOM-to-image capture bugs
+      const canvas = document.createElement('canvas');
+      const SCALE = 2; // 2x Retina scaling for ultra-crisp printing
+      const W = 1400;
+      const H = 840;
+      canvas.width = W * SCALE;
+      canvas.height = H * SCALE;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.scale(SCALE, SCALE);
+
+      // Helper for drawing rounded rectangles with universal browser compatibility
+      const drawRoundedBox = (
+        x: number,
+        y: number,
+        w: number,
+        h: number,
+        r: number,
+        fillColor: string,
+        strokeColor?: string,
+        lineWidth: number = 1
+      ) => {
+        ctx.beginPath();
+        if (ctx.roundRect) {
+          ctx.roundRect(x, y, w, h, r);
+        } else {
+          ctx.moveTo(x + r, y);
+          ctx.lineTo(x + w - r, y);
+          ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+          ctx.lineTo(x + w, y + h - r);
+          ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+          ctx.lineTo(x + r, y + h);
+          ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+          ctx.lineTo(x, y + r);
+          ctx.quadraticCurveTo(x, y, x + r, y);
+          ctx.closePath();
+        }
+        ctx.fillStyle = fillColor;
+        ctx.fill();
+        if (strokeColor) {
+          ctx.strokeStyle = strokeColor;
+          ctx.lineWidth = lineWidth;
+          ctx.stroke();
+        }
+      };
+
+      // Helper for wrapping text into multiple lines with line clamping
+      const wrapTextLines = (text: string, maxWidth: number, maxLines: number = 2): string[] => {
+        const words = text.split(' ');
+        const lines: string[] = [];
+        let currentLine = '';
+
+        for (let i = 0; i < words.length; i++) {
+          const word = words[i];
+          const testLine = currentLine ? `${currentLine} ${word}` : word;
+          if (ctx.measureText(testLine).width <= maxWidth) {
+            currentLine = testLine;
+          } else {
+            if (currentLine) lines.push(currentLine);
+            if (lines.length >= maxLines) break;
+            currentLine = word;
+          }
+        }
+        if (currentLine && lines.length < maxLines) {
+          lines.push(currentLine);
+        }
+        return lines;
+      };
+
+      // 1. Pristine solid background
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, W, H);
+
+      // 2. Apple-Grade Top Header Container
+      drawRoundedBox(36, 28, W - 72, 74, 16, '#F8FAFC', '#E2E8F0', 1);
+
+      // Title & Subtitle
+      ctx.textAlign = 'left';
+      ctx.font = 'bold 22px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillStyle = '#0F172A';
+      ctx.fillText(`cycle timetable • combo batch ${activeBatch}`, 56, 62);
+
+      ctx.font = '12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillStyle = '#64748B';
+      const subDesc = activeBatch === 2
+        ? 'batch 2 • afternoon theory (periods 6 to 12) • srm official 5-day cycle verified'
+        : 'batch 1 • morning theory (periods 1 to 5) • srm official 5-day cycle verified';
+      ctx.fillText(subDesc, 56, 84);
+
+      // Legend Pills
+      // Theory Pill
+      drawRoundedBox(W - 370, 47, 140, 36, 10, '#EFF6FF', '#93C5FD', 1.5);
+      drawRoundedBox(W - 356, 61, 8, 8, 4, '#2563EB');
+      ctx.font = 'bold 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillStyle = '#1E40AF';
+      ctx.fillText('T • theory lecture', W - 342, 69);
+
+      // Lab Pill
+      drawRoundedBox(W - 210, 47, 140, 36, 10, '#ECFDF5', '#6EE7B7', 1.5);
+      drawRoundedBox(W - 196, 61, 8, 8, 4, '#059669');
+      ctx.fillStyle = '#065F46';
+      ctx.fillText('L • lab practical', W - 182, 69);
+
+      // 3. Table Column Headers
+      const tableX = 36;
+      const dayColW = 110;
+      const numPeriods = 12;
+      const colGap = 4;
+      const totalPeriodWidth = W - 72 - dayColW - 8;
+      const periodColW = (totalPeriodWidth - (numPeriods - 1) * colGap) / numPeriods;
+
+      // Day Order Header
+      drawRoundedBox(tableX, 118, dayColW, 46, 10, '#F1F5F9', '#CBD5E1', 1);
+      ctx.font = 'bold 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillStyle = '#0F172A';
+      ctx.textAlign = 'center';
+      ctx.fillText('day order', tableX + dayColW / 2, 145);
+
+      // Periods 1 to 12 Headers
+      periods.forEach((p, i) => {
+        const px = tableX + dayColW + 8 + i * (periodColW + colGap);
+        const isAllocated = (activeBatch === 2 && p.batch === 'b2') || (activeBatch === 1 && p.batch === 'b1');
+
+        drawRoundedBox(px, 118, periodColW, 46, 10, isAllocated ? '#F8FAFC' : '#FFFFFF', isAllocated ? '#CBD5E1' : '#E2E8F0', 1);
+
+        ctx.textAlign = 'center';
+        ctx.font = 'bold 11px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillStyle = '#0F172A';
+        ctx.fillText(p.name, px + periodColW / 2, 137);
+
+        ctx.font = '9.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillStyle = '#64748B';
+        ctx.fillText(p.time, px + periodColW / 2, 153);
       });
-      const link = document.createElement('a');
-      link.download = `srm-cycle-timetable-batch${activeBatch}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+
+      // 4. Day Rows (Days 1 to 5)
+      const rowH = 114;
+      const rowGap = 6;
+      const startY = 172;
+
+      daysList.forEach((day) => {
+        const ry = startY + (day - 1) * (rowH + rowGap);
+
+        // Day Order Box on left
+        drawRoundedBox(tableX, ry, dayColW, rowH, 12, '#F8FAFC', '#E2E8F0', 1);
+        ctx.font = 'bold 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillStyle = '#0F172A';
+        ctx.textAlign = 'center';
+        ctx.fillText(`day ${day}`, tableX + dayColW / 2, ry + rowH / 2 + 5);
+
+        // Period Cards for this Day
+        const groups = getGroupedSlotsForDay(day);
+        groups.forEach((group) => {
+          const startIdx = group.startPeriod.id - 1;
+          const cx = tableX + dayColW + 8 + startIdx * (periodColW + colGap);
+          const cw = group.colSpan * periodColW + (group.colSpan - 1) * colGap;
+
+          if (group.hasClass) {
+            const isLab = group.isLab;
+            const bg = isLab ? '#ECFDF5' : '#EFF6FF';
+            const border = isLab ? '#6EE7B7' : '#93C5FD';
+            const textDark = isLab ? '#064E3B' : '#1E3A8A';
+            const tagBg = isLab ? '#D1FAE5' : '#DBEAFE';
+            const tagText = isLab ? '#047857' : '#1D4ED8';
+
+            // Card Container
+            drawRoundedBox(cx, ry, cw, rowH, 12, bg, border, 1.5);
+
+            // Top: Course Code & Badge
+            ctx.textAlign = 'left';
+            ctx.font = 'bold 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = textDark;
+            ctx.fillText(group.slot.courseCode, cx + 10, ry + 22);
+
+            // Badge Pill
+            const badgeW = 24;
+            const badgeH = 18;
+            const badgeX = cx + cw - badgeW - 8;
+            const badgeY = ry + 8;
+            drawRoundedBox(badgeX, badgeY, badgeW, badgeH, 6, tagBg);
+
+            ctx.textAlign = 'center';
+            ctx.font = 'bold 10px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = tagText;
+            ctx.fillText(isLab ? 'L' : 'T', badgeX + badgeW / 2, badgeY + 13);
+
+            // Middle: Course Title (Wrapped cleanly)
+            const cleanTitle = formatCourseTitle(group.slot.courseTitle);
+            ctx.textAlign = 'left';
+            ctx.font = '600 10px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = isLab ? '#064E3B' : '#1E293B';
+            const lines = wrapTextLines(cleanTitle, cw - 20, 2);
+            if (lines.length === 1) {
+              ctx.fillText(lines[0], cx + 10, ry + 56);
+            } else if (lines.length >= 2) {
+              ctx.fillText(lines[0], cx + 10, ry + 49);
+              ctx.fillText(lines[1], cx + 10, ry + 64);
+            }
+
+            // Bottom: Room & Slot Range
+            ctx.font = '600 9.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = isLab ? '#047857' : '#475569';
+            ctx.textAlign = 'left';
+            ctx.fillText(group.slot.room || 'tp 706', cx + 10, ry + rowH - 12);
+
+            ctx.font = 'bold 9.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = isLab ? '#047857' : '#2563EB';
+            ctx.textAlign = 'right';
+            ctx.fillText(group.slotRangeDisplay, cx + cw - 10, ry + rowH - 12);
+          } else {
+            // Free Period
+            drawRoundedBox(cx, ry, cw, rowH, 12, '#F8FAFC', '#E2E8F0', 1);
+            ctx.font = '11px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.fillStyle = '#94A3B8';
+            ctx.textAlign = 'center';
+            ctx.fillText('free', cx + cw / 2, ry + rowH / 2 + 4);
+          }
+        });
+      });
+
+      // 5. Clean Footer Brand
+      const fy = H - 28;
+      ctx.strokeStyle = '#E2E8F0';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(36, fy - 18);
+      ctx.lineTo(W - 36, fy - 18);
+      ctx.stroke();
+
+      ctx.font = '600 11.5px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillStyle = '#64748B';
+      ctx.textAlign = 'left';
+      ctx.fillText('academia plus • official academic cycle schedule', 36, fy);
+
+      ctx.textAlign = 'right';
+      ctx.fillText(`5-day cycle verified • combo batch ${activeBatch}`, W - 36, fy);
+
+      // 6. Direct PNG Blob Download
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          setIsExporting(false);
+          return;
+        }
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = `srm-cycle-timetable-batch${activeBatch}.png`;
+        link.href = url;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+        setIsExporting(false);
+      }, 'image/png');
     } catch (err) {
       console.error('Failed to export timetable image:', err);
-    } finally {
       setIsExporting(false);
     }
   };
@@ -602,188 +829,6 @@ export const TimetableBentoView: React.FC = () => {
             )}
           </div>
         </div>
-      )}
-
-      {/* Pristine High-Resolution Export Template: Mounted via Portal directly to body for flawless html2canvas capture */}
-      {isExporting && typeof document !== 'undefined' && createPortal(
-        <div
-          ref={exportRef}
-          aria-hidden="true"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '1400px',
-            zIndex: 999999,
-            backgroundColor: '#FFFFFF',
-            color: '#0F172A',
-            padding: '40px',
-            boxSizing: 'border-box',
-            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-            pointerEvents: 'none',
-            visibility: 'visible',
-          }}
-        >
-          {/* Header Title & Legend */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', paddingBottom: '16px', borderBottom: '2px solid #E2E8F0' }}>
-            <div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#64748B', textTransform: 'lowercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
-                srm official academic schedule
-              </div>
-              <h1 style={{ fontSize: '28px', fontWeight: 800, margin: 0, color: '#0F172A', letterSpacing: '-0.025em' }}>
-                cycle timetable • combo batch {activeBatch}
-              </h1>
-              <div style={{ fontSize: '13px', color: '#64748B', marginTop: '4px' }}>
-                {activeBatch === 2 ? 'batch 2 • afternoon theory schedule' : 'batch 1 • morning theory schedule'}
-              </div>
-            </div>
-
-            {/* Theory vs Lab Legend Pills */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '12px', backgroundColor: '#EFF6FF', border: '1.5px solid #93C5FD' }}>
-                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#2563EB' }} />
-                <span style={{ fontSize: '12px', fontWeight: 700, color: '#1E40AF' }}>T • theory lecture</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '12px', backgroundColor: '#ECFDF5', border: '1.5px solid #6EE7B7' }}>
-                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#059669' }} />
-                <span style={{ fontSize: '12px', fontWeight: 700, color: '#065F46' }}>L • lab practical</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Full 5-Day Grid Table with Merged Consecutive Periods & Distinct Lab/Theory Styles */}
-          <table style={{ width: '100%', tableLayout: 'fixed', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <colgroup>
-              <col style={{ width: '116px' }} />
-              {periods.map((p) => (
-                <col key={p.id} style={{ width: '100px' }} />
-              ))}
-            </colgroup>
-            <thead>
-              <tr style={{ borderBottom: '2px solid #CBD5E1' }}>
-                <th style={{ padding: '12px 8px', fontSize: '13px', fontWeight: 800, color: '#0F172A', textTransform: 'lowercase' }}>
-                  day order
-                </th>
-                {periods.map((p) => {
-                  const isAllocated = (activeBatch === 2 && p.batch === 'b2') || (activeBatch === 1 && p.batch === 'b1');
-                  return (
-                    <th
-                      key={p.id}
-                      style={{
-                        padding: '10px 4px',
-                        textAlign: 'center',
-                        backgroundColor: isAllocated ? '#F8FAFC' : 'transparent',
-                        borderRadius: isAllocated ? '8px 8px 0 0' : undefined
-                      }}
-                    >
-                      <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#0F172A', textTransform: 'lowercase', whiteSpace: 'nowrap' }}>
-                        {p.name}
-                      </div>
-                      <div style={{ fontSize: '10px', color: '#64748B', marginTop: '3px', whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>
-                        {p.time}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {daysList.map((day) => (
-                <tr key={day} style={{ borderBottom: '1px solid #E2E8F0' }}>
-                  <td style={{ padding: '12px 8px', fontSize: '14px', fontWeight: 800, color: '#0F172A', verticalAlign: 'middle' }}>
-                    day {day}
-                  </td>
-                  {getGroupedSlotsForDay(day).map((group) => {
-                    const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
-                    return (
-                      <td
-                        key={group.startPeriod.id}
-                        colSpan={colSpan}
-                        style={{ padding: '4px', verticalAlign: 'top', height: '114px' }}
-                      >
-                        {hasClass ? (
-                          <div
-                            style={{
-                              padding: '8px 10px',
-                              borderRadius: '12px',
-                              height: '114px',
-                              boxSizing: 'border-box',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              justifyContent: 'space-between',
-                              backgroundColor: isLab ? '#ECFDF5' : '#EFF6FF',
-                              border: isLab ? '1.5px solid #6EE7B7' : '1.5px solid #93C5FD',
-                            }}
-                          >
-                            {/* Top Row: Course Code & Clean Colored T/L Tag */}
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4px' }}>
-                              <span style={{ fontSize: '11.5px', fontWeight: 800, color: isLab ? '#064E3B' : '#1E3A8A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                {slot.courseCode}
-                              </span>
-                              <span
-                                style={{
-                                  fontSize: '11px',
-                                  fontWeight: 800,
-                                  color: isLab ? '#047857' : '#1D4ED8',
-                                  padding: '1px 6px',
-                                  borderRadius: '6px',
-                                  backgroundColor: isLab ? '#D1FAE5' : '#DBEAFE'
-                                }}
-                              >
-                                {isLab ? 'L' : 'T'}
-                              </span>
-                            </div>
-
-                            {/* Middle: Subject Name */}
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '4px 0' }}>
-                              <div style={{ fontSize: '10.5px', fontWeight: 600, color: isLab ? '#064E3B' : '#1E293B', textTransform: 'lowercase', lineHeight: 1.35, maxHeight: '42px', overflow: 'hidden' }}>
-                                {formatCourseTitle(slot.courseTitle)}
-                              </div>
-                            </div>
-
-                            {/* Bottom Row: Room & Slot Range */}
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '9.5px', color: '#64748B', paddingTop: '2px' }}>
-                              <span style={{ fontWeight: 600, color: isLab ? '#047857' : '#334155' }}>
-                                {slot.room || 'tp 706'}
-                              </span>
-                              <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: isLab ? '#047857' : '#2563EB' }}>
-                                {slotRangeDisplay}
-                              </span>
-                            </div>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              height: '114px',
-                              boxSizing: 'border-box',
-                              borderRadius: '12px',
-                              border: '1px dashed #CBD5E1',
-                              backgroundColor: '#F8FAFC',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              fontSize: '11px',
-                              color: '#94A3B8'
-                            }}
-                          >
-                            free
-                          </div>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Footer Brand */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px', paddingTop: '16px', borderTop: '1.5px solid #E2E8F0', fontSize: '12px', color: '#64748B' }}>
-            <span style={{ fontWeight: 600 }}>academia plus • official academic cycle schedule</span>
-            <span style={{ fontWeight: 600 }}>5-day cycle verified • combo batch {activeBatch}</span>
-          </div>
-        </div>,
-        document.body
       )}
     </div>
   );

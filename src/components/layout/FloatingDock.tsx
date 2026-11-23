@@ -64,7 +64,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
 
   return (
     <div ref={menuRef} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 select-none">
-      {/* Animated Floating Popover "More" Menu: Perfectly centered on mobile and desktop */}
+      {/* Animated Floating Popover "More" Menu: Explicitly fixed directly above the dock */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -72,7 +72,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.95 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
+            className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
           >
             <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
               more workspace views

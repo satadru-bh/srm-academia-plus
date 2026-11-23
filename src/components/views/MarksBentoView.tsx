@@ -10,7 +10,7 @@ import { Search, ChevronDown, TrendingUp, TrendingDown, Minus } from 'lucide-rea
 import { GpaPredictorModal } from '../modals/GpaPredictorModal';
 
 export const MarksBentoView: React.FC = () => {
-  const { user, focusedCourseCode } = useSession();
+  const { user, focusedCourseCode, setFocusedCourseCode } = useSession();
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedCourses, setExpandedCourses] = useState<Record<string, boolean>>({});
   const [viewModes, setViewModes] = useState<Record<string, 'bars' | 'chart' | 'trend'>>({});
@@ -24,10 +24,11 @@ export const MarksBentoView: React.FC = () => {
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, 100);
+        setFocusedCourseCode(null);
+      }, 150);
       return () => clearTimeout(timer);
     }
-  }, [focusedCourseCode]);
+  }, [focusedCourseCode, setFocusedCourseCode]);
 
   if (!user) return null;
 

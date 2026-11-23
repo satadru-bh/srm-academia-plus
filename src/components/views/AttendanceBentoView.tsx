@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 export const AttendanceBentoView: React.FC = () => {
-  const { user, timetable, focusedCourseCode } = useSession();
+  const { user, timetable, focusedCourseCode, setFocusedCourseCode } = useSession();
   const [searchTerm, setSearchTerm] = useState('');
   const [isPredictorOpen, setIsPredictorOpen] = useState(false);
   
@@ -26,10 +26,11 @@ export const AttendanceBentoView: React.FC = () => {
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, 100);
+        setFocusedCourseCode(null);
+      }, 150);
       return () => clearTimeout(timer);
     }
-  }, [focusedCourseCode]);
+  }, [focusedCourseCode, setFocusedCourseCode]);
 
   if (!user) return null;
 
