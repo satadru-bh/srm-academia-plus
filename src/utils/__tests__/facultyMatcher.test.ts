@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest';
 import {
   parseFacultyTokens,
   isFacultyMatch,
-  matchStudentFaculty
+  matchStudentFaculty,
+  stripEmployeeId
 } from '../facultyMatcher';
 import { FACULTY_DIRECTORY, FacultyMember } from '../../data/facultyDirectory';
 import { REAL_STUDENT_DATA } from '../../data/studentData';
@@ -96,5 +97,20 @@ describe('facultyMatcher', () => {
 
     const srividhyaBMember = mapped.find((f) => f.id === 'fac-srividhya-b');
     expect(srividhyaBMember?.isMyFaculty).toBe(false);
+  });
+
+  it('stripEmployeeId correctly cleans employee ID in all formats while preserving faculty name', () => {
+    expect(stripEmployeeId('Dr. Thenmozhi S (103240)')).toBe('Dr. Thenmozhi S');
+    expect(stripEmployeeId('Akilandasowmya (103675)')).toBe('Akilandasowmya');
+    expect(stripEmployeeId('Nagarajan S (103622)')).toBe('Nagarajan S');
+    expect(stripEmployeeId('Dr.Vidhya S (102939)')).toBe('Dr.Vidhya S');
+    expect(stripEmployeeId('Dr.Vidhya B (103387)')).toBe('Dr.Vidhya B');
+    expect(stripEmployeeId('Dr. Arunarani AR (102975)')).toBe('Dr. Arunarani AR');
+    expect(stripEmployeeId('Dr. Nancy Prasanna Joseph (102297)')).toBe('Dr. Nancy Prasanna Joseph');
+    expect(stripEmployeeId('Beena Godbin A - 102345')).toBe('Beena Godbin A');
+    expect(stripEmployeeId('Professor Raman [105555]')).toBe('Professor Raman');
+    expect(stripEmployeeId('')).toBe('');
+    expect(stripEmployeeId(null)).toBe('');
+    expect(stripEmployeeId(undefined)).toBe('');
   });
 });

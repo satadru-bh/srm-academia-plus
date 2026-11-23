@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { Calendar, MapPin } from 'lucide-react';
 import { hasAssignedVenue } from '../../api/types';
+import { stripEmployeeId } from '../../utils/facultyMatcher';
 
 export const TimetableView: React.FC = () => {
   const { timetable, currentDayOrder, openFaculty } = useSession();
@@ -131,7 +132,7 @@ export const TimetableView: React.FC = () => {
                             className="hover:underline hover:text-[#007AFF] dark:hover:text-[#0A84FF] transition-colors cursor-pointer text-left"
                             title="view faculty in finder"
                           >
-                            {slot.faculty}
+                            {stripEmployeeId(slot.faculty)}
                           </button>
                         )}
                       </div>

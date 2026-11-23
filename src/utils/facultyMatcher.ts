@@ -180,3 +180,17 @@ export function matchStudentFaculty(
     };
   });
 }
+
+/**
+ * Strips employee ID (e.g. "(103240)", "[103240]", "- 103240") from faculty names for clean UI display.
+ */
+export function stripEmployeeId(nameStr: string | undefined | null): string {
+  if (!nameStr) return '';
+  return nameStr
+    .replace(/\s*\(\s*\d+\s*\)/g, '')
+    .replace(/\s*-\s*\d+\s*/g, '')
+    .replace(/\s*\[\s*\d+\s*\]/g, '')
+    .replace(/\s*\b\d{5,6}\b/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}

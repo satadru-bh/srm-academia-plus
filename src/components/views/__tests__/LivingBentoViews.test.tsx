@@ -93,8 +93,8 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       expect(html).toContain('bento-card');
       expect(html).toContain('card-spotlight');
 
-      // Further reduced rounding on period cards inside timetable
-      expect(html).toContain('rounded-[3px]');
+      // Uniform rounding on period cards inside timetable matching Image 2
+      expect(html).toContain('rounded-xl');
       expect(html).toContain('timetable-period-card');
 
       // Tactile view mode buttons

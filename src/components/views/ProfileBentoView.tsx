@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { Mail, Phone, Moon, Sun, RefreshCw, LogOut, CheckCircle, GraduationCap, Building2, Camera, Trash2 } from 'lucide-react';
+import { stripEmployeeId } from '../../utils/facultyMatcher';
 import {
   InteractiveBentoCard,
   StaggerContainer,
@@ -295,7 +296,7 @@ export const ProfileBentoView: React.FC = () => {
                     className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase text-left hover:underline cursor-pointer"
                     title="view faculty in finder"
                   >
-                    {user.profile.facultyAdvisor.name.toLowerCase()}
+                    {stripEmployeeId(user.profile.facultyAdvisor.name).toLowerCase()}
                   </button>
                   <div className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
                     faculty advisor • department of cse, tech park

@@ -4,6 +4,7 @@ import { StudentUserResponse, TimetableResponse } from '../api/types';
 import { apiClient } from '../api/client';
 import { defaultCache } from '../api/cache';
 import { getDayOrderForDate } from '../data/academicCalendar';
+import { stripEmployeeId } from '../utils/facultyMatcher';
 
 export type ThemeMode = 'oled' | 'batman' | 'slate' | 'barbie' | 'tropicana' | 'matcha' | 'blue-ice' | 'banana' | 'light';
 
@@ -245,7 +246,9 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const openFaculty = useCallback((facultyName: string) => {
     if (!facultyName) return;
-    const cleanName = facultyName.replace(/\s*\((theory|lab|batch\s*\d+)\)\s*/gi, '').trim();
+    const cleanName = stripEmployeeId(facultyName)
+      .replace(/\s*\((theory|lab|batch\s*\d+)\)\s*/gi, '')
+      .trim();
     setFacultySearchQuery(cleanName);
     setActiveTabState('faculty');
   }, []);

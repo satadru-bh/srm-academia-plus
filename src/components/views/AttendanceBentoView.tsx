@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { calculateAttendanceMargin } from '../../api/margin';
 import { formatCourseTitle } from '../../api/grades';
+import { stripEmployeeId } from '../../utils/facultyMatcher';
 import { AttendancePredictorModal } from '../common/AttendancePredictorModal';
 import { AttendanceTargetModal } from '../modals/AttendanceTargetModal';
 import {
@@ -261,7 +262,7 @@ export const AttendanceBentoView: React.FC = () => {
                         title="view faculty in finder"
                       >
                         <User className="w-3 h-3 group-hover:text-[#111111] dark:group-hover:text-[#FAFAFA]" />
-                        <span className="truncate">{course.facultyName}</span>
+                        <span className="truncate">{stripEmployeeId(course.facultyName)}</span>
                       </button>
                     )}
                     {course.roomNo && (

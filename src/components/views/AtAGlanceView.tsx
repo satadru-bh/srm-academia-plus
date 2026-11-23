@@ -8,6 +8,7 @@ import {
   formatCourseTitle 
 } from '../../api/grades';
 import { getUpcomingEvents } from '../../data/academicCalendar';
+import { stripEmployeeId } from '../../utils/facultyMatcher';
 import { REAL_TIMETABLE_DATA } from '../../data/studentData';
 import { hasAssignedVenue } from '../../api/types';
 import { GpaPredictorModal } from '../modals/GpaPredictorModal';
@@ -306,7 +307,7 @@ export const AtAGlanceView: React.FC = () => {
                               className="hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
                               title="view faculty in finder"
                             >
-                              • {slot.faculty}
+                              • {stripEmployeeId(slot.faculty)}
                             </button>
                           )}
                         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSession } from '../../context/SessionContext';
 import { calculateAttendanceMargin } from '../../api/margin';
 import { formatCourseTitle } from '../../api/grades';
+import { stripEmployeeId } from '../../utils/facultyMatcher';
 import { hasAssignedVenue } from '../../api/types';
 import {
   TrendingUp,
@@ -247,7 +248,7 @@ export const OverviewView: React.FC = () => {
                           className="truncate hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
                           title="view faculty in finder"
                         >
-                          {slot.faculty}
+                          {stripEmployeeId(slot.faculty)}
                         </button>
                       )}
                     </div>
