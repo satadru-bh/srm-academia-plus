@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { Calendar, MapPin } from 'lucide-react';
+import { hasAssignedVenue } from '../../api/types';
 
 export const TimetableView: React.FC = () => {
   const { timetable, currentDayOrder } = useSession();
@@ -84,13 +85,13 @@ export const TimetableView: React.FC = () => {
             </span>
           </div>
           <span className="text-xs text-[#6E6E73] dark:text-[#98989D]">
-            {activeSlots.filter(s => s.courseTitle !== 'Free Period').length} Lectures
+            {activeSlots.filter(s => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)).length} Lectures
           </span>
         </div>
 
         <div className="space-y-3">
           {activeSlots.map((slot, index) => {
-            const isFree = slot.courseTitle === 'Free Period' || slot.courseTitle === 'No class';
+            const isFree = slot.courseTitle === 'Free Period' || slot.courseTitle === 'No class' || !hasAssignedVenue(slot.room);
 
             return (
               <div

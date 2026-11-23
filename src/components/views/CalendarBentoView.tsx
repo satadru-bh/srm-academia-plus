@@ -7,6 +7,7 @@ import {
   getDayOrderForDate 
 } from '../../data/academicCalendar';
 import { formatCourseTitle } from '../../api/grades';
+import { hasAssignedVenue } from '../../api/types';
 import { 
   Calendar as CalendarIcon, 
   ChevronLeft, 
@@ -109,7 +110,7 @@ export const CalendarBentoView: React.FC = () => {
 
   const selectedClasses = (timetable && selectedDayInfo.dayOrder > 0)
     ? (timetable.days[selectedDayInfo.dayOrder] || []).filter(
-        s => s.courseTitle && s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class'
+        s => s.courseTitle && s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)
       )
     : [];
 

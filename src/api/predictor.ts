@@ -1,4 +1,4 @@
-import { AttendanceItem, TimetableResponse, TimetableSlot } from './types';
+import { AttendanceItem, TimetableResponse, TimetableSlot, hasAssignedVenue } from './types';
 import { calculateAttendanceMargin } from './margin';
 import { getDayOrderForDate } from '../data/academicCalendar';
 
@@ -145,7 +145,7 @@ export function getClassesForDateRange(
     let slots: TimetableSlot[] = [];
     if (isWorkingDay && dayOrder > 0) {
       slots = (timetable.days[dayOrder] || []).filter(
-        (s) => s.courseTitle && s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class'
+        (s) => s.courseTitle && s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)
       );
     }
 

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter, Download } from 'lucide-react';
-import { TimetableSlot } from '../../api/types';
+import { TimetableSlot, hasAssignedVenue } from '../../api/types';
 import { formatCourseTitle } from '../../api/grades';
 import { REAL_TIMETABLE_DATA } from '../../data/studentData';
 
@@ -85,7 +85,8 @@ export const TimetableBentoView: React.FC = () => {
         slot.courseCode !== '-' &&
         slot.courseTitle &&
         slot.courseTitle !== 'Free Period' &&
-        slot.courseTitle !== 'No class'
+        slot.courseTitle !== 'No class' &&
+        hasAssignedVenue(slot.room)
       );
 
       if (!hasClass || !slot) {

@@ -66,6 +66,24 @@ export interface TimetableSlot {
   dayOrder: number; // 1 to 5
 }
 
+/**
+ * Check if a room/venue is assigned and valid (skips unallotted, pending, or TBA venues)
+ */
+export function hasAssignedVenue(room: string | undefined | null): boolean {
+  if (!room) return false;
+  const r = room.trim().toLowerCase();
+  return !(
+    r === '' ||
+    r === '-' ||
+    r === 'n/a' ||
+    r === 'na' ||
+    r === 'tba' ||
+    r === 'tbd' ||
+    r.includes('to be allot') ||
+    r.includes('to be announce')
+  );
+}
+
 export interface TimetableDay {
   dayOrder: number;
   slots: TimetableSlot[];

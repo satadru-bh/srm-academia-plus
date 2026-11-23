@@ -119,13 +119,35 @@ describe('CampusWebClient', () => {
     expect(day1[5].courseTitle).toBe('Transforms and Boundary Value Problems');
     expect(day1[7].courseCode).toBe('21CSC202J');
     expect(day1[7].courseTitle).toBe('Operating Systems');
-    expect(day1[9].courseCode).toBe('21LEM202T');
+    // Periods without assigned venue (e.g. 'To be Alloted') are dynamically skipped
+    expect(day1[9].courseCode).toBe('-');
+    expect(day1[9].courseTitle).toBe('Free Period');
 
     // Periods 11 & 12
     expect(day1[10].slotName).toBe('Slot 11');
     expect(day1[10].timeRange).toBe('04:50 - 05:30');
     expect(day1[11].slotName).toBe('Slot 12');
     expect(day1[11].timeRange).toBe('05:30 - 06:10');
+  });
+
+  it('includes classes once a venue is assigned', async () => {
+    client.setSession('active_token');
+    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        day_order: '1',
+        timetable: {
+          Day1: {
+            '04:00 - 04:50': { subject_name: 'Universal Human Values', subject_type: 'Theory', room_code: 'TP 706' }
+          }
+        }
+      })
+    } as Response);
+
+    const tt = await client.fetchTimetable(2, true);
+    expect(tt.days[1][0].courseCode).toBe('21LEM202T');
+    expect(tt.days[1][0].courseTitle).toBe('UHV-II: Universal Human Values');
+    expect(tt.days[1][0].room).toBe('TP 706');
   });
 
   it('keeps cached student data persistent even if offline or network fails', async () => {

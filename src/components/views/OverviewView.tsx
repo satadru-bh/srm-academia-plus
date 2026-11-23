@@ -2,6 +2,7 @@ import React from 'react';
 import { useSession } from '../../context/SessionContext';
 import { calculateAttendanceMargin } from '../../api/margin';
 import { formatCourseTitle } from '../../api/grades';
+import { hasAssignedVenue } from '../../api/types';
 import {
   TrendingUp,
   Clock,
@@ -22,10 +23,10 @@ export const OverviewView: React.FC = () => {
   const overallPercent = totalConducted > 0 ? Math.round((totalPresent / totalConducted) * 10000) / 100 : 100;
   const overallMargin = calculateAttendanceMargin(totalConducted, totalPresent);
 
-  // Today's classes for current Day Order (excluding free periods, empty if holiday)
+  // Today's classes for current Day Order (excluding free periods & unassigned venues, empty if holiday)
   const todayClasses = (!isHoliday && currentDayOrder > 0)
     ? (timetable?.days[currentDayOrder] || []).filter(
-      (s) => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class'
+      (s) => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)
     )
     : [];
 

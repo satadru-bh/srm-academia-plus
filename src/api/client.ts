@@ -4,7 +4,8 @@ import {
   StudentUserResponse, 
   TimetableResponse, 
   AttendanceItem, 
-  CourseMarks 
+  CourseMarks,
+  hasAssignedVenue
 } from './types';
 import { defaultCache } from './cache';
 
@@ -450,7 +451,9 @@ export class CampusWebClient {
         .slice(0, 12) // Support all 12 periods (up to 06:10 PM)
         .map(([timeRange, info], idx) => {
           const rawName = (info.subject_name || '').trim();
-          const isFree = !rawName || rawName === 'No class' || rawName === 'Free Period' || rawName === 'N/A';
+          const rawRoom = (info.room_code && info.room_code !== 'N/A') ? info.room_code.trim() : '';
+          const hasVenue = hasAssignedVenue(rawRoom);
+          const isFree = !rawName || rawName === 'No class' || rawName === 'Free Period' || rawName === 'N/A' || !hasVenue;
 
           if (isFree) {
             return {

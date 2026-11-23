@@ -10,6 +10,7 @@ import {
 } from '../../api/grades';
 import { getUpcomingEvents } from '../../data/academicCalendar';
 import { REAL_TIMETABLE_DATA } from '../../data/studentData';
+import { hasAssignedVenue } from '../../api/types';
 import { GpaPredictorModal } from '../modals/GpaPredictorModal';
 import { 
   MapPin, 
@@ -53,7 +54,7 @@ export const AtAGlanceView: React.FC = () => {
     ? (activeTimetableDays[currentDayOrder] || [])
         .slice(0, 12)
         .filter(
-          (s) => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class'
+          (s) => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)
         )
     : [];
 
