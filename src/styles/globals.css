@@ -282,6 +282,20 @@ html:not(:active-view-transition) .glass-dock {
     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Hypnotic Smooth Dotted Perimeter Warning Spin */
+@keyframes perimeter-spin {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.animate-perimeter-spin {
+  animation: perimeter-spin 8s linear infinite;
+}
+
 /* Accessible Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
 

@@ -30,11 +30,11 @@ export const SignInBentoView: React.FC = () => {
       {/* 1. Organic Living Ambient Aurora Orbs (Hardware-accelerated) */}
       <div
         aria-hidden="true"
-        className="absolute top-1/4 -left-20 w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block animate-pulse"
+        className="absolute top-1/4 -left-20 w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block"
       />
       <div
         aria-hidden="true"
-        className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-bl from-emerald-500/12 via-teal-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block animate-pulse"
+        className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-bl from-emerald-500/12 via-teal-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block"
       />
 
       {/* 2. Subtle Micro-Dot Grid */}

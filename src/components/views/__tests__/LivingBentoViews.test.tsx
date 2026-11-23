@@ -8,9 +8,12 @@ import { MarksBentoView } from '../MarksBentoView';
 import { ExamTimetableBentoView } from '../ExamTimetableBentoView';
 import { REAL_STUDENT_DATA } from '../../../data/studentData';
 
+let mockAttendanceTarget = 75;
+let mockStudentData = REAL_STUDENT_DATA;
+
 vi.mock('../../../context/SessionContext', () => ({
   useSession: () => ({
-    user: REAL_STUDENT_DATA,
+    user: mockStudentData,
     timetable: null,
     currentDayOrder: 2,
     isHoliday: false,
@@ -22,7 +25,7 @@ vi.mock('../../../context/SessionContext', () => ({
     todayDateStr: '2026-11-24',
     focusedCourseCode: null,
     setFocusedCourseCode: vi.fn(),
-    attendanceTargetPercent: 75,
+    attendanceTargetPercent: mockAttendanceTarget,
     setAttendanceTargetPercent: vi.fn(),
   }),
 }));
@@ -71,6 +74,15 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       // Search bar
       expect(html).toContain('filter courses...');
     });
+
+    it('highlights courses below attendance target with rotating dotted perimeter warning and badge', () => {
+      mockAttendanceTarget = 80;
+      const html = renderToString(React.createElement(AttendanceBentoView));
+      mockAttendanceTarget = 75; // reset
+
+      expect(html).toContain('below target');
+      expect(html).toContain('animate-perimeter-spin');
+    });
   });
 
   describe('TimetableBentoView Living Motion', () => {
@@ -80,6 +92,10 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       // Bento cards with spotlight class
       expect(html).toContain('bento-card');
       expect(html).toContain('card-spotlight');
+
+      // 50% reduced rounding on period cards inside timetable
+      expect(html).toContain('rounded-md');
+      expect(html).toContain('timetable-period-card');
 
       // Tactile view mode buttons
       expect(html).toContain('grid layout');
@@ -114,6 +130,32 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       // GPA predictor button and details toggle
       expect(html).toContain('gpa predictor');
       expect(html).toContain('view details');
+    });
+
+    it('prioritizes and highlights courses with marks below 50% with rotating dotted perimeter warning', () => {
+      const originalMarks = mockStudentData.marks;
+      mockStudentData = {
+        ...mockStudentData,
+        marks: [
+          ...originalMarks,
+          {
+            courseCode: '21TEST101',
+            courseTitle: 'critical test course',
+            credit: 3,
+            totalScore: 12,
+            maxTotalScore: 50,
+            marks: [
+              { testName: 'cycle test 1', score: 12, maxScore: 50 }
+            ]
+          }
+        ]
+      };
+
+      const html = renderToString(React.createElement(MarksBentoView));
+      mockStudentData = { ...mockStudentData, marks: originalMarks }; // reset
+
+      expect(html).toContain('critical &lt;50%');
+      expect(html).toContain('animate-perimeter-spin');
     });
   });
 

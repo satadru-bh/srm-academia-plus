@@ -16,7 +16,8 @@ import {
   StaggerContainer,
   StaggerItem,
   AnimatedNumber,
-  SpringPress
+  SpringPress,
+  PerimeterWarningBorder
 } from '../common/motion';
 
 export const AttendanceBentoView: React.FC = () => {
@@ -51,12 +52,31 @@ export const AttendanceBentoView: React.FC = () => {
   if (!user) return null;
 
   const q = searchTerm.toLowerCase();
-  const filteredCourses = user.attendance.filter((c) => {
-    const title = (c.courseTitle || '').toLowerCase();
-    const code = (c.courseCode || '').toLowerCase();
-    const faculty = (c.facultyName || '').toLowerCase();
-    return title.includes(q) || code.includes(q) || faculty.includes(q);
-  });
+  const filteredCourses = user.attendance
+    .filter((c) => {
+      const title = (c.courseTitle || '').toLowerCase();
+      const code = (c.courseCode || '').toLowerCase();
+      const faculty = (c.facultyName || '').toLowerCase();
+      return title.includes(q) || code.includes(q) || faculty.includes(q);
+    })
+    .sort((a, b) => {
+      const aApplied = appliedPredictions ? appliedPredictions[a.courseCode] : null;
+      const bApplied = appliedPredictions ? appliedPredictions[b.courseCode] : null;
+      const aPercent = aApplied ? aApplied.percent : a.attendancePercent;
+      const bPercent = bApplied ? bApplied.percent : b.attendancePercent;
+      const aBelow = aPercent < attendanceTargetPercent;
+      const bBelow = bPercent < attendanceTargetPercent;
+
+      // 1. Prioritize courses below target threshold
+      if (aBelow && !bBelow) return -1;
+      if (!aBelow && bBelow) return 1;
+
+      // 2. If both below, lowest percentage first
+      if (aBelow && bBelow) return aPercent - bPercent;
+
+      // 3. Otherwise order by percentage ascending
+      return aPercent - bPercent;
+    });
 
   const handleApplyPrediction = (predicted: { courseCode: string; percent: number; marginLabel: string; status: 'safe' | 'borderline' | 'danger' }[] | null) => {
     if (!predicted) {
@@ -146,8 +166,9 @@ export const AttendanceBentoView: React.FC = () => {
             : calculateAttendanceMargin(course.hoursConducted, course.hoursPresent, attendanceTargetPercent);
 
           // Urgency rule: below target + 3% automatically expands into large prominent bento tile
+          const isBelowThreshold = displayPercent < attendanceTargetPercent;
           const isUrgent = displayPercent < (attendanceTargetPercent + 3);
-          const isDanger = marginInfo.status === 'danger';
+          const isDanger = marginInfo.status === 'danger' || isBelowThreshold;
           const isBorderline = marginInfo.status === 'borderline';
 
           const colSpanClass = isUrgent
@@ -168,14 +189,22 @@ export const AttendanceBentoView: React.FC = () => {
                     ? 'ring-2 ring-black dark:ring-white ring-offset-2 dark:ring-offset-black'
                     : ''
                 } ${
-                  isDanger 
+                  isBelowThreshold
+                    ? 'border-rose-500/35 glow-rose'
+                    : isDanger 
                     ? 'border-rose-500/20 glow-rose' 
                     : isBorderline 
                     ? 'border-amber-500/20 glow-amber' 
                     : ''
                 }`}
               >
-                <div>
+                {isBelowThreshold && (
+                  <>
+                    <div className="absolute inset-0 bg-rose-500/[0.04] dark:bg-rose-500/[0.07] pointer-events-none rounded-[24px]" />
+                    <PerimeterWarningBorder borderRadius={24} className="text-rose-500/80 dark:text-rose-400/90" />
+                  </>
+                )}
+                <div className="relative z-10">
                   {/* Header row: Course Code & Margin Status */}
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="flex items-center space-x-2">
@@ -185,6 +214,11 @@ export const AttendanceBentoView: React.FC = () => {
                       <span className="text-xs text-[#71717A] dark:text-[#A1A1AA] uppercase">
                         slot {course.slot}
                       </span>
+                      {isBelowThreshold && (
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold border border-rose-500/25 lowercase shrink-0">
+                          below target
+                        </span>
+                      )}
                     </div>
 
                     {/* Margin Guidance Large Number */}

@@ -119,32 +119,13 @@ export const ExamTimetableBentoView: React.FC = () => {
         {/* 1. Next Upcoming Exam Hero Tile (col-span-12 lg:col-span-7) */}
         {nextExam && (
           <InteractiveBentoCard className="col-span-12 lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-amber-500/20 glow-amber">
-            {/* Ambient Breathing Pulse */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? undefined
-                  : { opacity: [0.2, 0.45, 0.2], scale: [1, 1.05, 1] }
-              }
-              transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-              className="absolute -top-16 -right-16 w-72 h-72 bg-amber-500/10 dark:bg-amber-400/10 rounded-full blur-3xl pointer-events-none"
-            />
-
             <div className="flex items-center justify-between gap-2 z-10">
               <span className="text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase">
                 next examination
               </span>
-              <motion.span
-                animate={
-                  shouldReduceMotion
-                    ? undefined
-                    : { scale: [1, 1.04, 1] }
-                }
-                transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-                className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/20 text-xs font-bold lowercase"
-              >
+              <span className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/20 text-xs font-bold lowercase">
                 {nextExam.examDate}
-              </motion.span>
+              </span>
             </div>
 
             <div className="my-6 z-10">

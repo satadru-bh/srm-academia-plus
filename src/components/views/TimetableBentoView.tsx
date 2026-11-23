@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter } from 'lucide-react';
 import { TimetableSlot, hasAssignedVenue } from '../../api/types';
@@ -17,7 +16,6 @@ export const TimetableBentoView: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'cards'>('grid');
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder > 0 ? currentDayOrder : 1);
   const timetableRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
 
   // Automatic batch detection from student profile (locks to allocated batch)
   const activeBatch = user?.profile?.batch
@@ -325,7 +323,7 @@ export const TimetableBentoView: React.FC = () => {
                             {hasClass ? (
                               <InteractiveBentoCard
                                 enableTilt={false}
-                                className={`p-2 rounded-xl timetable-period-card border flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${isOngoing
+                                className={`p-2 rounded-md timetable-period-card border flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${isOngoing
                                   ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20'
                                   : ''
                                   } ${isLab
@@ -341,11 +339,7 @@ export const TimetableBentoView: React.FC = () => {
                                     </span>
                                     {isOngoing && (
                                       <span className="inline-flex items-center space-x-1 px-1 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-bold text-emerald-500">
-                                        <motion.span
-                                          className="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                                          animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-                                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                                        />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                                         <span className="leading-none">live</span>
                                       </span>
                                     )}
@@ -378,7 +372,7 @@ export const TimetableBentoView: React.FC = () => {
                                 </div>
                               </InteractiveBentoCard>
                             ) : (
-                              <div className="h-[92px] max-h-[92px] w-full rounded-xl border border-dashed border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
+                              <div className="h-[92px] max-h-[92px] w-full rounded-md border border-dashed border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
                                 free
                               </div>
                             )}
@@ -439,7 +433,7 @@ export const TimetableBentoView: React.FC = () => {
                           <InteractiveBentoCard
                             key={group.startPeriod.id}
                             enableTilt={false}
-                            className={`p-3 rounded-xl timetable-period-card border flex flex-col gap-1.5 transition-all ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                            className={`p-3 rounded-md timetable-period-card border flex flex-col gap-1.5 transition-all ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
                               } ${isLab
                                 ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/20 dark:border-emerald-500/25'
                                 : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/15 dark:border-blue-500/20'
@@ -452,11 +446,7 @@ export const TimetableBentoView: React.FC = () => {
                                 </span>
                                 {isOngoing && (
                                   <span className="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-bold text-emerald-500">
-                                    <motion.span
-                                      className="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                                      animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-                                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                                    />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                                     <span>live</span>
                                   </span>
                                 )}
@@ -534,7 +524,7 @@ export const TimetableBentoView: React.FC = () => {
 
           {/* Cards for selected day wrapped in StaggerContainer & StaggerItem */}
           {getGroupedSlotsForDay(selectedDayOrder).filter((g) => g.hasClass).length === 0 ? (
-            <InteractiveBentoCard className="p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase rounded-2xl timetable-day-card">
+            <InteractiveBentoCard className="p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase rounded-lg timetable-day-card">
               no lectures scheduled for day order {selectedDayOrder}
             </InteractiveBentoCard>
           ) : (
@@ -551,7 +541,7 @@ export const TimetableBentoView: React.FC = () => {
                   return (
                     <StaggerItem key={index}>
                       <InteractiveBentoCard
-                        className={`p-6 flex flex-col justify-between border rounded-2xl timetable-period-card ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                        className={`p-6 flex flex-col justify-between border rounded-lg timetable-period-card ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
                           } ${isLab
                             ? 'border-emerald-500/20 dark:border-emerald-500/25 bg-emerald-500/[0.02] dark:bg-emerald-500/[0.04]'
                             : 'border-blue-500/15 dark:border-blue-500/20 bg-blue-500/[0.02] dark:bg-blue-500/[0.03]'
@@ -568,11 +558,7 @@ export const TimetableBentoView: React.FC = () => {
                               </span>
                               {isOngoing && (
                                 <span className="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 text-[10px] font-bold border border-emerald-500/25">
-                                  <motion.span
-                                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
-                                    animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-                                    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                                  />
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                                   <span>live</span>
                                 </span>
                               )}

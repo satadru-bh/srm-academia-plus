@@ -14,6 +14,7 @@ import {
   StaggerItem,
   AnimatedNumber,
   SpringPress,
+  PerimeterWarningBorder,
 } from '../common/motion';
 
 export const MarksBentoView: React.FC = () => {
@@ -54,11 +55,33 @@ export const MarksBentoView: React.FC = () => {
   };
 
   const q = searchTerm.toLowerCase();
-  const filteredMarks = user.marks.filter((m) => {
-    const title = (m.courseTitle || '').toLowerCase();
-    const code = (m.courseCode || '').toLowerCase();
-    return title.includes(q) || code.includes(q);
-  });
+  const filteredMarks = user.marks
+    .filter((m) => {
+      const title = (m.courseTitle || '').toLowerCase();
+      const code = (m.courseCode || '').toLowerCase();
+      return title.includes(q) || code.includes(q);
+    })
+    .sort((a, b) => {
+      const aTotal = a.totalScore || 0;
+      const aMax = a.maxTotalScore || 100;
+      const aRatio = aMax > 0 ? aTotal / aMax : 1;
+      const aBelow50 = aMax > 0 && aRatio < 0.5;
+
+      const bTotal = b.totalScore || 0;
+      const bMax = b.maxTotalScore || 100;
+      const bRatio = bMax > 0 ? bTotal / bMax : 1;
+      const bBelow50 = bMax > 0 && bRatio < 0.5;
+
+      // 1. Prioritize courses with marks below 50%
+      if (aBelow50 && !bBelow50) return -1;
+      if (!aBelow50 && bBelow50) return 1;
+
+      // 2. If both below 50%, lowest ratio first
+      if (aBelow50 && bBelow50) return aRatio - bRatio;
+
+      // 3. Otherwise order by ratio ascending
+      return aRatio - bRatio;
+    });
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-6">
@@ -100,6 +123,7 @@ export const MarksBentoView: React.FC = () => {
         {filteredMarks.map((course) => {
           const totalScore = course.totalScore || 0;
           const maxTotalScore = course.maxTotalScore || 100;
+          const isBelow50 = maxTotalScore > 0 && (totalScore / maxTotalScore) < 0.5;
           // Automatically fetch course credits from source
           const credits = inferCourseCredits(course.courseCode, course.credit);
           // Calculate best possible scenario grade based on 100-mark SRM scale
@@ -122,23 +146,36 @@ export const MarksBentoView: React.FC = () => {
                     ? 'ring-2 ring-black dark:ring-white ring-offset-2 dark:ring-offset-black'
                     : ''
                 } ${
-                  bestGrade.status === 'danger'
+                  isBelow50
+                    ? 'border-rose-500/35 glow-rose'
+                    : bestGrade.status === 'danger'
                     ? 'border-rose-500/20 glow-rose'
                     : bestGrade.status === 'borderline'
                     ? 'border-amber-500/20 glow-amber'
                     : ''
                 }`}
               >
-                <div>
+                {isBelow50 && (
+                  <>
+                    <div className="absolute inset-0 bg-rose-500/[0.04] dark:bg-rose-500/[0.07] pointer-events-none rounded-[24px]" />
+                    <PerimeterWarningBorder borderRadius={24} className="text-rose-500/80 dark:text-rose-400/90" />
+                  </>
+                )}
+                <div className="relative z-10">
                   {/* Header row: Course Code, Auto Credits & Projected Grade Chip */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center space-x-1.5">
+                    <div className="flex items-center space-x-1.5 flex-wrap gap-y-1">
                       <span className="text-[11px] px-2.5 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[#111111] dark:text-[#FAFAFA] font-bold">
                         {course.courseCode}
                       </span>
                       <span className="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
                         {credits} credits
                       </span>
+                      {isBelow50 && (
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold border border-rose-500/25 lowercase shrink-0">
+                          critical &lt;50%
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center space-x-2">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { FloatingDock } from './FloatingDock';
 import { RefreshCw, Search } from 'lucide-react';
@@ -17,7 +16,6 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isGpaPredictorOpen, setIsGpaPredictorOpen] = useState(false);
   const isMac = useIsMac();
-  const shouldReduceMotion = useReducedMotion();
 
   // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
@@ -53,41 +51,17 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           <span className="hidden sm:inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] text-[#71717A] dark:text-[#A1A1AA] lowercase">
             {isSyncing ? (
               <>
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <motion.span
-                    animate={
-                      shouldReduceMotion
-                        ? undefined
-                        : { scale: [1, 1.8, 1], opacity: [0.8, 0, 0.8] }
-                    }
-                    transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute inline-flex h-full w-full rounded-full bg-blue-400"
-                  />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
-                </span>
+                <span className="inline-flex rounded-full h-2 w-2 bg-blue-500 shrink-0" />
                 <RefreshCw className="w-2.5 h-2.5 animate-spin text-[#111111] dark:text-[#FAFAFA]" />
                 <span>syncing...</span>
               </>
             ) : (
               <>
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <motion.span
-                    animate={
-                      shouldReduceMotion
-                        ? undefined
-                        : { scale: [1, 1.8, 1], opacity: [0.7, 0, 0.7] }
-                    }
-                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-                    className={`absolute inline-flex h-full w-full rounded-full ${
-                      isHoliday ? 'bg-amber-400' : 'bg-emerald-400'
-                    }`}
-                  />
-                  <span
-                    className={`relative inline-flex rounded-full h-2 w-2 ${
-                      isHoliday ? 'bg-amber-500' : 'bg-emerald-500'
-                    }`}
-                  />
-                </span>
+                <span
+                  className={`inline-flex rounded-full h-2 w-2 shrink-0 ${
+                    isHoliday ? 'bg-amber-500' : 'bg-emerald-500'
+                  }`}
+                />
                 <span>{isHoliday ? 'holiday' : `day order ${currentDayOrder}`}</span>
               </>
             )}

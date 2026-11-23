@@ -6,6 +6,7 @@ import { AnimatedProgressBar } from '../AnimatedProgressBar';
 import { InteractiveBentoCard } from '../InteractiveBentoCard';
 import { SpringPress } from '../SpringPress';
 import { StaggerContainer, StaggerItem } from '../StaggerContainer';
+import { PerimeterWarningBorder } from '../PerimeterWarningBorder';
 
 describe('MotionPrimitives Suite', () => {
   describe('AnimatedNumber', () => {
@@ -177,6 +178,16 @@ describe('MotionPrimitives Suite', () => {
       );
       expect(html).toContain('Disabled Press');
       expect(html).toContain('disabled=""');
+    });
+
+    it('PerimeterWarningBorder renders vector rounded rect with hypnotic dash animation and custom radius', () => {
+      const html = renderToString(
+        React.createElement(PerimeterWarningBorder, { borderRadius: 24, className: 'text-rose-500' })
+      );
+      expect(html).toContain('animate-perimeter-spin');
+      expect(html).toContain('stroke-dasharray="0.1 8"');
+      expect(html).toContain('rx="24"');
+      expect(html).toContain('text-rose-500');
     });
   });
 });

@@ -145,13 +145,13 @@ html.theme-batman {
   --color-canvas: #FCE7F3;
   --color-bento-card: #FFF1F7;
   --color-bento-sub: #FBCFE8;
-  --color-border: rgba(236, 72, 153, 0.28);
-  --color-border-hover: rgba(236, 72, 153, 0.52);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
   --color-text-primary: #4A042A;
   --color-text-secondary: #9D174D;
   --color-text-tertiary: #BE185D;
   --color-dock-bg: rgba(255, 241, 247, 0.94);
-  --color-dock-border: rgba(236, 72, 153, 0.35);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
   
   --color-accent: #EC4899;
   --color-accent-text: #FFFFFF;
@@ -179,10 +179,6 @@ html.theme-batman {
 .theme-barbie .bg-black\/10 {
   background-color: rgba(236, 72, 153, 0.22) !important;
 }
-.theme-barbie .border-black\/\[0\.06\],
-.theme-barbie .border-black\/10 {
-  border-color: rgba(236, 72, 153, 0.24) !important;
-}
 .theme-barbie .glass-dock {
   background-color: var(--color-dock-bg) !important;
   border-color: var(--color-dock-border) !important;
@@ -197,13 +193,13 @@ html.theme-batman {
   --color-canvas: #FFEDD5;
   --color-bento-card: #FFF7ED;
   --color-bento-sub: #FED7AA;
-  --color-border: rgba(234, 88, 12, 0.28);
-  --color-border-hover: rgba(234, 88, 12, 0.52);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
   --color-text-primary: #431407;
   --color-text-secondary: #9A3412;
   --color-text-tertiary: #C2410C;
   --color-dock-bg: rgba(255, 247, 237, 0.94);
-  --color-dock-border: rgba(234, 88, 12, 0.35);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
   
   --color-accent: #F97316;
   --color-accent-text: #FFFFFF;
@@ -231,10 +227,6 @@ html.theme-batman {
 .theme-tropicana .bg-black\/10 {
   background-color: rgba(234, 88, 12, 0.22) !important;
 }
-.theme-tropicana .border-black\/\[0\.06\],
-.theme-tropicana .border-black\/10 {
-  border-color: rgba(234, 88, 12, 0.24) !important;
-}
 .theme-tropicana .glass-dock {
   background-color: var(--color-dock-bg) !important;
   border-color: var(--color-dock-border) !important;
@@ -249,13 +241,13 @@ html.theme-batman {
   --color-canvas: #DCFCE7;
   --color-bento-card: #F0FDF4;
   --color-bento-sub: #BBF7D0;
-  --color-border: rgba(22, 163, 74, 0.28);
-  --color-border-hover: rgba(22, 163, 74, 0.52);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
   --color-text-primary: #052E16;
   --color-text-secondary: #166534;
   --color-text-tertiary: #15803D;
   --color-dock-bg: rgba(240, 253, 244, 0.94);
-  --color-dock-border: rgba(22, 163, 74, 0.35);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
   
   --color-accent: #16A34A;
   --color-accent-text: #FFFFFF;
@@ -283,10 +275,6 @@ html.theme-batman {
 .theme-matcha .bg-black\/10 {
   background-color: rgba(22, 163, 74, 0.22) !important;
 }
-.theme-matcha .border-black\/\[0\.06\],
-.theme-matcha .border-black\/10 {
-  border-color: rgba(22, 163, 74, 0.24) !important;
-}
 .theme-matcha .glass-dock {
   background-color: var(--color-dock-bg) !important;
   border-color: var(--color-dock-border) !important;
@@ -301,13 +289,13 @@ html.theme-batman {
   --color-canvas: #E0F2FE;
   --color-bento-card: #F0F9FF;
   --color-bento-sub: #BAE6FD;
-  --color-border: rgba(2, 132, 199, 0.28);
-  --color-border-hover: rgba(2, 132, 199, 0.52);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
   --color-text-primary: #082F49;
   --color-text-secondary: #075985;
   --color-text-tertiary: #0369A1;
   --color-dock-bg: rgba(240, 249, 255, 0.94);
-  --color-dock-border: rgba(2, 132, 199, 0.35);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
   
   --color-accent: #0284C7;
   --color-accent-text: #FFFFFF;
@@ -335,10 +323,6 @@ html.theme-batman {
 .theme-blue-ice .bg-black\/10 {
   background-color: rgba(2, 132, 199, 0.22) !important;
 }
-.theme-blue-ice .border-black\/\[0\.06\],
-.theme-blue-ice .border-black\/10 {
-  border-color: rgba(2, 132, 199, 0.24) !important;
-}
 .theme-blue-ice .glass-dock {
   background-color: var(--color-dock-bg) !important;
   border-color: var(--color-dock-border) !important;
@@ -353,13 +337,13 @@ html.theme-batman {
   --color-canvas: #FEF9C3;
   --color-bento-card: #FEFCE8;
   --color-bento-sub: #FEF08A;
-  --color-border: rgba(202, 138, 4, 0.28);
-  --color-border-hover: rgba(202, 138, 4, 0.52);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
   --color-text-primary: #422006;
   --color-text-secondary: #854D0E;
   --color-text-tertiary: #A16207;
   --color-dock-bg: rgba(254, 252, 232, 0.94);
-  --color-dock-border: rgba(202, 138, 4, 0.35);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
   
   --color-accent: #EAB308;
   --color-accent-text: #422006;
@@ -386,10 +370,6 @@ html.theme-batman {
 }
 .theme-banana .bg-black\/10 {
   background-color: rgba(202, 138, 4, 0.22) !important;
-}
-.theme-banana .border-black\/\[0\.06\],
-.theme-banana .border-black\/10 {
-  border-color: rgba(202, 138, 4, 0.24) !important;
 }
 .theme-banana .glass-dock {
   background-color: var(--color-dock-bg) !important;
