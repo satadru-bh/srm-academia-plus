@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 describe('AttendanceTargetModal implementation verification', () => {
-  it('AttendanceTargetModal file exists and exports AttendanceTargetModal', () => {
+  it('AttendanceTargetModal file exists and exports AttendanceTargetModal without clutter icons', () => {
     const filePath = path.resolve(__dirname, '../AttendanceTargetModal.tsx');
     expect(fs.existsSync(filePath)).toBe(true);
     const content = fs.readFileSync(filePath, 'utf-8');
@@ -11,15 +11,18 @@ describe('AttendanceTargetModal implementation verification', () => {
     expect(content).toContain('PRESETS');
     expect(content).toContain('apply target');
     expect(content).toContain('reset to 75%');
+    expect(content).toContain('apple-slider');
+    expect(content).not.toContain('<Target');
   });
 
-  it('AttendanceBentoView renders the target button next to attendance predictor', () => {
+  it('AttendanceBentoView renders the target button next to attendance predictor without icons', () => {
     const viewPath = path.resolve(__dirname, '../../views/AttendanceBentoView.tsx');
     const content = fs.readFileSync(viewPath, 'utf-8');
     expect(content).toContain('attendance predictor');
     expect(content).toContain('target: {attendanceTargetPercent}%');
     expect(content).toContain('setIsTargetModalOpen(true)');
     expect(content).toContain('AttendanceTargetModal');
+    expect(content).not.toContain('<Target');
   });
 
   it('SessionContext exposes attendanceTargetPercent and setAttendanceTargetPercent with localStorage sync', () => {

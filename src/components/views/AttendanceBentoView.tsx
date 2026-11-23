@@ -9,8 +9,7 @@ import {
   Building, 
   User, 
   Search, 
-  RotateCcw,
-  Target
+  RotateCcw
 } from 'lucide-react';
 
 export const AttendanceBentoView: React.FC = () => {
@@ -92,13 +91,16 @@ export const AttendanceBentoView: React.FC = () => {
           {/* Custom Attendance Target Setter Button */}
           <button
             onClick={() => setIsTargetModalOpen(true)}
-            className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/[0.06] dark:border-white/[0.06] text-xs font-semibold text-[#111111] dark:text-[#FAFAFA] lowercase transition-colors shadow-sm"
+            className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-2xl text-xs font-semibold lowercase transition-all shadow-sm ${
+              attendanceTargetPercent !== 75
+                ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] border border-black/15 dark:border-white/15'
+                : 'bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06]'
+            }`}
             title="customize attendance target percentage"
           >
-            <Target className="w-3.5 h-3.5 text-[#71717A] dark:text-[#A1A1AA]" />
             <span>target: {attendanceTargetPercent}%</span>
             {attendanceTargetPercent !== 75 && (
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
             )}
           </button>
 
