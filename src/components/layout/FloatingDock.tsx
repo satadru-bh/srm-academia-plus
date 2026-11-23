@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useSession, THEME_DETAILS } from '../../context/SessionContext';
 import {
   LayoutGrid,
@@ -20,7 +20,7 @@ interface FloatingDockProps {
   setActiveTab: (tab: 'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty') => void;
 }
 
-const popoverVariants = {
+const popoverVariants: Variants = {
   hidden: { opacity: 0, y: 12, scale: 0.95 },
   visible: {
     opacity: 1,
@@ -41,7 +41,7 @@ const popoverVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,

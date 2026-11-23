@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { FloatingDock } from './FloatingDock';
 import { RefreshCw, Search } from 'lucide-react';
@@ -17,6 +17,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isGpaPredictorOpen, setIsGpaPredictorOpen] = useState(false);
   const isMac = useIsMac();
+  const shouldReduceMotion = useReducedMotion();
 
   // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
@@ -54,7 +55,11 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               <>
                 <span className="relative flex h-2 w-2 shrink-0">
                   <motion.span
-                    animate={{ scale: [1, 1.8, 1], opacity: [0.8, 0, 0.8] }}
+                    animate={
+                      shouldReduceMotion
+                        ? undefined
+                        : { scale: [1, 1.8, 1], opacity: [0.8, 0, 0.8] }
+                    }
                     transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
                     className="absolute inline-flex h-full w-full rounded-full bg-blue-400"
                   />
@@ -67,7 +72,11 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               <>
                 <span className="relative flex h-2 w-2 shrink-0">
                   <motion.span
-                    animate={{ scale: [1, 1.8, 1], opacity: [0.7, 0, 0.7] }}
+                    animate={
+                      shouldReduceMotion
+                        ? undefined
+                        : { scale: [1, 1.8, 1], opacity: [0.7, 0, 0.7] }
+                    }
                     transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                     className={`absolute inline-flex h-full w-full rounded-full ${
                       isHoliday ? 'bg-amber-400' : 'bg-emerald-400'

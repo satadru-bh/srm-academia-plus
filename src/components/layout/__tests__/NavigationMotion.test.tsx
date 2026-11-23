@@ -44,10 +44,11 @@ describe('Navigation Motion & Tactile Interactions', () => {
       expect(appLayoutContent).toContain('setIsCommandPaletteOpen(true)');
     });
 
-    it('renders living pulse indicator dot for campus status badge', () => {
+    it('renders living pulse indicator dot for campus status badge and respects reduced motion', () => {
       expect(appLayoutContent).toContain('relative flex h-2 w-2');
       expect(appLayoutContent).toContain('scale: [1, 1.8, 1]');
       expect(appLayoutContent).toContain('repeat: Infinity');
+      expect(appLayoutContent).toContain('shouldReduceMotion');
     });
   });
 

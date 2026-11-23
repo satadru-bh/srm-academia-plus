@@ -1,14 +1,12 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, type HTMLMotionProps } from 'framer-motion';
 
-export interface SpringPressProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SpringPressProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
   scaleHover?: number;
   scaleTap?: number;
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
 }
 
 export const SpringPress: React.FC<SpringPressProps> = ({
