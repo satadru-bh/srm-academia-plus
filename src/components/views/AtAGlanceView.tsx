@@ -90,10 +90,10 @@ export const AtAGlanceView: React.FC = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8, transition: { duration: 0.18, ease: [0.16, 1, 0.3, 1] } }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
       className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-5"
     >
       {/* Interlocking Bento Grid with grid-auto-flow: dense */}

@@ -116,10 +116,10 @@ export const FacultyFinderBentoView: React.FC = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
       className="max-w-7xl mx-auto px-4 sm:px-8 py-8 space-y-6"
     >
       {/* 1. Header Banner */}

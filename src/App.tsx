@@ -108,7 +108,7 @@ const MainApp: React.FC = () => {
 
   return (
     <AppLayout>
-      <AnimatePresence mode="popLayout" initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         {renderActiveView()}
       </AnimatePresence>
     </AppLayout>

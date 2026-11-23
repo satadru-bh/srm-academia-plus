@@ -1,6 +1,7 @@
 # Academia Plus 🎓
 
-> An Apple Pro-grade academic intelligence dashboard for SRM Institute of Science and Technology (SRMIST).
+> An Apple Pro-grade academic intelligence dashboard for SRM Institute of Science and Technology (SRMIST).  
+> **Live Production**: [srm-academia-plus.vercel.app](https://srm-academia-plus.vercel.app)
 
 Designed with obsessive attention to craft, typography, fluidity, and utility. Built to replace the outdated portal experience with a fast, private, zero-database client that connects directly to official SRMIST portals.
 

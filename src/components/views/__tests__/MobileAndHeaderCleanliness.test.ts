@@ -59,4 +59,21 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(manifest.name).toBe('academia plus');
     expect(manifest.icons.length).toBeGreaterThanOrEqual(3);
   });
+
+  it('New logo asset exists and is rendered in AppLayout and SignInBentoView', () => {
+    const logoPath = path.resolve(__dirname, '../../../../public/logo.png');
+    expect(fs.existsSync(logoPath)).toBe(true);
+
+    const appLayout = fs.readFileSync(path.resolve(__dirname, '../../layout/AppLayout.tsx'), 'utf-8');
+    expect(appLayout).toContain('src="/logo.png"');
+
+    const signIn = fs.readFileSync(path.resolve(__dirname, '../SignInBentoView.tsx'), 'utf-8');
+    expect(signIn).toContain('src="/logo.png"');
+  });
+
+  it('App uses snappy mode="wait" transition without layout thrashing', () => {
+    const appTsx = fs.readFileSync(path.resolve(__dirname, '../../../App.tsx'), 'utf-8');
+    expect(appTsx).toContain('mode="wait"');
+    expect(appTsx).not.toContain('mode="popLayout"');
+  });
 });

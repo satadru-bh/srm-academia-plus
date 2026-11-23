@@ -38,15 +38,12 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       >
         {/* Left: Logo & Campus Status */}
         <div className="flex items-center space-x-3 shrink-0">
-          <div
-            className="w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shadow-sm shrink-0 transition-colors"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'var(--color-accent-text)'
-            }}
-          >
-            a+
-          </div>
+          <img
+            src="/logo.png"
+            alt="academia plus"
+            className="w-7 h-7 rounded-xl object-contain shadow-xs shrink-0 select-none"
+            loading="eager"
+          />
           <span className="font-bold tracking-tight text-sm lowercase text-[#111111] dark:text-[#FAFAFA] whitespace-nowrap">
             academia plus
           </span>

@@ -27,34 +27,14 @@ export const SignInBentoView: React.FC = () => {
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-[var(--color-canvas)] text-[var(--color-text-primary)] overflow-hidden select-none">
-      {/* 1. Organic Living Ambient Aurora Orbs */}
-      <motion.div
+      {/* 1. Organic Living Ambient Aurora Orbs (Hardware-accelerated) */}
+      <div
         aria-hidden="true"
-        className="absolute top-1/4 -left-20 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-transparent blur-[120px] pointer-events-none"
-        animate={{
-          x: [0, 40, -30, 0],
-          y: [0, -40, 25, 0],
-          scale: [1, 1.12, 0.94, 1],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+        className="absolute top-1/4 -left-20 w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block animate-pulse"
       />
-      <motion.div
+      <div
         aria-hidden="true"
-        className="absolute bottom-1/4 -right-20 w-[440px] h-[440px] rounded-full bg-gradient-to-bl from-emerald-500/12 via-teal-500/10 to-transparent blur-[130px] pointer-events-none"
-        animate={{
-          x: [0, -35, 30, 0],
-          y: [0, 35, -25, 0],
-          scale: [1, 0.95, 1.14, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+        className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-bl from-emerald-500/12 via-teal-500/10 to-transparent blur-[80px] pointer-events-none hidden sm:block animate-pulse"
       />
 
       {/* 2. Subtle Micro-Dot Grid */}
@@ -65,30 +45,32 @@ export const SignInBentoView: React.FC = () => {
 
       {/* 3. Centered Minimalist Glass Masterpiece Card */}
       <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        initial={{ opacity: 0, y: 10, scale: 0.99 }}
         animate={
           errorMessage
             ? {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                x: [-6, 6, -4, 4, -2, 2, 0],
-                transition: { duration: 0.45, ease: 'easeInOut' },
+                x: [-4, 4, -3, 3, -1, 1, 0],
+                transition: { duration: 0.35, ease: 'easeInOut' },
               }
-            : { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
+            : { opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }
         }
         className="relative z-10 w-full max-w-[390px]"
       >
-        <div className="bento-card p-7 sm:p-9 rounded-[32px] backdrop-blur-2xl bg-white/80 dark:bg-[#121214]/80 border border-black/[0.06] dark:border-white/[0.08] shadow-2xl shadow-black/[0.04] dark:shadow-black/50 space-y-6">
+        <div className="bento-card p-7 sm:p-9 rounded-[32px] backdrop-blur-xl bg-white/85 dark:bg-[#121214]/85 border border-black/[0.06] dark:border-white/[0.08] shadow-2xl shadow-black/[0.04] dark:shadow-black/50 space-y-6">
           {/* Header & Logo Squircle */}
           <div className="flex flex-col items-center text-center">
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-13 h-13 rounded-2xl bg-black text-white dark:bg-white dark:text-black flex items-center justify-center font-bold text-lg tracking-tight mb-4 shadow-sm cursor-default"
-            >
-              a+
-            </motion.div>
+            <motion.img
+              src="/logo.png"
+              alt="academia plus"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ duration: 0.15 }}
+              className="w-14 h-14 rounded-2xl object-contain mb-4 shadow-sm cursor-default select-none"
+              loading="eager"
+            />
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight lowercase text-[#111111] dark:text-[#FAFAFA]">
               academia plus
             </h1>
