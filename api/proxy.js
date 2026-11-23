@@ -5,24 +5,49 @@ module.exports = async (req, res) => {
   // 1. Universal CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin,Content-Type,Accept,Authorization,X-CSRF-Token,X-Net-ID,X-Session-Token,X-Client,X-Device-Name,X-Device-Platform,X-Device-Model,X-App-Version,Cookie');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
-    return res.status(204).end();
+    res.statusCode = 204;
+    return res.end();
   }
 
   try {
-    // 2. Extract path (e.g. /api/auth/login -> auth/login)
-    let subpath = req.query && req.query.path;
-    if (!subpath) {
-      const match = (req.url || '').match(/^\/api\/(.*?)(\?|$)/);
+    // 2. Buffer request body if needed (Node.js IncomingMessage)
+    let bodyBuffer = null;
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      if (req.body) {
+        bodyBuffer = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+      } else {
+        const chunks = [];
+        for await (const chunk of req) {
+          chunks.push(chunk);
+        }
+        if (chunks.length > 0) {
+          bodyBuffer = Buffer.concat(chunks).toString('utf-8');
+        }
+      }
+    }
+
+    // 3. Extract subpath (e.g. /api/auth/login -> auth/login)
+    let subpath = '';
+    const rawUrl = req.url || '';
+    const queryIndex = rawUrl.indexOf('?');
+    const queryString = queryIndex !== -1 ? rawUrl.slice(queryIndex + 1) : '';
+    const params = new URLSearchParams(queryString);
+
+    if (params.has('path')) {
+      subpath = params.get('path') || '';
+    } else {
+      const pathname = queryIndex !== -1 ? rawUrl.slice(0, queryIndex) : rawUrl;
+      const match = pathname.match(/^\/api\/(.*)/);
       subpath = match ? match[1] : '';
     }
 
     const targetUrl = `https://api.campusweb.in/api/${subpath}`;
 
-    // 3. Inject authentic CampusWeb browser client headers
+    // 4. Inject authentic CampusWeb browser client headers
     const forwardHeaders = {
       'Content-Type': 'application/json',
       'Accept': 'application/json, text/plain, */*',
@@ -36,7 +61,6 @@ module.exports = async (req, res) => {
       'X-App-Version': '2026.10.08-sessions.3'
     };
 
-    // Forward active student session credentials if provided
     if (req.headers['x-session-token']) forwardHeaders['X-Session-Token'] = req.headers['x-session-token'];
     if (req.headers['x-csrf-token']) forwardHeaders['X-CSRF-Token'] = req.headers['x-csrf-token'];
     if (req.headers['x-net-id']) forwardHeaders['X-Net-ID'] = req.headers['x-net-id'];
@@ -47,21 +71,23 @@ module.exports = async (req, res) => {
       headers: forwardHeaders
     };
 
-    if (req.method !== 'GET' && req.method !== 'HEAD' && req.body) {
-      fetchOptions.body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+    if (bodyBuffer) {
+      fetchOptions.body = bodyBuffer;
     }
 
     const response = await fetch(targetUrl, fetchOptions);
-    const data = await response.text();
+    const textData = await response.text();
 
-    res.status(response.status);
+    res.statusCode = response.status;
     res.setHeader('Content-Type', response.headers.get('content-type') || 'application/json');
-    return res.send(data);
+    return res.end(textData);
   } catch (err) {
-    return res.status(502).json({
+    res.statusCode = 502;
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(JSON.stringify({
       code: 'PROXY_GATEWAY_ERROR',
       message: err.message || 'Error connecting to SRM Academia gateway',
       status: 'error'
-    });
+    }));
   }
 };
