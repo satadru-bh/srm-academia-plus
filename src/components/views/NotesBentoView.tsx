@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { 
@@ -367,9 +368,10 @@ export const NotesBentoView: React.FC = () => {
         )}
       </section>
 
-      {/* MODAL 1: Complete Subject File Explorer (Shows ALL files without any truncation) */}
-      <AnimatePresence>
-        {inspectedSubject && (
+      {/* MODAL 1: Complete Subject File Explorer (Mounted cleanly via Portal to document.body) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {inspectedSubject && (
           <div className="fixed inset-0 z-[99990] flex items-center justify-center p-3 sm:p-6 overflow-hidden">
             {/* Backdrop */}
             <motion.div
@@ -505,7 +507,9 @@ export const NotesBentoView: React.FC = () => {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+    )}
 
       {/* MODAL 2: Embedded Document Viewer Modal */}
       <PdfViewerModal

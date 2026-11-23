@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { OFFICIAL_EXAM_TIMETABLE } from '../../data/examTimetable';
@@ -239,9 +240,10 @@ export const ExamTimetableBentoView: React.FC = () => {
 
       </div>
 
-      {/* Inline Date & Course Editor Modal */}
-      <AnimatePresence>
-        {isEditorOpen && (
+      {/* Inline Date & Course Editor Modal (Mounted cleanly via Portal to document.body) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {isEditorOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
@@ -350,7 +352,9 @@ export const ExamTimetableBentoView: React.FC = () => {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+    )}
     </div>
   );
 };

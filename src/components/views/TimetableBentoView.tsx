@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter, Download } from 'lucide-react';
 import { TimetableSlot, hasAssignedVenue } from '../../api/types';
@@ -159,9 +160,9 @@ export const TimetableBentoView: React.FC = () => {
 
   const handleExport = async () => {
     setIsExporting(true);
-    // Allow React state update and DOM to mount exportRef before capturing
-    await new Promise((r) => setTimeout(r, 60));
-    const target = exportRef.current || timetableRef.current;
+    // Allow React state update and DOM to mount portaled exportRef before capturing
+    await new Promise((r) => setTimeout(r, 120));
+    const target = exportRef.current;
     if (!target) {
       setIsExporting(false);
       return;
@@ -171,13 +172,13 @@ export const TimetableBentoView: React.FC = () => {
         await document.fonts.ready;
       }
       const html2canvas = (await import('html2canvas')).default;
-      const isDark = document.documentElement.classList.contains('dark');
       const canvas = await (html2canvas as any)(target, {
-        backgroundColor: isDark ? '#121214' : '#FFFFFF',
+        backgroundColor: '#FFFFFF',
         scale: 2,
         useCORS: true,
         logging: false,
         width: 1400,
+        height: target.offsetHeight || 800,
         windowWidth: 1400,
         x: 0,
         y: 0
@@ -603,125 +604,186 @@ export const TimetableBentoView: React.FC = () => {
         </div>
       )}
 
-      {/* Pristine High-Resolution Export Template: Mounted strictly when exporting */}
-      {isExporting && (
+      {/* Pristine High-Resolution Export Template: Mounted via Portal directly to body for flawless html2canvas capture */}
+      {isExporting && typeof document !== 'undefined' && createPortal(
         <div
           ref={exportRef}
-        aria-hidden="true"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '1400px',
-          zIndex: -9999,
-          pointerEvents: 'none',
-          letterSpacing: '0px',
-          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-          fontFeatureSettings: '"tnum"',
-        }}
-        className="p-8 bg-[#FFFFFF] dark:bg-[#121214] text-[#111111] dark:text-[#FAFAFA] select-none"
-      >
-        {/* Full 5-Day Grid Table with Merged Consecutive Periods & Distinct Lab/Theory Styles */}
-        <table className="w-full table-fixed border-collapse text-left" style={{ letterSpacing: '0px' }}>
-          <colgroup>
-            <col style={{ width: '116px' }} />
-            {periods.map((p) => (
-              <col key={p.id} style={{ width: '107px' }} />
-            ))}
-          </colgroup>
-          <thead>
-            <tr className="border-b border-black/[0.1] dark:border-white/[0.1]">
-              <th className="p-3 text-xs font-bold lowercase text-[#111111] dark:text-[#FAFAFA] w-28" style={{ letterSpacing: '0px' }}>
-                day order
-              </th>
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '1400px',
+            zIndex: 999999,
+            backgroundColor: '#FFFFFF',
+            color: '#0F172A',
+            padding: '40px',
+            boxSizing: 'border-box',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            pointerEvents: 'none',
+            visibility: 'visible',
+          }}
+        >
+          {/* Header Title & Legend */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', paddingBottom: '16px', borderBottom: '2px solid #E2E8F0' }}>
+            <div>
+              <div style={{ fontSize: '12px', fontWeight: 700, color: '#64748B', textTransform: 'lowercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                srm official academic schedule
+              </div>
+              <h1 style={{ fontSize: '28px', fontWeight: 800, margin: 0, color: '#0F172A', letterSpacing: '-0.025em' }}>
+                cycle timetable • combo batch {activeBatch}
+              </h1>
+              <div style={{ fontSize: '13px', color: '#64748B', marginTop: '4px' }}>
+                {activeBatch === 2 ? 'batch 2 • afternoon theory schedule' : 'batch 1 • morning theory schedule'}
+              </div>
+            </div>
+
+            {/* Theory vs Lab Legend Pills */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '12px', backgroundColor: '#EFF6FF', border: '1.5px solid #93C5FD' }}>
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#2563EB' }} />
+                <span style={{ fontSize: '12px', fontWeight: 700, color: '#1E40AF' }}>T • theory lecture</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '12px', backgroundColor: '#ECFDF5', border: '1.5px solid #6EE7B7' }}>
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#059669' }} />
+                <span style={{ fontSize: '12px', fontWeight: 700, color: '#065F46' }}>L • lab practical</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Full 5-Day Grid Table with Merged Consecutive Periods & Distinct Lab/Theory Styles */}
+          <table style={{ width: '100%', tableLayout: 'fixed', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <colgroup>
+              <col style={{ width: '116px' }} />
               {periods.map((p) => (
-                <th key={p.id} className="p-2.5 text-center" style={{ letterSpacing: '0px' }}>
-                  <div className="text-xs font-bold text-[#111111] dark:text-[#FAFAFA] lowercase whitespace-nowrap" style={{ letterSpacing: '0px' }}>
-                    {p.name}
-                  </div>
-                  <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] tabular-nums mt-0.5 whitespace-nowrap" style={{ letterSpacing: '0px' }}>
-                    {p.time}
-                  </div>
-                </th>
+                <col key={p.id} style={{ width: '100px' }} />
               ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-black/[0.06] dark:divide-white/[0.06]">
-            {daysList.map((day) => (
-              <tr key={day}>
-                <td className="p-3 text-xs font-bold text-[#111111] dark:text-[#FAFAFA]" style={{ letterSpacing: '0px' }}>
-                  day {day}
-                </td>
-                {getGroupedSlotsForDay(day).map((group) => {
-                  const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
+            </colgroup>
+            <thead>
+              <tr style={{ borderBottom: '2px solid #CBD5E1' }}>
+                <th style={{ padding: '12px 8px', fontSize: '13px', fontWeight: 800, color: '#0F172A', textTransform: 'lowercase' }}>
+                  day order
+                </th>
+                {periods.map((p) => {
+                  const isAllocated = (activeBatch === 2 && p.batch === 'b2') || (activeBatch === 1 && p.batch === 'b1');
                   return (
-                    <td
-                      key={group.startPeriod.id}
-                      colSpan={colSpan}
-                      className="p-1 align-top h-[112px]"
+                    <th
+                      key={p.id}
+                      style={{
+                        padding: '10px 4px',
+                        textAlign: 'center',
+                        backgroundColor: isAllocated ? '#F8FAFC' : 'transparent',
+                        borderRadius: isAllocated ? '8px 8px 0 0' : undefined
+                      }}
                     >
-                      {hasClass ? (
-                        <div
-                          style={{ letterSpacing: '0px' }}
-                          className={`p-2.5 rounded-xl border flex flex-col justify-between h-[112px] min-h-[112px] ${
-                            isLab
-                              ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/25 dark:border-emerald-500/30'
-                              : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/20 dark:border-blue-500/25'
-                          }`}
-                        >
-                          {/* Top Row: Course Code & Clean Colored T/L Tag (No Pill) */}
-                          <div className="flex items-center justify-between gap-1 leading-tight shrink-0" style={{ letterSpacing: '0px' }}>
-                            <span className="font-bold text-xs text-[#111111] dark:text-[#FAFAFA] truncate" style={{ letterSpacing: '0px' }}>
-                              {slot.courseCode}
-                            </span>
-                            <span
-                              className={`font-bold text-xs shrink-0 ${
-                                isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
-                              }`}
-                            >
-                              {isLab ? 'L' : 'T'}
-                            </span>
-                          </div>
-
-                          {/* Middle: Subject Name - Generous line-height and space */}
-                          <div className="flex-1 my-auto flex items-center py-1" style={{ letterSpacing: '0px' }}>
-                            <div className="text-[10.5px] font-medium text-[#71717A] dark:text-[#A1A1AA] lowercase leading-snug line-clamp-2" style={{ letterSpacing: '0px' }}>
-                              {formatCourseTitle(slot.courseTitle)}
-                            </div>
-                          </div>
-
-                          {/* Bottom Row: Room & Slot Range Packed Tightly at Bottom with No Divider */}
-                          <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] leading-tight shrink-0 pt-1" style={{ letterSpacing: '0px' }}>
-                            <span className="truncate max-w-[65%]" style={{ letterSpacing: '0px' }}>{slot.room || 'tp 706'}</span>
-                            <span
-                              className={`font-bold tabular-nums shrink-0 ${
-                                isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
-                              }`}
-                              style={{ letterSpacing: '0px' }}
-                            >
-                              {slotRangeDisplay}
-                            </span>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="h-[112px] min-h-[112px] w-full rounded-xl border border-dashed border-black/[0.06] dark:border-white/[0.06] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]" style={{ letterSpacing: '0px' }}>
-                          free
-                        </div>
-                      )}
-                    </td>
+                      <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#0F172A', textTransform: 'lowercase', whiteSpace: 'nowrap' }}>
+                        {p.name}
+                      </div>
+                      <div style={{ fontSize: '10px', color: '#64748B', marginTop: '3px', whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>
+                        {p.time}
+                      </div>
+                    </th>
                   );
                 })}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {daysList.map((day) => (
+                <tr key={day} style={{ borderBottom: '1px solid #E2E8F0' }}>
+                  <td style={{ padding: '12px 8px', fontSize: '14px', fontWeight: 800, color: '#0F172A', verticalAlign: 'middle' }}>
+                    day {day}
+                  </td>
+                  {getGroupedSlotsForDay(day).map((group) => {
+                    const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
+                    return (
+                      <td
+                        key={group.startPeriod.id}
+                        colSpan={colSpan}
+                        style={{ padding: '4px', verticalAlign: 'top', height: '114px' }}
+                      >
+                        {hasClass ? (
+                          <div
+                            style={{
+                              padding: '8px 10px',
+                              borderRadius: '12px',
+                              height: '114px',
+                              boxSizing: 'border-box',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'space-between',
+                              backgroundColor: isLab ? '#ECFDF5' : '#EFF6FF',
+                              border: isLab ? '1.5px solid #6EE7B7' : '1.5px solid #93C5FD',
+                            }}
+                          >
+                            {/* Top Row: Course Code & Clean Colored T/L Tag */}
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4px' }}>
+                              <span style={{ fontSize: '11.5px', fontWeight: 800, color: isLab ? '#064E3B' : '#1E3A8A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                {slot.courseCode}
+                              </span>
+                              <span
+                                style={{
+                                  fontSize: '11px',
+                                  fontWeight: 800,
+                                  color: isLab ? '#047857' : '#1D4ED8',
+                                  padding: '1px 6px',
+                                  borderRadius: '6px',
+                                  backgroundColor: isLab ? '#D1FAE5' : '#DBEAFE'
+                                }}
+                              >
+                                {isLab ? 'L' : 'T'}
+                              </span>
+                            </div>
 
-        {/* Footer Brand */}
-        <div className="pt-4 mt-4 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase" style={{ letterSpacing: '0px' }}>
-          <span>academia plus • official academic cycle schedule</span>
-          <span>5-day cycle verified</span>
-        </div>
-      </div>
+                            {/* Middle: Subject Name */}
+                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '4px 0' }}>
+                              <div style={{ fontSize: '10.5px', fontWeight: 600, color: isLab ? '#064E3B' : '#1E293B', textTransform: 'lowercase', lineHeight: 1.35, maxHeight: '42px', overflow: 'hidden' }}>
+                                {formatCourseTitle(slot.courseTitle)}
+                              </div>
+                            </div>
+
+                            {/* Bottom Row: Room & Slot Range */}
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '9.5px', color: '#64748B', paddingTop: '2px' }}>
+                              <span style={{ fontWeight: 600, color: isLab ? '#047857' : '#334155' }}>
+                                {slot.room || 'tp 706'}
+                              </span>
+                              <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: isLab ? '#047857' : '#2563EB' }}>
+                                {slotRangeDisplay}
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              height: '114px',
+                              boxSizing: 'border-box',
+                              borderRadius: '12px',
+                              border: '1px dashed #CBD5E1',
+                              backgroundColor: '#F8FAFC',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: '11px',
+                              color: '#94A3B8'
+                            }}
+                          >
+                            free
+                          </div>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Footer Brand */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px', paddingTop: '16px', borderTop: '1.5px solid #E2E8F0', fontSize: '12px', color: '#64748B' }}>
+            <span style={{ fontWeight: 600 }}>academia plus • official academic cycle schedule</span>
+            <span style={{ fontWeight: 600 }}>5-day cycle verified • combo batch {activeBatch}</span>
+          </div>
+        </div>,
+        document.body
       )}
     </div>
   );

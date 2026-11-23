@@ -85,9 +85,10 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(html).toContain('href="/icon-192.png?v=');
   });
 
-  it('TimetableBentoView conditionally renders exportRef only during active export to prevent ghosting', () => {
+  it('TimetableBentoView conditionally renders exportRef only during active export via createPortal to prevent ghosting', () => {
     const timetable = fs.readFileSync(path.resolve(__dirname, '../TimetableBentoView.tsx'), 'utf-8');
-    expect(timetable).toContain('{isExporting && (');
+    expect(timetable).toContain('isExporting');
+    expect(timetable).toContain('createPortal');
     expect(timetable).toContain('ref={exportRef}');
   });
 
@@ -105,5 +106,17 @@ describe('Header Cleanliness and Design Verification', () => {
     const client = fs.readFileSync(path.resolve(__dirname, '../../../api/client.ts'), 'utf-8');
     expect(signIn.toLowerCase()).not.toContain('campusweb gateway');
     expect(client).not.toContain('from CampusWeb servers');
+  });
+
+  it('FloatingDock more menu is centered and never clipped on mobile', () => {
+    const dock = fs.readFileSync(path.resolve(__dirname, '../../layout/FloatingDock.tsx'), 'utf-8');
+    expect(dock).toContain('left-1/2 -translate-x-1/2');
+    expect(dock).toContain('w-[calc(100vw-32px)]');
+  });
+
+  it('NotesBentoView portals subject file browser to document.body', () => {
+    const notes = fs.readFileSync(path.resolve(__dirname, '../NotesBentoView.tsx'), 'utf-8');
+    expect(notes).toContain('createPortal');
+    expect(notes).toContain('document.body');
   });
 });

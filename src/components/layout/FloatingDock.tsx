@@ -25,18 +25,20 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close menu on outside click
+  // Close menu on outside click or touch
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
       }
     };
     if (isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [isMenuOpen]);
 
@@ -61,8 +63,8 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
   const activeThemeInfo = THEME_DETAILS[theme] || THEME_DETAILS['light'];
 
   return (
-    <div ref={menuRef} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 select-none">
-      {/* Animated Floating Popover "More" Menu */}
+    <div ref={menuRef} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 select-none">
+      {/* Animated Floating Popover "More" Menu: Perfectly centered on mobile and desktop */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -70,7 +72,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.95 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-full mb-3 right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
+            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
           >
             <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
               more workspace views
