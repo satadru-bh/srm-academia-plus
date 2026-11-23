@@ -3,6 +3,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { AtAGlanceView } from '../AtAGlanceView';
 import { AttendanceBentoView } from '../AttendanceBentoView';
+import { TimetableBentoView } from '../TimetableBentoView';
+import { MarksBentoView } from '../MarksBentoView';
 import { REAL_STUDENT_DATA } from '../../../data/studentData';
 
 vi.mock('../../../context/SessionContext', () => ({
@@ -24,7 +26,7 @@ vi.mock('../../../context/SessionContext', () => ({
   }),
 }));
 
-describe('Living Overview & Attendance Bento Views Suite', () => {
+describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () => {
   describe('AtAGlanceView Living Motion', () => {
     it('renders with living motion primitives and spotlight bento cards', () => {
       const html = renderToString(React.createElement(AtAGlanceView));
@@ -67,6 +69,50 @@ describe('Living Overview & Attendance Bento Views Suite', () => {
 
       // Search bar
       expect(html).toContain('filter courses...');
+    });
+  });
+
+  describe('TimetableBentoView Living Motion', () => {
+    it('renders with living motion primitives, interactive bento cards, and tactile mode switches', () => {
+      const html = renderToString(React.createElement(TimetableBentoView));
+
+      // Bento cards with spotlight class
+      expect(html).toContain('bento-card');
+      expect(html).toContain('card-spotlight');
+
+      // Tactile view mode buttons
+      expect(html).toContain('grid layout');
+      expect(html).toContain('day cards');
+
+      // Combo batch badge
+      expect(html).toContain('combo batch');
+
+      // Timetable grid layout with day orders
+      expect(html).toContain('day order');
+      expect(html).toContain('day 1');
+      expect(html).toContain('day 2');
+    });
+  });
+
+  describe('MarksBentoView Living Motion', () => {
+    it('renders with interactive bento cards, animated numbers, and tactile buttons', () => {
+      const html = renderToString(React.createElement(MarksBentoView));
+
+      // Bento cards with spotlight class
+      expect(html).toContain('bento-card');
+      expect(html).toContain('card-spotlight');
+
+      // Header and grid integrity
+      expect(html).toContain('internal marks &amp; projected grades');
+      expect(html).toContain('items-start');
+
+      // Interactive course cards and animated numbers
+      expect(html).toContain('id="marks-card-21MAB201T"');
+      expect(html).toContain('tabular-nums');
+
+      // GPA predictor button and details toggle
+      expect(html).toContain('gpa predictor');
+      expect(html).toContain('view details');
     });
   });
 });

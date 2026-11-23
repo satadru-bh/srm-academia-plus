@@ -1,15 +1,23 @@
 import React, { useState, useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter } from 'lucide-react';
 import { TimetableSlot, hasAssignedVenue } from '../../api/types';
 import { formatCourseTitle } from '../../api/grades';
 import { REAL_TIMETABLE_DATA } from '../../data/studentData';
+import {
+  InteractiveBentoCard,
+  StaggerContainer,
+  StaggerItem,
+  SpringPress,
+} from '../common/motion';
 
 export const TimetableBentoView: React.FC = () => {
   const { user, timetable, currentDayOrder } = useSession();
   const [viewMode, setViewMode] = useState<'grid' | 'cards'>('grid');
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder > 0 ? currentDayOrder : 1);
   const timetableRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Automatic batch detection from student profile (locks to allocated batch)
   const activeBatch = user?.profile?.batch
@@ -33,6 +41,34 @@ export const TimetableBentoView: React.FC = () => {
     { id: 11, name: 'period 11', time: '04:50 - 05:30', batch: 'b2' },
     { id: 12, name: 'period 12', time: '05:30 - 06:10', batch: 'b2' },
   ];
+
+  // Check if current time falls within startPeriod to endPeriod on dayOrder during active session
+  const isSlotOngoing = (dayOrder: number, startPeriodId: number, endPeriodId: number): boolean => {
+    if (dayOrder !== currentDayOrder || currentDayOrder <= 0) return false;
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const periodTimes: Record<number, { start: number; end: number }> = {
+      1: { start: 8 * 60, end: 8 * 60 + 50 },
+      2: { start: 8 * 60 + 50, end: 9 * 60 + 40 },
+      3: { start: 9 * 60 + 45, end: 10 * 60 + 35 },
+      4: { start: 10 * 60 + 40, end: 11 * 60 + 30 },
+      5: { start: 11 * 60 + 35, end: 12 * 60 + 25 },
+      6: { start: 12 * 60 + 30, end: 13 * 60 + 20 },
+      7: { start: 13 * 60 + 25, end: 14 * 60 + 15 },
+      8: { start: 14 * 60 + 20, end: 15 * 60 + 10 },
+      9: { start: 15 * 60 + 10, end: 16 * 60 },
+      10: { start: 16 * 60, end: 16 * 60 + 50 },
+      11: { start: 16 * 60 + 50, end: 17 * 60 + 30 },
+      12: { start: 17 * 60 + 30, end: 18 * 60 + 10 },
+    };
+
+    const start = periodTimes[startPeriodId]?.start;
+    const end = periodTimes[endPeriodId]?.end;
+    if (start === undefined || end === undefined) return false;
+
+    return currentMinutes >= start && currentMinutes < end;
+  };
 
   // Helper to find slot for a specific day and period with foolproof fallback
   const getSlotForDayAndPeriod = (dayOrder: number, periodIdx: number): TimetableSlot | undefined => {
@@ -168,7 +204,7 @@ export const TimetableBentoView: React.FC = () => {
           </p>
         </div>
 
-        {/* Controls: Automatic Batch Indicator, Export Button & View Mode */}
+        {/* Controls: Automatic Batch Indicator & View Mode */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Automatic Allocated Batch Badge */}
           <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] text-xs font-medium lowercase">
@@ -178,9 +214,9 @@ export const TimetableBentoView: React.FC = () => {
             </span>
           </div>
 
-          {/* View mode switcher */}
+          {/* View mode switcher with tactile spring buttons */}
           <div className="flex items-center space-x-1 p-1 rounded-2xl bg-[var(--color-bento-card)] border border-black/[0.06] dark:border-white/[0.06]">
-            <button
+            <SpringPress
               onClick={() => setViewMode('grid')}
               className={`px-3 py-1.5 rounded-xl text-xs font-medium lowercase flex items-center space-x-1.5 transition-colors ${viewMode === 'grid'
                 ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] font-bold'
@@ -189,8 +225,8 @@ export const TimetableBentoView: React.FC = () => {
             >
               <LayoutGrid className="w-3.5 h-3.5" />
               <span>grid layout</span>
-            </button>
-            <button
+            </SpringPress>
+            <SpringPress
               onClick={() => setViewMode('cards')}
               className={`px-3 py-1.5 rounded-xl text-xs font-medium lowercase flex items-center space-x-1.5 transition-colors ${viewMode === 'cards'
                 ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] font-bold'
@@ -199,14 +235,14 @@ export const TimetableBentoView: React.FC = () => {
             >
               <ListFilter className="w-3.5 h-3.5" />
               <span>day cards</span>
-            </button>
+            </SpringPress>
           </div>
         </div>
       </div>
 
       {/* View Mode 1: Traditional Grid-Based Timetable Layout */}
       {viewMode === 'grid' && (
-        <div ref={timetableRef} className="bento-card p-4 sm:p-6 overflow-hidden">
+        <div ref={timetableRef} className="bento-card card-spotlight p-4 sm:p-6 overflow-hidden">
           {/* Minimal Legend (No banner text, no viewing day text) */}
           <div className="flex items-center justify-end pb-3 text-[10px] text-[#71717A] dark:text-[#A1A1AA] space-x-3">
             <span className="flex items-center space-x-1 font-bold">
@@ -267,37 +303,55 @@ export const TimetableBentoView: React.FC = () => {
                       {/* Sticky Day Order Cell */}
                       <td className={`p-3 text-xs font-bold sticky left-0 z-10 ${isCurrentDay ? 'bg-emerald-500/10 text-emerald-400' : 'bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA]'
                         }`}>
-                      <div className="flex items-center space-x-1.5">
-                        <span>day {day}</span>
-                        {isCurrentDay && (
-                          <span className="text-[10px] lowercase text-emerald-400 font-bold">(today)</span>
-                        )}
-                      </div>
-                    </td>
+                        <div className="flex items-center space-x-1.5">
+                          <span>{`day ${day}`}</span>
+                          {isCurrentDay && (
+                            <span className="text-[10px] lowercase text-emerald-400 font-bold">(today)</span>
+                          )}
+                        </div>
+                      </td>
 
-                    {/* Merged Period Cells with Strictly Uniform Height & Colored T/L Tags */}
-                    {getGroupedSlotsForDay(day).map((group) => {
-                      const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
+                      {/* Merged Period Cells with Strictly Uniform Height & Interactive Bento Card Treatment */}
+                      {getGroupedSlotsForDay(day).map((group) => {
+                        const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
+                        const isOngoing = hasClass && isSlotOngoing(day, group.startPeriod.id, group.endPeriod.id);
 
-                      return (
-                        <td
-                          key={group.startPeriod.id}
-                          colSpan={colSpan}
-                          className="p-1 align-top h-[92px]"
-                        >
+                        return (
+                          <td
+                            key={group.startPeriod.id}
+                            colSpan={colSpan}
+                            className="p-1 align-top h-[92px]"
+                          >
                             {hasClass ? (
-                              <div
+                              <InteractiveBentoCard
+                                enableTilt={false}
                                 className={`p-2 rounded-xl border flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${
+                                  isOngoing
+                                    ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20'
+                                    : ''
+                                } ${
                                   isLab
                                     ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/20 dark:border-emerald-500/25 hover:border-emerald-500/40'
                                     : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/15 dark:border-blue-500/20 hover:border-blue-500/35'
                                 }`}
                               >
-                                {/* Top Row: Course Code & Clean Colored T/L Tag (No Pill) */}
+                                {/* Top Row: Course Code, Live Indicator & Clean Colored T/L Tag */}
                                 <div className="flex items-center justify-between gap-1 leading-none shrink-0">
-                                  <span className="font-bold text-[11px] text-[#111111] dark:text-[#FAFAFA] truncate">
-                                    {slot.courseCode}
-                                  </span>
+                                  <div className="flex items-center space-x-1.5 truncate">
+                                    <span className="font-bold text-[11px] text-[#111111] dark:text-[#FAFAFA] truncate">
+                                      {slot.courseCode}
+                                    </span>
+                                    {isOngoing && (
+                                      <span className="inline-flex items-center space-x-1 px-1 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-bold text-emerald-500">
+                                        <motion.span
+                                          className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                          animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+                                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                                        />
+                                        <span className="leading-none">live</span>
+                                      </span>
+                                    )}
+                                  </div>
                                   <span
                                     className={`font-bold text-xs shrink-0 ${
                                       isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
@@ -326,7 +380,7 @@ export const TimetableBentoView: React.FC = () => {
                                     {slotRangeDisplay}
                                   </span>
                                 </div>
-                              </div>
+                              </InteractiveBentoCard>
                             ) : (
                               <div className="h-[92px] max-h-[92px] w-full rounded-xl border border-dashed border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
                                 free
@@ -342,15 +396,15 @@ export const TimetableBentoView: React.FC = () => {
             </table>
           </div>
 
-          {/* Mobile / Vertical Mode: Timetable Vertical, Separated by Days */}
-          <div className="block md:hidden space-y-4">
+          {/* Mobile / Vertical Mode: Timetable Vertical with StaggerContainer */}
+          <StaggerContainer className="block md:hidden space-y-4">
             {daysList.map((day) => {
               const dayGroups = getGroupedSlotsForDay(day);
               const classesForDay = dayGroups.filter((g) => g.hasClass);
               const isCurrentDay = currentDayOrder === day;
 
               return (
-                <div
+                <StaggerItem
                   key={day}
                   className={`p-4 rounded-2xl border transition-all ${
                     isCurrentDay
@@ -361,7 +415,7 @@ export const TimetableBentoView: React.FC = () => {
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
                     <div className="flex items-center space-x-2">
                       <span className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase">
-                        day {day}
+                        {`day ${day}`}
                       </span>
                       {isCurrentDay && (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 lowercase">
@@ -384,11 +438,15 @@ export const TimetableBentoView: React.FC = () => {
                         const { slot, isLab, startPeriod, endPeriod, slotRangeDisplay } = group;
                         const startTime = startPeriod.time.split(' - ')[0];
                         const endTime = endPeriod.time.split(' - ')[1];
+                        const isOngoing = isSlotOngoing(day, startPeriod.id, endPeriod.id);
 
                         return (
-                          <div
+                          <InteractiveBentoCard
                             key={group.startPeriod.id}
+                            enableTilt={false}
                             className={`p-3 rounded-xl border flex flex-col gap-1.5 transition-all ${
+                              isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                            } ${
                               isLab
                                 ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/20 dark:border-emerald-500/25'
                                 : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/15 dark:border-blue-500/20'
@@ -399,6 +457,16 @@ export const TimetableBentoView: React.FC = () => {
                                 <span className="font-bold text-xs text-[#111111] dark:text-[#FAFAFA]">
                                   {slot.courseCode}
                                 </span>
+                                {isOngoing && (
+                                  <span className="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-bold text-emerald-500">
+                                    <motion.span
+                                      className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                      animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+                                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                                    />
+                                    <span>live</span>
+                                  </span>
+                                )}
                                 <span
                                   className={`font-bold text-xs ${
                                     isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
@@ -428,17 +496,17 @@ export const TimetableBentoView: React.FC = () => {
                               <span>{slot.room || 'tp 706'}</span>
                               <span className="truncate max-w-[60%]">{slot.faculty || ''}</span>
                             </div>
-                          </div>
+                          </InteractiveBentoCard>
                         );
                       })}
                     </div>
                   )}
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
 
-          {/* Watermark at the bottom of the exported card */}
+          {/* Watermark at the bottom of the card */}
           <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase">
             <span>academia plus • srm academic intelligence</span>
             <span>batch {activeBatch} • 5-day cycle timetable</span>
@@ -449,14 +517,14 @@ export const TimetableBentoView: React.FC = () => {
       {/* View Mode 2: Day-by-Day Cards View */}
       {viewMode === 'cards' && (
         <div className="space-y-6">
-          {/* Day Selector Pills */}
+          {/* Day Selector Pills with SpringPress tactile feedback */}
           <div className="flex items-center space-x-1.5 p-1 rounded-2xl bg-[#FFFFFF] dark:bg-[#131316] border border-black/[0.06] dark:border-white/[0.06] self-start overflow-x-auto">
             {daysList.map((day) => {
               const isSelected = selectedDayOrder === day;
               const isToday = currentDayOrder === day;
 
               return (
-                <button
+                <SpringPress
                   key={day}
                   onClick={() => setSelectedDayOrder(day)}
                   className={`px-4 py-2 rounded-xl text-xs font-medium lowercase transition-colors shrink-0 flex items-center space-x-1.5 ${isSelected
@@ -464,90 +532,110 @@ export const TimetableBentoView: React.FC = () => {
                     : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
                     }`}
                 >
-                  <span>day {day}</span>
+                  <span>{`day ${day}`}</span>
                   {isToday && (
                     <span className="text-[10px] text-emerald-400 font-bold lowercase">today</span>
                   )}
-                </button>
+                </SpringPress>
               );
             })}
           </div>
 
-          {/* Cards for selected day */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {getGroupedSlotsForDay(selectedDayOrder).filter((g) => g.hasClass).length === 0 ? (
-              <div className="col-span-full bento-card p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase">
-                no lectures scheduled for day order {selectedDayOrder}
-              </div>
-            ) : (
-              getGroupedSlotsForDay(selectedDayOrder)
+          {/* Cards for selected day wrapped in StaggerContainer & StaggerItem */}
+          {getGroupedSlotsForDay(selectedDayOrder).filter((g) => g.hasClass).length === 0 ? (
+            <InteractiveBentoCard className="p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase">
+              no lectures scheduled for day order {selectedDayOrder}
+            </InteractiveBentoCard>
+          ) : (
+            <StaggerContainer
+              key={selectedDayOrder}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+              {getGroupedSlotsForDay(selectedDayOrder)
                 .filter((g) => g.hasClass)
                 .map((group, index) => {
                   const { slot, isLab, slotRangeDisplay, timeRangeDisplay } = group;
+                  const isOngoing = isSlotOngoing(selectedDayOrder, group.startPeriod.id, group.endPeriod.id);
+
                   return (
-                    <div
-                      key={index}
-                      className={`bento-card p-6 flex flex-col justify-between border ${
-                        isLab
-                          ? 'border-emerald-500/20 dark:border-emerald-500/25 bg-emerald-500/[0.02] dark:bg-emerald-500/[0.04]'
-                          : 'border-blue-500/15 dark:border-blue-500/20 bg-blue-500/[0.02] dark:bg-blue-500/[0.03]'
-                      }`}
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-3 text-xs">
-                          <span
-                            className={`font-bold tabular-nums ${
-                              isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
-                            }`}
-                          >
-                            {timeRangeDisplay}
-                          </span>
-                          <div className="flex items-center space-x-2">
-                            <span
-                              className={`font-bold text-xs ${
-                                isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
-                              }`}
-                              title={isLab ? 'Lab' : 'Theory'}
-                            >
-                              {isLab ? 'L' : 'T'}
-                            </span>
-                            <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase">
-                              {slotRangeDisplay}
-                            </span>
+                    <StaggerItem key={index}>
+                      <InteractiveBentoCard
+                        className={`p-6 flex flex-col justify-between border ${
+                          isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                        } ${
+                          isLab
+                            ? 'border-emerald-500/20 dark:border-emerald-500/25 bg-emerald-500/[0.02] dark:bg-emerald-500/[0.04]'
+                            : 'border-blue-500/15 dark:border-blue-500/20 bg-blue-500/[0.02] dark:bg-blue-500/[0.03]'
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-3 text-xs">
+                            <div className="flex items-center space-x-2">
+                              <span
+                                className={`font-bold tabular-nums ${
+                                  isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
+                                }`}
+                              >
+                                {timeRangeDisplay}
+                              </span>
+                              {isOngoing && (
+                                <span className="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 text-[10px] font-bold border border-emerald-500/25">
+                                  <motion.span
+                                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                    animate={shouldReduceMotion ? undefined : { scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                                  />
+                                  <span>live</span>
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <span
+                                className={`font-bold text-xs ${
+                                  isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
+                                }`}
+                                title={isLab ? 'Lab' : 'Theory'}
+                              >
+                                {isLab ? 'L' : 'T'}
+                              </span>
+                              <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase">
+                                {slotRangeDisplay}
+                              </span>
+                            </div>
                           </div>
+
+                          <h3 className="text-base font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
+                            {formatCourseTitle(slot.courseTitle)}
+                          </h3>
+
+                          {slot.courseCode && (
+                            <div className="mt-1.5 text-xs text-[#71717A] dark:text-[#A1A1AA]">
+                              {slot.courseCode}
+                            </div>
+                          )}
                         </div>
 
-                        <h3 className="text-base font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
-                          {formatCourseTitle(slot.courseTitle)}
-                        </h3>
-
-                        {slot.courseCode && (
-                          <div className="mt-1.5 text-xs text-[#71717A] dark:text-[#A1A1AA]">
-                            {slot.courseCode}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mt-6 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between text-xs">
-                        {slot.room ? (
-                          <span className="inline-flex items-center space-x-1 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                            <MapPin className="w-3 h-3 text-emerald-400" />
-                            <span>{slot.room}</span>
+                        <div className="mt-6 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between text-xs">
+                          {slot.room ? (
+                            <span className="inline-flex items-center space-x-1 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
+                              <MapPin className="w-3 h-3 text-emerald-400" />
+                              <span>{slot.room}</span>
+                            </span>
+                          ) : (
+                            <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
+                              classroom pending
+                            </span>
+                          )}
+                          <span className="text-[11px] text-emerald-400 lowercase">
+                            scheduled
                           </span>
-                        ) : (
-                          <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                            classroom pending
-                          </span>
-                        )}
-                        <span className="text-[11px] text-emerald-400 lowercase">
-                          scheduled
-                        </span>
-                      </div>
-                    </div>
+                        </div>
+                      </InteractiveBentoCard>
+                    </StaggerItem>
                   );
-                })
-            )}
-          </div>
+                })}
+            </StaggerContainer>
+          )}
         </div>
       )}
     </div>
