@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { OFFICIAL_EXAM_TIMETABLE } from '../../data/examTimetable';
 import { ExamTimetableItem } from '../../api/types';
@@ -16,6 +16,7 @@ const STORAGE_KEY = 'academia_plus_exam_schedule_v3';
 
 export const ExamTimetableBentoView: React.FC = () => {
   const { user } = useSession();
+  const shouldReduceMotion = useReducedMotion();
   const [exams, setExams] = useState<ExamTimetableItem[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -120,7 +121,11 @@ export const ExamTimetableBentoView: React.FC = () => {
           <InteractiveBentoCard className="col-span-12 lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-amber-500/20 glow-amber">
             {/* Ambient Breathing Pulse */}
             <motion.div
-              animate={{ opacity: [0.2, 0.45, 0.2], scale: [1, 1.05, 1] }}
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : { opacity: [0.2, 0.45, 0.2], scale: [1, 1.05, 1] }
+              }
               transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
               className="absolute -top-16 -right-16 w-72 h-72 bg-amber-500/10 dark:bg-amber-400/10 rounded-full blur-3xl pointer-events-none"
             />
@@ -130,7 +135,11 @@ export const ExamTimetableBentoView: React.FC = () => {
                 next examination
               </span>
               <motion.span
-                animate={{ scale: [1, 1.04, 1] }}
+                animate={
+                  shouldReduceMotion
+                    ? undefined
+                    : { scale: [1, 1.04, 1] }
+                }
                 transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
                 className="px-3 py-1 rounded-full bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/20 text-xs font-bold lowercase"
               >
@@ -199,7 +208,7 @@ export const ExamTimetableBentoView: React.FC = () => {
           <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
             <div>
               <h2 className="text-base sm:text-lg font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
-                scheduled courses ({validExams.length})
+                examination schedule ({validExams.length})
               </h2>
               <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
                 official university examination sequence for odd semester 2026
@@ -272,10 +281,10 @@ export const ExamTimetableBentoView: React.FC = () => {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
+              transition={shouldReduceMotion ? { duration: 0.05 } : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-2xl bento-card p-6 sm:p-8 bg-[#FFFFFF] dark:bg-[#131316] border border-black/10 dark:border-white/10 shadow-2xl rounded-3xl z-[101] max-h-[90vh] flex flex-col"
             >
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">

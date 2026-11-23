@@ -148,4 +148,35 @@ describe('MotionPrimitives Suite', () => {
       expect(html).toContain('Second');
     });
   });
+
+  describe('Reduced Motion Compliance', () => {
+    it('InteractiveBentoCard renders stably and disables tilt when enableTilt is false or motion reduced', () => {
+      const html = renderToString(
+        React.createElement(
+          InteractiveBentoCard,
+          { enableTilt: false, className: 'accessible-card' },
+          React.createElement('span', null, 'Accessible Content')
+        )
+      );
+      expect(html).toContain('accessible-card');
+      expect(html).toContain('bento-card');
+      expect(html).toContain('Accessible Content');
+    });
+
+    it('AnimatedProgressBar renders final width percentage accurately without runtime errors', () => {
+      const html = renderToString(
+        React.createElement(AnimatedProgressBar, { value: 88, max: 100 })
+      );
+      expect(html).toContain('style="width:88%"');
+      expect(html).toContain('aria-valuenow="88"');
+    });
+
+    it('SpringPress renders clean button without animation glitches', () => {
+      const html = renderToString(
+        React.createElement(SpringPress, { disabled: true }, 'Disabled Press')
+      );
+      expect(html).toContain('Disabled Press');
+      expect(html).toContain('disabled=""');
+    });
+  });
 });

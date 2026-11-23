@@ -5,6 +5,7 @@ import { AtAGlanceView } from '../AtAGlanceView';
 import { AttendanceBentoView } from '../AttendanceBentoView';
 import { TimetableBentoView } from '../TimetableBentoView';
 import { MarksBentoView } from '../MarksBentoView';
+import { ExamTimetableBentoView } from '../ExamTimetableBentoView';
 import { REAL_STUDENT_DATA } from '../../../data/studentData';
 
 vi.mock('../../../context/SessionContext', () => ({
@@ -113,6 +114,17 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       // GPA predictor button and details toggle
       expect(html).toContain('gpa predictor');
       expect(html).toContain('view details');
+    });
+  });
+
+  describe('ExamTimetableBentoView Living Motion', () => {
+    it('renders with interactive bento cards, next exam hero, and edit schedule trigger', () => {
+      const html = renderToString(React.createElement(ExamTimetableBentoView));
+
+      expect(html).toContain('bento-card');
+      expect(html).toContain('card-spotlight');
+      expect(html).toContain('exam timetable');
+      expect(html).toContain('edit / sync dates');
     });
   });
 });
