@@ -1,7 +1,7 @@
 // Vercel Serverless Function Proxy for SRM Academia / CampusWeb Gateway
 // Solves CORS and Cloudflare blocks by injecting required headers and forwarding requests.
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // 1. Universal CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
@@ -90,4 +90,4 @@ module.exports = async (req, res) => {
       status: 'error'
     }));
   }
-};
+}
