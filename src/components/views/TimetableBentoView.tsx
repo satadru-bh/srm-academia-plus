@@ -46,23 +46,17 @@ export const TimetableBentoView: React.FC = () => {
     return daySlots[periodIdx];
   };
 
-  // Helper to identify lab/practical slots vs theory slots
-  const isLabSlot = (slot: TimetableSlot | undefined, batch: number): boolean => {
+  // Helper to identify lab/practical slots vs theory slots dynamically
+  const isLabSlot = (slot: TimetableSlot | undefined): boolean => {
     if (!slot || !slot.courseCode || slot.courseCode === '-') return false;
     const code = slot.courseCode.toUpperCase().trim();
     const title = (slot.courseTitle || '').toLowerCase();
     const room = (slot.room || '').toLowerCase();
 
     if (code.endsWith('P') || code.endsWith('L')) return true;
-    if (title.includes('lab') || title.includes('practical') || title.includes('practice')) return true;
-    if (room.includes('lab') || room.includes('ub 7') || room.includes('ub-7')) return true;
+    if (title.includes('lab') || title.includes('practical')) return true;
+    if (room.includes('lab') || room.includes('ub 7') || room.includes('ub-7') || room.startsWith('ub')) return true;
 
-    if (code.endsWith('J')) {
-      const slotNum = parseInt(slot.slotName.replace(/\D/g, ''), 10);
-      if (batch === 2 && slotNum >= 1 && slotNum <= 5) return true;
-      if (batch === 1 && slotNum >= 6 && slotNum <= 12) return true;
-      if (room.startsWith('ub')) return true;
-    }
     return false;
   };
 
@@ -144,7 +138,7 @@ export const TimetableBentoView: React.FC = () => {
       const endSlotNum = getSlotForDayAndPeriod(day, lookAhead - 1)?.slotName.replace(/\D/g, '') || startSlotNum;
       const slotRangeDisplay = span > 1 ? `s${startSlotNum}–s${endSlotNum}` : `s${startSlotNum}`;
 
-      const isLab = isLabSlot(slot, activeBatch);
+      const isLab = isLabSlot(slot);
 
       groups.push({
         slot,
@@ -168,15 +162,20 @@ export const TimetableBentoView: React.FC = () => {
     if (!target) return;
     setIsExporting(true);
     try {
+      if (typeof document !== 'undefined' && document.fonts) {
+        await document.fonts.ready;
+      }
       const html2canvas = (await import('html2canvas')).default;
       const isDark = document.documentElement.classList.contains('dark');
       const canvas = await (html2canvas as any)(target, {
-        backgroundColor: isDark ? '#131316' : '#FFFFFF',
-        scale: 2.5,
+        backgroundColor: isDark ? '#121214' : '#FFFFFF',
+        scale: 2,
         useCORS: true,
         logging: false,
         width: 1400,
-        windowWidth: 1400
+        windowWidth: 1400,
+        x: 0,
+        y: 0
       });
       const link = document.createElement('a');
       link.download = `srm-cycle-timetable-batch${activeBatch}.png`;
@@ -601,25 +600,36 @@ export const TimetableBentoView: React.FC = () => {
         </div>
       )}
 
-      {/* Pristine High-Resolution Export Template (Offscreen, perfectly styled for Retina PNG capture) */}
+      {/* Pristine High-Resolution Export Template (Offscreen with positive DOM positioning and crisp anti-aliased font metrics) */}
       <div
         ref={exportRef}
         aria-hidden="true"
-        className="fixed -left-[9999px] top-0 w-[1400px] p-8 bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA] font-sans pointer-events-none select-none z-[-100]"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '1400px',
+          zIndex: -9999,
+          pointerEvents: 'none',
+          letterSpacing: '0px',
+          fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+          fontFeatureSettings: '"tnum"',
+        }}
+        className="p-8 bg-[#FFFFFF] dark:bg-[#121214] text-[#111111] dark:text-[#FAFAFA] select-none"
       >
         {/* Full 5-Day Grid Table with Merged Consecutive Periods & Distinct Lab/Theory Styles */}
-        <table className="w-full border-collapse text-left">
+        <table className="w-full border-collapse text-left" style={{ letterSpacing: '0px' }}>
           <thead>
             <tr className="border-b border-black/[0.1] dark:border-white/[0.1]">
-              <th className="p-3 text-xs font-bold lowercase text-[#111111] dark:text-[#FAFAFA] w-28">
+              <th className="p-3 text-xs font-bold lowercase text-[#111111] dark:text-[#FAFAFA] w-28" style={{ letterSpacing: '0px' }}>
                 day order
               </th>
               {periods.map((p) => (
-                <th key={p.id} className="p-2.5 text-center">
-                  <div className="text-xs font-bold text-[#111111] dark:text-[#FAFAFA] lowercase whitespace-nowrap">
+                <th key={p.id} className="p-2.5 text-center" style={{ letterSpacing: '0px' }}>
+                  <div className="text-xs font-bold text-[#111111] dark:text-[#FAFAFA] lowercase whitespace-nowrap" style={{ letterSpacing: '0px' }}>
                     {p.name}
                   </div>
-                  <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] tabular-nums mt-0.5 whitespace-nowrap">
+                  <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] tabular-nums mt-0.5 whitespace-nowrap" style={{ letterSpacing: '0px' }}>
                     {p.time}
                   </div>
                 </th>
@@ -629,7 +639,7 @@ export const TimetableBentoView: React.FC = () => {
           <tbody className="divide-y divide-black/[0.06] dark:divide-white/[0.06]">
             {daysList.map((day) => (
               <tr key={day}>
-                <td className="p-3 text-xs font-bold text-[#111111] dark:text-[#FAFAFA]">
+                <td className="p-3 text-xs font-bold text-[#111111] dark:text-[#FAFAFA]" style={{ letterSpacing: '0px' }}>
                   day {day}
                 </td>
                 {getGroupedSlotsForDay(day).map((group) => {
@@ -642,6 +652,7 @@ export const TimetableBentoView: React.FC = () => {
                     >
                       {hasClass ? (
                         <div
+                          style={{ letterSpacing: '0px' }}
                           className={`p-2.5 rounded-xl border flex flex-col justify-between h-[112px] min-h-[112px] ${
                             isLab
                               ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/25 dark:border-emerald-500/30'
@@ -649,8 +660,8 @@ export const TimetableBentoView: React.FC = () => {
                           }`}
                         >
                           {/* Top Row: Course Code & Clean Colored T/L Tag (No Pill) */}
-                          <div className="flex items-center justify-between gap-1 leading-tight shrink-0">
-                            <span className="font-bold text-xs text-[#111111] dark:text-[#FAFAFA] truncate">
+                          <div className="flex items-center justify-between gap-1 leading-tight shrink-0" style={{ letterSpacing: '0px' }}>
+                            <span className="font-bold text-xs text-[#111111] dark:text-[#FAFAFA] truncate" style={{ letterSpacing: '0px' }}>
                               {slot.courseCode}
                             </span>
                             <span
@@ -663,26 +674,27 @@ export const TimetableBentoView: React.FC = () => {
                           </div>
 
                           {/* Middle: Subject Name - Generous line-height and space */}
-                          <div className="flex-1 my-auto flex items-center py-1">
-                            <div className="text-[10.5px] font-medium text-[#71717A] dark:text-[#A1A1AA] lowercase leading-snug line-clamp-2">
+                          <div className="flex-1 my-auto flex items-center py-1" style={{ letterSpacing: '0px' }}>
+                            <div className="text-[10.5px] font-medium text-[#71717A] dark:text-[#A1A1AA] lowercase leading-snug line-clamp-2" style={{ letterSpacing: '0px' }}>
                               {formatCourseTitle(slot.courseTitle)}
                             </div>
                           </div>
 
                           {/* Bottom Row: Room & Slot Range Packed Tightly at Bottom with No Divider */}
-                          <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] leading-tight shrink-0 pt-1">
-                            <span className="truncate max-w-[65%]">{slot.room || 'tp 706'}</span>
+                          <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] leading-tight shrink-0 pt-1" style={{ letterSpacing: '0px' }}>
+                            <span className="truncate max-w-[65%]" style={{ letterSpacing: '0px' }}>{slot.room || 'tp 706'}</span>
                             <span
                               className={`font-bold tabular-nums shrink-0 ${
                                 isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
                               }`}
+                              style={{ letterSpacing: '0px' }}
                             >
                               {slotRangeDisplay}
                             </span>
                           </div>
                         </div>
                       ) : (
-                        <div className="h-[112px] min-h-[112px] w-full rounded-xl border border-dashed border-black/[0.06] dark:border-white/[0.06] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
+                        <div className="h-[112px] min-h-[112px] w-full rounded-xl border border-dashed border-black/[0.06] dark:border-white/[0.06] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]" style={{ letterSpacing: '0px' }}>
                           free
                         </div>
                       )}
@@ -695,7 +707,7 @@ export const TimetableBentoView: React.FC = () => {
         </table>
 
         {/* Footer Brand */}
-        <div className="pt-4 mt-4 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase">
+        <div className="pt-4 mt-4 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase" style={{ letterSpacing: '0px' }}>
           <span>academia plus • official academic cycle schedule</span>
           <span>5-day cycle verified</span>
         </div>
