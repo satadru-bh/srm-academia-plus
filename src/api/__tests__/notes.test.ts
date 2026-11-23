@@ -59,12 +59,15 @@ describe('Notes Query Engine', () => {
     expect(app?.name).toContain('Advanced Programming');
   });
 
-  it('generates secure Google Drive preview URLs from file IDs or URLs', () => {
+  it('generates secure Google Drive preview URLs from file IDs or URLs, preserving direct PDF URLs', () => {
     const fromId = extractGoogleDrivePreviewUrl('1yB4vRF4qjKsyvb24tzt0lYYvA96CEUqC');
     expect(fromId).toBe('https://drive.google.com/file/d/1yB4vRF4qjKsyvb24tzt0lYYvA96CEUqC/preview');
 
     const fromUrl = extractGoogleDrivePreviewUrl('https://drive.google.com/file/d/1OBnc8BsJYTNGutwGYpC1ov7QqtFeWQ-J/view');
     expect(fromUrl).toBe('https://drive.google.com/file/d/1OBnc8BsJYTNGutwGYpC1ov7QqtFeWQ-J/preview');
+
+    const r2Url = 'https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/test.pdf';
+    expect(extractGoogleDrivePreviewUrl(r2Url)).toBe(r2Url);
   });
 
   it('formats live PYQ paper titles with session and year', () => {

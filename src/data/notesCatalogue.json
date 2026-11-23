@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T13:02:29.881Z",
+  "updatedAt": "2026-11-23T19:12:48.967Z",
   "totalSubjects": 98,
   "subjects": [
     {
@@ -53,6 +53,86 @@
           "name": "2024_May",
           "fileId": "1in1Bi8cnJTV1-lSJL5VOs_6Q54PPzh6O",
           "url": "https://drive.google.com/file/d/1in1Bi8cnJTV1-lSJL5VOs_6Q54PPzh6O/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "4820e5e2-eee7-41a6-98a2-3a71f4f58dc8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB102T/21MAB102TM_25-07-2025_FN_2140974469.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "096474c1-9af3-4083-9e80-c2768a1fab8c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB102T/21MAB102T_18.07.2025_FN_e9b9011e11.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "7a69a940-a27e-4d4d-9e07-00a7211ea7dd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB102T/21MAB102T_3dbc0aed95.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c4d7310c-1e14-479e-836c-9c5bd935406e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB102T/21MAB102T_156d162c57.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "aae8c82c-107f-472f-8a95-39964709c2d0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB102T/21MAB102T_9fc32c1d1a.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "efb0fe74-8fcb-434b-a5b3-8367e599f6c9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA102/15MA102_080b6f4ec9.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "ccf366d1-f986-41bd-89d1-c227f6aa5be1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA102/15MA102_f792dbbf3a.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "b7506c06-b7a9-449c-b503-6e638ce06a8a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA102/15MA102_27-11-2024_AN_49305cf508.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "eb499b25-0b37-4a94-9998-2392ff64ca7b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB_102T/18MAB102T_26.05.2025_FN_519714ef47.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "24c58a06-d6ed-402c-9ce9-584007dedf1a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB_102T/18MAB102T_26.07.2025_FN_da42d2f59d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "c19c1d49-bb22-4c8c-acf1-7e7e3812a27a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T_26.07.2025_FN_62858ef2b2.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "3f133606-8e45-467f-8031-a47479958ebe",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T-2_Sem_a47360d7bb.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "0cd0c2da-f2f8-45c0-849b-45b935ff9d91",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T-2_Sem_99addfc1e3.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "4e0c0f03-dc19-488c-b467-751c214c4f98",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T_db9f0eb79f.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "5a3cfb27-2d1b-400f-b663-53f2e178d6b5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T_1990ab41d1.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "190295b9-f8c2-4b60-83dc-af6a87c4b21f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB102T/18MAB102T_06-12-2024_AN_ccd55531ad.pdf"
         }
       ],
       "syllabus": [
@@ -64,9 +144,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 3,
+        "papers": 19,
         "syllabus": 1,
-        "total": 9
+        "total": 25
       }
     },
     {
@@ -105,7 +185,53 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "eaf501a4-31ca-4a47-a09e-0a943685a212",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_23.05.2025_AN_c379318470.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "2daf5867-0e63-4406-938c-e1d872eafaa9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_8fd663f105.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3d81335f-9301-48ee-9d34-2f756262ff1d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_e651eccd4b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "0e99015e-0277-4c61-8ec7-cf3406d72eb0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_pdf_c628f2224e.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "31e68a59-c2b8-45cd-bc6b-478318365191",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J-4_Sem_106751d9f7.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "7dcd6386-0991-45a4-9f2a-d8bad279d8c6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_dde4e955c8.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "5e39e80c-c7b3-4f3b-923e-3fecc036cc82",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC207J/18CSC207J_12-12-2024_FN_875e93c93f.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "6d7a272d-374a-4440-af50-88f6c824d5c2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSC22J/19PCSC22J_154a7c124d.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "a50e038e-5db6-4223-b759-74cd04d38c3f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSC22J/19PCSC22J_15.12.2024_FN_b4e6ca6b47.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -115,9 +241,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 9,
         "syllabus": 1,
-        "total": 6
+        "total": 15
       }
     },
     {
@@ -186,14 +312,44 @@
           "name": "2025_May",
           "fileId": "1cUcovEHJw87bAWBs5KTYuUFY9ml7PUvd",
           "url": "https://drive.google.com/file/d/1cUcovEHJw87bAWBs5KTYuUFY9ml7PUvd/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c005978d-c7b1-4ea6-87d7-6f497c4af0fd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AI035_l_T/18AIO351T_21.05.2025_FN_646bf33f9d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "a247aeb5-397d-49b4-b3e2-57a1bb820783",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AI0351T/18AI0351T_f69c479f23.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "6a43b0d0-98af-4d92-875f-4edf849cbdde",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_f1ea79f9d1.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e64e0c58-73d1-4893-ba27-00d8fee8026a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_e764bea132.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "8a784b3b-5d2f-47d5-b205-c21a5cc757b3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_dc435463a9.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "76b1a159-9083-4a6c-85ad-c18ffc549d41",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_04.06.2025_FN_e75da9b43b.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 12,
         "syllabus": 0,
-        "total": 11
+        "total": 17
       }
     },
     {
@@ -253,6 +409,76 @@
           "name": "2025_June",
           "fileId": "1o4TzjOs4qwIFFwEzBfXn2yvgfLwXNTj9",
           "url": "https://drive.google.com/file/d/1o4TzjOs4qwIFFwEzBfXn2yvgfLwXNTj9/preview"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "34bafc0b-983f-4ec2-b080-fea7b41224b0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE313T/18AUE313T_26.11.2022_FN_6ba6bd80f5.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "269185a0-2c76-49eb-bcdc-bf4015e61a25",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE313T/18AUE313T_89a66faa6d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "4d33f087-8c8d-486f-9641-e2a75ffcfe0e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE313T/18AUE313T_e6cedda25b.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ff7bc7c0-3ef5-44cb-b208-523d8ef48341",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_22.05.2025_FN_b3f893b733.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "5e4f6027-a082-4a86-8fff-42a837be6aaf",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_26.07.2025_FN_fb915003b3.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "19c2a4eb-a29a-4178-82a1-a5802a369e03",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_26.07.2025_FN_66f4456a04.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "8dceeb12-1d45-451e-9f4a-30c66cac4a21",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_26.07.2025_FN_dc497cf54d.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "6ddddacb-7e28-47e8-a904-5dd8d8d15ec0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_309f98ab3d.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "25025c44-924f-4caa-8a14-34bb3d27160f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_23.11.2022_FN_b062722e8f.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "063f49f3-811a-43dd-a384-9a6448caae53",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T-5_to_6_Sem_69dfacd94f.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "34972245-978e-4712-85a2-7b4d27d6d14c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_6faf43c7c0.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "2cdf6a88-a019-47f8-b842-38c1333d0b6a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_94d9b2d147.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "5680b61b-0402-4e2d-8290-cfa01ac4e2ea",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE388T/18CSE388T_26-11-2024_AN_a35d4dc3b3.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ec6dfda4-5c75-4172-a844-b2a51f0904fa",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE326T/21CSE326T_02.06.2025_AN_4f64aa0eb8.pdf"
         }
       ],
       "syllabus": [
@@ -264,9 +490,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 3,
+        "papers": 17,
         "syllabus": 1,
-        "total": 10
+        "total": 24
       }
     },
     {
@@ -280,7 +506,18 @@
           "url": "https://drive.google.com/file/d/1a6fmB1_lyXboJy6vYY0yHZBcJlna7Epm/preview"
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2023_Paper",
+          "fileId": "a48071da-5b90-43dd-8a3c-c3d2c0ff866f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MES102J/18MES102J-1_to_2_Sem_a61b7b8a5f.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "db5b39c7-e603-458d-be58-facd4a8feb1f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MES102J/18MES102J_227add429f.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -290,9 +527,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 0,
+        "papers": 2,
         "syllabus": 1,
-        "total": 2
+        "total": 4
       }
     },
     {
@@ -346,6 +583,26 @@
           "name": "2024_May",
           "fileId": "11VNmILfB6Bz_k6i-guz--J-E7KRCQur0",
           "url": "https://drive.google.com/file/d/11VNmILfB6Bz_k6i-guz--J-E7KRCQur0/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "08729321-3dd0-4b41-b004-eedf33f19e6a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15GN322E/15GN322E_966f0ff140.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3f5e674a-af06-4ade-a5c2-a2e3f7cd57f4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC101J/18BTC101J_85f60f2f1d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "ed25416a-bb54-4140-a78f-d502776294c4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC101J/18BTC101J_7b9c1dc277.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c111ec78-9492-4aaf-a6d2-c3190b9f1eee",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20FPE516J/20FPE516J_75fea5447d.pdf"
         }
       ],
       "syllabus": [
@@ -357,9 +614,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 3,
+        "papers": 7,
         "syllabus": 1,
-        "total": 9
+        "total": 13
       }
     },
     {
@@ -398,7 +655,33 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "May_June_Paper",
+          "fileId": "68962664-7792-48eb-9574-367ccf22e005",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTB101_T/18BTB101T_22.05.2025_AN_33b062cb93.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "712f528d-dbae-4994-a8da-69b4cbb2d1c9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTB102T/18BTB102T_24.05.2025_AN_1ca64f10a0.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "88dec8aa-237d-46ac-a932-0698e0100756",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTB102T/18BTB102T_34a6573a55.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "9657c19a-99ea-4c3b-a676-7cbfc51c48e2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTB102T/18BTB102T_90d4bca825.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "c087e195-5ee4-4a44-95aa-0b71a0c24d95",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTB1O1T/18BTB101T_02-12-2024_FN_728a06bd90.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -408,9 +691,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 5,
         "syllabus": 1,
-        "total": 6
+        "total": 11
       }
     },
     {
@@ -430,6 +713,46 @@
           "name": "2023_May",
           "fileId": "160Tikxh23KmZslQUVsOcqK4YhmQjgt_T",
           "url": "https://drive.google.com/file/d/160Tikxh23KmZslQUVsOcqK4YhmQjgt_T/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7c900ece-a232-459b-9e7f-fcce2bfdc6ed",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J/21BMC101J_22.05.2025_AN_1690a0c4be.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "67d6d5ed-018d-4373-886f-84c6f574be91",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J/21BMC101J_5eb1017dc1.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "a68c912c-9573-4734-9db1-bcc32a8c5f26",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J/21BMC101J_b8c56768c9.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "3397009a-042a-4803-adac-896230f0303c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J/21BMC101J_ce1a613efb.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "5a8aad5b-f86c-4a05-9242-01a13f0548bd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J/21BMC101J_02.12.2024_FN_3beeab34c5.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "67d4a5aa-b903-4941-9fc6-e95f954988a3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J_-/21BMC101J_02.12.2024_FN_8dc8b1cb30.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "583fcd2d-2284-4256-8ee8-deaf0affae23",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101J_-/21BMC101J_18-12-2024_FN_5c17626637.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "05256c65-7299-4ada-82af-a3a2f629f0dd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BMC101JR/21BMC101JR_9d574e4426.pdf"
         }
       ],
       "syllabus": [
@@ -441,9 +764,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 1,
+        "papers": 9,
         "syllabus": 1,
-        "total": 3
+        "total": 11
       }
     },
     {
@@ -482,7 +805,18 @@
           "unit": 3
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "33193137-ac78-4362-98eb-e6d7ae14e460",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB303T_-/21MAB303T_26.11.2024_AN_9586127a67.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "6393d097-1d6c-4a40-ae93-49f9ed5a636f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/UBT22201T/UBT22201T_7878d19016.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -492,9 +826,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 2,
         "syllabus": 1,
-        "total": 6
+        "total": 8
       }
     },
     {
@@ -557,7 +891,58 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "e5cc0b60-36d4-4e14-88ff-6516ff161d7f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE423T/18AIE423T_26.05.2025_FN_361d0a3ed4.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "fbb840c5-cac0-4859-83a2-064e71cb2663",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE423T/18AIE423T_e864f89c41.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "aba9c841-e6fd-43ba-b224-0e86bb2155de",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE423T/18AIE423T_a6c7003997.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "12a26483-1934-48c7-986d-93f24e1b0b66",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T_22.05.2025_AN_8f09eff509.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "7de790e7-b002-4c6e-9894-8a43b959c9c0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T_edffb9a397.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "9b5932ed-1e66-45f0-9df2-7ade2f155759",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T_25.11.2022_FN_11d6d1900e.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "ba514a95-d392-41c3-91dc-bc48f7d34bfb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T-6_Sem_4d44c99334.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d8d323d0-587f-488c-af24-20d68627fadc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T_8537416087.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "c5ce5b67-1acd-4352-9e08-f98b6cfb101f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T/18CSE394T_e4e65b77c0.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "6c405ba8-7a2e-40cf-a2b6-528e0ae550b5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE394T-/18CSE394T_23-11-2024_FN_401c40ae85.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -567,9 +952,9 @@
       ],
       "counts": {
         "notes": 9,
-        "papers": 0,
+        "papers": 10,
         "syllabus": 1,
-        "total": 10
+        "total": 20
       }
     },
     {
@@ -663,6 +1048,66 @@
           "name": "2025_May",
           "fileId": "1ynnlEzjhyz9-7PEU6NE0De_Yw3rX1D3P",
           "url": "https://drive.google.com/file/d/1ynnlEzjhyz9-7PEU6NE0De_Yw3rX1D3P/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "5e797cee-aeb7-491c-be78-de17bfb558ed",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_19.07.2025_FN_1a9be87ff4.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f5df1adb-06b0-4146-918c-5dd011b77453",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_d12314a9b6.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f9356ab0-248e-4beb-9a5e-b4604bf99385",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_c94aeec830.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "cd6e493a-5d45-40e5-88c0-e9386de9ad6e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_c34fba7e76.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "e8ad0459-b5a7-48e8-a439-3f4431a7db33",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101_T-_bf4ce90cd0.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "f9361724-edb6-468a-9b42-5123f5c9da08",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_98a8873a34.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "82238e8f-3103-4621-b643-7be373086704",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_16-12-2024_FN_bbc3189d0f.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "a4a56a6f-ece4-49b2-8723-a13dcd7036f3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_21.11.2024_FN_8e3b5bfebc.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ab66185c-51a4-456b-b9ec-73caab7e4ffd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T/21MAB101T_30.05.2025_AN_eb86c187d0.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "aa74cdd5-448c-498a-8b3f-cf5ed05cd165",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB101T-/18MAB101T_26-11-2024_AN_96dfd9d29c.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "8b867db1-1ac1-4491-8dbe-c372640b4bdd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB101T_-/21MAB101T_c91c890483.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "02421714-383e-48de-a4bb-760734c3a023",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB10lT/21MAB101TM_26-07-2025_FN_e536448ba7.pdf"
         }
       ],
       "syllabus": [
@@ -674,9 +1119,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 11,
+        "papers": 23,
         "syllabus": 1,
-        "total": 17
+        "total": 29
       }
     },
     {
@@ -725,6 +1170,71 @@
           "name": "2025_May",
           "fileId": "1FknzBztqWc8fE4UFt2KicclT36HdJicj",
           "url": "https://drive.google.com/file/d/1FknzBztqWc8fE4UFt2KicclT36HdJicj/preview"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "ea97f788-ee28-4bac-aad3-88294aea1b57",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC102J/18BTC102J_fd70c0b221.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "36b58d8e-f8e4-4a5b-857e-bdcdb4c6bc91",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC102J/18BTC102J_78f0fd0ec1.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "c2be104d-aad0-4424-ad6f-0951e2df8dca",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC102J/18BTC102J_dd98caf90e.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "95dbfdb6-3c86-40fb-8a9b-44376416635a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC102J/18BTC102J_adbefab514.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "856f7084-6860-46ce-9b89-f2676e5107c2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20GEE503T/20GEE503T_ae6c4ba0da.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "7b6cf076-4038-4d68-b5c0-61747d30c1fb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20GEE503T/20GEE503TO_9f5fd136ab.pdf"
+        },
+        {
+          "name": "2024_Paper",
+          "fileId": "f23e3669-4135-423b-9a05-921018c09e3d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20GEE503T/20GEE503T_0f6ce1d3d7.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "474b26ce-6559-4c8f-9846-5f8fc06d162d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_14.07.2025_FN_13398b0ab1.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "1f095b51-9599-4d89-96c6-ff7136f04bd3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_f6a3b4fa8f.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "9c635567-5183-4c40-95bf-23b3378ebc8c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_dd2fcb707b.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "1b043410-5fc7-45dd-a2d8-524fdb07f299",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_f6c4ba5b5e.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "c49f68e4-37bf-4953-9262-4cdca17d6b0b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_f2b91e7494.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "bc7571ae-2519-460f-baa1-5ed7eed5f72a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB105T/21BTB105T_02.12.2024_FN_14481abf0b.pdf"
         }
       ],
       "syllabus": [
@@ -736,9 +1246,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 15,
         "syllabus": 1,
-        "total": 8
+        "total": 21
       }
     },
     {
@@ -797,6 +1307,46 @@
           "name": "2024_May",
           "fileId": "16SSKA6HBqNi2Ag58C8V22yKpU8d1sZWQ",
           "url": "https://drive.google.com/file/d/16SSKA6HBqNi2Ag58C8V22yKpU8d1sZWQ/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "2126817d-51e6-4613-acba-f0c1fd0f574b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CYB101J/21CYB101J_695c761fad.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "3d3804f2-9264-4511-b491-f0a63b08a295",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CYB101J/21CYB101J_4d544028a7.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "9085eb72-2d1d-4ba3-ad8f-76be0b686c10",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CYB101J/21CYB101J_21-12-2024_FN_c1d6e390c3.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "bfd93952-a480-4c59-895d-6b139931ce66",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CYB101J/21CYB101J_22.11.2024_FN_f2f5a6dd06.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "08729321-3dd0-4b41-b004-eedf33f19e6a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15GN322E/15GN322E_966f0ff140.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "796e6da0-9c15-4007-92b6-c036fac922e9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/17PCY201/17PCY201_3a7303021d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3f5e674a-af06-4ade-a5c2-a2e3f7cd57f4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC101J/18BTC101J_85f60f2f1d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "ed25416a-bb54-4140-a78f-d502776294c4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC101J/18BTC101J_7b9c1dc277.pdf"
         }
       ],
       "syllabus": [
@@ -808,9 +1358,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 3,
+        "papers": 11,
         "syllabus": 1,
-        "total": 10
+        "total": 18
       }
     },
     {
@@ -834,6 +1384,66 @@
           "name": "2023_May",
           "fileId": "1KndYcbS0A4M2s2cXJfhEtuYZ9ATfUlL5",
           "url": "https://drive.google.com/file/d/1KndYcbS0A4M2s2cXJfhEtuYZ9ATfUlL5/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7ca9643e-dc16-4641-84c8-b773019a75c4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH102J/18LEH102J_23.05.2025_FN_fc62fb4cf0.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "a30a9fb0-e67d-4077-98b0-37024d67894f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH102J/18LEH102J_6f9b5a6833.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "eb526b84-c07b-4d50-96fe-f5e2ac467a70",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH102J/18LEH102J_fbb970d8d3.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "439453d9-1385-4141-b132-34f0983417cf",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH102J/18LEH102J-2_Sem_ada3670cc3.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "0898d485-6da8-4ad7-8f76-cb1380f41bd4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LER102J/18LEH102J_993c363bc0.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7b8f67db-941a-4a9c-99b0-69cc92217f4f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_22.05.2025_FN_dba2eb194e.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "549bfa1a-cb5e-4795-b459-f2a0875632e9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_14.07.2025_AN_f0e5e13d39.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "3dc4e9d4-3569-4096-85ea-81c12066c3d0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_465c9f308e.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "054c8e81-0cf5-41fb-a98b-c0c39b409800",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_1c41959c1f.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "404248a4-0737-4f66-870a-e93fe0747608",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_72e725365c.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "d2c90005-579a-41fd-b570-43fe96e8c81d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_20-12-2024_FN_3496c643a3.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "32d46f1b-2727-4663-b8c5-92cf521e8a86",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH102T/21LEH102T_19.11.2024_AN_e7b33c02d8.pdf"
         }
       ],
       "syllabus": [
@@ -845,9 +1455,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 2,
+        "papers": 14,
         "syllabus": 1,
-        "total": 4
+        "total": 16
       }
     },
     {
@@ -962,6 +1572,86 @@
           "name": "2025_July",
           "fileId": "1A9kQ4qzkBzcWXN5WgxolqczMmgD14jhs",
           "url": "https://drive.google.com/file/d/1A9kQ4qzkBzcWXN5WgxolqczMmgD14jhs/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "714ac0b8-280f-437e-9d95-3acc012f6fab",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_26.07.2025_FN_00143d8196.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "2ffd9d67-d8f1-41e5-88f1-99549bfdeffe",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_4aca897fe1.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "1f026608-396b-45ca-b672-027841657154",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_26.07.2025_FN_74581bef85.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "e68d06c2-f463-433f-928d-946be2000338",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_30.11.2022_AN_429d11684e.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "080045dc-d1bb-4447-a303-1eb56a522b98",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_54efa3aad6.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d8fa8f1b-5e3a-4898-a742-c7eb4df66850",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_12.12.2023_AN_64ef313960.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "2a1ec4b4-72d5-4cda-81bc-546cfce4eac7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304JR_03-01-2024_AN_caf680718f.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "8666a366-33c2-47ba-a56e-967b9d98d48f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_d83ceaf0bb.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "984df46a-f7f6-4c9f-bcb5-8a115549fb89",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_05-12-2024_FN_f1cad23621.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "b0536c6b-6272-40f7-9466-bc4238d3adc4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J-6_Sem_4dab9cef43.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f6300dc0-2a49-420d-bbb7-9d2363eb9518",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304J/18CSC304J_28.05.2025_FN_4b9ef13408.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "3826c692-4e21-4cdf-b56b-e2b8020b9492",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC304JR/18CSC304JR_34eacbbae7.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "8ea5a505-f2ae-4387-9325-91a76f055419",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC362J/18CSC362J_f2256239fe.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "f0bc17e0-565d-42b4-b58b-d3136342e9d0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC362J/18CSC362J_c94b494e2c.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "9055308f-8ea1-40fe-b53a-80a275b96c59",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC362J/18CSC362J_b91129f1fe.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "0bfe1457-101a-428a-91ea-7228aed70917",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC362J/18CSC362J_26-11-2024_FN_0fb69f8f75.pdf"
         }
       ],
       "syllabus": [
@@ -973,9 +1663,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 8,
+        "papers": 24,
         "syllabus": 1,
-        "total": 14
+        "total": 30
       }
     },
     {
@@ -1014,13 +1704,34 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "32a8aef2-991b-4ce8-bcfc-b9a771b66224",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE303T/21BTE303T_14.07.2025_FN_b13ab8184f.pdf"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "c37f31f4-3bca-4112-be47-9451f121ec41",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE303T/21BTE303T_07.01.2025_FN_6a9577bae7.pdf"
+        },
+        {
+          "name": "2025_Jan_feb",
+          "fileId": "dbe643c9-e81f-49a1-86ac-6fac91a5160d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE303T/21BTE303T_07.01.2025_FN_3e5b6a9648.pdf"
+        },
+        {
+          "name": "2024_Paper",
+          "fileId": "c43bd1ef-5f0c-4d74-9b00-c36d02ce453c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/BT811/BT811_f30e7af0ba.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 4,
         "syllabus": 0,
-        "total": 5
+        "total": 9
       }
     },
     {
@@ -1089,6 +1800,76 @@
           "name": "2025_May",
           "fileId": "1aCWn0WE3dn5isURJkIBal9W4ZVEFYobp",
           "url": "https://drive.google.com/file/d/1aCWn0WE3dn5isURJkIBal9W4ZVEFYobp/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "1fb144c4-3974-400e-96bd-2b322bbc291a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIS203J/18AIS203J_26.05.2025_FN_118576884c.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "ecddf34a-1777-4cd4-a971-200210e5e0f8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIS203J/18AIS203J_17691e1fd0.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "840e4230-f8f9-44d8-aeae-d047e0e00e11",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIS203J/18AIS203J_7ad3f07e9c.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "434985b7-ed78-44a2-9b39-6d425a909ae5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIS203J/18AIS203J_dbf4dfe92c.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "cc4ff694-68d8-48bc-b6d3-848dcd89cb53",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIS203J/18AIS203J_26-11-2024_FN_971583806d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9e170fef-2e2e-4d25-8638-70ffc883be4f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_21.05.2025_AN_3df7632f5d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "c8d7a5c3-d4fa-4221-b763-24dd955ee9be",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_26.07.2025_FN_819b39ced7.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "c6f1ecc1-8035-4e7b-8a9b-f370a841b367",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_26.07.2025_FN_146fdd6109.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "948be5c8-e0f3-4bca-b19b-bab49941deb0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J-_5_Sem_c4019c3bef.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c50644d8-cf5f-4808-9c77-89dadc41ce32",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_9fc18fc3f0.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "63558b6c-ac9a-483c-a900-5e3aa4736aba",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_27.11.2023_FN_2b539566ea.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "e32f4c36-c1cc-4230-8e06-7d79c5c10e99",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_3d46f68bd8.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "6e4c1c4e-7131-4ea5-b64f-3646dea8c0bb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC302J/18CSC302J_03-12-2024_AN_b0e617c50b.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "fe16ca10-3e0b-4103-81e3-dce9c825a34a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC3636J/18CSC363J_5470691ef0.pdf"
         }
       ],
       "syllabus": [
@@ -1100,9 +1881,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 20,
         "syllabus": 1,
-        "total": 12
+        "total": 26
       }
     },
     {
@@ -1186,6 +1967,61 @@
           "name": "QB Unit 5",
           "fileId": "1qgkCi5d7bTrQXrBCUMOV7WyqsvR1mvzn",
           "url": "https://drive.google.com/file/d/1qgkCi5d7bTrQXrBCUMOV7WyqsvR1mvzn/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "879155f1-979d-4f5b-84ef-014408fdd7c8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSS201T/21CSS201TM_27-07-2025_FN_89be7b8ac7.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "26dee716-fbd7-4a4a-86d8-43f8ee5d0cbb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSS201T/21CSS201T_71029091b5.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "98639884-1a2b-44b3-8716-1c4fcaf47d09",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSS201T/21CSS201T_29-11-2023_AN_f0a0069217.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c6094b9e-1e41-4bf2-976d-283b64894c43",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSS201T/21CSS201T_a68f84f28c.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "67204e1d-61c3-48c1-b05b-4f54ebabbe50",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC003J/18CSC003J_03e6f6525e.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "29a265c3-d06a-43ad-b0a1-672406b48944",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC003J/18CSC003J_53ae76c227.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "ad42dc8b-c79b-46ae-ae76-3c68f1f168b8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC003J/18CSC003J_23-11-2024_FN_2c73fe7c1a.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "02471317-0b86-464a-a8b4-772211fdf226",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC203J_-/18CSC203J_09-12-2024_AN_84ced9145b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d6058522-8250-4fcd-bbf3-caf14c8e70be",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC262J/18CSC262J_11cd4c9b81.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "9ecc0942-a41d-4e13-b3da-771dc6ed4c76",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC262J/18CSC262J_f26570f1e5.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "96b22033-2d05-43e0-abfa-4d4242ac1625",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC262J/18CSC262J_f76d2bb11d.pdf"
         }
       ],
       "syllabus": [
@@ -1197,9 +2033,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 9,
+        "papers": 20,
         "syllabus": 1,
-        "total": 15
+        "total": 26
       }
     },
     {
@@ -1313,6 +2149,46 @@
           "name": "2025_May",
           "fileId": "1nxO7iZhxxRToan6URr2usEagZgJ693ks",
           "url": "https://drive.google.com/file/d/1nxO7iZhxxRToan6URr2usEagZgJ693ks/preview"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "b31aeb58-9619-4643-9bf2-bbb9a57e2dc9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE318T/18CSE318T_522e8e5959.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "2d216eec-da98-46ed-8f18-5fd473a13a6b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE396T/18CSE396T_21.05.2025_AN_aab13ec5fd.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "f60613f7-2504-4dbf-ac93-4631ba9682d5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE396T/18CSE396T_2939517f7e.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c818d25d-2317-4a6c-8828-fbc289938770",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE396T/18CSE396T_7ab168c18b.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "5a0aed71-e9a6-4f8a-be80-e5715b1f8a1a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE396T/18CSE396T_ba7455c48d.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "76ca4a09-fb77-4923-b9b3-89262776cd81",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE271T/18ECE271T_38512375f9.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c2c7bbe0-1d02-45b8-949c-09073d88f863",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE271T/18ECE271T_d55518670a.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "91637bad-e1d9-49b5-adc4-002e4bcbda8d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE271T/18ECE271T_3b5f772504.pdf"
         }
       ],
       "syllabus": [
@@ -1324,9 +2200,9 @@
       ],
       "counts": {
         "notes": 3,
-        "papers": 5,
+        "papers": 13,
         "syllabus": 1,
-        "total": 9
+        "total": 17
       }
     },
     {
@@ -1424,6 +2300,71 @@
           "name": "2025_June",
           "fileId": "1XaNtr2IsJHCB3CmRKfL-bkg1_vMAlCSc",
           "url": "https://drive.google.com/file/d/1XaNtr2IsJHCB3CmRKfL-bkg1_vMAlCSc/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7736d503-c63d-4a44-9ff3-acfb3487c02c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_18.07.2025_AN_2796f7be86.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d8b7b6d2-1eb7-48d7-87ed-fc39ad69c1d9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201JM_26-07-2025_AN_a5dfa1552f.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "cb7235cc-114b-43e0-93a1-55772bfadcc6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201JM_26-07-2025_AN_dab0a6efdd.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "ba219419-2ad3-4eba-9a14-8a3542093950",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_8d709e2be9.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "0ecd1a1e-d3b6-42d3-bd95-6843aea16fca",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_16b4bccf8a.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "7d57afb0-f18a-42e1-95a9-8834b72cfead",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_cd040cc14c.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "bf1465bb-861b-4763-adb0-647f0aa90380",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_27.11.2024_FN_8c38eace27.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ecc2d7b8-a54b-475e-820b-656e811cebb7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC201J/21CSC201J_03.06.2025_FN_bcbf538af6.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "00c848f2-87ba-4b15-8897-570e08fe62dc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC162J/18CSC162J_a817664ade.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "a69e8082-9545-4b8c-8acc-0253c50d6272",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC201J/18CSC201J_7b7860c551.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "4c27d2cd-ab84-4acd-abcf-0d080257cf8f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC201J/18CSC201J_023a3b8b01.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "c2882e42-abc9-439e-9947-8842ed0eea1e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC201J/18CSC201J_10-12-2024_AN_a4a4ecee3e.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "b9c976bb-38b5-4cf6-bc57-75727bff3ec1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC20lJ/18CSC201J_951142fccb.pdf"
         }
       ],
       "syllabus": [
@@ -1435,9 +2376,9 @@
       ],
       "counts": {
         "notes": 9,
-        "papers": 7,
+        "papers": 20,
         "syllabus": 1,
-        "total": 17
+        "total": 30
       }
     },
     {
@@ -1552,6 +2493,76 @@
           "name": "2023_May",
           "fileId": "1R5enEz-WXw605jrEgdw0-tiIMULEkzCp",
           "url": "https://drive.google.com/file/d/1R5enEz-WXw605jrEgdw0-tiIMULEkzCp/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "6a43b0d0-98af-4d92-875f-4edf849cbdde",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_f1ea79f9d1.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e64e0c58-73d1-4893-ba27-00d8fee8026a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_e764bea132.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "8a784b3b-5d2f-47d5-b205-c21a5cc757b3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_dc435463a9.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "76b1a159-9083-4a6c-85ad-c18ffc549d41",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC207J/18AIC207J_04.06.2025_FN_e75da9b43b.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "40927893-5dd4-46c6-90b2-40a85aa369fd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC209J/18CSC209J_26.05.2025_AN_2b822017da.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "bb15b364-156a-4438-9ca9-391d488f5765",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC209J/18CSC209J_42020fef91.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "b89f1f41-db4d-4d89-bd7e-0e47d59bc8b0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC209J/18CSC209J_26edfb2768.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3b1bad5a-5f68-486f-b5c0-70e965e3ef8a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC209J/18CSC209J_06e9f3e92e.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "9b47d5b2-78e6-4f37-98a3-89f95fee2c99",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC209J/18CSC209J_25-11-2024_FN_acd1c7a723.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "2c563b02-42a7-453b-a186-6da54c05de9e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC267J/18CSC267J_a3655d96ae.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c72163c2-bdfe-4951-9fa0-784cf3a6f43c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC267J/18CSC267J_868a05a5bd.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "ed8c1e4b-3a88-4742-8542-16bc090cf104",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC267J/18CSC267J_24.11.2023_FN_db0fc49826.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "71e3b732-5677-45ca-8a77-03f329c596ea",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC267J/18CSC267J_9be4327a40.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "6fc6bcb4-1490-4a5a-9bad-3da3e8b93c62",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC267J/18CSC267J_25-11-2024_FN_275f0f30eb.pdf"
         }
       ],
       "syllabus": [
@@ -1563,9 +2574,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 18,
         "syllabus": 1,
-        "total": 10
+        "total": 24
       }
     },
     {
@@ -1614,6 +2625,61 @@
           "name": "2025_July",
           "fileId": "1tzPn1jIatBxTYKa2U9bkeOkKmhLXFsvY",
           "url": "https://drive.google.com/file/d/1tzPn1jIatBxTYKa2U9bkeOkKmhLXFsvY/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "091ef1a3-188f-4564-8346-82d608b1b7fc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_26.07.2025_FN_9d4d3eb64d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "8856f5b6-dd3c-44a2-8ce4-21302094b60d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_26.07.2025_FN_8f08005d0c.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "85cd7a31-3528-46d8-8c7a-c727e7b1cbce",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_3717301f3f.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "0abdfeab-a63a-4ffe-a13b-fcaaa1f82730",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_21.11.2022_FN_07c72ad360.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "f7838ed3-3f7c-4e9f-b513-e2cd81e02efc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_147432c25d.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "5e7250db-1c34-4c26-a6f6-ed70368a89f9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T_169653dede.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "4cfc7fd5-6d25-4235-b552-3901b391d74b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE455T/18CSE455T-7_Sem_e2804aaee8.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f57aaf8e-0e41-485c-8974-930311fc1bc8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSE43T/19PCSE43T_15.06.2025_FN_c1c2ae6848.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "af26c0cc-fc1c-45a2-87d2-bcbf645daf18",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSE43T/19PCSE43T_5a9fed05ff.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "65a719c4-e4ce-4958-8f6c-0577386b4a09",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSE43T/19PCSE43T_749c37b83c.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "4deb7cdf-7641-4ea2-8bbb-5e1d026bd06f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE361_T/21CSE361T_20.05.2025_FN_b6067a10c4.pdf"
         }
       ],
       "syllabus": [
@@ -1625,9 +2691,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 13,
         "syllabus": 1,
-        "total": 8
+        "total": 19
       }
     },
     {
@@ -1706,6 +2772,96 @@
           "name": "2025_May",
           "fileId": "1iN7pdOBtyL_ubYQtIjEq84Q7MKhiIUNZ",
           "url": "https://drive.google.com/file/d/1iN7pdOBtyL_ubYQtIjEq84Q7MKhiIUNZ/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "2d2f9aa4-8ed6-443f-86ca-894b1cbb58b1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC204J/21CSC204J_14.07.2025_AN_9ea4421f3a.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f6ec2ed4-c747-45e1-be53-fa22eaa00bef",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC204J/21CSC204J_e1986ff4b8.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "d96e44fe-244b-4e98-97ed-73a7cb01b090",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC204J/21CSC204J_729618ddc5.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "b9ae819e-00f5-4e76-a54e-7b777c91d3d1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC204J/21CSC204J_22.11.2024_AN_4862fa914e.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "a011d04a-3e41-4843-8acc-69803be35613",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC204J/21CSC204J_17.05.2025_FN_4e4435c831.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "ef63f891-16aa-4b4e-9913-c1a2a9c26aa0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_5068b5c38f.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "f6912d00-f13d-45e9-921e-fdd6ec69f6a5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_0347cbccec.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c41b799c-8d68-4b44-9cca-d76c6ce4ba77",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_10.01.2024_AN_6e967830b1.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "938e17b3-b5db-4e4b-8a81-92b366a7c3ac",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_a04dd0d15e.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "37bd893c-d087-406d-b15f-1b0672919a04",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC205J_ab6043eafa.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "396a2e66-e5f9-44b2-a3f8-e8f412adc105",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_11.12.2024_AN_a5eccc00bd.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "4dfe6766-ee11-4bb0-b438-ee6080632d66",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J/18CSC204J_29.05.2025_AN_94fa654052.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "cee9d94b-1a13-4156-a4bb-f62e8d2b3cdc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC204J_-/18CSC204J_11.12.2024_AN_fa9f93a702.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "10598ba8-c0fd-4597-9264-9b828cb16181",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC361J/18CSC361J_5dcee32ce3.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "6085b530-6fb1-43ab-b20a-ab978c76b1c4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC361J/18CSC361J_9243d73241.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "d4a7263e-d6ac-441d-8fb2-15b3df7227a2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC361J/18CSC361J-5_Sem_906758cab9.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "bc9baf9b-0bd6-4dfa-8d9a-989ba1e44a42",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC361J/18CSC361J_d04d656feb.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "176694f7-7513-490b-b3a1-77694ba15695",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC361J/18CSC361J_25.11.2024_AN_b9e691c32e.pdf"
         }
       ],
       "syllabus": [
@@ -1717,9 +2873,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 8,
+        "papers": 26,
         "syllabus": 1,
-        "total": 14
+        "total": 32
       }
     },
     {
@@ -1788,6 +2944,61 @@
           "name": "2025_May",
           "fileId": "1lMk-w0w2BHi28t9aWFzv7t_o33UtBXBN",
           "url": "https://drive.google.com/file/d/1lMk-w0w2BHi28t9aWFzv7t_o33UtBXBN/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "90efbad8-e67e-418d-9da6-f62a5bbd751d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_21.05.2025_FN_0bf673aa5b.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "267cc800-6a8f-461a-a468-44807c336021",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_a8680c5a37.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "8da74997-ea68-4c50-85e2-9087a8743b6e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_28.11.2022_FN_69ff193a19.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "59bbcf68-0a5b-4766-b818-6269bf688ca8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T-6_Sem_5733859e51.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "aab3975c-0c1d-4207-ae0f-243ba3c864ce",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_7f929b0212.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "7d5fa99d-72a1-4e7c-8fa2-1a31c667c99b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_eb374149dc.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "acd969df-4509-4d41-b287-cf95d9479a52",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_02-12-2024_FN_a0ed4a16f1.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "4385b914-ee51-4e59-bb11-9975a818af48",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE353T/18CSE353T_02-12-2024_FN_7b3ddfa8e7.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "cfed0867-b3b0-4073-8f15-73813dcb504e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PME030T/19PMEO30T_13.12.2024_FN_abda349705.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "8dcec3e4-5773-4f8d-be69-872c4c089639",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PME030T/19PMEO30T_13.12.2024_FN_1d9aba90d4.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "51825fd1-435e-410f-a182-edc02e096b3e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PMEO30T/19PMEO30T_13.06.2025_FN_2bccc0a0d7.pdf"
         }
       ],
       "syllabus": [
@@ -1799,9 +3010,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 17,
         "syllabus": 1,
-        "total": 12
+        "total": 23
       }
     },
     {
@@ -1855,6 +3066,36 @@
           "name": "2024_July",
           "fileId": "1J8yNS5nrXzdLNP1WcmnfH9jmIcTBehP8",
           "url": "https://drive.google.com/file/d/1J8yNS5nrXzdLNP1WcmnfH9jmIcTBehP8/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f1c5bb0a-3e79-4d2d-b861-73a428e0e30e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_14.07.2025_FN_6a1ffd46cb.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "e47f1436-6856-4b76-9a44-817b05c76489",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_0aa9188301.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "ce3fbba4-9f3c-4529-9df3-b2bd206646eb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_23-12-2024_FN_0af8ca8f0e.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "b898d33b-4baa-44b7-afdb-f481a7cae4b6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_27.11.2024_FN_3221db3192.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "bbb2a9f2-425d-40bf-b7c8-85cc46d94ec8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_29.05.2025_FN_2f1450c3a1.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d530c350-44d4-4e2c-b8b5-ba3ff50be072",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECC203T/21ECC203T_29.05.2025_FN_188a558f86.pdf"
         }
       ],
       "syllabus": [
@@ -1866,9 +3107,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 3,
+        "papers": 9,
         "syllabus": 1,
-        "total": 9
+        "total": 15
       }
     },
     {
@@ -1927,14 +3168,64 @@
           "name": "2025_Nov",
           "fileId": "1DeR81FgV2Sv3oi2hqz-HF8CoH5j5fuNF",
           "url": "https://drive.google.com/file/d/1DeR81FgV2Sv3oi2hqz-HF8CoH5j5fuNF/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "80f50787-551c-49a8-aa00-e4c5fd457800",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204J/18ECC204JO_26.05.2025_AN_33d3cfb307.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "6d725cf0-4578-4577-956c-7a813eb5a824",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204J/18ECC204J-5_Sem_fb30c801b7.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "430eafcf-8861-4fec-8f1a-130ba9a57040",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204J/18ECC204JO_fc44b733bf.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "ee25ee5b-3d75-4e93-abc9-4289297edb1c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204J/18ECC204JO_05-12-2024_FN_19e18c0e0e.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "a1189e83-cded-4225-b8b8-84ebad954330",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204J/18ECC204JZ_12.12.2022_AN_77e966047e.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "ba98537d-b29e-4800-8190-cccb989eed6a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECC204JO/18ECC204JO_92d0d3dc28.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "934fd65f-5b1d-4a1f-a42d-31369f63d387",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE306J/18ECE306J_f65bac4721.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "8018ef0c-3350-4476-a199-ab4d9da884fa",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE306J/18ECE306J_25.11.2022_FN_0bdb7a58b5.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "cb3b6e6f-76cb-4fe8-8ad0-13d82192d8fb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE306J/18ECE306J_cc5b78abab.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "96f1da32-440d-4d6e-ae34-bc13e3ae7758",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE306J/18ECE306J_b61b17a5bc.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 14,
         "syllabus": 0,
-        "total": 9
+        "total": 19
       }
     },
     {
@@ -1989,6 +3280,46 @@
           "name": "2024_Nov",
           "fileId": "1NEM3ZU3s_aUneL15_Nz1sDI5Ag7SsS0F",
           "url": "https://drive.google.com/file/d/1NEM3ZU3s_aUneL15_Nz1sDI5Ag7SsS0F/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "24ddb6a9-495f-4a40-a055-ac54d03370b7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE206J/18ECE206J_425bb27481.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "a4eafd19-4a79-49b5-9462-1459fc7cce38",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE206J/18ECE206J_f7c92edc37.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "95b6c715-3db5-49c9-b59f-1e1dc48dc77b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE206J/18ECE206J_33ce8b2356.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "7e203920-3dde-460b-9ccc-4a1471914a6a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE206J/18ECE206J_04-12-2024_FN_9509a7cbec.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "941e02ec-2c1d-4479-aa15-b31049f07425",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECE206J/18ECE206J_30.05.2025_AN_3f206e4c3c.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "9bfe57f2-6050-4149-bb6c-6293c628d5ef",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18EEC203J/18EEC203J_14f2901fe4.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c2716456-6084-4811-928c-b9bab93a44af",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PEEC21J/19PEEC21J_b1035bfe30.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "94795cc9-41a6-4e98-9dc4-1a812b05138a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PEEC21J/19PEEC21J_68f36e3c1a.pdf"
         }
       ],
       "syllabus": [
@@ -2000,9 +3331,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 2,
+        "papers": 10,
         "syllabus": 1,
-        "total": 9
+        "total": 17
       }
     },
     {
@@ -2152,6 +3483,21 @@
           "name": "2024_Nov",
           "fileId": "1F-MZDQvEtbJj8SpZ0D8LjdUmqfDV1UlM",
           "url": "https://drive.google.com/file/d/1F-MZDQvEtbJj8SpZ0D8LjdUmqfDV1UlM/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "017a62f6-167e-4601-8887-7f50d0fdf759",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19ARE614T/19ARE614T_0be33f8304.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "5d435429-835a-4a45-8528-7f5c422a49e2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19oARE614T/19ARE614T_21-05-2025_FN_32b41ce0c9.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "cd5a34d7-268f-4656-8eb1-a9e911540e91",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/BTBRTE000864/USS21D03J_73b1e98496.pdf"
         }
       ],
       "syllabus": [
@@ -2163,9 +3509,9 @@
       ],
       "counts": {
         "notes": 21,
-        "papers": 3,
+        "papers": 6,
         "syllabus": 1,
-        "total": 25
+        "total": 28
       }
     },
     {
@@ -2234,6 +3580,71 @@
           "name": "2025_May",
           "fileId": "1lyHhqOM7xpWmK3PH-Uaq5COCGlYR6rdS",
           "url": "https://drive.google.com/file/d/1lyHhqOM7xpWmK3PH-Uaq5COCGlYR6rdS/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "e2f79521-0280-438c-b0c6-17ebd2f4ae97",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA302/15MA302_9de52491e7.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f928a29a-fd7a-48b8-b1e0-200ae8ebb5f1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA302/15MA302_28.05.2025_FN_92c4ef928e.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "dced9ca8-93a0-44ee-948a-06e0509f34c5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB202T_27.05.2025_FN_1c7ac2f93d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ff7e621d-f7dd-4269-8cfc-101a62a9cde2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_26.07.2025_FN_271837b4e7.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d475adc4-c2a1-45c3-b44d-80345165cedd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_26.07.2025_FN_e4789d034d.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "038061e0-bc2e-4fd8-968e-501534b48387",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_b51ef47a66.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "38dcf809-fd6c-45a1-99c2-b93e9f1e6fe0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_29.11.2022_FN_00af38adb2.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "25de7ac4-1374-42d6-a940-8c63c0805135",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_1e2b629e83.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "7b52915c-1ae3-4d82-97cf-5c363dc2d325",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_9a26c0cced.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "7678bb74-aa55-4813-ab15-2264300b7498",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T_04.12.2024_AN_fef01ca245.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "2a2be564-6a26-4855-bf88-3844938d371f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB302T/18MAB302T-5_to_6_Sem_836091f8ed.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "51e79b40-4a7f-4814-bfd4-6ba58adb5cae",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PMAB03T/19PMAB03T_38ae78afa7.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "0cdaba49-5b8b-4ee8-904a-eae8321fb041",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PMAB03T/19PMAB03T_5d0c63fd40.pdf"
         }
       ],
       "syllabus": [
@@ -2245,9 +3656,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 19,
         "syllabus": 1,
-        "total": 12
+        "total": 25
       }
     },
     {
@@ -2362,6 +3773,31 @@
           "name": "2023_May",
           "fileId": "1OaxKXqKDu7DFNfo9lu0G2AimDKw_-nsv",
           "url": "https://drive.google.com/file/d/1OaxKXqKDu7DFNfo9lu0G2AimDKw_-nsv/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "a26b0f4b-a6de-4c24-95e2-25fb32097f09",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18EES101J/18EES101J_ceb28ff467.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3cdff505-6df8-4ebc-b97f-63e0b47229a4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18EES101J/18EES101J_401db85636.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "4fb24765-ee8d-4c56-b7d4-fa0b2d09fe49",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18EES101J/18EES101J_e99921a648.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "7600ccea-025c-4eea-ac7f-87dcc4e7fb88",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20MHC501J/20MHC501J_a861ed4105.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "6431dd19-1b91-4dd1-a4eb-c9500f52ed65",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21EES101T-/21EES101T_19-12-2024_FN_542e42765b.pdf"
         }
       ],
       "syllabus": [
@@ -2373,9 +3809,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 3,
+        "papers": 8,
         "syllabus": 1,
-        "total": 10
+        "total": 15
       }
     },
     {
@@ -2525,7 +3961,33 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "November_December_Paper",
+          "fileId": "06754f82-1f74-4f9b-aa2b-7e557b346077",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO102J/18ECO102J_e0db1ab20f.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "368d6014-d42f-46d6-8989-1fa7e8788962",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO102J/18ECO102J_26-11-2024_FN_46af1f3dd0.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "e669671a-a8da-40d3-a455-b98d265f6552",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO102J/18ECO102J_28.05.2025_FN_44cde0201b.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "7703617d-3743-4181-ac6d-872917f024f0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECOI02J/18ECO102J_3dd071e87e.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "683ec2d7-d562-4fc5-b206-3a8ad81cd18e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21EC0102J/21ECO102J_16.07.2025_FN_937824a087.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -2535,9 +3997,9 @@
       ],
       "counts": {
         "notes": 10,
-        "papers": 0,
+        "papers": 5,
         "syllabus": 1,
-        "total": 11
+        "total": 16
       }
     },
     {
@@ -2687,6 +4149,36 @@
           "name": "2025_May",
           "fileId": "17rvkjyRRIu6y8Vo6V69YCcZCVpCLUW9U",
           "url": "https://drive.google.com/file/d/17rvkjyRRIu6y8Vo6V69YCcZCVpCLUW9U/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "a5d919c1-a6cb-43fb-89f5-a5004fd3be27",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO_108J/18ECO108J_26.05.2025_FN_eb400d9a5b.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "4ee1c55b-cb57-44f4-9569-72a3c015864d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO108J/18ECO108J-5_to_6_Sem_1f65a24cb7.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "4833e8c2-4c0f-4798-970f-ba4f68914f5b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO108J/18ECO108J_8a9c76a128.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "5ac80141-0a8a-480c-8634-9d574abac8e1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO108J/18ECO108J_26.11.2022_AN_5a191d3ef1.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "fb68cb1f-30a8-4f10-8ec7-23001d51d8b3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECO108J/18ECO108J_f6f0e7a733.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "e0a3ba63-e494-43a8-8851-fa08be979379",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ECOI08J/18ECO108J_fb394c34b5.pdf"
         }
       ],
       "syllabus": [
@@ -2698,9 +4190,9 @@
       ],
       "counts": {
         "notes": 9,
-        "papers": 3,
+        "papers": 9,
         "syllabus": 1,
-        "total": 13
+        "total": 19
       }
     },
     {
@@ -2775,6 +4267,51 @@
           "name": "2023_May",
           "fileId": "11Cxur2g_Jqi4mDAq4mcrG3MXAalYU0GB",
           "url": "https://drive.google.com/file/d/11Cxur2g_Jqi4mDAq4mcrG3MXAalYU0GB/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "e2140fcc-6e1f-44ab-a4b8-840d33322d69",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_24.05.2025_AN_79cc4ef422.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9d1b3cf4-3f68-4dd1-87a9-2e4841e9e1b5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_26.07.2025_FN_359c6f2425.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "06e8b1f2-c62b-4bba-a115-b7674c4935d3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18BTB101T_26.07.2025_FN_bada594ef9.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "b2740e3c-1386-428d-ab5d-c53fe1048dcd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_bd0198b677.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c10505ba-d8c6-494a-9798-b2952698abc8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_8039066419.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "0f5b18d7-2437-42a8-a93a-4c2669eb46db",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_3d69697699.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "5c9bf196-31b3-42f4-8bf7-73c115d99971",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASC101T/18ASC101T_25-11-2024_FN_9878b01d7b.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "0e2190ee-d8a5-4f6c-9b04-7883706b7425",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18ASCIOlT/18ASCIOlT_b68afec1a5.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "5817879e-bd73-403b-814a-0946c6fb3931",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MES201_T/18MES201TO_24.05.2025_FN_383fe27dc4.pdf"
         }
       ],
       "syllabus": [
@@ -2786,9 +4323,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 11,
         "syllabus": 1,
-        "total": 8
+        "total": 17
       }
     },
     {
@@ -2878,13 +4415,59 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2023_May_June",
+          "fileId": "a308ab0f-b911-4de3-8fd3-8d58dab1aee0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15CE343E1/15CE343E1_6d8f18e834.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "7436eaa3-3393-4389-95f1-369bac8154fb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15CE343E1/15CE343E1_1733aac35d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "fe88f19a-d2cc-4a7a-a63e-fccdc367de7b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CE0305T/18CEO305T_bc7c4cdb76.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "328b809a-1f0b-4dba-8c4c-9cc911f9837d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CE0305T/18CEO305T_26-11-2024_FN_b53da465e8.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "282c0a42-b797-41f9-b0a9-47151d7e583e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEE312T/18CEE312T_28.11.2022_FN_c54753b411.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "a3a75918-e676-4ec4-a075-f3e64997ff63",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEE312T/18CEE312T_1774bf5e10.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "773a0ffb-f5cd-4fcf-b26f-51c752127c3a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEE312T/18CEE312T_aaa0ce2653.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "2fa457a6-2744-437f-8270-1e34b413edc3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEE312T/18CEE312T-6_to_8_Sem_dffa388860.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "c4f88e3f-3b3f-4e23-a8a1-a8d4fdaf25d1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEE312T/18CEE312T_9962ff5dea.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 9,
         "syllabus": 0,
-        "total": 5
+        "total": 14
       }
     },
     {
@@ -2947,13 +4530,54 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "f933c711-4be5-426a-b1e5-1948139e13ae",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T_24.05.2025_FN_e68d313090.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "2e37177d-8e27-42d4-9b7a-e2b646a3686f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T_5c2e5cb7dc.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "5791bd36-8194-403b-8fc8-0d9a89306d17",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T_28.11.2022_FN_810df36ddb.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "d28ce8b4-b657-4b35-9afd-794566cfbfa3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T-6_Sem_e082db0f97.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d283dd25-6c6d-48c2-9f21-2e3705bb173b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T_c8f118be3f.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "de603d80-2a52-45c2-80cb-acb7f6421b25",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE382T/18CSE382T_5c13d467fa.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "911115d4-7b0d-4293-9ba7-6fb4a857f883",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21_CSE38_l_T/21CSE381T_20.05.2025_AN_47c870cf80.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "59d48612-8299-4e69-8989-49425811ec23",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/l_8CSE3_82T/18CSE382T_26-11-2024_FN_7b444c317c.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 9,
-        "papers": 0,
+        "papers": 8,
         "syllabus": 0,
-        "total": 9
+        "total": 17
       }
     },
     {
@@ -3017,6 +4641,21 @@
           "name": "2025_May",
           "fileId": "1HVUpY_Up0J_dTLKOA0OQr78qq3gE18SA",
           "url": "https://drive.google.com/file/d/1HVUpY_Up0J_dTLKOA0OQr78qq3gE18SA/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "f1f083fc-da0e-4812-9732-2dd75db436ef",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18A1C303T/18AIC303T_2ea4bd6555.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "7d503329-f9bb-4950-9e55-2b142ab6a375",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC303T_-/18AIC303T_25-11-2024_FN_63b7b3dd94.pdf"
+        },
+        {
+          "name": "2024_Paper",
+          "fileId": "b14be43b-ad56-43cd-a1f4-2eba19a006de",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/MA3007/MA3007_6008294cb0.pdf"
         }
       ],
       "syllabus": [
@@ -3028,9 +4667,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 5,
+        "papers": 8,
         "syllabus": 1,
-        "total": 11
+        "total": 14
       }
     },
     {
@@ -3054,6 +4693,26 @@
           "name": "2023_May",
           "fileId": "1zGYsobz1VHV_jKkTGd6RsN1EkUz8_i38",
           "url": "https://drive.google.com/file/d/1zGYsobz1VHV_jKkTGd6RsN1EkUz8_i38/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "9c593bc0-6ba8-4352-ba81-1342991e2d76",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15LE202E/15LE202E_c6a2e0ae75.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "9154c65b-51a5-4790-8a1a-40648e6e25a5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15LE208E/15LE208E_97f9e8f93f.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "fca08e06-b4bb-4538-8d32-7a0a222a27e0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH103J/18LEH103J-2_Sem_fc7b095e0b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "2741a665-daae-4c2c-9138-d45369f78da3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH103J/18LEH103J_94a8015b76.pdf"
         }
       ],
       "syllabus": [
@@ -3065,9 +4724,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 2,
+        "papers": 6,
         "syllabus": 1,
-        "total": 4
+        "total": 8
       }
     },
     {
@@ -3116,6 +4775,16 @@
           "name": "2024_Nov",
           "fileId": "19gD9bl9aE0PHUu2CiqbfY8ZnpNJhm3Z_",
           "url": "https://drive.google.com/file/d/19gD9bl9aE0PHUu2CiqbfY8ZnpNJhm3Z_/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "a9b6722c-9c2a-48df-b053-81fd3a0712e0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE354T/21CSE354T_14.07.2025_AN_7456799a32.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "b204b0b7-8038-4c88-95b3-4f982a6955b0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE354T/21CSE354T_17.05.2025_FN_d59528dd2c.pdf"
         }
       ],
       "syllabus": [
@@ -3127,9 +4796,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 1,
+        "papers": 3,
         "syllabus": 1,
-        "total": 8
+        "total": 10
       }
     },
     {
@@ -3261,6 +4930,46 @@
           "name": "2024_Jan",
           "fileId": "14URY7kOOcb5XhaHZ3O3yipVQyvUxZOV1",
           "url": "https://drive.google.com/file/d/14URY7kOOcb5XhaHZ3O3yipVQyvUxZOV1/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9eafe227-e4c4-4b9b-aedb-24f840cd789a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_22.05.2025_FN_d60a442760.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "2fd8ac4f-5c5a-4cf4-b960-24487d5d21e3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_14.07.2025_AN_df963c84b3.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "56b2c9bc-7839-47f2-96f5-fd8dcd9f6c29",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_e95e4d3329.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f205e261-6f06-40fd-b32d-e866c7c3205e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_22534e119c.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "935a622a-1700-4a2c-a75e-2a967eec745c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_a32900df38.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "ff8c864e-5a51-47a9-a167-489aa854a81e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104T/21LEH104T_19.11.2024_AN_95070d55e5.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "0d08d439-b506-46b0-aadf-de3b9b583dea",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104TI/21LEH104TI_e731652164.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "6b167162-4c9f-4bcf-a4b4-8c201e65c291",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH104TR/21LEH104TR_e2e1dbee9c.pdf"
         }
       ],
       "syllabus": [
@@ -3272,9 +4981,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 5,
+        "papers": 13,
         "syllabus": 1,
-        "total": 12
+        "total": 20
       }
     },
     {
@@ -3323,6 +5032,51 @@
           "name": "2024_May",
           "fileId": "14ky7kSaKWms3Cw0YIRl-XqEL6Qp5rvVu",
           "url": "https://drive.google.com/file/d/14ky7kSaKWms3Cw0YIRl-XqEL6Qp5rvVu/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "a1bfbe75-efe0-4ba9-b5d2-058ca46cb303",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CE0406T/18CEO406T_f5d0ff44bd.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "a8dae500-8834-48e6-ac58-bf6623ebe1fb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T_b44669739a.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "0af1a393-a3a8-4685-b4e2-a7afe4e1897a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T-4_to_7_Sem_3a75f011fd.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "b2691d1e-3084-406a-bd96-8d872246e0d9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T_28.11.2022_FN_d584b6809f.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "624235a3-e6b5-420b-92a4-9943c4bd7644",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T_80e20bab7d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "14853680-647a-4f62-bfcb-c9b982324b15",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T_6021e1b942.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "717a1aa4-d7d6-4f91-aa20-7f55094a0916",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO406T/18CEO406T_25-11-2024_FN_6334ae35b7.pdf"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "f8cb1ad9-1721-4bb2-854b-6b3b5b6d748b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20CEO532T/20CEO532T_17-11-2025_FN_5c3123b974.pdf"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "76e58add-6305-4e23-a8c9-bb63d9ab36af",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20CEO532T/20CEO532T_17-11-2025_FN_e2767cf584.pdf"
         }
       ],
       "syllabus": [
@@ -3334,9 +5088,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 11,
         "syllabus": 1,
-        "total": 8
+        "total": 17
       }
     },
     {
@@ -3375,13 +5129,74 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "7bd86999-fe07-4bd9-a301-197d3fdcf3a9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC106J/18BTC106J_26.05.2025_FN_390a227c10.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "566702e9-d4bb-4479-a2f8-98d0b8956df5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC106J/18BTC106J_1697d246f8.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d2bce564-5811-4dd0-b99b-7093689cfa90",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC106J/18BTC106J_0740874cf7.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "a4b92a7d-a81e-4651-ab78-79d36bcd92fe",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC106J/18BTC106J_aa73ad3523.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "531efc4e-73de-4535-b0a9-7904658daa60",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC106J/18BTC106J_c6e07e3f68.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "4101d2d7-606f-4cd9-a6f4-66e4dd747ce1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE419T/18BTE419T_22.11.2022_FN_f6cbc83e47.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "872a229f-3dab-4336-a0c6-b3d941e8cd7e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE419T/18BTE419T_430425897d.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "fcf7b48a-2656-4d2a-9f0d-e80ab7ad7882",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE419T/18BTE419T_b296db6303.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "98778bd0-7b71-4d6a-aa83-c9c6c29ffd2b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE419T/18BTE419T_8c50ce58f0.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "c2a26a35-d681-42c8-83d0-a281f6e1dd42",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE419T/18BTE419T_25-11-2024_FN_3c07df5676.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "d0a1b178-e974-48a3-a5b9-2940c8ab905a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18GEE004T/18GEE004T_3cec85a927.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "72752cf1-37b6-4253-aec5-dff2a1f0ee59",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18GEE004T/18GEE004T_6b8296d1c7.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 12,
         "syllabus": 0,
-        "total": 5
+        "total": 17
       }
     },
     {
@@ -3420,13 +5235,54 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "ea106ae2-8fa3-4736-9565-56d239226d12",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE318T/18BTE318T_23.05.2025_AN_5fb6fbc709.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "6c5dc66b-d706-4761-b0b2-3a9f56e01829",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE318T/18BTE318T_8d19f7c6b4.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "6c061bf5-a4df-4cc4-bf70-b022ded51ccb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE318T/18BTE318T_365556efb1.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "cb55b8c9-1cad-4cc4-a262-133ea8176da1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE318T/18BTE318T_c0f8799299.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "5945f27f-d316-4c31-a377-0a3ce8510032",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE309T/21BTE309T_14.07.2025_FN_9255c35f12.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "8e2ba9de-8d06-4ac3-aa20-73475215ba81",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE309T/21CEO309T_14.07.2025_AN_9b53382b1c.pdf"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "d855d292-0673-4808-b825-df07df7c2185",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE309T/21BTE309T_07.01.2025_FN_761097054f.pdf"
+        },
+        {
+          "name": "2025_Jan_feb",
+          "fileId": "7c27f001-ea64-43e3-9e7b-7957e9ed01fa",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE309T/21BTE309T_07.01.2025_FN_af4a85e822.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 8,
         "syllabus": 0,
-        "total": 5
+        "total": 13
       }
     },
     {
@@ -3480,6 +5336,51 @@
           "name": "2025_May",
           "fileId": "1jMIBkAoyp8H7op-TRX1sF_mG01G6Rbnn",
           "url": "https://drive.google.com/file/d/1jMIBkAoyp8H7op-TRX1sF_mG01G6Rbnn/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "c49c6450-731c-4ad9-84a1-80e2f1e1e6ea",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J_26.05.2025_FN_6e47d8541e.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "eb90e1ef-7ddf-42a1-b9de-b1a7573d3eff",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J_a0bc7abe55.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "ac857882-7d32-450c-92a5-a086ebdaf714",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J_29.11.2022_FN_0a52bac6b8.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "213b8357-149d-4c07-9e81-00653aed9da1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J-6_Sem_a651eb7d8b.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "9f6a590d-5c61-499c-a03b-d7d9c2cc12f3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J-6_Sem_03580ab98b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "09cdc5d1-0d97-4469-8645-510a3701a9dd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J_c727e96d59.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "b22f2972-67ea-4133-a1df-300ca33afda0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC364J/18CSC364J_c262d331ab.pdf"
+        },
+        {
+          "name": "Jan_Feb_Paper",
+          "fileId": "228409e8-1c37-42d2-81cc-076bcebde60f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20PCSC57J/20PCSC57J_b2f6262d97.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f40c11c6-d272-4d26-8ea5-85c4736950bc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21_CSE282T/21CSE282T_20.05.2025_AN_c4ea1d4d28.pdf"
         }
       ],
       "syllabus": [
@@ -3491,9 +5392,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 3,
+        "papers": 12,
         "syllabus": 1,
-        "total": 9
+        "total": 18
       }
     },
     {
@@ -3537,6 +5438,46 @@
           "name": "2024_July",
           "fileId": "1VsYBarWfvgeDNsNaKAR3Pfgv92fUKdkn",
           "url": "https://drive.google.com/file/d/1VsYBarWfvgeDNsNaKAR3Pfgv92fUKdkn/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "4cf20a27-7efe-4a48-95de-3080044dab31",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T/18CSE360T_7a04193ef8.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "a226f646-8c52-4e02-a829-464b3ad1ca0d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T/18CSE360T-5_to_7_Sem_1df014d6eb.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "f8799485-2d68-4a5f-a5a3-9a4b122aa6e7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T/18CSE360T_28.11.2022_FN_fa7c1de40d.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "b4c98436-6383-4ee2-9128-c8424f8e31d5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T/18CSE360T_2ea922edf4.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9776fcba-7d28-4b81-9b67-390b7a99cc65",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T/18CSE360T_04.06.2025_AN_c934222b92.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "46d6e7a2-2104-4ce9-b051-07dfee69c702",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE360T-/18CSE360T_27-11-2024_AN_ed00e284a8.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "826cfefd-bb30-4928-8df8-f7a91465e0a7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSE23T/19PECC23T_16.06.2025_FN_4ac36ce1bb.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "8c454d49-5408-44c3-a654-e536d294a891",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSE23T/19PCSE23T_b48f9efc7c.pdf"
         }
       ],
       "syllabus": [
@@ -3548,9 +5489,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 1,
+        "papers": 9,
         "syllabus": 1,
-        "total": 7
+        "total": 15
       }
     },
     {
@@ -3599,6 +5540,16 @@
           "name": "2025_May",
           "fileId": "1Nxny5nttQCWK-kycAJ1Gj24dfe4quc1O",
           "url": "https://drive.google.com/file/d/1Nxny5nttQCWK-kycAJ1Gj24dfe4quc1O/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "bbed0e4e-8357-4342-9b74-354351ebc66f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CE0403T/21CEO403T_23.05.2025_FN_eee349d132.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "cb21189a-9c18-4626-9c94-f6788299ca59",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CEO403T/21CEO403T_18.07.2025_FN_e0d6bd57c0.pdf"
         }
       ],
       "syllabus": [
@@ -3610,9 +5561,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 4,
         "syllabus": 1,
-        "total": 8
+        "total": 10
       }
     },
     {
@@ -3686,6 +5637,41 @@
           "name": "2025_May",
           "fileId": "1Y42GJtD3MSb5HBwRyVVBCD9PbGs2I_fp",
           "url": "https://drive.google.com/file/d/1Y42GJtD3MSb5HBwRyVVBCD9PbGs2I_fp/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "c120126c-cc8b-4582-8028-92496d5c325c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE325T/18AIE325T_952fe6375b.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "e026e340-03c0-4bac-806b-f5c218415fc6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE325T/18AIE325T_26-11-2024_FN_32ec0dcae8.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "850f9afd-51e6-48ca-854e-a742a8dc0522",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE325T/18AIE325T_02.06.2025_AN_edf4285835.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "60401906-afc8-422b-a4a1-38b97a780352",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE424T/18AIE424T_be226720e5.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "5b5202d6-7a18-44d3-92f8-e69e1d45c72d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE424T/18AIE424T_c74495f5a3.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f2ed34ba-e4e4-4c69-9d9e-96af449b1b3f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIE424T/18AIE424T_28.05.2025_FN_c2de776651.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "11525125-37a6-4f9c-a1e2-4b3e9b580228",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AlE424T/18AlE424T_4b04d536ea.pdf"
         }
       ],
       "syllabus": [
@@ -3697,9 +5683,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 7,
+        "papers": 14,
         "syllabus": 1,
-        "total": 13
+        "total": 20
       }
     },
     {
@@ -3763,6 +5749,56 @@
           "name": "2024_Nov",
           "fileId": "1iIK_oXpI-M5WKGRo1x6Aigcq-DKVYZ_8",
           "url": "https://drive.google.com/file/d/1iIK_oXpI-M5WKGRo1x6Aigcq-DKVYZ_8/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "cfc4166f-46d7-420e-b686-9410aec54b1b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_14.07.2025_FN_a1ba967895.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "7dc073e4-5663-4217-8a4d-f06f0057bff7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_310ea19d5d.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "8b604db3-3617-4075-8478-85b23d32e764",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_f209c21426.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "db5213b4-ec8f-437f-9148-7661a0430b78",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_71f3b2bc7b.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "3738a63c-62e7-4d29-8d46-93a6f44d3bba",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_08.01.2024_AN_870f4ddd55.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e3b9b89a-77bb-4045-80f4-1b95fc57fdfa",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102TI_16.12.2023_FN_08b1ca0201.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "f18a4c29-a32f-440a-a530-9a9c0bdbc881",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102TR_82c6913ad2.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "7f4c487a-8420-42b4-8938-f8094ecaa44f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T/21BTB102T_19.11.2024_FN_ad8fbb9787.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "80def158-8080-44f9-a5c5-68e3a737aef8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTB102T_-/21BTB102T_19-12-2024_FN_f14fffce7d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f226210c-ab07-4632-8107-139dfb8373a2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/2IBTBI02T/21BTB102T_27.05.2025_AN_5061af4bbe.pdf"
         }
       ],
       "syllabus": [
@@ -3774,9 +5810,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 5,
+        "papers": 15,
         "syllabus": 1,
-        "total": 11
+        "total": 21
       }
     },
     {
@@ -3819,6 +5855,46 @@
           "name": "2025_May",
           "fileId": "1fU0lwUXiV55jCtChm0o45YeUazEmbkId",
           "url": "https://drive.google.com/file/d/1fU0lwUXiV55jCtChm0o45YeUazEmbkId/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d3eed597-9e89-48b1-9a6d-7d2cc65d025e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_24.05.2025_FN_0481b99fd3.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "1da299f2-36fc-4a47-8880-6dd2d23cd014",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_04ff19f50f.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "6f2d707c-469d-4197-b97d-c95034d06604",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_22.11.2022_FN_c7d4b35e5e.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "bb5509a9-fcb1-4180-9603-7e09ce987ac3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_969316cb31.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "b3da7695-b12a-4457-af21-ab1bbba4ca60",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_6d61ffc18b.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "fa4e0304-9de3-4319-9959-ef1dd3d843a1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE462J/18CSE462J_08-12-2024_FN_bc67e347a2.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ad0c84d4-cce3-463b-aabd-1210e2c368c2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE264T/21CSE264T_20.05.2025_AN_fa4a21f953.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "47857aaf-89df-4db6-8926-6e2aa2634397",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MHE465T/21MHE465T_19.05.2025_FN_495238fe27.pdf"
         }
       ],
       "syllabus": [
@@ -3830,9 +5906,9 @@
       ],
       "counts": {
         "notes": 4,
-        "papers": 2,
+        "papers": 10,
         "syllabus": 1,
-        "total": 7
+        "total": 15
       }
     },
     {
@@ -3861,6 +5937,46 @@
           "name": "2024_May",
           "fileId": "117TrkUUnZW8wS7bDDxjnF1M-jpJObzLx",
           "url": "https://drive.google.com/file/d/117TrkUUnZW8wS7bDDxjnF1M-jpJObzLx/preview"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "e13c7213-4202-456c-a36b-994036142588",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH105J/18LEH105J-2_Sem_a51ff7463b.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "9bb9ffc8-0b72-4fa8-ba9c-7251f03e07ae",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH105J/18LEH105J_91acba8397.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "fd547f0f-291a-4644-a8e0-7966b5253d5b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH_1O5T/21LEH105T_14.07.2025_AN_a65e8f66a2.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "24871716-95ee-434c-b210-bdb06ca30836",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH105T/21LEH105T_22.05.2025_FN_63c1f3f49e.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f264ae4b-e0a3-4424-8e1b-d7572bc37bf5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH105T/21LEH105T_7e982f55b4.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "196f0cde-281c-4ed3-ae73-8b1bd18d7d8b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH105T/21LEH105T_22c4aae743.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "7c9c08f2-9118-49ba-a5e0-75add727c584",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH105T/21LEH105T_d5f7cab555.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "64e52b04-a9b7-4e16-bd02-776623b8bbc1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH105T/21LEH105T_19.11.2024_AN_6ac92b0971.pdf"
         }
       ],
       "syllabus": [
@@ -3872,9 +5988,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 3,
+        "papers": 11,
         "syllabus": 1,
-        "total": 5
+        "total": 13
       }
     },
     {
@@ -3908,6 +6024,46 @@
           "name": "2024_May",
           "fileId": "1oRqkm0Rq3_ZnDCFcXsvt1H3tGnM0ic7M",
           "url": "https://drive.google.com/file/d/1oRqkm0Rq3_ZnDCFcXsvt1H3tGnM0ic7M/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "6d0b6785-b15a-4bc9-93d2-b709aa668673",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18LEH106J/18LEH106J_e1c20be909.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "35d9edf5-dcb9-47f1-9acb-4cc820c07931",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_22.05.2025_FN_a0346e69a2.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f6351233-8563-4423-8b08-69dbf9438a03",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_14.07.2025_AN_ee46a2b1d0.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c8d60e7e-c01c-4bce-9223-c2c75182cd07",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_42d7d087cd.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "354a760f-4770-405e-8374-f0ad4e3441f1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_fcb046815d.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "d0b34bf5-f73f-4ec3-b26a-f9ba9184b5a8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_940e447fe8.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "ed242412-c339-48b9-b555-d442d04293df",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T/21LEH106T_19.11.2024_AN_b3c8a293f0.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "d65a1c40-f483-43a0-8bd1-65c936de9dbe",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH106T_-/21LEH106T_20-12-2024_FN_43588d9bba.pdf"
         }
       ],
       "syllabus": [
@@ -3919,9 +6075,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 4,
+        "papers": 12,
         "syllabus": 1,
-        "total": 6
+        "total": 14
       }
     },
     {
@@ -3965,7 +6121,78 @@
           "url": "https://drive.google.com/file/d/1GmZkbLHQoNqoEjwwcrcQJnb9eHZ25iOI/preview"
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2023_November_December",
+          "fileId": "82990e15-5318-4f23-a31c-3a671f99a1bb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AI0352T/18AI0352T_4531fd9ebf.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "91eef89c-462a-4d62-ba7a-a52afb2fe0f7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC205J/18AIC205J_bf55e0a76b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "44975f03-d8b5-48e0-99d8-996d293a3e73",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC205J/18AIC205J_6f534a9841.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "c45044e2-fdab-466f-8d2a-e7191393c2bb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC205J/18AIC205J_61402030b3.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "9efc4cc5-7738-465a-8d33-9e745d7837bb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC205J/18AIC205J_6710e0cb68.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "5e15f614-d964-4eb7-a483-cb728f9d646b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIC205J/18AIC205J_30.05.2025_FN_39fae44a28.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9a9282f3-c866-4e78-b917-1a5c8a044449",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/15MA102_28.05.2025_FN_ecf7eecd09.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "90169f7d-476b-40e7-aa8c-f60b0b2931df",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_26.07.2025_FN_65f2cc3d38.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7cb7d45b-b39e-4c6b-b28c-b9e7f2bd03e3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_26.07.2025_FN_c0d80e77c3.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "a835d6cf-dc77-4215-ad20-cc5b2173b4d4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_25.11.2022_FN_ce32aec873.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "cb3fc687-1231-4659-8b8a-75f5ee239722",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_ae4a7fee02.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "10467ef5-81ef-464a-ad0e-9a362bfe7084",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_21598bef65.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "885efa00-5bb9-4901-a1eb-026bbbac59d7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_f57bd24ee9.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "d5285c8d-29bf-4f3d-afb0-9d89b11b35c2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AIO352T/18AIO352T_27-11-2024_FN_204f646179.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -3975,9 +6202,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 0,
+        "papers": 14,
         "syllabus": 1,
-        "total": 7
+        "total": 21
       }
     },
     {
@@ -3998,7 +6225,23 @@
           "unit": 2
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2024_Paper",
+          "fileId": "954b12ae-d906-4fe1-8434-d242411ea552",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20ITC504J/20ITC504J_caff7d6dff.pdf"
+        },
+        {
+          "name": "2024_Paper",
+          "fileId": "032e68ed-6786-42ab-befb-f4eb4eae1772",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20ITC504J/20ITC504J_be8863ab96.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "f8d6918d-af2f-4ed5-aa0a-1abbe6b96ce6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECE274T/21ECE274T_a97ebb468a.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -4008,9 +6251,9 @@
       ],
       "counts": {
         "notes": 2,
-        "papers": 0,
+        "papers": 3,
         "syllabus": 1,
-        "total": 3
+        "total": 6
       }
     },
     {
@@ -4069,6 +6312,41 @@
           "name": "2025_Nov",
           "fileId": "1I2rTm0vsRaKgZMmQ5-Wy_8fSwFhAEXyW",
           "url": "https://drive.google.com/file/d/1I2rTm0vsRaKgZMmQ5-Wy_8fSwFhAEXyW/preview"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e31dfdcd-d3d6-4d78-82eb-33799855d1f1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC005J/18CSC005J_1d796f47a4.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "a63a6b8f-c95d-4a19-81e7-fa8147285d46",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE472T/18CSE472T-6_to_7_Sem_37fb3608e5.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "2c0724a4-1e7f-4653-a39f-6c6d2153db45",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE472T/18CSE472T_1a638ed062.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "5d091a12-ac8b-423b-80f9-4f7044404f9d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE472T/18CSE472T_1e8a5c88a3.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "a9b987c7-9672-4b86-baa0-2e88a6fd2f90",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSE472T/18CSE472T_f253380ad5.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "bf716d20-25fb-4ef4-85a3-aa4ef50a0eac",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC310J/21CSC310J_14.07.2025_FN_070c98c8e1.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "2deed3a8-026d-4fba-8635-e2f5b1db5847",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC310J/21CSC310J_edad1747b1.pdf"
         }
       ],
       "syllabus": [
@@ -4080,9 +6358,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 11,
         "syllabus": 1,
-        "total": 10
+        "total": 17
       }
     },
     {
@@ -4183,14 +6461,64 @@
           "name": "2024_Nov",
           "fileId": "1nXWNg7hjStoIxJrrWNI_Iid18AalLciT",
           "url": "https://drive.google.com/file/d/1nXWNg7hjStoIxJrrWNI_Iid18AalLciT/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "8e594ae6-44fa-41a6-86cb-abed76c315c6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_24.05.2025_FN_a3b0cccf47.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "fdb892ce-80b7-4652-81d4-f90f87a08273",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T-6_Sem_7ea1d87503.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "62075da5-98b4-4a89-a8de-cc3b4e89291a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_29.11.2022_AN_65deea540b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "8cdfc231-44d6-4756-a7f4-b2931928be61",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_70a0ff5b86.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "3c0fc6e6-c1d8-40ca-ae30-1856668a2902",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_d8f3c0d655.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "ac6ff297-cce0-4487-a656-e8f659f32bcd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_f245cdc4b5.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "67510032-dc46-43ad-b03f-30917cf2d017",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_1cd0c2d4b9.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "2738237a-dffe-4fc2-9352-276e1c4354b1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTE303T/18BTE303T_25-11-2024_FN_6459033ad8.pdf"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "5f9bdfa1-b23c-4e20-b545-f25315f1d123",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE302T/21BTE302T_07.01.2025_FN_798434c11b.pdf"
+        },
+        {
+          "name": "2025_Jan_feb",
+          "fileId": "165e1136-4b05-4a4c-a951-31407ee67d5b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTE302T/21BTE302T_07.01.2025_FN_a498e1f1d4.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 6,
-        "papers": 1,
+        "papers": 11,
         "syllabus": 0,
-        "total": 7
+        "total": 17
       }
     },
     {
@@ -4249,6 +6577,21 @@
           "name": "2025_May",
           "fileId": "1hHCWWfqmhNaffivhYTE4kBBe6xVstQos",
           "url": "https://drive.google.com/file/d/1hHCWWfqmhNaffivhYTE4kBBe6xVstQos/preview"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "654b75a4-7004-4a20-935e-0dfeec3bf79b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20CEC532T/20CEC532T_6cef1d20ed.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "3c67d9d7-b508-431e-ad82-4e167f778568",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20FPE511J/20FPE511J_4bc40cf019.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "f0c627b5-1d99-4bb4-aa4d-89a5505e37f3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/20FPE550J/20FPE550J_d4a7214c71.pdf"
         }
       ],
       "syllabus": [
@@ -4260,9 +6603,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 7,
         "syllabus": 1,
-        "total": 10
+        "total": 13
       }
     },
     {
@@ -4289,7 +6632,33 @@
           "unit": 3
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "51bb5ec1-991c-4924-9a47-6aa0397faa01",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18NTO307T/18NTO307T_21.05.2025_AN_eb43b645f7.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "5d7b2460-f253-47e5-9505-1aea66c27e1e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18NTO307T/18NTO307T_30de7f038c.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "e95eb95b-f6e9-47c0-adcb-8567cb43b26a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18NTO307T/18NTO307T_041f0ab37f.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "078d40af-dfbf-4935-8eea-f5e672f5be56",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18NTO307T/18NTO307T_27-11-2024_AN_f8747c8754.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "6a5f1512-20d7-47d0-bab6-52f3bccf13a5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21NTO307T/21NTO307T_23.05.2025_FN_4201494f0b.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -4299,9 +6668,9 @@
       ],
       "counts": {
         "notes": 3,
-        "papers": 0,
+        "papers": 5,
         "syllabus": 1,
-        "total": 4
+        "total": 9
       }
     },
     {
@@ -4360,6 +6729,56 @@
           "name": "2024_Nov",
           "fileId": "125g-W3woxW0VZKupr3ASmT-Mg8fDKX54",
           "url": "https://drive.google.com/file/d/125g-W3woxW0VZKupr3ASmT-Mg8fDKX54/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "61f3a275-afca-443e-967d-46b0c631ac10",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB206T/18MAB206T_21.05.2025_AN_59bd05f660.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "158c9735-b194-46a8-981e-3994739abb39",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB206T/18MAB206T_5ac450765c.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "34dfac44-901f-4975-93c9-776674600a10",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB206T/18MAB206T_a02a39ac47.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "489c115c-0861-43a6-b0da-9628316d078a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB206T/18MAB206T_1f7dccf228.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "b3845d55-34e6-4364-88c4-f64fae88f671",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB206T/18MAB206T_27-11-2024_AN_b7cbd6a124.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "caf221f1-9957-407a-aab8-e2c2bd483143",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB206T/21MAB206T_28.05.2025_FN_f3caf563a0.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "7e5fd2c3-752f-47b2-8c44-dcb5513511c0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB206T/21MAB206T_3839382518.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c0a20334-94f6-429f-a75f-3b4700cf8ef5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB206T/21MAB206T_c49026088a.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "75094faf-5d5c-4152-af2d-7b7f8c3ad321",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB206T/21MAB206T_38d492ee2a.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "b45a491b-a8a4-4326-962a-14a267d24a2f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB206T_-/21MAB206T_c722011d4b.pdf"
         }
       ],
       "syllabus": [
@@ -4371,9 +6790,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 14,
         "syllabus": 1,
-        "total": 10
+        "total": 20
       }
     },
     {
@@ -4504,6 +6923,91 @@
           "name": "2024_Nov",
           "fileId": "1nXrFR9JdN246MrZ0teTK1WJlShuxhHo5",
           "url": "https://drive.google.com/file/d/1nXrFR9JdN246MrZ0teTK1WJlShuxhHo5/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "3eab588f-1069-4065-a161-0cada72a3344",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC202J/21CSC202J_17.07.2025_FN_915ca54689.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "eee811d5-b6c5-4ae0-957a-a4fc3b969e94",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC202J/21CSC202J_5a88069c97.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "076302ab-009d-4caf-8e93-c027ab052d68",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC202J/21CSC202J_29.05.2025_FN_23a696cefe.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "09231f3e-5f0c-47f3-9ff0-9d4dd8e9ec2a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J_ad6a702dd2.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "98c6535d-1e1c-414f-bc39-91c04648226f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J-4_Sem_2724f49e4e.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "7d00e219-3422-4ff5-8d78-6ebe7ebe2f3f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J_53cd11f054.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "5960cda7-4756-4580-95d2-ee835df42d12",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J_4a0b7cdd76.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "452a22dd-27c1-4098-87ac-e5b77ce1baaf",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205JR_02-01-2024_AN_289b7061f9.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "1a95d438-e871-4c3f-a6b7-0f6bcd2b64b2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J_09-12-2024_FN_d432ccfcfc.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "4776b9be-beda-4eca-9d4e-c36a88423d0e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205J/18CSC205J_30.05.2025_FN_3a89861e4d.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "04a25ba7-a912-4be1-9116-d32f12309533",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC205JR/18CSC205JR_5ec3088946.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "04e0185b-7b2c-4fcd-ac7c-ded03bc05810",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_7652fe0d9b.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "48f6661f-6bb0-4890-937e-a2db5edcb0a8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_a392835286.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e50fad13-6742-41af-ab97-7a645e84a152",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_27.11.2023_AN_f4b0f56188.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "94738cb7-2991-4a9f-9ec7-85b75a8146c1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_fe3e5a38d4.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "b9ab33cd-06aa-4799-8e97-c1d8ffa7a8c7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_1cd70d655e.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "68375355-c818-4c9f-8a15-727e2c8ca4a5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC266J/18CSC266J_27-11-2024_FN_ec2213f3f8.pdf"
         }
       ],
       "syllabus": [
@@ -4515,9 +7019,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 23,
         "syllabus": 1,
-        "total": 12
+        "total": 29
       }
     },
     {
@@ -4677,6 +7181,46 @@
           "name": "2025_May",
           "fileId": "1nV5N9_JDh4LsTGX4gmrQ4WZbtfAD3lrB",
           "url": "https://drive.google.com/file/d/1nV5N9_JDh4LsTGX4gmrQ4WZbtfAD3lrB/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d96904d2-041b-4d0c-a102-0d409e5cbf06",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101J_17.07.2025_FN_8ca2daf028.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "20954336-cb82-4bd6-8e28-804ee4dbe16c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101J_5c9b98a935.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "dd081051-8d25-4902-8ba8-bce62606f39b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101J_948a6b8a6d.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "cd6b2341-a9d9-477a-b4cd-3b45eb2badee",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101J_7ee9291521.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "87e205b9-c8b1-40fb-8d56-87087bfe1e88",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101J_7165379c0b.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "68ea3b47-80bc-494a-ba96-faee35322b3c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J/21GNH101JR_04-01-2024_FN_82a7e0d450.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "6c326d29-08e6-4c5f-93e3-41bb5cd4bbed",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J_-/21GNH101J_20.11.2024_AN_688c99bb43.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "6757b7f5-dfab-43ff-96b1-4643b8b8f271",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21GNH101J_-/21GNH101J_18-12-2024_FN_8d8b940b5e.pdf"
         }
       ],
       "syllabus": [
@@ -4688,9 +7232,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 11,
+        "papers": 19,
         "syllabus": 1,
-        "total": 17
+        "total": 25
       }
     },
     {
@@ -4734,6 +7278,21 @@
           "name": "2023_May",
           "fileId": "1UhUuh-TdFOvJcRcGtmzFxH1zR3Mv1OU4",
           "url": "https://drive.google.com/file/d/1UhUuh-TdFOvJcRcGtmzFxH1zR3Mv1OU4/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "c3ea67cf-be73-4099-b7ce-65aba9c98272",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CHC101J/21CHC101J_41d97cd6a1.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "0fa3effb-84c0-4d65-b5d9-ba5e09607a6d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CHC101J/21CHC101J_28-11-2023_FN_557867e9c8.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "260f1de5-fd92-43f9-938c-3058253da9a2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CHC101J/21CHC101J_17.05.2025_FN_7be6d80960.pdf"
         }
       ],
       "syllabus": [
@@ -4745,9 +7304,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 1,
+        "papers": 4,
         "syllabus": 1,
-        "total": 7
+        "total": 10
       }
     },
     {
@@ -4801,14 +7360,44 @@
           "name": "2025_May",
           "fileId": "1QFBhV5qE0ftyMnuJGgiA0B5v-Pzx2ZwS",
           "url": "https://drive.google.com/file/d/1QFBhV5qE0ftyMnuJGgiA0B5v-Pzx2ZwS/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "726e0e3c-d8f4-4118-8f72-81b5d510817c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MH306/15MH306_d929fcabcc.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "8b566cf3-6a1b-43df-92ae-6fbb22551058",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE411_T/18BMC401T_26.05.2025_FN_3a11a34676.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "b9f08747-bd86-4f09-bd0a-9942c1de5447",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE411T/18AUE411T-6_Sem_691c15351e.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "95711415-ce36-4603-b058-018419213cc1",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE411T/18AUE411T_25.11.2022_FN_5768c7bee0.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "497c9a5f-20fb-463d-8bb9-15ca51d1843e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE411T/18AUE411T_3c4152acf0.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "4c3bb8c4-3528-4dbe-b713-3786c4d6229c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18AUE411T/18AUE411T_197d951024.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 3,
+        "papers": 9,
         "syllabus": 0,
-        "total": 8
+        "total": 14
       }
     },
     {
@@ -4884,6 +7473,51 @@
           "name": "2025_May",
           "fileId": "1oIymJz0OSYTwyN1FWA8QExy5aTh9kGHw",
           "url": "https://drive.google.com/file/d/1oIymJz0OSYTwyN1FWA8QExy5aTh9kGHw/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "87a887ce-598a-4011-a70d-0a4df3438613",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204T_19.05.2025_AN_da64b4c519.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "1e5f50ab-203b-4701-9be0-a2ac024464dd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204T_21.07.2025_AN_23cb310e3b.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "204d3a40-14a8-4e64-a18f-8967d50418f5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204TM_26-07-2025_FN_03f175db09.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "86fffdc6-a114-4204-9e08-737c6a9f93a6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204TM_26-07-2025_FN_879c4d1ea5.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "64046e73-42b8-4a47-846f-57a48f6f733a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204T_f8a1615ba7.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "1aba8b8f-ab8c-4921-8ed3-4f457b8290e5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204T_b41908d699.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "99574581-f91b-4d61-9cc3-5b6e35e99e72",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB204T/21MAB204T_23.11.2024_FN_8fd07e863f.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "74e7f988-7c5e-4c22-824e-9c50b6f0741c",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/I8MAB204T/18MAB204T_2027ae59e5.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "d6b7b615-0741-4bf1-962c-0be17c81e8fb",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/MA1014/MA1014_04_.12.2024_FN_a2f04494d6.pdf"
         }
       ],
       "syllabus": [
@@ -4895,9 +7529,9 @@
       ],
       "counts": {
         "notes": 0,
-        "papers": 7,
+        "papers": 16,
         "syllabus": 1,
-        "total": 8
+        "total": 17
       }
     },
     {
@@ -4957,14 +7591,64 @@
           "name": "2023_May",
           "fileId": "1eEMW52S34A6bUsMOvcaq4SnghJplJWOv",
           "url": "https://drive.google.com/file/d/1eEMW52S34A6bUsMOvcaq4SnghJplJWOv/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "64a6eb36-7f8f-4e1d-9f49-328cd45c3e3a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA301/15MA301_b944e6115c.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "429873cd-6701-45f1-a03e-21727719beed",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA301/15MA301_639c29bc12.pdf"
+        },
+        {
+          "name": "2023_Paper",
+          "fileId": "88f87db5-69fe-471f-8d13-fd62b30ae19e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB301T/18MAB301T-5_Sem_7d4331e29c.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "89624532-2990-451a-a2ba-eb62e491ec39",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB301T/18MAB301T_17d40a97cb.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "fe058915-f20c-4990-b943-3c67fa5fc1ea",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB301T/18MAB301T_91b9c91b1f.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "1dbeffdf-cc9f-4c50-8e4b-8ffa966f8793",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB301T/18MAB301T_f1356df9fa.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "c0f8c6c3-69bf-4e72-9b2d-ca6ddd4f9754",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB301T/21MAB301T_19.05.2025_AN_cbe958fd12.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "0a70de31-6cf7-4207-a670-a8407d2acecf",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB301T/21MAB301T_83952f6aaf.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "6a126678-68f2-4f77-bcab-19fa3cdac2b4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB301T/21MAB301T_1b6fd4ddd6.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "cc78de9b-0b40-4ccd-9c37-8f96b5dc30f5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB301T/21MAB301T_ceeca3f0f0.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 6,
-        "papers": 3,
+        "papers": 13,
         "syllabus": 0,
-        "total": 9
+        "total": 19
       }
     },
     {
@@ -5033,6 +7717,41 @@
           "name": "2024_May",
           "fileId": "1-lv-QZ-1eWJ3OqxP3sOl1eNy82yrznwd",
           "url": "https://drive.google.com/file/d/1-lv-QZ-1eWJ3OqxP3sOl1eNy82yrznwd/preview"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "ea1c261a-e34e-4b8c-9923-462c6e133c3a",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS1011/18CSS101J_04d0b6fab6.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d978b9e0-0f8b-4968-a6d9-99b108cbcd44",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS101J/18CSS101J_23.05.2025_FN_03c5d75df1.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "0c7c2bdd-2ed1-401c-9584-9523e490024d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS101J/18CSS101J-1_to_2_Sem_c26570da1b.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "ad7283d7-d852-4781-a251-63879d048ce2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS101J/18CSS101J_c3c9e6b443.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "2b0ad133-6925-4693-acf0-b199207e89c2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS101J/18CSS101J_cb2b9059c2.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "38997fe4-6b88-46dd-a73f-5fee7cc9d4e4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSS101J/18CSS101J_08-12-2024_FN_1cef71ad67.pdf"
+        },
+        {
+          "name": "Jan_Feb_Paper",
+          "fileId": "a586a507-1e14-4206-ab25-fda20061be75",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSC11J/19PCSC11J_1767b7c28d.pdf"
         }
       ],
       "syllabus": [
@@ -5044,9 +7763,9 @@
       ],
       "counts": {
         "notes": 6,
-        "papers": 5,
+        "papers": 12,
         "syllabus": 1,
-        "total": 12
+        "total": 19
       }
     },
     {
@@ -5079,13 +7798,59 @@
           "unit": 4
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2024_May_June",
+          "fileId": "4358bc82-7280-484d-b907-fd3ba39554e8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/16AR460/16AR460_791fbbb44a.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "6f7b2d9e-9b1c-43db-a34c-daa0d4595588",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/16ID4001/16ID4001_e5890782c7.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "3cb24afe-0e57-4508-9a8a-449cbdf4f594",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_0956332a67.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "9acdf03e-c53f-41a3-a1db-ee4c9dd47f17",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_24.05.2025_AN_6badabd875.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "595c0c22-afe3-466b-b7d0-5aa4e1fa84ac",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_21.11.2022_FN_a8e586d13c.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "90103a8a-2bae-4693-8059-7e00c9a08705",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_40fca5bf33.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "a3ff891f-d23d-47a1-87b2-804a3bfdff33",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_cd483d9a88.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "f99b2f38-6e81-42eb-8f92-66a1bb9af3be",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_7eeaf35440.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "f823abd7-f225-4331-9237-9c6a0fa4f405",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CHC402T/18CHC402T_26-11-2024_FN_b2baa9a55f.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 4,
-        "papers": 0,
+        "papers": 9,
         "syllabus": 0,
-        "total": 4
+        "total": 13
       }
     },
     {
@@ -5124,13 +7889,34 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "5c55ebce-8520-4d7f-9d43-fb2715dfc31d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTC204OT/18BTC204TO_26.05.2025_AN_9dd631970a.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "d3525519-1f70-4001-867a-eef36e7a4293",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTC303T/21BTC303T_24.05.2025_FN_0642f77661.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7998b415-86c5-496e-bced-b152f41bfc47",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTC303T/21BTC303T_16.07.2025_AN_9842919738.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "10eb3cf1-da2f-4e61-b50f-1fbe90054c06",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21BTC303T/21BTC303T_27.11.2024_AN_4672d69b21.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 4,
         "syllabus": 0,
-        "total": 5
+        "total": 9
       }
     },
     {
@@ -5166,6 +7952,11 @@
           "name": "2025_May",
           "fileId": "1LSKwnTX_-gl9QXLpRbK54hkAd5pi08Aj",
           "url": "https://drive.google.com/file/d/1LSKwnTX_-gl9QXLpRbK54hkAd5pi08Aj/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "7950e988-60b8-4227-be33-09917f233a8b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21_CE0322T/21CEO322T_23.05.2025_AN_abda6e6fd3.pdf"
         }
       ],
       "syllabus": [
@@ -5177,9 +7968,9 @@
       ],
       "counts": {
         "notes": 3,
-        "papers": 2,
+        "papers": 3,
         "syllabus": 1,
-        "total": 6
+        "total": 7
       }
     },
     {
@@ -5422,6 +8213,21 @@
           "name": "2025_May",
           "fileId": "1jKoCZ3-A_6_WJLZ7lhjW-KxyD2nnt0Nm",
           "url": "https://drive.google.com/file/d/1jKoCZ3-A_6_WJLZ7lhjW-KxyD2nnt0Nm/preview"
+        },
+        {
+          "name": "2025_Nov_Dec",
+          "fileId": "3c0392b6-3a51-4f94-9e4d-153190b08466",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE382T/21CSE382T_07.01.2025_FN_93a4bfa7a4.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "707216ba-db35-4f21-8244-5f914998f7ce",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSE382T/21CSE382T_17.05.2025_FN_01f556094b.pdf"
+        },
+        {
+          "name": "2025_Jan_feb",
+          "fileId": "bb5644ca-9c5c-48d1-9f15-188cc4d4a765",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/CSE382T/21CSE382T_07.01.2025_FN_5c43e263c6.pdf"
         }
       ],
       "syllabus": [
@@ -5433,9 +8239,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 2,
+        "papers": 5,
         "syllabus": 1,
-        "total": 8
+        "total": 11
       }
     },
     {
@@ -5576,6 +8382,41 @@
           "name": "2024_May",
           "fileId": "1PvXtFwcRI_WNRTKDM33TfewOPaaApn7H",
           "url": "https://drive.google.com/file/d/1PvXtFwcRI_WNRTKDM33TfewOPaaApn7H/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "a5b1097a-aed1-4cb3-91ea-1deeb1e73841",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102JM_27.07.2025_AN_c8f26527da.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "5caa8afa-48a5-44b2-a610-b2edf729067f",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_17.07.2025_AN_94592008f4.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "a31b7830-de61-429c-9193-6519c021b091",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_6cb57cdc7f.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "ba1568b9-14bd-418f-bc30-86b41bcbe7d6",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_90209c576e.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "668274ea-6a4c-486f-b345-9839376b8a5d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_5017378a97.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "394f2905-6bc6-4247-a0b8-85483cca79d7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_21-12-2024_FN_ae136c2698.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "223feb2d-f327-4e2b-892f-fb3e214c4ebe",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21PYB102J/21PYB102J_21.11.2024_AN_e9cd17942c.pdf"
         }
       ],
       "syllabus": [
@@ -5587,9 +8428,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 4,
+        "papers": 11,
         "syllabus": 1,
-        "total": 10
+        "total": 17
       }
     },
     {
@@ -5628,13 +8469,24 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "e99046c8-53e2-4435-9278-ee83a81f3226",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21EEC207J/21EEC207J_26.11.2024_FN_d52eba7484.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "d0e1a732-a86f-47cc-8dd2-f3482a03925d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21EEC207J_-/21EEC207J_acd2b72bc2.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 2,
         "syllabus": 0,
-        "total": 5
+        "total": 7
       }
     },
     {
@@ -5678,6 +8530,16 @@
           "name": "2025_May",
           "fileId": "1Gk1clFzcOYY4wIOGx3kQjCaQxi4_TCsM",
           "url": "https://drive.google.com/file/d/1Gk1clFzcOYY4wIOGx3kQjCaQxi4_TCsM/preview"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "b1f43f0f-e516-447f-b307-3bd568e6e702",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECO101T/21ECO101T_14.07.2025_FN_871e39ada5.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "dc53763d-773f-4aeb-b4e8-20082daf3914",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21ECO101T/21MEO101T_31.05.2025_FN_f805a947a0.pdf"
         }
       ],
       "syllabus": [
@@ -5689,9 +8551,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 1,
+        "papers": 3,
         "syllabus": 1,
-        "total": 7
+        "total": 9
       }
     },
     {
@@ -5786,7 +8648,43 @@
           "url": "https://drive.google.com/file/d/1n2hIg1paYbT3Mbj1oHgq3hLcs3DtOZfs/preview"
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "9a6f9d25-effb-4528-8a1a-f3628b9defe5",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103T/18PDH103T_21.05.2025_AN_45701d1a70.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "39569fec-ed58-4eb5-8795-a4ab1b9f0151",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103T/18PDH103T-3_to_4_Sem_4332f815da.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "131163f4-f15e-4c42-944e-9d1fee8282f9",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103T/18PDH103T_aee779e1bc.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "6366e026-695f-4624-bc61-7613dca4df90",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103T/18PDH103T_b3dc4a8a7f.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "368cecd3-c34c-4c15-b9ef-153b76d22db0",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103T/18PDH103T_07-12-2024_FN_3f3398e42d.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "519b9f4e-abcf-44c6-b4a3-0ff80456a128",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDH103TR/18PDH103TR_ad7af1e921.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "b4e9fefa-ef8d-46bb-97d1-45982fa89ec3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18PDHI03T/18PDH103T_98cc13d0b7.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -5796,9 +8694,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 0,
+        "papers": 7,
         "syllabus": 1,
-        "total": 2
+        "total": 9
       }
     },
     {
@@ -5867,6 +8765,46 @@
           "name": "2025_Nov",
           "fileId": "1MoXphya5wX0CZ84CPFDTno2a8AJhCLQY",
           "url": "https://drive.google.com/file/d/1MoXphya5wX0CZ84CPFDTno2a8AJhCLQY/preview"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "56d8f260-b54c-46f0-8bc3-a91ed6839154",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_dff31f790f.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "e1969b8b-5924-4e5d-97c5-2feac97bab7b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_443a9f48a8.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "866d230c-cf4b-483a-a8b3-a31ae8d687b3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_13.12.2023_FN_a0734453ff.pdf"
+        },
+        {
+          "name": "2024_November_December",
+          "fileId": "acd9b385-6e3b-47ce-a2e9-a8ed472943d7",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_a0ee681129.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "a2e76351-891f-4cd9-8102-4bc6e194f08d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_b2a1e26be8.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "f0e12291-917c-4eb5-aca1-b20bb1cc9c59",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J/18CSC206J_29.05.2025_FN_dea1d35dc2.pdf"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "9b8bf0aa-1c53-4be4-8646-b5efb314ea73",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CSC206J_-/18CSC206J_11-12-2024_FN_9cf1e40f6a.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "b947554b-a3d5-4e1a-b306-9f8e10f8e865",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/19PCSC_16T/19PCSC16T_af4ffcdb7d.pdf"
         }
       ],
       "syllabus": [
@@ -5878,9 +8816,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 6,
+        "papers": 14,
         "syllabus": 1,
-        "total": 12
+        "total": 20
       }
     },
     {
@@ -5918,14 +8856,34 @@
           "name": "2025_July",
           "fileId": "1suDhY89Pq7uvntv-JJMA89nCPCOYDaqb",
           "url": "https://drive.google.com/file/d/1suDhY89Pq7uvntv-JJMA89nCPCOYDaqb/preview"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "2bc1ac30-1ade-4f37-8982-3c25b2ada46e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MHC103T/18MHC103T_f9e5811c8d.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "daba280a-7725-467b-b3a1-9e35e78f2196",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MHC103T/18MHC103T_31.05.2025_FN_b565912a9c.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "6d1f2f1a-d9e1-49e9-9982-6726e47ce37d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MHC103T-/18MHC103T_08-12-2024_FN_d73d6fdd48.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "5e64c13d-8014-4a9f-9e2c-602e49d887df",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MHCI03T/18MHC103T_7c2d4b1111.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 0,
-        "papers": 6,
+        "papers": 10,
         "syllabus": 0,
-        "total": 6
+        "total": 10
       }
     },
     {
@@ -5954,6 +8912,41 @@
           "name": "2024_Dec",
           "fileId": "1BHFSA0RE4ZiutD9lcptKppPUUQ3ToVjf",
           "url": "https://drive.google.com/file/d/1BHFSA0RE4ZiutD9lcptKppPUUQ3ToVjf/preview"
+        },
+        {
+          "name": "Nov_Dec_Paper",
+          "fileId": "4c277ca4-77bc-4c89-9658-be101d9727e8",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/2_ILEHI_07T/21LEH107T_19.11.2024_AN_dc4b2af16f.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "29db866f-efa7-409b-b014-e1535b21dce2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107T/21LEH107T_14.07.2025_AN_ae3185cd19.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "89a86c98-09c6-4f46-b963-94896b685ad2",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107T/21LEH107T_af46e0472b.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "222a5da5-50c6-4733-8860-5eac078af87b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107T/21LEH107T_a46176cc87.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "8877aeb6-481a-4e9a-a7f6-bf8c2f8298c3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107T/21LEH107T_db4297b403.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "0e1c77b3-fc17-46b0-ac9f-8b209eaa8e1b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107T/21LEH107T_20-12-2024_FN_67f0cd3097.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "ccde4297-6ed0-4a07-83f3-98aab7fa0faf",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21LEH107TI/21LEH107TI_c7c58708ee.pdf"
         }
       ],
       "syllabus": [
@@ -5965,9 +8958,9 @@
       ],
       "counts": {
         "notes": 1,
-        "papers": 3,
+        "papers": 10,
         "syllabus": 1,
-        "total": 5
+        "total": 12
       }
     },
     {
@@ -6018,13 +9011,19 @@
           "unit": 4
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "May_June_Paper",
+          "fileId": "a3dae4da-021f-47c2-b136-98450348c1ed",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/UBA18E22/UBA18E22_21-MAY-2022_AN_caafb538a4.pdf"
+        }
+      ],
       "syllabus": [],
       "counts": {
         "notes": 7,
-        "papers": 0,
+        "papers": 1,
         "syllabus": 0,
-        "total": 7
+        "total": 8
       }
     },
     {
@@ -6098,6 +9097,61 @@
           "name": "2025_July",
           "fileId": "1L_IRaDurivUZj4PoVduSzDZ4bL2lCW2t",
           "url": "https://drive.google.com/file/d/1L_IRaDurivUZj4PoVduSzDZ4bL2lCW2t/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "be8f476e-601c-48e3-8328-bcd6ae01bfff",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB201T/21MAB201T_3b1d790f84.pdf"
+        },
+        {
+          "name": "November_December_Paper",
+          "fileId": "5f415903-6f8a-40b9-9e72-71e9b0c64350",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21MAB201T/21MAB201T-_8357a31909.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "02740b6f-4f5b-45b7-be65-77ec3147f554",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/15MA201/15MA201_d6d04dee6e.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "5c9b8147-b778-43a8-ad95-a21a2e7cb0e4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201_T/18MAB201T_26.05.2025_AN_93cb9f1c35.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "ca82aafc-2df8-4d4b-8480-7d16fe9e49fd",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_26.07.2025_FN_21cf304cb1.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "b403747a-4d04-4195-bed1-dde4edf6ce85",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_26.07.2025_FN_fe1181f088.pdf"
+        },
+        {
+          "name": "2022_2023",
+          "fileId": "0bf12c61-5627-4260-96e5-29ea4f98d611",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T-3_Sem_d54de52bc6.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "d91b1dbd-b45d-4e1a-a050-720c38cb2bcc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_6246a122fa.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "720ae67a-8c29-4a38-9c1b-3c29987ab96e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_cf72dc19c9.pdf"
+        },
+        {
+          "name": "2024_May_June",
+          "fileId": "d44db226-b17d-44dc-9828-351b67a29a84",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_f583c60dfa.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "bdd50be7-bac3-4f13-b0bb-f08272a72c7b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18MAB201T/18MAB201T_02-12-2024_AN_1d055ed4db.pdf"
         }
       ],
       "syllabus": [
@@ -6109,9 +9163,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 7,
+        "papers": 18,
         "syllabus": 1,
-        "total": 13
+        "total": 24
       }
     },
     {
@@ -6150,7 +9204,23 @@
           "unit": 5
         }
       ],
-      "papers": [],
+      "papers": [
+        {
+          "name": "2025_May_June",
+          "fileId": "1b9e245e-e208-4897-b724-335be3078d12",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTO106T/18BTO106T_28.05.2025_AN_72bc487e63.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "58fd3514-e348-4493-9731-efa92c2763a3",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTOI06T/18BTO106T_69c1a14024.pdf"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "22538d46-0d74-4717-a51b-fcd704bec573",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18BTOl06T/18BTO106T_1fb3979b1d.pdf"
+        }
+      ],
       "syllabus": [
         {
           "name": "Syllabus",
@@ -6160,9 +9230,9 @@
       ],
       "counts": {
         "notes": 5,
-        "papers": 0,
+        "papers": 3,
         "syllabus": 1,
-        "total": 6
+        "total": 9
       }
     },
     {
@@ -6190,14 +9260,59 @@
           "name": "2024_May",
           "fileId": "1SLXF5kQOHk54CivKaMdcGndZ-JgxC6R7",
           "url": "https://drive.google.com/file/d/1SLXF5kQOHk54CivKaMdcGndZ-JgxC6R7/preview"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "0dfa0d17-6346-425c-9a2f-47502082e539",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CE0405T/18CEO405T_8d66ed6c59.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "89b4a78a-9306-4d48-9355-05c2b0ddeb8b",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CE0405T/18CSC203J_31.05.2025_AN_cd07f8296f.pdf"
+        },
+        {
+          "name": "2023_May_June",
+          "fileId": "93a86c5d-968e-4b2c-a729-42295d19255d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO405T/18CEO405T_42b8131591.pdf"
+        },
+        {
+          "name": "2022_Nov_Dec",
+          "fileId": "ff6ea9cb-d25e-4bde-a0ca-49212957df89",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO405T/18CEO405T_23.11.2022_FN_49904275a3.pdf"
+        },
+        {
+          "name": "2022_May_June",
+          "fileId": "1936dd6b-8298-435c-8083-9cf01cabc97e",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO405T/18CEO405T-6_to_7_Sem_2ddb02a70a.pdf"
+        },
+        {
+          "name": "2023_November_December",
+          "fileId": "d8ded818-2c56-43ab-a34c-21155992ac92",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO405T/18CEO405T_1db4f03d58.pdf"
+        },
+        {
+          "name": "2024_Nov_Dec",
+          "fileId": "91b4b64c-8167-46b9-aae2-20ea95a0f59d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/18CEO405T/18CEO405T_26-11-2024_FN_0792d6c008.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "7052377d-e568-4f8f-bcc7-2a62b41da0f4",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CEO309T/21CEO309T_23.05.2025_AN_aa3de5d8c7.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "86383538-8157-46b3-9551-49b6a4070216",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CEO309T/21CEO309T_14.07.2025_AN_824a568d63.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 0,
-        "papers": 4,
+        "papers": 13,
         "syllabus": 0,
-        "total": 4
+        "total": 13
       }
     },
     {
@@ -6258,14 +9373,24 @@
           "name": "2025_Nov",
           "fileId": "1iJEGILVmsBDqoUCcYWXjL0DVyp5DNTqa",
           "url": "https://drive.google.com/file/d/1iJEGILVmsBDqoUCcYWXjL0DVyp5DNTqa/preview"
+        },
+        {
+          "name": "May_June_Paper",
+          "fileId": "8610fa24-c337-49f7-9374-dd5b2f2550fc",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21_CSC311J/21CSC311J_14.07.2025_FN_a4b6685fe2.pdf"
+        },
+        {
+          "name": "2025_May_June",
+          "fileId": "def0d134-24e1-43fe-ac3e-3aff3b10a09d",
+          "url": "https://pub-5b7cf09755c0424dbdfa7d26c045042e.r2.dev/pyqs/v1/21CSC311J/21CSC311J_20.05.2025_AN_e1bbc2f095.pdf"
         }
       ],
       "syllabus": [],
       "counts": {
         "notes": 7,
-        "papers": 2,
+        "papers": 4,
         "syllabus": 0,
-        "total": 9
+        "total": 11
       }
     }
   ]

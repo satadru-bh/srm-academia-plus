@@ -201,6 +201,11 @@ export function findNotesForCourse(courseCode: string, courseTitle: string): Sub
 export function extractGoogleDrivePreviewUrl(urlOrFileId: string): string {
   if (!urlOrFileId) return '';
 
+  // Direct Cloudflare R2 / PDF stream URLs
+  if (urlOrFileId.includes('.pdf') || urlOrFileId.includes('r2.dev') || urlOrFileId.includes('r2.cloudflarestorage.com')) {
+    return urlOrFileId;
+  }
+
   // Extract ID if raw fileId or URL with /d/{id} or id={id}
   let fileId = urlOrFileId.trim();
 

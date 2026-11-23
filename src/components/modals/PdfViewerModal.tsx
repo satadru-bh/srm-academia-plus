@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, FileText, Loader2, Download } from 'lucide-react';
-import { extractGoogleDrivePreviewUrl, resolvePaperFileUrl } from '../../api/notes';
+import { X, ExternalLink, FileText, Loader2 } from 'lucide-react';
+import { extractGoogleDrivePreviewUrl } from '../../api/notes';
 
 interface PdfViewerModalProps {
   isOpen: boolean;
@@ -11,8 +11,6 @@ interface PdfViewerModalProps {
   subjectName?: string;
   resourceKind?: 'note' | 'paper' | 'syllabus';
   url: string;
-  paperId?: string;
-  fileId?: string;
 }
 
 export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
@@ -21,12 +19,10 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
   title,
   subjectName,
   resourceKind = 'note',
-  url,
-  paperId,
-  fileId
+  url
 }) => {
-  const [activeUrl, setActiveUrl] = useState<string>(url || '');
   const [isLoading, setIsLoading] = useState(true);
+  const previewUrl = extractGoogleDrivePreviewUrl(url);
 
   // Close on Escape key
   useEffect(() => {
@@ -40,52 +36,12 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Synchronize or lazily resolve URL when modal opens or props change
+  // Reset loading state when url changes
   useEffect(() => {
-    if (!isOpen) return;
-
-    if (url) {
-      setActiveUrl(url);
+    if (isOpen) {
       setIsLoading(true);
-      return;
     }
-
-    if (!url && (paperId || fileId)) {
-      setIsLoading(true);
-      let isMounted = true;
-      resolvePaperFileUrl(paperId || '', fileId)
-        .then((resolved) => {
-          if (isMounted && resolved) {
-            setActiveUrl(resolved);
-          }
-        })
-        .finally(() => {
-          if (isMounted) setIsLoading(false);
-        });
-      return () => {
-        isMounted = false;
-      };
-    }
-
-    setActiveUrl('');
-    setIsLoading(false);
-  }, [url, paperId, fileId, isOpen]);
-
-  const isDirectPdf =
-    activeUrl.includes('.pdf') ||
-    activeUrl.includes('r2.dev') ||
-    activeUrl.includes('/download');
-
-  const previewUrl = isDirectPdf
-    ? activeUrl
-    : extractGoogleDrivePreviewUrl(activeUrl);
-
-  const externalLinkUrl = isDirectPdf
-    ? activeUrl
-    : previewUrl.replace('/preview', '/view');
-
-  const externalLinkText = isDirectPdf ? 'open pdf' : 'open in drive';
-  const externalLinkTitle = isDirectPdf ? 'Download or open PDF directly' : 'Open full file in Google Drive';
+  }, [url, isOpen]);
 
   const modalContent = (
     <AnimatePresence>
@@ -127,18 +83,16 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
 
               {/* Actions */}
               <div className="flex items-center space-x-1.5 shrink-0">
-                {externalLinkUrl && (
-                  <a
-                    href={externalLinkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
-                    title={externalLinkTitle}
-                  >
-                    {isDirectPdf ? <Download className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
-                    <span className="hidden sm:inline lowercase">{externalLinkText}</span>
-                  </a>
-                )}
+                <a
+                  href={previewUrl.replace('/preview', '/view')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
+                  title="Open full file in Google Drive"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline lowercase">open in drive</span>
+                </a>
 
                 <button
                   onClick={onClose}
@@ -167,21 +121,19 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
                   allow="autoplay"
                   onLoad={() => setIsLoading(false)}
                 />
-              ) : !isLoading ? (
+              ) : (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center text-xs text-[#71717A] dark:text-[#A1A1AA]">
                   <p>preview unavailable for this resource.</p>
-                  {activeUrl && (
-                    <a
-                      href={activeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 px-4 py-2 rounded-xl bg-blue-500 text-white font-semibold lowercase"
-                    >
-                      open external link
-                    </a>
-                  )}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 px-4 py-2 rounded-xl bg-blue-500 text-white font-semibold lowercase"
+                  >
+                    open external link
+                  </a>
                 </div>
-              ) : null}
+              )}
             </div>
           </motion.div>
         </div>

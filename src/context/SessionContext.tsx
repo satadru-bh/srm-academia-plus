@@ -37,7 +37,7 @@ export const THEME_DETAILS: Record<ThemeMode, ThemeInfo> = {
   tropicana: { id: 'tropicana', name: 'tropicana', desc: 'light orange theme', accent: '#F97316', previewBg: '#FFEDD5', isDark: false },
   matcha: { id: 'matcha', name: 'matcha', desc: 'not performative at all', accent: '#16A34A', previewBg: '#DCFCE7', isDark: false },
   'blue-ice': { id: 'blue-ice', name: 'blue ice', desc: 'light blue theme', accent: '#0EA5E9', previewBg: '#E0F2FE', isDark: false },
-  banana: { id: 'banana', name: 'banana oo-na-na', desc: 'half of my heart is in banana', accent: '#EAB308', previewBg: '#FEF9C3', isDark: false },
+  banana: { id: 'banana', name: 'banana oo-na-na', desc: 'half of  my heart is in banana', accent: '#EAB308', previewBg: '#FEF9C3', isDark: false },
   light: { id: 'light', name: 'minimal light', desc: 'apple monochrome daylight', accent: '#111111', previewBg: '#FAFAFA', isDark: false }
 };
 
