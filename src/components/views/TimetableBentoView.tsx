@@ -272,8 +272,14 @@ export const TimetableBentoView: React.FC = () => {
           </div>
 
           {/* Desktop & Tablet: Horizontally Scrollable Traditional Grid Table */}
-          <div className="hidden md:block overflow-x-auto pb-4">
-            <table className="w-full min-w-[1360px] border-collapse text-left">
+          <div className="hidden md:block overflow-x-auto pb-4" style={{ contain: 'paint' }}>
+            <table className="w-full min-w-[1360px] table-fixed border-collapse text-left">
+              <colgroup>
+                <col style={{ width: '112px' }} />
+                {periods.map((p) => (
+                  <col key={p.id} style={{ width: '104px' }} />
+                ))}
+              </colgroup>
               <thead>
                 <tr className="border-b border-black/[0.08] dark:border-white/[0.08]">
                   {/* Sticky Day Order Column */}
@@ -313,26 +319,24 @@ export const TimetableBentoView: React.FC = () => {
                       {/* Sticky Day Order Cell */}
                       <td className={`p-3 text-xs font-bold sticky left-0 z-10 ${isCurrentDay ? 'bg-emerald-500/10 text-emerald-400' : 'bg-[#FFFFFF] dark:bg-[#131316] text-[#111111] dark:text-[#FAFAFA]'
                         }`}>
-                        <div className="flex items-center space-x-1.5">
-                          <span>day {day}</span>
-                          {isCurrentDay && (
-                            <span className="text-[10px] lowercase text-emerald-400 font-bold">(today)</span>
-                          )}
-                        </div>
-                      </td>
+                      <div className="flex items-center space-x-1.5">
+                        <span>day {day}</span>
+                        {isCurrentDay && (
+                          <span className="text-[10px] lowercase text-emerald-400 font-bold">(today)</span>
+                        )}
+                      </div>
+                    </td>
 
-                      {/* Merged Period Cells with Strictly Uniform Height & Colored T/L Tags */}
-                      {getGroupedSlotsForDay(day).map((group) => {
-                        const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
+                    {/* Merged Period Cells with Strictly Uniform Height & Colored T/L Tags */}
+                    {getGroupedSlotsForDay(day).map((group) => {
+                      const { slot, colSpan, isLab, hasClass, slotRangeDisplay } = group;
 
-                        return (
-                          <td
-                            key={group.startPeriod.id}
-                            colSpan={colSpan}
-                            className={`p-1 align-top h-[92px] ${
-                              colSpan > 1 ? 'min-w-[190px]' : 'min-w-[95px] max-w-[130px]'
-                            }`}
-                          >
+                      return (
+                        <td
+                          key={group.startPeriod.id}
+                          colSpan={colSpan}
+                          className="p-1 align-top h-[92px]"
+                        >
                             {hasClass ? (
                               <div
                                 className={`p-2 rounded-xl border flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${
@@ -618,7 +622,13 @@ export const TimetableBentoView: React.FC = () => {
         className="p-8 bg-[#FFFFFF] dark:bg-[#121214] text-[#111111] dark:text-[#FAFAFA] select-none"
       >
         {/* Full 5-Day Grid Table with Merged Consecutive Periods & Distinct Lab/Theory Styles */}
-        <table className="w-full border-collapse text-left" style={{ letterSpacing: '0px' }}>
+        <table className="w-full table-fixed border-collapse text-left" style={{ letterSpacing: '0px' }}>
+          <colgroup>
+            <col style={{ width: '116px' }} />
+            {periods.map((p) => (
+              <col key={p.id} style={{ width: '107px' }} />
+            ))}
+          </colgroup>
           <thead>
             <tr className="border-b border-black/[0.1] dark:border-white/[0.1]">
               <th className="p-3 text-xs font-bold lowercase text-[#111111] dark:text-[#FAFAFA] w-28" style={{ letterSpacing: '0px' }}>

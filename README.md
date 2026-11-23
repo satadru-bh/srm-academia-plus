@@ -71,7 +71,7 @@ This application is ready to deploy on **Vercel** with zero extra backend setup:
 2. Framework Preset: **Vite**.
 3. Build Command: `npm run build`.
 4. Output Directory: `dist`.
-5. Deploy! The included `vercel.json` automatically proxies API authentication requests directly to CampusWeb.
+5. Deploy! The included `vercel.json` automatically proxies API authentication requests directly to the official SRM Academia gateway.
 
 ---
 

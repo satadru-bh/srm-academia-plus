@@ -25,31 +25,26 @@ export const ORDERED_TABS = [
   'profile'
 ] as const;
 
-// Buttery smooth Apple-grade spring slide with cinematic motion blur
+// Buttery smooth Apple-grade spring slide without heavy blur hitches
 const pageMotionVariants: Variants = {
   enter: (dir: number) => ({
-    x: dir > 0 ? 36 : -36,
+    x: dir > 0 ? 32 : -32,
     opacity: 0,
-    filter: 'blur(5px)',
   }),
   center: {
     x: 0,
     opacity: 1,
-    filter: 'blur(0px)',
     transition: {
-      x: { type: 'spring' as const, stiffness: 380, damping: 32 },
-      opacity: { duration: 0.16, ease: 'easeOut' },
-      filter: { duration: 0.16, ease: 'easeOut' },
+      x: { type: 'spring' as const, stiffness: 380, damping: 34, mass: 0.8 },
+      opacity: { duration: 0.15, ease: 'easeOut' },
     },
   },
   exit: (dir: number) => ({
-    x: dir > 0 ? -36 : 36,
+    x: dir > 0 ? -32 : 32,
     opacity: 0,
-    filter: 'blur(5px)',
     transition: {
-      x: { duration: 0.14, ease: [0.16, 1, 0.3, 1] },
-      opacity: { duration: 0.14, ease: 'easeIn' },
-      filter: { duration: 0.14, ease: 'easeIn' },
+      x: { duration: 0.12, ease: [0.25, 1, 0.5, 1] },
+      opacity: { duration: 0.12, ease: 'easeIn' },
     },
   }),
 };
@@ -112,52 +107,57 @@ const MainApp: React.FC = () => {
   const direction = currentIndex >= prevIndex ? 1 : -1;
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     prevTabRef.current = activeTab;
   }, [activeTab]);
 
   // Mobile horizontal swipe navigation (buttery smooth with directional spring)
-  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const touchStartRef = useRef<{
+    startX: number;
+    startY: number;
+    currentX: number;
+    currentY: number;
+    time: number;
+  } | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length !== 1) return;
     const touch = e.touches[0];
     const target = touch.target as HTMLElement | null;
 
-    if (target) {
-      const tag = target.tagName.toLowerCase();
-      if (['input', 'textarea', 'select', 'button'].includes(tag) || target.closest('button, input, textarea, select, [data-no-swipe]')) {
-        touchStartRef.current = null;
-        return;
-      }
-      // Check for horizontal scrollable containers (e.g. timetable grid or tabs pill row)
-      const scrollable = target.closest('.overflow-x-auto, [data-scrollable]');
-      if (scrollable && scrollable.scrollWidth > scrollable.clientWidth) {
-        touchStartRef.current = null;
-        return;
-      }
-    }
-
-    touchStartRef.current = {
-      x: touch.clientX,
-      y: touch.clientY,
-      time: Date.now()
-    };
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStartRef.current || e.changedTouches.length !== 1) {
+    // Only exclude active form inputs where dragging selects text or slides
+    if (target && target.closest('input, textarea, select, [contenteditable="true"], [data-no-swipe]')) {
       touchStartRef.current = null;
       return;
     }
 
-    const touch = e.changedTouches[0];
-    const deltaX = touch.clientX - touchStartRef.current.x;
-    const deltaY = touch.clientY - touchStartRef.current.y;
-    const deltaTime = Date.now() - touchStartRef.current.time;
+    touchStartRef.current = {
+      startX: touch.clientX,
+      startY: touch.clientY,
+      currentX: touch.clientX,
+      currentY: touch.clientY,
+      time: Date.now()
+    };
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    touchStartRef.current.currentX = touch.clientX;
+    touchStartRef.current.currentY = touch.clientY;
+  };
+
+  const processSwipe = () => {
+    if (!touchStartRef.current) return;
+    const { startX, startY, currentX, currentY, time } = touchStartRef.current;
     touchStartRef.current = null;
 
-    // Threshold: at least 42px horizontal, predominantly horizontal vs vertical, under 450ms
-    if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3 && deltaTime < 450) {
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+    const deltaTime = Date.now() - time;
+
+    // Minimum 38px horizontal flick, predominantly horizontal vs vertical (dx > dy * 1.15), under 600ms
+    if (Math.abs(deltaX) >= 38 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15 && deltaTime < 600) {
       const currIdx = ORDERED_TABS.indexOf(activeTab as any);
       if (currIdx === -1) return;
 
@@ -173,6 +173,14 @@ const MainApp: React.FC = () => {
         }
       }
     }
+  };
+
+  const handleTouchEnd = () => {
+    processSwipe();
+  };
+
+  const handleTouchCancel = () => {
+    processSwipe();
   };
 
   if (isLoading && !user) {
@@ -221,8 +229,10 @@ const MainApp: React.FC = () => {
     <AppLayout>
       <div
         onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="w-full min-h-[calc(100vh-60px)] touch-pan-y"
+        onTouchCancel={handleTouchCancel}
+        className="w-full min-h-[calc(100vh-64px)] overflow-x-clip"
       >
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
@@ -232,8 +242,7 @@ const MainApp: React.FC = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            className="w-full will-change-[transform,opacity,filter]"
-            style={{ transform: 'translateZ(0)' }}
+            className="w-full overflow-x-clip"
           >
             {renderActiveView()}
           </motion.div>

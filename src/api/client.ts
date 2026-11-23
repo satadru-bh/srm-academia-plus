@@ -165,7 +165,7 @@ export class CampusWebClient {
         } else if (errorJson.code === 'academia_credentials_rejected' || /incorrect|invalid (?:password|credentials)|did not accept|wrong password/i.test(rawMsg)) {
           mappedMsg = 'Incorrect password. Please verify your Academia password.';
         } else if (errorJson.code === 'ACADEMIA_UNAVAILABLE' || /unavailable/i.test(rawMsg)) {
-          mappedMsg = 'SRM Academia portal is temporarily unreachable from CampusWeb servers. Please try again shortly.';
+          mappedMsg = 'SRM Academia portal is temporarily unreachable. Please try again shortly.';
         } else if (errorJson.message) {
           mappedMsg = String(errorJson.message);
         }

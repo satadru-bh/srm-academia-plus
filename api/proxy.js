@@ -1,4 +1,4 @@
-// Vercel Serverless Function Proxy for SRM Academia / CampusWeb Gateway
+// Vercel Serverless Function Proxy for SRM Academia Gateway
 // Solves CORS and Cloudflare blocks by injecting required headers and forwarding requests.
 
 export default async function handler(req, res) {

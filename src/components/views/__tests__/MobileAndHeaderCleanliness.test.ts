@@ -91,11 +91,19 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(timetable).toContain('ref={exportRef}');
   });
 
-  it('App implements mobile swipe navigation with spring physics and motion blur', () => {
+  it('App implements mobile swipe navigation with spring physics and jitter-free layout', () => {
     const appTsx = fs.readFileSync(path.resolve(__dirname, '../../../App.tsx'), 'utf-8');
     expect(appTsx).toContain('handleTouchStart');
     expect(appTsx).toContain('handleTouchEnd');
-    expect(appTsx).toContain('blur(5px)');
+    expect(appTsx).toContain('handleTouchCancel');
     expect(appTsx).toContain('ORDERED_TABS');
+    expect(appTsx).toContain('overflow-x-clip');
+  });
+
+  it('purges all user-facing references to campusweb', () => {
+    const signIn = fs.readFileSync(path.resolve(__dirname, '../SignInBentoView.tsx'), 'utf-8');
+    const client = fs.readFileSync(path.resolve(__dirname, '../../../api/client.ts'), 'utf-8');
+    expect(signIn.toLowerCase()).not.toContain('campusweb gateway');
+    expect(client).not.toContain('from CampusWeb servers');
   });
 });

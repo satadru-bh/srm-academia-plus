@@ -166,7 +166,7 @@ export const SignInBentoView: React.FC = () => {
 
           {/* Minimal Whisper Footer */}
           <div className="pt-2 text-center text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase opacity-60">
-            campusweb gateway
+            srm academia gateway
           </div>
         </div>
       </motion.div>
