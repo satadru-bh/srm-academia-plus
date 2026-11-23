@@ -3,7 +3,9 @@ import {
   getAllSubjects, 
   searchNotes, 
   findNotesForCourse,
-  extractGoogleDrivePreviewUrl 
+  extractGoogleDrivePreviewUrl,
+  formatPyqPaperTitle,
+  getCourseCodeForSubject
 } from '../notes';
 
 describe('Notes Query Engine', () => {
@@ -63,5 +65,40 @@ describe('Notes Query Engine', () => {
 
     const fromUrl = extractGoogleDrivePreviewUrl('https://drive.google.com/file/d/1OBnc8BsJYTNGutwGYpC1ov7QqtFeWQ-J/view');
     expect(fromUrl).toBe('https://drive.google.com/file/d/1OBnc8BsJYTNGutwGYpC1ov7QqtFeWQ-J/preview');
+  });
+
+  it('formats live PYQ paper titles with session and year', () => {
+    expect(formatPyqPaperTitle({
+      id: '1',
+      course_id: 'c1',
+      title: 'DSA',
+      exam_year: 2025,
+      exam_month: 7,
+      exam_term: 'may_june',
+      session_label: 'May-June',
+      source_subject_url: null,
+      source_item_url: '',
+      publisher: null,
+      created_at: ''
+    })).toBe('may-june 2025 exam paper');
+
+    expect(formatPyqPaperTitle({
+      id: '2',
+      course_id: 'c1',
+      title: 'Data Structures and Algorithms',
+      exam_year: 2024,
+      exam_month: null,
+      exam_term: null,
+      session_label: null,
+      source_subject_url: null,
+      source_item_url: '',
+      publisher: null,
+      created_at: ''
+    })).toBe('2024 exam paper');
+  });
+
+  it('finds course codes for catalogued subjects via aliases', () => {
+    const code = getCourseCodeForSubject('Data Structures and Algorithms (DSA)');
+    expect(code).toBe('21CSC201J');
   });
 });

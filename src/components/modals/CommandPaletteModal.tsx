@@ -25,7 +25,6 @@ import {
   BookOpen,
   LogOut,
   Copy,
-  Download,
   FileText,
   Palette
 } from 'lucide-react';
@@ -164,19 +163,6 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
 
     // 2. High-Frequency Quick Actions
     items.push(
-      {
-        id: 'action-export-timetable',
-        category: 'quick actions',
-        title: 'export cycle timetable',
-        subtitle: 'download 5-day academic schedule as high-resolution png',
-        icon: Download,
-        badge: 'export',
-        keywords: ['export timetable', 'download timetable', 'save timetable', 'schedule', 'png', 'image'],
-        action: () => {
-          setActiveTab('timetable');
-          onClose();
-        }
-      },
       {
         id: 'action-gpa',
         category: 'quick actions',

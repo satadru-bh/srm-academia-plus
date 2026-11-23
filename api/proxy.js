@@ -45,6 +45,22 @@ export default async function handler(req, res) {
       subpath = match ? match[1] : '';
     }
 
+    // Route PYQ requests to SRM PYQ API
+    if (subpath.startsWith('pyq/') || subpath === 'pyq') {
+      const pyqSubpath = subpath.replace(/^pyq\/?/, '');
+      const targetUrl = `https://srm-pyq-api.onrender.com/${pyqSubpath}${queryString ? `?${queryString}` : ''}`;
+      const response = await fetch(targetUrl, {
+        method: req.method,
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+        }
+      });
+      const textData = await response.text();
+      res.statusCode = response.status;
+      res.setHeader('Content-Type', response.headers.get('content-type') || 'application/json');
+      return res.end(textData);
+    }
+
     const targetUrl = `https://api.campusweb.in/api/${subpath}`;
 
     // 4. Inject authentic CampusWeb browser client headers

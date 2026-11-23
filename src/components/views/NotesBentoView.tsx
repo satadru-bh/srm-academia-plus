@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { 
   searchNotes, 
-  getAllSubjects,
+  getAllSubjects, 
   findNotesForCourse,
+  getCourseCodeForSubject,
+  fetchLivePapersForCourse,
   formatResourceTitle,
   SubjectCatalogue, 
   NoteResource 
@@ -14,11 +16,14 @@ import { formatCourseTitle } from '../../api/grades';
 import { 
   BookOpen, 
   Search, 
-  ChevronRight,
-  FileText,
-  ExternalLink,
-  Layers,
-  X
+  ChevronRight, 
+  FileText, 
+  ExternalLink, 
+  Layers, 
+  X,
+  Loader2,
+  Sparkles,
+  Download
 } from 'lucide-react';
 import { PdfViewerModal } from '../modals/PdfViewerModal';
 
@@ -33,6 +38,10 @@ export const NotesBentoView: React.FC = () => {
   const [inspectedSubFilter, setInspectedSubFilter] = useState<'all' | 'notes' | 'papers' | 'syllabus'>('all');
   const [inspectedSearch, setInspectedSearch] = useState('');
 
+  // Live papers fetched dynamically from the SRM PYQ API
+  const [livePapers, setLivePapers] = useState<NoteResource[]>([]);
+  const [isFetchingLivePapers, setIsFetchingLivePapers] = useState(false);
+
   // Automatically open inspected subject when targeted externally (from Ctrl+K, Glance tile, etc.)
   useEffect(() => {
     if (inspectedNotesSubjectId) {
@@ -46,13 +55,69 @@ export const NotesBentoView: React.FC = () => {
         setInspectedSubject(match);
         setInspectedSubFilter('all');
         setInspectedSearch('');
+      } else {
+        // Enrolled subject not in static catalogue
+        const dynamicEntry: SubjectCatalogue = {
+          id: inspectedNotesSubjectId.toUpperCase(),
+          name: inspectedNotesSubjectId,
+          semester: null,
+          notes: [],
+          papers: [],
+          syllabus: [],
+          counts: { notes: 0, papers: 0, syllabus: 0, total: 0 }
+        };
+        setInspectedSubject(dynamicEntry);
+        setInspectedSubFilter('all');
+        setInspectedSearch('');
       }
     }
   }, [inspectedNotesSubjectId]);
 
+  // Fetch live papers when inspecting a subject
+  useEffect(() => {
+    if (!inspectedSubject) {
+      setLivePapers([]);
+      setIsFetchingLivePapers(false);
+      return;
+    }
+
+    const matchedCode =
+      getCourseCodeForSubject(inspectedSubject.id) ||
+      getCourseCodeForSubject(inspectedSubject.name) ||
+      (inspectedSubject.id.match(/^[0-9]+[a-z]+[0-9]+[a-z]?$/i) ? inspectedSubject.id : undefined);
+
+    if (matchedCode) {
+      setIsFetchingLivePapers(true);
+      let isMounted = true;
+
+      fetchLivePapersForCourse(matchedCode)
+        .then((papers) => {
+          if (isMounted) {
+            setLivePapers(papers);
+          }
+        })
+        .catch((err) => {
+          console.warn('[NotesBentoView] Failed to fetch live papers:', err);
+          if (isMounted) setLivePapers([]);
+        })
+        .finally(() => {
+          if (isMounted) setIsFetchingLivePapers(false);
+        });
+
+      return () => {
+        isMounted = false;
+      };
+    } else {
+      setLivePapers([]);
+      setIsFetchingLivePapers(false);
+    }
+  }, [inspectedSubject]);
+
   const closeInspectedSubject = () => {
     setInspectedSubject(null);
     setInspectedNotesSubjectId(null);
+    setLivePapers([]);
+    setIsFetchingLivePapers(false);
   };
 
   // Active PDF viewer modal state
@@ -62,6 +127,8 @@ export const NotesBentoView: React.FC = () => {
     subjectName: string;
     resourceKind: 'note' | 'paper' | 'syllabus';
     url: string;
+    paperId?: string;
+    fileId?: string;
   }>({
     isOpen: false,
     title: '',
@@ -74,14 +141,18 @@ export const NotesBentoView: React.FC = () => {
     title: string, 
     subjectName: string, 
     url: string, 
-    resourceKind: 'note' | 'paper' | 'syllabus' = 'note'
+    resourceKind: 'note' | 'paper' | 'syllabus' = 'note',
+    paperId?: string,
+    fileId?: string
   ) => {
     setViewerState({
       isOpen: true,
       title: formatResourceTitle(title, resourceKind),
       subjectName,
       resourceKind,
-      url
+      url,
+      paperId,
+      fileId
     });
   };
 
@@ -111,7 +182,15 @@ export const NotesBentoView: React.FC = () => {
         courseCode: code,
         courseTitle: c.courseTitle,
         credit: c.credit,
-        catalogueEntry: entry
+        catalogueEntry: entry || {
+          id: code.toUpperCase(),
+          name: c.courseTitle,
+          semester: null,
+          notes: [],
+          papers: [],
+          syllabus: [],
+          counts: { notes: 0, papers: 0, syllabus: 0, total: 0 }
+        }
       });
     });
 
@@ -131,20 +210,30 @@ export const NotesBentoView: React.FC = () => {
       file: NoteResource;
       kind: 'note' | 'paper' | 'syllabus';
       formattedTitle: string;
+      isLive?: boolean;
     }> = [];
 
+    // Lecture notes
     if (inspectedSubFilter === 'all' || inspectedSubFilter === 'notes') {
       inspectedSubject.notes.forEach((f) => {
         list.push({ file: f, kind: 'note', formattedTitle: formatResourceTitle(f.name, 'note') });
       });
     }
 
+    // Papers (Use live SRM PYQ API papers if available, else local catalogue papers)
     if (inspectedSubFilter === 'all' || inspectedSubFilter === 'papers') {
-      inspectedSubject.papers.forEach((f) => {
-        list.push({ file: f, kind: 'paper', formattedTitle: formatResourceTitle(f.name, 'paper') });
-      });
+      if (livePapers.length > 0) {
+        livePapers.forEach((f) => {
+          list.push({ file: f, kind: 'paper', formattedTitle: f.name, isLive: true });
+        });
+      } else {
+        inspectedSubject.papers.forEach((f) => {
+          list.push({ file: f, kind: 'paper', formattedTitle: formatResourceTitle(f.name, 'paper') });
+        });
+      }
     }
 
+    // Syllabus
     if (inspectedSubFilter === 'all' || inspectedSubFilter === 'syllabus') {
       inspectedSubject.syllabus.forEach((f) => {
         list.push({ file: f, kind: 'syllabus', formattedTitle: formatResourceTitle(f.name, 'syllabus') });
@@ -155,7 +244,12 @@ export const NotesBentoView: React.FC = () => {
 
     const q = inspectedSearch.trim().toLowerCase();
     return list.filter((item) => item.formattedTitle.toLowerCase().includes(q) || item.file.name.toLowerCase().includes(q));
-  }, [inspectedSubject, inspectedSubFilter, inspectedSearch]);
+  }, [inspectedSubject, inspectedSubFilter, inspectedSearch, livePapers]);
+
+  const activePapersCount = livePapers.length > 0 ? livePapers.length : (inspectedSubject?.counts.papers || 0);
+  const activeNotesCount = inspectedSubject?.counts.notes || 0;
+  const activeSyllabusCount = inspectedSubject?.counts.syllabus || 0;
+  const activeTotalCount = activeNotesCount + activePapersCount + activeSyllabusCount;
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-8">
@@ -166,13 +260,13 @@ export const NotesBentoView: React.FC = () => {
             <span className="p-1 rounded-md bg-black/5 dark:bg-white/5">
               <BookOpen className="w-3.5 h-3.5" />
             </span>
-            <span>academic intelligence • 98 subjects • 838 files</span>
+            <span>academic intelligence • 98 subjects • live srm pyq repository</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase">
             notes & past papers
           </h1>
           <p className="text-xs sm:text-sm text-[#71717A] dark:text-[#A1A1AA] lowercase mt-1">
-            unit-wise lecture presentations, pyqs and university syllabus
+            unit-wise lecture presentations, live official university pyqs and course syllabi
           </p>
         </div>
 
@@ -189,7 +283,7 @@ export const NotesBentoView: React.FC = () => {
         </div>
       </div>
 
-      {/* Filter Row: Category Tabs & Semester Chips (Clean Minimalist Monochrome) */}
+      {/* Filter Row: Category Tabs & Semester Chips */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-black/[0.04] dark:border-white/[0.04]">
         {/* Category switcher */}
         <div className="flex items-center space-x-1 p-1 rounded-2xl bg-[#FFFFFF] dark:bg-[#131316] border border-black/[0.06] dark:border-white/[0.06] overflow-x-auto">
@@ -249,7 +343,7 @@ export const NotesBentoView: React.FC = () => {
               enrolled courses
             </h2>
             <span className="text-xs text-[#71717A] dark:text-[#A1A1AA]">
-              {enrolledSubjectMatches.filter((m) => m.catalogueEntry).length} available
+              {enrolledSubjectMatches.length} subjects active
             </span>
           </div>
 
@@ -268,9 +362,14 @@ export const NotesBentoView: React.FC = () => {
                       <span className="px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 font-bold text-xs text-[#111111] dark:text-[#FAFAFA]">
                         {item.courseCode}
                       </span>
-                      {entry && (
+                      {entry && entry.counts.total > 0 ? (
                         <span className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-                          {entry.counts.total} files total
+                          {entry.counts.total} files in catalog
+                        </span>
+                      ) : (
+                        <span className="text-[11px] text-blue-500 font-medium flex items-center space-x-1">
+                          <Sparkles className="w-3 h-3" />
+                          <span>live srm pyqs</span>
                         </span>
                       )}
                     </div>
@@ -279,32 +378,32 @@ export const NotesBentoView: React.FC = () => {
                       {title}
                     </h3>
 
-                    {entry && (
+                    {entry && entry.counts.total > 0 ? (
                       <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
                         {entry.counts.notes} notes • {entry.counts.papers} pyqs • {entry.counts.syllabus} syllabus
+                      </div>
+                    ) : (
+                      <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
+                        direct university past papers via srm pyq archive
                       </div>
                     )}
                   </div>
 
-                  {entry ? (
-                    <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
-                      <button
-                        onClick={() => {
+                  <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+                    <button
+                      onClick={() => {
+                        if (entry) {
                           setInspectedSubject(entry);
                           setInspectedSubFilter('all');
                           setInspectedSearch('');
-                        }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] transition-colors cursor-pointer"
-                      >
-                        <span>browse all {entry.counts.total} files</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] text-[11px] text-[#71717A] dark:text-[#52525B]">
-                      practical / lab coursework
-                    </div>
-                  )}
+                        }
+                      }}
+                      className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] transition-colors cursor-pointer"
+                    >
+                      <span>browse study material & pyqs</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               );
             })}
@@ -368,7 +467,7 @@ export const NotesBentoView: React.FC = () => {
         )}
       </section>
 
-      {/* MODAL 1: Complete Subject File Explorer (Mounted cleanly via Portal to document.body) */}
+      {/* MODAL 1: Complete Subject File Explorer (Mounted via Portal) */}
       {typeof document !== 'undefined' && createPortal(
         <AnimatePresence>
           {inspectedSubject && (
@@ -393,15 +492,26 @@ export const NotesBentoView: React.FC = () => {
               {/* Header */}
               <div className="p-5 sm:p-6 border-b border-black/[0.06] dark:border-white/[0.06] flex items-start justify-between gap-4 shrink-0">
                 <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 flex-wrap gap-y-1">
                     {inspectedSubject.semester && (
                       <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
                         semester {inspectedSubject.semester}
                       </span>
                     )}
                     <span className="text-xs text-[#71717A] dark:text-[#A1A1AA]">
-                      {inspectedSubject.counts.total} verified files
+                      {activeTotalCount} files available
                     </span>
+                    {isFetchingLivePapers ? (
+                      <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-500 text-[10px] font-medium">
+                        <Loader2 className="w-2.5 h-2.5 animate-spin" />
+                        <span>syncing live srm pyqs...</span>
+                      </span>
+                    ) : livePapers.length > 0 ? (
+                      <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-medium">
+                        <Sparkles className="w-2.5 h-2.5" />
+                        <span>live archive verified</span>
+                      </span>
+                    ) : null}
                   </div>
 
                   <h2 className="text-lg sm:text-xl font-extrabold text-[#111111] dark:text-[#FAFAFA] lowercase">
@@ -422,10 +532,10 @@ export const NotesBentoView: React.FC = () => {
               <div className="px-5 py-3 border-b border-black/[0.04] dark:border-white/[0.04] flex flex-wrap items-center justify-between gap-2.5 shrink-0 bg-black/[0.01] dark:bg-white/[0.01]">
                 <div className="flex items-center space-x-1 p-0.5 rounded-xl bg-black/5 dark:bg-white/5 text-xs lowercase">
                   {[
-                    { id: 'all', label: `all (${inspectedSubject.counts.total})` },
-                    { id: 'notes', label: `notes (${inspectedSubject.counts.notes})` },
-                    { id: 'papers', label: `pyqs (${inspectedSubject.counts.papers})` },
-                    { id: 'syllabus', label: `syllabus (${inspectedSubject.counts.syllabus})` }
+                    { id: 'all', label: `all (${activeTotalCount})` },
+                    { id: 'notes', label: `notes (${activeNotesCount})` },
+                    { id: 'papers', label: `pyqs (${activePapersCount})` },
+                    { id: 'syllabus', label: `syllabus (${activeSyllabusCount})` }
                   ].map((tab) => (
                     <button
                       key={tab.id}
@@ -453,11 +563,18 @@ export const NotesBentoView: React.FC = () => {
                 </div>
               </div>
 
-              {/* Complete File List (Scrollable, no file truncated) */}
+              {/* Complete File List */}
               <div className="p-4 sm:p-6 overflow-y-auto divide-y divide-black/[0.04] dark:divide-white/[0.04] space-y-1">
                 {inspectedFiles.length === 0 ? (
-                  <div className="py-12 text-center text-xs text-[#71717A] dark:text-[#52525B] lowercase">
-                    no files found matching this filter.
+                  <div className="py-12 text-center text-xs text-[#71717A] dark:text-[#52525B] lowercase space-y-2">
+                    {isFetchingLivePapers ? (
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <Loader2 className="w-5 h-5 animate-spin text-blue-500" />
+                        <span>loading live examination papers...</span>
+                      </div>
+                    ) : (
+                      <p>no files found matching this filter.</p>
+                    )}
                   </div>
                 ) : (
                   inspectedFiles.map((item, idx) => (
@@ -470,14 +587,21 @@ export const NotesBentoView: React.FC = () => {
                           <FileText className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
-                          <div className="text-xs sm:text-sm font-semibold text-[#111111] dark:text-[#FAFAFA] truncate lowercase">
-                            {item.formattedTitle}
+                          <div className="text-xs sm:text-sm font-semibold text-[#111111] dark:text-[#FAFAFA] truncate lowercase flex items-center space-x-2">
+                            <span className="truncate">{item.formattedTitle}</span>
+                            {item.isLive && (
+                              <span className="shrink-0 px-1.5 py-0.2 rounded text-[9px] uppercase font-bold tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                                live pyq
+                              </span>
+                            )}
                           </div>
                           <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-2 mt-0.5">
                             <span className="lowercase">
                               {item.kind === 'note' ? 'lecture resource' : item.kind === 'paper' ? 'university pyq' : 'syllabus'}
                             </span>
                             {item.file.unit && <span>• unit {item.file.unit}</span>}
+                            {item.file.examYear && <span>• {item.file.examYear}</span>}
+                            {item.file.sessionLabel && <span>• {item.file.sessionLabel}</span>}
                           </div>
                         </div>
                       </div>
@@ -485,20 +609,29 @@ export const NotesBentoView: React.FC = () => {
                       {/* File Action Buttons */}
                       <div className="flex items-center space-x-1.5 shrink-0">
                         <button
-                          onClick={() => openViewer(item.formattedTitle, inspectedSubject.name, item.file.url, item.kind)}
+                          onClick={() => openViewer(
+                            item.formattedTitle, 
+                            inspectedSubject.name, 
+                            item.file.url, 
+                            item.kind,
+                            item.file.paperId,
+                            item.file.fileId
+                          )}
                           className="px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-xs text-[#111111] dark:text-[#FAFAFA] font-medium transition-colors cursor-pointer"
                         >
                           view
                         </button>
-                        <a
-                          href={item.file.url.replace('/preview', '/view')}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
-                          title="Open in Google Drive"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
+                        {item.file.url && (
+                          <a
+                            href={item.isLive ? item.file.url : item.file.url.replace('/preview', '/view')}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors"
+                            title={item.isLive ? "Download or open PDF" : "Open in Google Drive"}
+                          >
+                            {item.isLive ? <Download className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
+                          </a>
+                        )}
                       </div>
                     </div>
                   ))
@@ -519,6 +652,8 @@ export const NotesBentoView: React.FC = () => {
         subjectName={viewerState.subjectName}
         resourceKind={viewerState.resourceKind}
         url={viewerState.url}
+        paperId={viewerState.paperId}
+        fileId={viewerState.fileId}
       />
     </div>
   );

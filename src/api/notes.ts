@@ -1,10 +1,18 @@
 import notesData from '../data/notesCatalogue.json';
+import { getPapersForCourse, getPaperFiles, getDownloadUrl, type PyqPaper } from './pyqClient';
 
 export interface NoteResource {
   name: string;
   fileId: string;
   url: string;
   unit?: number;
+  isLive?: boolean;
+  examYear?: number | null;
+  examMonth?: number | null;
+  examTerm?: string | null;
+  sessionLabel?: string | null;
+  paperId?: string;
+  publisher?: string | null;
 }
 
 export interface SubjectCatalogue {
@@ -97,7 +105,7 @@ export function searchNotes(
 /**
  * Maps known course acronyms and titles to catalogue subject names
  */
-const COURSE_ALIASES: Record<string, string> = {
+export const COURSE_ALIASES: Record<string, string> = {
   '21mab201t': 'Transforms and Boundary Value Problems (TBVP)',
   '21csc201j': 'Data Structures and Algorithms (DSA)',
   '21csc202j': 'Operating Systems (OS)',
@@ -106,6 +114,43 @@ const COURSE_ALIASES: Record<string, string> = {
   '21lem202t': 'Universal Human Values',
   '21lem201t': 'Professional Ethics'
 };
+
+/**
+ * Finds the canonical course code for a subject name or catalogue entry
+ */
+export function getCourseCodeForSubject(subjectIdOrName: string): string | undefined {
+  if (!subjectIdOrName) return undefined;
+  const norm = normalizeText(subjectIdOrName);
+
+  // 1. Check direct code match in alias keys
+  const upper = subjectIdOrName.trim().toUpperCase();
+  if (COURSE_ALIASES[upper.toLowerCase()]) {
+    return upper;
+  }
+
+  // 2. Match against alias values
+  for (const [code, alias] of Object.entries(COURSE_ALIASES)) {
+    const normAlias = normalizeText(alias);
+    if (normAlias.includes(norm) || norm.includes(normAlias)) {
+      return code.toUpperCase();
+    }
+  }
+
+  // 3. Fallback: match by subject name in catalogue
+  const subject = catalogue.subjects.find(
+    (s) => s.id === subjectIdOrName || normalizeText(s.name) === norm
+  );
+  if (subject) {
+    const normSub = normalizeText(subject.name);
+    for (const [code, alias] of Object.entries(COURSE_ALIASES)) {
+      if (normalizeText(alias).includes(normSub) || normSub.includes(normalizeText(alias))) {
+        return code.toUpperCase();
+      }
+    }
+  }
+
+  return undefined;
+}
 
 /**
  * Intelligently matches an enrolled course (by code or title) to a catalogue subject entry
@@ -197,4 +242,107 @@ export function formatResourceTitle(rawName: string, kind?: 'note' | 'paper' | '
   }
 
   return cleaned.toLowerCase();
+}
+
+/**
+ * Formats a PyqPaper from the live SRM PYQ API into a consistent human-readable title
+ */
+export function formatPyqPaperTitle(paper: PyqPaper): string {
+  const parts: string[] = [];
+
+  if (paper.session_label) {
+    parts.push(paper.session_label.trim());
+  } else if (paper.exam_month) {
+    const monthNames = ['', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    if (paper.exam_month >= 1 && paper.exam_month <= 12) {
+      parts.push(monthNames[paper.exam_month]);
+    }
+  }
+
+  if (paper.exam_year) {
+    parts.push(String(paper.exam_year));
+  }
+
+  if (parts.length > 0) {
+    return `${parts.join(' ')} exam paper`.toLowerCase();
+  }
+
+  if (paper.title) {
+    let t = paper.title.toLowerCase();
+    if (!t.includes('exam') && !t.includes('paper')) {
+      t = `${t} exam paper`;
+    }
+    return t;
+  }
+
+  return 'university exam paper';
+}
+
+/**
+ * Fetches real, live exam question papers from the SRM PYQ API and resolves their primary R2 PDF files
+ */
+export async function fetchLivePapersForCourse(courseCode: string): Promise<NoteResource[]> {
+  if (!courseCode) return [];
+
+  try {
+    const papersResult = await getPapersForCourse(courseCode, { limit: 20 });
+    if (!papersResult.data || papersResult.data.length === 0) {
+      return [];
+    }
+
+    const resources: NoteResource[] = await Promise.all(
+      papersResult.data.map(async (paper) => {
+        let fileUrl = '';
+        let fileId = paper.id;
+
+        try {
+          const files = await getPaperFiles(paper.id);
+          const primary = files.find((f) => f.is_primary) || files[0];
+          if (primary) {
+            fileId = primary.id;
+            fileUrl = primary.public_url || '';
+          }
+        } catch {
+          // File URL will be lazily resolved on click if needed
+        }
+
+        return {
+          name: formatPyqPaperTitle(paper),
+          fileId,
+          url: fileUrl,
+          isLive: true,
+          examYear: paper.exam_year,
+          examMonth: paper.exam_month,
+          examTerm: paper.exam_term,
+          sessionLabel: paper.session_label,
+          paperId: paper.id,
+          publisher: paper.publisher
+        };
+      })
+    );
+
+    return resources;
+  } catch (err) {
+    console.warn('[notes] fetchLivePapersForCourse error:', err);
+    return [];
+  }
+}
+
+/**
+ * Resolves a paper's file download / public streaming link on demand
+ */
+export async function resolvePaperFileUrl(paperId: string, fileId?: string): Promise<string | null> {
+  if (fileId) {
+    const url = await getDownloadUrl(fileId);
+    if (url) return url;
+  }
+  if (paperId) {
+    const files = await getPaperFiles(paperId);
+    const primary = files.find((f) => f.is_primary) || files[0];
+    if (primary) {
+      if (primary.public_url) return primary.public_url;
+      return await getDownloadUrl(primary.id);
+    }
+  }
+  return null;
 }

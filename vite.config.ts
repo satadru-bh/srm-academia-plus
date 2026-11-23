@@ -16,6 +16,13 @@ const proxyConfig = {
   }
 };
 
+const pyqProxyConfig = {
+  target: 'https://srm-pyq-api.onrender.com',
+  changeOrigin: true,
+  secure: true,
+  rewrite: (path: string) => path.replace(/^\/api\/pyq/, '')
+};
+
 const noCacheHeaders = {
   'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
   'Pragma': 'no-cache',
@@ -29,6 +36,7 @@ export default defineConfig({
     host: true,
     headers: noCacheHeaders,
     proxy: {
+      '/api/pyq': pyqProxyConfig,
       '/api': proxyConfig
     }
   },
@@ -37,6 +45,7 @@ export default defineConfig({
     host: true,
     headers: noCacheHeaders,
     proxy: {
+      '/api/pyq': pyqProxyConfig,
       '/api': proxyConfig
     }
   },

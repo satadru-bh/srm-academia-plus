@@ -17,7 +17,45 @@ export default async function handler(req: Request) {
   }
 
   const url = new URL(req.url);
-  // Forward path to CampusWeb API
+
+  // 1. Forward SRM PYQ API requests to https://srm-pyq-api.onrender.com
+  if (url.pathname.startsWith('/api/pyq')) {
+    const subpath = url.pathname.replace(/^\/api\/pyq/, '');
+    const targetUrl = `https://srm-pyq-api.onrender.com${subpath}${url.search}`;
+    try {
+      const response = await fetch(targetUrl, {
+        method: req.method,
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+        },
+      });
+
+      const resHeaders = new Headers(response.headers);
+      resHeaders.set('Access-Control-Allow-Origin', '*');
+      resHeaders.set('Access-Control-Allow-Credentials', 'true');
+      resHeaders.delete('content-encoding');
+
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: resHeaders,
+      });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      return new Response(
+        JSON.stringify({ code: 'PYQ_PROXY_ERROR', message: `PYQ Proxy gateway error: ${message}`, status: 'error' }),
+        {
+          status: 502,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
+    }
+  }
+
+  // 2. Forward path to CampusWeb API
   // url.pathname starts with /api/...
   const targetUrl = `https://api.campusweb.in${url.pathname}${url.search}`;
 

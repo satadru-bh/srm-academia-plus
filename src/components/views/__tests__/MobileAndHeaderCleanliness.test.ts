@@ -85,13 +85,25 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(html).toContain('href="/icon-192.png?v=');
   });
 
-  it('TimetableBentoView exports high-res timetable using native Canvas 2D engine with zero DOM ghosting', () => {
+  it('TimetableBentoView has completely removed export options as requested', () => {
     const timetable = fs.readFileSync(path.resolve(__dirname, '../TimetableBentoView.tsx'), 'utf-8');
-    expect(timetable).toContain('isExporting');
-    expect(timetable).toContain("document.createElement('canvas')");
-    expect(timetable).toContain('canvas.toBlob');
-    expect(timetable).toContain('drawRoundedBox');
-    expect(timetable).not.toContain('html2canvas');
+    expect(timetable).not.toContain('export timetable');
+    expect(timetable).not.toContain('handleExport');
+    expect(timetable).not.toContain('isExporting');
+
+    const commandPalette = fs.readFileSync(path.resolve(__dirname, '../../modals/CommandPaletteModal.tsx'), 'utf-8');
+    expect(commandPalette).not.toContain('action-export-timetable');
+  });
+
+  it('sw.js employs network-first navigation strategy and vercel.json enforces no-cache on index.html and sw.js', () => {
+    const sw = fs.readFileSync(path.resolve(__dirname, '../../../../public/sw.js'), 'utf-8');
+    expect(sw).toContain("event.request.mode === 'navigate'");
+    expect(sw).toContain('Network-First strategy');
+
+    const vercel = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../../vercel.json'), 'utf-8'));
+    const indexHeader = vercel.headers.find((h: any) => h.source === '/index.html' || h.source === '/');
+    expect(indexHeader).toBeDefined();
+    expect(indexHeader.headers[0].value).toContain('no-cache');
   });
 
   it('FloatingDock popover menu is explicitly anchored with fixed bottom-20 directly above the dock', () => {
