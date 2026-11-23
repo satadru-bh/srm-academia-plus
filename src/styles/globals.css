@@ -1,0 +1,102 @@
+@import './design-tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  ::selection {
+    background-color: var(--color-selection-bg);
+    color: var(--color-selection-text);
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.011em;
+  }
+}
+
+/* Bold Display Typography */
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Tabular Numerals strictly applied */
+.tabular-nums {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+/* Floaty Bento Card Styles */
+.bento-card {
+  background-color: var(--color-bento-card);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+/* Ambient glow backlights for critical bento states */
+.glow-emerald {
+  box-shadow: 0 0 50px -12px rgba(16, 185, 129, 0.15);
+}
+
+.glow-amber {
+  box-shadow: 0 0 50px -12px rgba(245, 158, 11, 0.15);
+}
+
+.glow-rose {
+  box-shadow: 0 0 50px -12px rgba(244, 63, 94, 0.15);
+}
+
+/* Floating Glass Pill Dock */
+.glass-dock {
+  background-color: var(--color-dock-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--color-dock-border);
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Minimalist comfy scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 160, 170, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 160, 170, 0.35);
+}

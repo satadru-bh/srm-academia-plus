@@ -1,0 +1,354 @@
+:root,
+.theme-light {
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Space Grotesk", sans-serif;
+  --font-mono: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Baseline Minimal Light */
+  --color-canvas: #FAFAFA;
+  --color-bento-card: #FFFFFF;
+  --color-bento-sub: #F4F4F6;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-text-primary: #111111;
+  --color-text-secondary: #71717A;
+  --color-text-tertiary: #A1A1AA;
+  --color-dock-bg: rgba(255, 255, 255, 0.85);
+  --color-dock-border: rgba(0, 0, 0, 0.08);
+  
+  --color-accent: #111111;
+  --color-accent-text: #FFFFFF;
+  --color-accent-sub: rgba(255, 255, 255, 0.18);
+  --color-selection-bg: #111111;
+  --color-selection-text: #FFFFFF;
+
+  --color-emerald: #10B981;
+  --color-amber: #F59E0B;
+  --color-rose: #F43F5E;
+}
+
+/* 1. OLED Black Theme: EVERYTHING is pitch black (#000000) */
+.dark,
+.theme-oled {
+  --color-canvas: #000000;
+  --color-bento-card: #000000;
+  --color-bento-sub: #080808;
+  --color-border: rgba(255, 255, 255, 0.13);
+  --color-border-hover: rgba(255, 255, 255, 0.28);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-text-tertiary: #52525B;
+  --color-dock-bg: rgba(0, 0, 0, 0.94);
+  --color-dock-border: rgba(255, 255, 255, 0.18);
+  
+  --color-accent: #FFFFFF;
+  --color-accent-text: #000000;
+  --color-accent-sub: rgba(0, 0, 0, 0.10);
+  --color-selection-bg: #FFFFFF;
+  --color-selection-text: #000000;
+
+  --color-emerald: #10B981;
+  --color-amber: #F59E0B;
+  --color-rose: #F43F5E;
+}
+
+/* 2. Batman Theme: OLED black but 100% monochrome, zero colour anywhere */
+.theme-batman {
+  --color-canvas: #000000;
+  --color-bento-card: #000000;
+  --color-bento-sub: #0A0A0A;
+  --color-border: rgba(255, 255, 255, 0.14);
+  --color-border-hover: rgba(255, 255, 255, 0.32);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-text-tertiary: #52525B;
+  --color-dock-bg: rgba(0, 0, 0, 0.95);
+  --color-dock-border: rgba(255, 255, 255, 0.20);
+  
+  --color-accent: #FFFFFF;
+  --color-accent-text: #000000;
+  --color-accent-sub: rgba(0, 0, 0, 0.10);
+  --color-selection-bg: #FFFFFF;
+  --color-selection-text: #000000;
+
+  --color-emerald: #FFFFFF;
+  --color-amber: #A1A1AA;
+  --color-rose: #71717A;
+}
+
+/* Batman full-system monochrome filter: strictly no colour anywhere in badges, icons, or text */
+html.theme-batman {
+  filter: grayscale(100%) contrast(105%);
+}
+
+/* Force pitch black surfaces in OLED Black and Batman */
+.theme-oled [class*="dark:bg-[#131316]"],
+.theme-oled [class*="dark:bg-[#1C1C21]"],
+.theme-oled [class*="dark:bg-[#09090B]"],
+.theme-batman [class*="dark:bg-[#131316]"],
+.theme-batman [class*="dark:bg-[#1C1C21]"],
+.theme-batman [class*="dark:bg-[#09090B]"] {
+  background-color: #000000 !important;
+}
+
+.theme-oled [class*="dark:border-white/[0.06]"],
+.theme-batman [class*="dark:border-white/[0.06]"] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 3. Slate Dark Theme: Traditional gray dark mode (dark but not oled) */
+.theme-slate {
+  --color-canvas: #121214;
+  --color-bento-card: #1C1C20;
+  --color-bento-sub: #26262B;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.18);
+  --color-text-primary: #F4F4F5;
+  --color-text-secondary: #A1A1AA;
+  --color-text-tertiary: #71717A;
+  --color-dock-bg: rgba(28, 28, 32, 0.92);
+  --color-dock-border: rgba(255, 255, 255, 0.14);
+  
+  --color-accent: #FFFFFF;
+  --color-accent-text: #121214;
+  --color-accent-sub: rgba(0, 0, 0, 0.10);
+  --color-selection-bg: #3F3F46;
+  --color-selection-text: #FFFFFF;
+
+  --color-emerald: #10B981;
+  --color-amber: #F59E0B;
+  --color-rose: #F43F5E;
+}
+
+/* 4. Barbie: Baby Pink Theme (Light) */
+.theme-barbie {
+  --color-canvas: #FCE7F3;
+  --color-bento-card: #FFF1F7;
+  --color-bento-sub: #FBCFE8;
+  --color-border: rgba(236, 72, 153, 0.28);
+  --color-border-hover: rgba(236, 72, 153, 0.52);
+  --color-text-primary: #4A042A;
+  --color-text-secondary: #9D174D;
+  --color-text-tertiary: #BE185D;
+  --color-dock-bg: rgba(255, 241, 247, 0.94);
+  --color-dock-border: rgba(236, 72, 153, 0.35);
+  
+  --color-accent: #EC4899;
+  --color-accent-text: #FFFFFF;
+  --color-accent-sub: rgba(0, 0, 0, 0.20);
+  --color-selection-bg: #F472B6;
+  --color-selection-text: #FFFFFF;
+
+  --color-emerald: #10B981;
+  --color-amber: #F59E0B;
+  --color-rose: #EC4899;
+}
+
+/* Color all elements in Barbie Theme */
+.theme-barbie .bento-card,
+.theme-barbie .bg-white,
+.theme-barbie .bg-\[\#FFFFFF\],
+.theme-barbie .bg-\[\#ffffff\] {
+  background-color: var(--color-bento-card) !important;
+}
+.theme-barbie .bg-black\/5,
+.theme-barbie .bg-black\/\[0\.04\],
+.theme-barbie .bg-black\/\[0\.05\] {
+  background-color: rgba(236, 72, 153, 0.12) !important;
+}
+.theme-barbie .bg-black\/10 {
+  background-color: rgba(236, 72, 153, 0.22) !important;
+}
+.theme-barbie .border-black\/\[0\.06\],
+.theme-barbie .border-black\/10 {
+  border-color: rgba(236, 72, 153, 0.24) !important;
+}
+.theme-barbie .glass-dock {
+  background-color: var(--color-dock-bg) !important;
+  border-color: var(--color-dock-border) !important;
+}
+.theme-barbie .hover\:bg-black\/5:hover,
+.theme-barbie .hover\:bg-black\/10:hover {
+  background-color: rgba(236, 72, 153, 0.16) !important;
+}
+
+/* 5. Tropicana: Light Orange Theme */
+.theme-tropicana {
+  --color-canvas: #FFEDD5;
+  --color-bento-card: #FFF7ED;
+  --color-bento-sub: #FED7AA;
+  --color-border: rgba(234, 88, 12, 0.28);
+  --color-border-hover: rgba(234, 88, 12, 0.52);
+  --color-text-primary: #431407;
+  --color-text-secondary: #9A3412;
+  --color-text-tertiary: #C2410C;
+  --color-dock-bg: rgba(255, 247, 237, 0.94);
+  --color-dock-border: rgba(234, 88, 12, 0.35);
+  
+  --color-accent: #F97316;
+  --color-accent-text: #FFFFFF;
+  --color-accent-sub: rgba(0, 0, 0, 0.20);
+  --color-selection-bg: #FB923C;
+  --color-selection-text: #FFFFFF;
+
+  --color-emerald: #10B981;
+  --color-amber: #F97316;
+  --color-rose: #F43F5E;
+}
+
+/* Color all elements in Tropicana Theme */
+.theme-tropicana .bento-card,
+.theme-tropicana .bg-white,
+.theme-tropicana .bg-\[\#FFFFFF\],
+.theme-tropicana .bg-\[\#ffffff\] {
+  background-color: var(--color-bento-card) !important;
+}
+.theme-tropicana .bg-black\/5,
+.theme-tropicana .bg-black\/\[0\.04\],
+.theme-tropicana .bg-black\/\[0\.05\] {
+  background-color: rgba(234, 88, 12, 0.12) !important;
+}
+.theme-tropicana .bg-black\/10 {
+  background-color: rgba(234, 88, 12, 0.22) !important;
+}
+.theme-tropicana .border-black\/\[0\.06\],
+.theme-tropicana .border-black\/10 {
+  border-color: rgba(234, 88, 12, 0.24) !important;
+}
+.theme-tropicana .glass-dock {
+  background-color: var(--color-dock-bg) !important;
+  border-color: var(--color-dock-border) !important;
+}
+.theme-tropicana .hover\:bg-black\/5:hover,
+.theme-tropicana .hover\:bg-black\/10:hover {
+  background-color: rgba(234, 88, 12, 0.16) !important;
+}
+
+/* 6. Matcha: Light Green Theme */
+.theme-matcha {
+  --color-canvas: #DCFCE7;
+  --color-bento-card: #F0FDF4;
+  --color-bento-sub: #BBF7D0;
+  --color-border: rgba(22, 163, 74, 0.28);
+  --color-border-hover: rgba(22, 163, 74, 0.52);
+  --color-text-primary: #052E16;
+  --color-text-secondary: #166534;
+  --color-text-tertiary: #15803D;
+  --color-dock-bg: rgba(240, 253, 244, 0.94);
+  --color-dock-border: rgba(22, 163, 74, 0.35);
+  
+  --color-accent: #16A34A;
+  --color-accent-text: #FFFFFF;
+  --color-accent-sub: rgba(0, 0, 0, 0.20);
+  --color-selection-bg: #4ADE80;
+  --color-selection-text: #052E16;
+
+  --color-emerald: #16A34A;
+  --color-amber: #CA8A04;
+  --color-rose: #E11D48;
+}
+
+/* Color all elements in Matcha Theme */
+.theme-matcha .bento-card,
+.theme-matcha .bg-white,
+.theme-matcha .bg-\[\#FFFFFF\],
+.theme-matcha .bg-\[\#ffffff\] {
+  background-color: var(--color-bento-card) !important;
+}
+.theme-matcha .bg-black\/5,
+.theme-matcha .bg-black\/\[0\.04\],
+.theme-matcha .bg-black\/\[0\.05\] {
+  background-color: rgba(22, 163, 74, 0.12) !important;
+}
+.theme-matcha .bg-black\/10 {
+  background-color: rgba(22, 163, 74, 0.22) !important;
+}
+.theme-matcha .border-black\/\[0\.06\],
+.theme-matcha .border-black\/10 {
+  border-color: rgba(22, 163, 74, 0.24) !important;
+}
+.theme-matcha .glass-dock {
+  background-color: var(--color-dock-bg) !important;
+  border-color: var(--color-dock-border) !important;
+}
+.theme-matcha .hover\:bg-black\/5:hover,
+.theme-matcha .hover\:bg-black\/10:hover {
+  background-color: rgba(22, 163, 74, 0.16) !important;
+}
+
+/* 7. Blue Ice: Light Blue Theme */
+.theme-blue-ice {
+  --color-canvas: #E0F2FE;
+  --color-bento-card: #F0F9FF;
+  --color-bento-sub: #BAE6FD;
+  --color-border: rgba(2, 132, 199, 0.28);
+  --color-border-hover: rgba(2, 132, 199, 0.52);
+  --color-text-primary: #082F49;
+  --color-text-secondary: #075985;
+  --color-text-tertiary: #0369A1;
+  --color-dock-bg: rgba(240, 249, 255, 0.94);
+  --color-dock-border: rgba(2, 132, 199, 0.35);
+  
+  --color-accent: #0284C7;
+  --color-accent-text: #FFFFFF;
+  --color-accent-sub: rgba(0, 0, 0, 0.20);
+  --color-selection-bg: #38BDF8;
+  --color-selection-text: #082F49;
+
+  --color-emerald: #0284C7;
+  --color-amber: #F59E0B;
+  --color-rose: #F43F5E;
+}
+
+/* Color all elements in Blue Ice Theme */
+.theme-blue-ice .bento-card,
+.theme-blue-ice .bg-white,
+.theme-blue-ice .bg-\[\#FFFFFF\],
+.theme-blue-ice .bg-\[\#ffffff\] {
+  background-color: var(--color-bento-card) !important;
+}
+.theme-blue-ice .bg-black\/5,
+.theme-blue-ice .bg-black\/\[0\.04\],
+.theme-blue-ice .bg-black\/\[0\.05\] {
+  background-color: rgba(2, 132, 199, 0.12) !important;
+}
+.theme-blue-ice .bg-black\/10 {
+  background-color: rgba(2, 132, 199, 0.22) !important;
+}
+.theme-blue-ice .border-black\/\[0\.06\],
+.theme-blue-ice .border-black\/10 {
+  border-color: rgba(2, 132, 199, 0.24) !important;
+}
+.theme-blue-ice .glass-dock {
+  background-color: var(--color-dock-bg) !important;
+  border-color: var(--color-dock-border) !important;
+}
+.theme-blue-ice .hover\:bg-black\/5:hover,
+.theme-blue-ice .hover\:bg-black\/10:hover {
+  background-color: rgba(2, 132, 199, 0.16) !important;
+}
+
+/* =========================================================================
+   Active & Selected Item Contrast Preservation
+   Guarantees that icons, badges and text in selected items are crisp
+   and never drowned out across any theme.
+   ========================================================================= */
+[data-selected="true"],
+.dock-item-selected {
+  background-color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
+}
+
+[data-selected="true"] .palette-icon-box,
+[data-selected="true"] .palette-badge,
+.dock-item-selected .palette-icon-box,
+.dock-item-selected .palette-badge {
+  background-color: var(--color-accent-sub) !important;
+  color: var(--color-accent-text) !important;
+}
+
+[data-selected="true"] .palette-icon-box svg,
+.dock-item-selected .palette-icon-box svg {
+  color: var(--color-accent-text) !important;
+  stroke: currentColor !important;
+}
