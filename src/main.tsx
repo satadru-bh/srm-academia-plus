@@ -6,9 +6,14 @@ import './styles/globals.css';
 // Register Service Worker for PWA installability
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((err) => {
-      console.warn('ServiceWorker registration failed: ', err);
-    });
+    navigator.serviceWorker
+      .register('/sw.js?v=20261123c')
+      .then((reg) => {
+        reg.update();
+      })
+      .catch((err) => {
+        console.warn('ServiceWorker registration failed: ', err);
+      });
   });
 }
 

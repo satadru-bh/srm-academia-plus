@@ -51,13 +51,14 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(fileContent).toContain('courses taught:');
   });
 
-  it('PWA manifest exists and is configured for standalone installation', () => {
+  it('PWA manifest exists and is configured for standalone installation with versioned icons', () => {
     const manifestPath = path.resolve(__dirname, '../../../../public/manifest.json');
     expect(fs.existsSync(manifestPath)).toBe(true);
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
     expect(manifest.display).toBe('standalone');
     expect(manifest.name).toBe('academia plus');
     expect(manifest.icons.length).toBeGreaterThanOrEqual(3);
+    expect(manifest.icons[0].src).toContain('?v=');
   });
 
   it('New logo asset exists and is rendered in AppLayout and SignInBentoView', () => {
@@ -75,5 +76,12 @@ describe('Header Cleanliness and Design Verification', () => {
     const appTsx = fs.readFileSync(path.resolve(__dirname, '../../../App.tsx'), 'utf-8');
     expect(appTsx).toContain('mode="wait"');
     expect(appTsx).not.toContain('mode="popLayout"');
+  });
+
+  it('index.html uses versioned cache-busting on favicon and manifest links', () => {
+    const html = fs.readFileSync(path.resolve(__dirname, '../../../../index.html'), 'utf-8');
+    expect(html).toContain('href="/favicon.svg?v=');
+    expect(html).toContain('href="/manifest.json?v=');
+    expect(html).toContain('href="/icon-192.png?v=');
   });
 });
