@@ -2,7 +2,7 @@ import { describe, it, expect, afterEach } from 'vitest';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { FacultyFinderBentoView } from '../FacultyFinderBentoView';
-import { SessionProvider } from '../../../context/SessionContext';
+import { SessionProvider, useSession } from '../../../context/SessionContext';
 import { FACULTY_DIRECTORY } from '../../../data/facultyDirectory';
 import { defaultCache } from '../../../api/cache';
 import { REAL_STUDENT_DATA } from '../../../data/studentData';
@@ -74,5 +74,28 @@ describe('FacultyFinderBentoView', () => {
       expect(faculty.name).toBeTruthy();
       expect(faculty.designation).toBeTruthy();
     });
+  });
+
+  it('supports initial search query from session context when faculty is opened from another view', () => {
+    defaultCache.set('user_snapshot', REAL_STUDENT_DATA);
+
+    const TestConsumer = () => {
+      const { openFaculty } = useSession();
+      React.useEffect(() => {
+        openFaculty('Dr. Thenmozhi S');
+      }, [openFaculty]);
+      return React.createElement(FacultyFinderBentoView);
+    };
+
+    const html = renderToString(
+      React.createElement(
+        SessionProvider,
+        null,
+        React.createElement(TestConsumer)
+      )
+    );
+
+    const lower = html.toLowerCase();
+    expect(lower).toContain('dr. thenmozhi s');
   });
 });

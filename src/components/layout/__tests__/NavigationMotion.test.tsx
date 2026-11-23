@@ -44,8 +44,7 @@ describe('Navigation Motion & Tactile Interactions', () => {
       expect(appLayoutContent).toContain('setIsCommandPaletteOpen(true)');
     });
 
-    it('renders clean status indicator dot for campus status badge', () => {
-      expect(appLayoutContent).toContain('inline-flex rounded-full h-2 w-2');
+    it('renders clean status indicator badge for campus status', () => {
       expect(appLayoutContent).toContain('holiday');
     });
   });

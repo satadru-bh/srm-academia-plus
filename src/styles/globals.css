@@ -21,7 +21,7 @@
   }
 
   * {
-    border-color: var(--color-border);
+    border-color: transparent;
   }
 
   ::selection {
@@ -49,48 +49,86 @@ h4,
   font-feature-settings: "tnum";
 }
 
-/* Floaty Bento Card Styles */
+/* Floaty Bento Card Styles - Pure clean surfaces without wireframe outlines */
 .bento-card {
   background-color: var(--color-bento-card);
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: 24px;
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
   transform: translateZ(0);
   backface-visibility: hidden;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .bento-card {
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
   .bento-card:hover {
-    border-color: var(--color-border-hover);
     transform: translateY(-2px);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
   }
+}
+
+/* Dark / OLED / Batman / Slate themes: Exquisite top specular highlight instead of wireframe outline */
+.dark .bento-card,
+.theme-oled .bento-card,
+.theme-batman .bento-card,
+.theme-slate .bento-card {
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.09),
+              0 14px 34px -8px rgba(0, 0, 0, 0.85);
+}
+
+.dark .bento-card:hover,
+.theme-oled .bento-card:hover,
+.theme-batman .bento-card:hover,
+.theme-slate .bento-card:hover {
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+              0 20px 42px -10px rgba(0, 0, 0, 0.95);
 }
 
 /* Theme-specific bento-card shadows for clean, modern depth */
 .theme-barbie .bento-card {
-  box-shadow: 0 10px 28px -6px rgba(236, 72, 153, 0.18), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid transparent;
+  box-shadow: 0 10px 28px -6px rgba(236, 72, 153, 0.16), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .theme-barbie .bento-card:hover {
-  box-shadow: 0 16px 36px -8px rgba(236, 72, 153, 0.28), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
+  box-shadow: 0 16px 36px -8px rgba(236, 72, 153, 0.26), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
 }
 
 :root:not(.dark) .bento-card,
 .theme-light .bento-card {
+  border: 1px solid transparent;
   box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 :root:not(.dark) .bento-card:hover,
 .theme-light .bento-card:hover {
+  border: 1px solid transparent;
   box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+}
+
+/* Timetable period cards - crisp edges without wireframe borders */
+.timetable-period-card {
+  border: 1px solid transparent !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark .timetable-period-card,
+.theme-oled .timetable-period-card,
+.theme-batman .timetable-period-card,
+.theme-slate .timetable-period-card {
+  border: 1px solid transparent !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.dark .timetable-period-card:hover,
+.theme-oled .timetable-period-card:hover,
+.theme-batman .timetable-period-card:hover,
+.theme-slate .timetable-period-card:hover {
+  border: 1px solid transparent !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), 0 4px 10px rgba(0, 0, 0, 0.65);
 }
 
 /* Ambient glow backlights for critical bento states */
@@ -371,4 +409,19 @@ html:not(:active-view-transition) .glass-dock {
   border: 1.5px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
   cursor: pointer;
+}
+
+/* High-contrast semantic progress bar helpers */
+.bg-accent {
+  background-color: var(--color-accent, #111111);
+}
+
+/* Batman theme progress bar: pure white fill over subtle translucent track for unmistakable clarity */
+.theme-batman [role="progressbar"] > div,
+.theme-batman .progress-bar-fill {
+  background-color: #FFFFFF !important;
+}
+
+.theme-batman [role="progressbar"] {
+  background-color: rgba(255, 255, 255, 0.15) !important;
 }

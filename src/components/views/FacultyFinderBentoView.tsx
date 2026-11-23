@@ -23,11 +23,19 @@ import {
 type FacultyFilter = 'all' | 'my-faculty' | 'advisors' | 'computing' | 'mathematics' | 'engineering' | 'sciences';
 
 export const FacultyFinderBentoView: React.FC = () => {
-  const { user } = useSession();
-  const [searchQuery, setSearchQuery] = useState('');
+  const { user, facultySearchQuery, setFacultySearchQuery } = useSession();
+  const [searchQuery, setSearchQuery] = useState(facultySearchQuery || '');
   const [activeFilter, setActiveFilter] = useState<FacultyFilter>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState<number>(60);
+
+  React.useEffect(() => {
+    if (facultySearchQuery) {
+      setSearchQuery(facultySearchQuery);
+      setActiveFilter('all');
+      setVisibleCount(60);
+    }
+  }, [facultySearchQuery]);
 
   // Dynamic faculty directory matching currently logged-in student's real enrolled courses with zero false-positives
   const sortedFaculty = useMemo(() => {
@@ -54,6 +62,9 @@ export const FacultyFinderBentoView: React.FC = () => {
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+    if (!query && facultySearchQuery) {
+      setFacultySearchQuery(null);
+    }
     setVisibleCount(60);
   };
 

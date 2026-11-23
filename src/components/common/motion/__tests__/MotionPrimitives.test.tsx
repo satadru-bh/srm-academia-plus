@@ -185,7 +185,7 @@ describe('MotionPrimitives Suite', () => {
         React.createElement(PerimeterWarningBorder, { borderRadius: 24, className: 'text-rose-500' })
       );
       expect(html).toContain('animate-perimeter-spin');
-      expect(html).toContain('stroke-dasharray="0.1 8"');
+      expect(html).toContain('stroke-dasharray="6 6"');
       expect(html).toContain('rx="24"');
       expect(html).toContain('text-rose-500');
     });

@@ -8,8 +8,8 @@
   --color-canvas: #FAFAFA;
   --color-bento-card: #FFFFFF;
   --color-bento-sub: #F4F4F6;
-  --color-border: rgba(0, 0, 0, 0.06);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #111111;
   --color-text-secondary: #71717A;
   --color-text-tertiary: #A1A1AA;
@@ -32,19 +32,19 @@
   --spotlight-color: rgba(0, 0, 0, 0.04);
 }
 
-/* 1. OLED Black Theme: EVERYTHING is pitch black (#000000) */
+/* 1. OLED Black Theme: Deep pure black canvas with elevated charcoal slabs */
 .dark,
 .theme-oled {
   --color-canvas: #000000;
-  --color-bento-card: #000000;
-  --color-bento-sub: #080808;
-  --color-border: rgba(255, 255, 255, 0.13);
-  --color-border-hover: rgba(255, 255, 255, 0.28);
+  --color-bento-card: #0F0F12;
+  --color-bento-sub: #16161B;
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #A1A1AA;
   --color-text-tertiary: #52525B;
-  --color-dock-bg: rgba(0, 0, 0, 0.94);
-  --color-dock-border: rgba(255, 255, 255, 0.18);
+  --color-dock-bg: rgba(15, 15, 18, 0.92);
+  --color-dock-border: rgba(255, 255, 255, 0.08);
   
   --color-accent: #FFFFFF;
   --color-accent-text: #000000;
@@ -59,21 +59,21 @@
   /* Motion & Spotlight Tokens */
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: rgba(255, 255, 255, 0.08);
+  --spotlight-color: rgba(255, 255, 255, 0.05);
 }
 
-/* 2. Batman Theme: OLED black but 100% monochrome, zero colour anywhere */
+/* 2. Batman Theme: 100% monochrome, zero wireframes, pure tonal depth */
 .theme-batman {
   --color-canvas: #000000;
-  --color-bento-card: #000000;
-  --color-bento-sub: #0A0A0A;
-  --color-border: rgba(255, 255, 255, 0.14);
-  --color-border-hover: rgba(255, 255, 255, 0.32);
+  --color-bento-card: #0E0E11;
+  --color-bento-sub: #151518;
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #A1A1AA;
   --color-text-tertiary: #52525B;
-  --color-dock-bg: rgba(0, 0, 0, 0.95);
-  --color-dock-border: rgba(255, 255, 255, 0.20);
+  --color-dock-bg: rgba(14, 14, 17, 0.94);
+  --color-dock-border: rgba(255, 255, 255, 0.08);
   
   --color-accent: #FFFFFF;
   --color-accent-text: #000000;
@@ -88,7 +88,7 @@
   /* Motion & Spotlight Tokens */
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: rgba(255, 255, 255, 0.08);
+  --spotlight-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Batman full-system monochrome filter: strictly no colour anywhere in badges, icons, or text */
@@ -96,33 +96,18 @@ html.theme-batman {
   filter: grayscale(100%) contrast(105%);
 }
 
-/* Force pitch black surfaces in OLED Black and Batman */
-.theme-oled [class*="dark:bg-[#131316]"],
-.theme-oled [class*="dark:bg-[#1C1C21]"],
-.theme-oled [class*="dark:bg-[#09090B]"],
-.theme-batman [class*="dark:bg-[#131316]"],
-.theme-batman [class*="dark:bg-[#1C1C21]"],
-.theme-batman [class*="dark:bg-[#09090B]"] {
-  background-color: #000000 !important;
-}
-
-.theme-oled [class*="dark:border-white/[0.06]"],
-.theme-batman [class*="dark:border-white/[0.06]"] {
-  border-color: rgba(255, 255, 255, 0.12) !important;
-}
-
 /* 3. Slate Dark Theme: Traditional gray dark mode (dark but not oled) */
 .theme-slate {
   --color-canvas: #121214;
   --color-bento-card: #1C1C20;
   --color-bento-sub: #26262B;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.18);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #F4F4F5;
   --color-text-secondary: #A1A1AA;
   --color-text-tertiary: #71717A;
   --color-dock-bg: rgba(28, 28, 32, 0.92);
-  --color-dock-border: rgba(255, 255, 255, 0.14);
+  --color-dock-border: rgba(255, 255, 255, 0.08);
   
   --color-accent: #FFFFFF;
   --color-accent-text: #121214;
@@ -145,8 +130,8 @@ html.theme-batman {
   --color-canvas: #FCE7F3;
   --color-bento-card: #FFF1F7;
   --color-bento-sub: #FBCFE8;
-  --color-border: rgba(0, 0, 0, 0.05);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #4A042A;
   --color-text-secondary: #9D174D;
   --color-text-tertiary: #BE185D;
@@ -193,8 +178,8 @@ html.theme-batman {
   --color-canvas: #FFEDD5;
   --color-bento-card: #FFF7ED;
   --color-bento-sub: #FED7AA;
-  --color-border: rgba(0, 0, 0, 0.05);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #431407;
   --color-text-secondary: #9A3412;
   --color-text-tertiary: #C2410C;
@@ -241,8 +226,8 @@ html.theme-batman {
   --color-canvas: #DCFCE7;
   --color-bento-card: #F0FDF4;
   --color-bento-sub: #BBF7D0;
-  --color-border: rgba(0, 0, 0, 0.05);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #052E16;
   --color-text-secondary: #166534;
   --color-text-tertiary: #15803D;
@@ -289,8 +274,8 @@ html.theme-batman {
   --color-canvas: #E0F2FE;
   --color-bento-card: #F0F9FF;
   --color-bento-sub: #BAE6FD;
-  --color-border: rgba(0, 0, 0, 0.05);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #082F49;
   --color-text-secondary: #075985;
   --color-text-tertiary: #0369A1;
@@ -337,8 +322,8 @@ html.theme-batman {
   --color-canvas: #FEF9C3;
   --color-bento-card: #FEFCE8;
   --color-bento-sub: #FEF08A;
-  --color-border: rgba(0, 0, 0, 0.05);
-  --color-border-hover: rgba(0, 0, 0, 0.12);
+  --color-border: transparent;
+  --color-border-hover: transparent;
   --color-text-primary: #422006;
   --color-text-secondary: #854D0E;
   --color-text-tertiary: #A16207;

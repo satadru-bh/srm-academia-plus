@@ -87,6 +87,9 @@ interface SessionContextType {
   inspectedNotesSubjectId: string | null;
   setInspectedNotesSubjectId: (id: string | null) => void;
   openNotesSubject: (subjectIdOrCode: string) => void;
+  facultySearchQuery: string | null;
+  setFacultySearchQuery: (query: string | null) => void;
+  openFaculty: (facultyName: string) => void;
   focusedCourseCode: string | null;
   setFocusedCourseCode: (code: string | null) => void;
   openCourseAttendance: (courseCode: string) => void;
@@ -196,6 +199,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   });
   const [error, setError] = useState<string | null>(null);
   const [inspectedNotesSubjectId, setInspectedNotesSubjectId] = useState<string | null>(null);
+  const [facultySearchQuery, setFacultySearchQuery] = useState<string | null>(null);
   const [focusedCourseCode, setFocusedCourseCode] = useState<string | null>(null);
 
   const [attendanceTargetPercent, setAttendanceTargetPercentState] = useState<number>(() => {
@@ -237,6 +241,13 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const openCourseMarks = useCallback((courseCode: string) => {
     setActiveTabState('marks');
     setFocusedCourseCode(courseCode);
+  }, []);
+
+  const openFaculty = useCallback((facultyName: string) => {
+    if (!facultyName) return;
+    const cleanName = facultyName.replace(/\s*\((theory|lab|batch\s*\d+)\)\s*/gi, '').trim();
+    setFacultySearchQuery(cleanName);
+    setActiveTabState('faculty');
   }, []);
 
   // Dynamically resolve today's date & day order / holiday status
@@ -394,6 +405,9 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         inspectedNotesSubjectId,
         setInspectedNotesSubjectId,
         openNotesSubject,
+        facultySearchQuery,
+        setFacultySearchQuery,
+        openFaculty,
         focusedCourseCode,
         setFocusedCourseCode,
         openCourseAttendance,

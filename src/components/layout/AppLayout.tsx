@@ -48,22 +48,14 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           <span className="font-bold tracking-tight text-sm lowercase text-[#111111] dark:text-[#FAFAFA] whitespace-nowrap">
             academia plus
           </span>
-          <span className="hidden sm:inline-flex items-center space-x-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.06] text-[#71717A] dark:text-[#A1A1AA] lowercase">
+          <span className="hidden sm:inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] lowercase">
             {isSyncing ? (
               <>
-                <span className="inline-flex rounded-full h-2 w-2 bg-blue-500 shrink-0" />
                 <RefreshCw className="w-2.5 h-2.5 animate-spin text-[#111111] dark:text-[#FAFAFA]" />
                 <span>syncing...</span>
               </>
             ) : (
-              <>
-                <span
-                  className={`inline-flex rounded-full h-2 w-2 shrink-0 ${
-                    isHoliday ? 'bg-amber-500' : 'bg-emerald-500'
-                  }`}
-                />
-                <span>{isHoliday ? 'holiday' : `day order ${currentDayOrder}`}</span>
-              </>
+              <span>{isHoliday ? 'holiday' : `day order ${currentDayOrder}`}</span>
             )}
           </span>
         </div>

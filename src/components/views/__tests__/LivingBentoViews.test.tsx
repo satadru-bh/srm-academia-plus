@@ -75,13 +75,13 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       expect(html).toContain('filter courses...');
     });
 
-    it('highlights courses below attendance target with rotating dotted perimeter warning and badge', () => {
+    it('highlights courses below attendance target with rotating dotted perimeter warning and faint red fill', () => {
       mockAttendanceTarget = 80;
       const html = renderToString(React.createElement(AttendanceBentoView));
       mockAttendanceTarget = 75; // reset
 
-      expect(html).toContain('below target');
       expect(html).toContain('animate-perimeter-spin');
+      expect(html).toContain('bg-rose-500/');
     });
   });
 
@@ -93,8 +93,8 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       expect(html).toContain('bento-card');
       expect(html).toContain('card-spotlight');
 
-      // 50% reduced rounding on period cards inside timetable
-      expect(html).toContain('rounded-md');
+      // Further reduced rounding on period cards inside timetable
+      expect(html).toContain('rounded-[3px]');
       expect(html).toContain('timetable-period-card');
 
       // Tactile view mode buttons
@@ -154,8 +154,8 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       const html = renderToString(React.createElement(MarksBentoView));
       mockStudentData = { ...mockStudentData, marks: originalMarks }; // reset
 
-      expect(html).toContain('critical &lt;50%');
       expect(html).toContain('animate-perimeter-spin');
+      expect(html).toContain('bg-rose-500/');
     });
   });
 

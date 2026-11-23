@@ -10,7 +10,7 @@ import {
 } from '../common/motion';
 
 export const ProfileBentoView: React.FC = () => {
-  const { user, logout, refreshData, isSyncing, isDarkMode, toggleDarkMode } = useSession();
+  const { user, logout, refreshData, isSyncing, isDarkMode, toggleDarkMode, openFaculty } = useSession();
   const [customAvatar, setCustomAvatar] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('srm_student_custom_avatar');
@@ -289,9 +289,14 @@ export const ProfileBentoView: React.FC = () => {
 
               <div className="mt-5 p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <div className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase">
+                  <button
+                    type="button"
+                    onClick={() => openFaculty(user.profile.facultyAdvisor!.name)}
+                    className="font-bold text-sm text-[#111111] dark:text-[#FAFAFA] lowercase text-left hover:underline cursor-pointer"
+                    title="view faculty in finder"
+                  >
                     {user.profile.facultyAdvisor.name.toLowerCase()}
-                  </div>
+                  </button>
                   <div className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
                     faculty advisor • department of cse, tech park
                   </div>

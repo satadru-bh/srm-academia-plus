@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export const OverviewView: React.FC = () => {
-  const { user, timetable, currentDayOrder, isHoliday, setActiveTab } = useSession();
+  const { user, timetable, currentDayOrder, isHoliday, setActiveTab, openFaculty } = useSession();
 
   if (!user) return null;
 
@@ -237,7 +237,19 @@ export const OverviewView: React.FC = () => {
                     <div className="text-[11px] text-[#6E6E73] dark:text-[#98989D] flex items-center space-x-2 mt-0.5">
                       {slot.room && <span>{slot.room}</span>}
                       {slot.room && slot.faculty && <span>•</span>}
-                      {slot.faculty && <span className="truncate">{slot.faculty}</span>}
+                      {slot.faculty && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openFaculty(slot.faculty!);
+                          }}
+                          className="truncate hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
+                          title="view faculty in finder"
+                        >
+                          {slot.faculty}
+                        </button>
+                      )}
                     </div>
                   </div>
                   {idx === 0 && (

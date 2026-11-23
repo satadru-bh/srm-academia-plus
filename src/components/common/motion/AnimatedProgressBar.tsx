@@ -11,7 +11,7 @@ export interface AnimatedProgressBarProps {
 export const AnimatedProgressBar: React.FC<AnimatedProgressBarProps> = ({
   value,
   max = 100,
-  colorClass = 'bg-accent',
+  colorClass = 'bg-[#111111] dark:bg-[#FAFAFA]',
   className = '',
 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -25,7 +25,7 @@ export const AnimatedProgressBar: React.FC<AnimatedProgressBarProps> = ({
       aria-valuenow={clampedValue}
       aria-valuemin={0}
       aria-valuemax={maxVal}
-      className={`w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/10 ${className}`.trim()}
+      className={`w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10 dark:bg-zinc-800 ${className}`.trim()}
     >
       <motion.div
         className={`h-full rounded-full ${colorClass}`}

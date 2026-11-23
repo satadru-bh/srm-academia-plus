@@ -24,7 +24,8 @@ export default {
           amber: '#F59E0B',
           rose: '#F43F5E',
           indigo: '#6366F1'
-        }
+        },
+        accent: 'var(--color-accent)'
       },
       borderRadius: {
         'bento': '24px',

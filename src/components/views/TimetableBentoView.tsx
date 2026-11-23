@@ -12,7 +12,7 @@ import {
 } from '../common/motion';
 
 export const TimetableBentoView: React.FC = () => {
-  const { user, timetable, currentDayOrder } = useSession();
+  const { user, timetable, currentDayOrder, openFaculty } = useSession();
   const [viewMode, setViewMode] = useState<'grid' | 'cards'>('grid');
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder > 0 ? currentDayOrder : 1);
   const timetableRef = useRef<HTMLDivElement>(null);
@@ -323,12 +323,12 @@ export const TimetableBentoView: React.FC = () => {
                             {hasClass ? (
                               <InteractiveBentoCard
                                 enableTilt={false}
-                                className={`p-2 rounded-md timetable-period-card border flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${isOngoing
+                                className={`p-2 rounded-[3px] timetable-period-card flex flex-col justify-between h-[92px] max-h-[92px] overflow-hidden transition-all select-none ${isOngoing
                                   ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20'
                                   : ''
                                   } ${isLab
-                                    ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/20 dark:border-emerald-500/25 hover:border-emerald-500/40'
-                                    : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/15 dark:border-blue-500/20 hover:border-blue-500/35'
+                                    ? 'bg-emerald-500/[0.05] dark:bg-emerald-500/[0.10]'
+                                    : 'bg-blue-500/[0.04] dark:bg-blue-500/[0.08]'
                                   }`}
                               >
                                 {/* Top Row: Course Code, Live Indicator & Clean Colored T/L Tag */}
@@ -372,7 +372,7 @@ export const TimetableBentoView: React.FC = () => {
                                 </div>
                               </InteractiveBentoCard>
                             ) : (
-                              <div className="h-[92px] max-h-[92px] w-full rounded-md border border-dashed border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
+                              <div className="h-[92px] max-h-[92px] w-full rounded-[3px] bg-black/[0.02] dark:bg-white/[0.02] flex items-center justify-center text-[10px] text-[#71717A] dark:text-[#52525B]">
                                 free
                               </div>
                             )}
@@ -396,9 +396,9 @@ export const TimetableBentoView: React.FC = () => {
               return (
                 <StaggerItem
                   key={day}
-                  className={`p-4 rounded-2xl timetable-day-card border transition-all ${isCurrentDay
-                    ? 'bg-emerald-500/[0.03] dark:bg-emerald-500/[0.05] border-emerald-500/30 dark:border-emerald-500/40'
-                    : 'bg-[#FFFFFF] dark:bg-[#131316] border-black/[0.06] dark:border-white/[0.06]'
+                  className={`p-4 rounded-2xl timetable-day-card transition-all ${isCurrentDay
+                    ? 'bg-emerald-500/[0.03] dark:bg-emerald-500/[0.05]'
+                    : 'bg-[#FFFFFF] dark:bg-[#131316]'
                     }`}
                 >
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
@@ -433,10 +433,10 @@ export const TimetableBentoView: React.FC = () => {
                           <InteractiveBentoCard
                             key={group.startPeriod.id}
                             enableTilt={false}
-                            className={`p-3 rounded-md timetable-period-card border flex flex-col gap-1.5 transition-all ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                            className={`p-3 rounded-[3px] timetable-period-card flex flex-col gap-1.5 transition-all ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
                               } ${isLab
-                                ? 'bg-emerald-500/[0.04] dark:bg-emerald-500/[0.08] border-emerald-500/20 dark:border-emerald-500/25'
-                                : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.06] border-blue-500/15 dark:border-blue-500/20'
+                                ? 'bg-emerald-500/[0.05] dark:bg-emerald-500/[0.10]'
+                                : 'bg-blue-500/[0.04] dark:bg-blue-500/[0.08]'
                               }`}
                           >
                             <div className="flex items-center justify-between gap-2 leading-none">
@@ -475,7 +475,21 @@ export const TimetableBentoView: React.FC = () => {
 
                             <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] pt-1 border-t border-black/[0.04] dark:border-white/[0.04]">
                               <span>{slot.room || 'tp 706'}</span>
-                              <span className="truncate max-w-[60%]">{slot.faculty || ''}</span>
+                              {slot.faculty ? (
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    openFaculty(slot.faculty);
+                                  }}
+                                  className="truncate max-w-[60%] hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-right"
+                                  title="view faculty in finder"
+                                >
+                                  {slot.faculty}
+                                </button>
+                              ) : (
+                                <span className="truncate max-w-[60%]"></span>
+                              )}
                             </div>
                           </InteractiveBentoCard>
                         );
@@ -524,7 +538,7 @@ export const TimetableBentoView: React.FC = () => {
 
           {/* Cards for selected day wrapped in StaggerContainer & StaggerItem */}
           {getGroupedSlotsForDay(selectedDayOrder).filter((g) => g.hasClass).length === 0 ? (
-            <InteractiveBentoCard className="p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase rounded-lg timetable-day-card">
+            <InteractiveBentoCard className="p-12 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase rounded-[4px] timetable-day-card">
               no lectures scheduled for day order {selectedDayOrder}
             </InteractiveBentoCard>
           ) : (
@@ -541,10 +555,10 @@ export const TimetableBentoView: React.FC = () => {
                   return (
                     <StaggerItem key={index}>
                       <InteractiveBentoCard
-                        className={`p-6 flex flex-col justify-between border rounded-lg timetable-period-card ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
+                        className={`p-6 flex flex-col justify-between rounded-[4px] timetable-period-card ${isOngoing ? 'ring-2 ring-emerald-500/50 shadow-sm shadow-emerald-500/20' : ''
                           } ${isLab
-                            ? 'border-emerald-500/20 dark:border-emerald-500/25 bg-emerald-500/[0.02] dark:bg-emerald-500/[0.04]'
-                            : 'border-blue-500/15 dark:border-blue-500/20 bg-blue-500/[0.02] dark:bg-blue-500/[0.03]'
+                            ? 'bg-emerald-500/[0.03] dark:bg-emerald-500/[0.06]'
+                            : 'bg-blue-500/[0.03] dark:bg-blue-500/[0.05]'
                           }`}
                       >
                         <div>
@@ -599,9 +613,23 @@ export const TimetableBentoView: React.FC = () => {
                               classroom pending
                             </span>
                           )}
-                          <span className="text-[11px] text-emerald-400 lowercase">
-                            scheduled
-                          </span>
+                          {slot.faculty ? (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openFaculty(slot.faculty);
+                              }}
+                              className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:underline transition-colors cursor-pointer"
+                              title="view faculty in finder"
+                            >
+                              {slot.faculty}
+                            </button>
+                          ) : (
+                            <span className="text-[11px] text-emerald-400 lowercase">
+                              scheduled
+                            </span>
+                          )}
                         </div>
                       </InteractiveBentoCard>
                     </StaggerItem>

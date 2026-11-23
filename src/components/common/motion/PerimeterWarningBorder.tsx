@@ -9,7 +9,7 @@ export interface PerimeterWarningBorderProps {
 export const PerimeterWarningBorder: React.FC<PerimeterWarningBorderProps> = ({
   className = 'text-rose-500/85 dark:text-rose-400/90',
   borderRadius = 24,
-  strokeWidth = 1.75,
+  strokeWidth = 2.25,
 }) => {
   return (
     <div
@@ -31,7 +31,7 @@ export const PerimeterWarningBorder: React.FC<PerimeterWarningBorderProps> = ({
           fill="none"
           stroke="currentColor"
           strokeWidth={strokeWidth}
-          strokeDasharray="0.1 8"
+          strokeDasharray="6 6"
           strokeLinecap="round"
           className="animate-perimeter-spin"
         />

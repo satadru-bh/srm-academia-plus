@@ -5,10 +5,10 @@ import { calculateAttendanceMargin } from '../../api/margin';
 import { formatCourseTitle } from '../../api/grades';
 import { AttendancePredictorModal } from '../common/AttendancePredictorModal';
 import { AttendanceTargetModal } from '../modals/AttendanceTargetModal';
-import { 
-  Building, 
-  User, 
-  Search, 
+import {
+  Building,
+  User,
+  Search,
   RotateCcw
 } from 'lucide-react';
 import {
@@ -21,18 +21,19 @@ import {
 } from '../common/motion';
 
 export const AttendanceBentoView: React.FC = () => {
-  const { 
-    user, 
-    timetable, 
-    focusedCourseCode, 
+  const {
+    user,
+    timetable,
+    focusedCourseCode,
     setFocusedCourseCode,
     attendanceTargetPercent,
-    setAttendanceTargetPercent
+    setAttendanceTargetPercent,
+    openFaculty
   } = useSession();
   const [searchTerm, setSearchTerm] = useState('');
   const [isPredictorOpen, setIsPredictorOpen] = useState(false);
   const [isTargetModalOpen, setIsTargetModalOpen] = useState(false);
-  
+
   // Applied prediction forecast state
   const [appliedPredictions, setAppliedPredictions] = useState<Record<string, { percent: number; marginLabel: string; status: 'safe' | 'borderline' | 'danger' }> | null>(null);
 
@@ -118,11 +119,10 @@ export const AttendanceBentoView: React.FC = () => {
           {/* Custom Attendance Target Setter Button */}
           <SpringPress
             onClick={() => setIsTargetModalOpen(true)}
-            className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-2xl text-xs font-semibold lowercase transition-all shadow-sm ${
-              attendanceTargetPercent !== 75
+            className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-2xl text-xs font-semibold lowercase transition-all shadow-sm ${attendanceTargetPercent !== 75
                 ? 'bg-black/10 dark:bg-white/10 text-[#111111] dark:text-[#FAFAFA] border border-black/15 dark:border-white/15'
                 : 'bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06]'
-            }`}
+              }`}
             title="customize attendance target percentage"
           >
             <span>target: {attendanceTargetPercent}%</span>
@@ -161,7 +161,7 @@ export const AttendanceBentoView: React.FC = () => {
         {filteredCourses.map((course) => {
           const applied = appliedPredictions ? appliedPredictions[course.courseCode] : null;
           const displayPercent = applied ? applied.percent : course.attendancePercent;
-          const marginInfo = applied 
+          const marginInfo = applied
             ? { ...calculateAttendanceMargin(course.hoursConducted, course.hoursPresent, attendanceTargetPercent), label: applied.marginLabel, status: applied.status }
             : calculateAttendanceMargin(course.hoursConducted, course.hoursPresent, attendanceTargetPercent);
 
@@ -184,19 +184,17 @@ export const AttendanceBentoView: React.FC = () => {
               <InteractiveBentoCard
                 layout
                 id={`attendance-card-${course.courseCode}`}
-                className={`p-6 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300 ${
-                  focusedCourseCode === course.courseCode
+                className={`p-6 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300 ${focusedCourseCode === course.courseCode
                     ? 'ring-2 ring-black dark:ring-white ring-offset-2 dark:ring-offset-black'
                     : ''
-                } ${
-                  isBelowThreshold
+                  } ${isBelowThreshold
                     ? 'border-rose-500/35 glow-rose'
-                    : isDanger 
-                    ? 'border-rose-500/20 glow-rose' 
-                    : isBorderline 
-                    ? 'border-amber-500/20 glow-amber' 
-                    : ''
-                }`}
+                    : isDanger
+                      ? 'border-rose-500/20 glow-rose'
+                      : isBorderline
+                        ? 'border-amber-500/20 glow-amber'
+                        : ''
+                  }`}
               >
                 {isBelowThreshold && (
                   <>
@@ -214,24 +212,18 @@ export const AttendanceBentoView: React.FC = () => {
                       <span className="text-xs text-[#71717A] dark:text-[#A1A1AA] uppercase">
                         slot {course.slot}
                       </span>
-                      {isBelowThreshold && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold border border-rose-500/25 lowercase shrink-0">
-                          below target
-                        </span>
-                      )}
                     </div>
 
                     {/* Margin Guidance Large Number */}
                     <div className="text-right">
                       <div className="flex items-baseline justify-end space-x-1">
                         <span
-                          className={`text-2xl sm:text-3xl font-black tracking-tight tabular-nums ${
-                            isDanger
+                          className={`text-2xl sm:text-3xl font-black tracking-tight tabular-nums ${isDanger
                               ? 'text-rose-500 dark:text-rose-400'
                               : isBorderline
-                              ? 'text-amber-500 dark:text-amber-400'
-                              : 'text-emerald-500 dark:text-emerald-400'
-                          }`}
+                                ? 'text-amber-500 dark:text-amber-400'
+                                : 'text-emerald-500 dark:text-emerald-400'
+                            }`}
                         >
                           {isDanger ? (
                             <AnimatedNumber value={marginInfo.required} />
@@ -259,10 +251,18 @@ export const AttendanceBentoView: React.FC = () => {
                   {/* Faculty & Room with consistent height */}
                   <div className="mt-2 min-h-[1.5rem] text-xs text-[#71717A] dark:text-[#A1A1AA] flex flex-wrap items-center gap-x-3 gap-y-1 font-medium">
                     {course.facultyName && (
-                      <span className="flex items-center space-x-1">
-                        <User className="w-3 h-3" />
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openFaculty(course.facultyName!);
+                        }}
+                        className="flex items-center space-x-1 hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:underline transition-colors cursor-pointer text-left group"
+                        title="view faculty in finder"
+                      >
+                        <User className="w-3 h-3 group-hover:text-[#111111] dark:group-hover:text-[#FAFAFA]" />
                         <span className="truncate">{course.facultyName}</span>
-                      </span>
+                      </button>
                     )}
                     {course.roomNo && (
                       <span className="flex items-center space-x-1">
@@ -298,17 +298,17 @@ export const AttendanceBentoView: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Single Subtle Clean Hairline Progress Bar */}
-                  <div className="w-full h-1.5 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden relative">
+                  {/* Single Subtle Clean Hairline Progress Bar with Strong Track Contrast */}
+                  <div className="w-full h-1.5 bg-black/10 dark:bg-white/10 dark:bg-zinc-800 rounded-full overflow-hidden relative">
                     <motion.div
-                      className={`h-full rounded-full ${
-                        isDanger
-                          ? 'bg-gradient-to-r from-rose-500 to-rose-400'
+                      className={`h-full rounded-full ${isDanger
+                          ? 'bg-rose-500 dark:bg-rose-400'
                           : isBorderline
-                          ? 'bg-gradient-to-r from-amber-500 to-amber-400'
-                          : 'bg-gradient-to-r from-emerald-500 to-teal-400'
-                      }`}
+                            ? 'bg-amber-500 dark:bg-amber-400'
+                            : 'bg-emerald-500 dark:bg-emerald-400'
+                        }`}
                       animate={{ width: `${Math.min(100, Math.max(0, displayPercent))}%` }}
+                      style={{ width: `${Math.min(100, Math.max(0, displayPercent))}%` }}
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                     {/* Target Cutoff Marker */}

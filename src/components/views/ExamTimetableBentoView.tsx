@@ -115,7 +115,7 @@ export const ExamTimetableBentoView: React.FC = () => {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[minmax(180px,auto)] [grid-auto-flow:dense]">
-        
+
         {/* 1. Next Upcoming Exam Hero Tile (col-span-12 lg:col-span-7) */}
         {nextExam && (
           <InteractiveBentoCard className="col-span-12 lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-amber-500/20 glow-amber">
@@ -252,123 +252,123 @@ export const ExamTimetableBentoView: React.FC = () => {
       {typeof document !== 'undefined' && createPortal(
         <AnimatePresence>
           {isEditorOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsEditorOpen(false)}
-              className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm z-[100]"
-            />
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsEditorOpen(false)}
+                className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm z-[100]"
+              />
 
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
-              transition={shouldReduceMotion ? { duration: 0.05 } : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl bento-card p-6 sm:p-8 bg-[#FFFFFF] dark:bg-[#131316] border border-black/10 dark:border-white/10 shadow-2xl rounded-3xl z-[101] max-h-[90vh] flex flex-col"
-            >
-              <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
-                <div>
-                  <h2 className="text-xl font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
-                    edit / sync exam schedule
-                  </h2>
-                  <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
-                    enter the exact dates from your official exam timetable
-                  </p>
-                </div>
-                <button
-                  onClick={() => setIsEditorOpen(false)}
-                  className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto space-y-3 pr-1 py-4">
-                {editingExams.map((ex) => (
-                  <div
-                    key={ex.courseCode}
-                    className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              <motion.div
+                initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
+                transition={shouldReduceMotion ? { duration: 0.05 } : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-2xl bento-card p-6 sm:p-8 bg-[#FFFFFF] dark:bg-[#131316] border border-black/10 dark:border-white/10 shadow-2xl rounded-3xl z-[101] max-h-[90vh] flex flex-col"
+              >
+                <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
+                  <div>
+                    <h2 className="text-xl font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
+                      edit / sync exam schedule
+                    </h2>
+                    <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
+                      enter the exact dates from your official exam timetable
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setIsEditorOpen(false)}
+                    className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 text-[#71717A] dark:text-[#A1A1AA] transition-colors"
                   >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-[#111111] dark:text-[#FAFAFA]">
-                          {ex.courseCode}
-                        </span>
-                        <span className="text-xs font-semibold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
-                          {ex.courseTitle}
-                        </span>
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto space-y-3 pr-1 py-4">
+                  {editingExams.map((ex) => (
+                    <div
+                      key={ex.courseCode}
+                      className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-[11px] font-bold px-2 py-0.5 rounded-sm bg-black/5 dark:bg-white/5 text-[#111111] dark:text-[#FAFAFA]">
+                            {ex.courseCode}
+                          </span>
+                          <span className="text-xs font-semibold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
+                            {ex.courseTitle}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-2 shrink-0">
+                        <input
+                          type="date"
+                          value={ex.examDate}
+                          onChange={(e) => handleDateChange(ex.courseCode, e.target.value)}
+                          className="px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 text-xs text-[#111111] dark:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06] focus:outline-none"
+                        />
+                        <select
+                          value={ex.session}
+                          onChange={(e) => handleSessionChange(ex.courseCode, e.target.value as 'FN' | 'AN')}
+                          className="px-2 py-1 rounded-xl bg-black/5 dark:bg-white/5 text-xs font-bold text-[#111111] dark:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06] focus:outline-none"
+                        >
+                          <option value="AN">AN (02-05)</option>
+                          <option value="FN">FN (10-01)</option>
+                        </select>
+                        <button
+                          onClick={() => handleRemoveCourse(ex.courseCode)}
+                          title="remove unscheduled subject"
+                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     </div>
+                  ))}
+                </div>
 
-                    <div className="flex items-center space-x-2 shrink-0">
-                      <input
-                        type="date"
-                        value={ex.examDate}
-                        onChange={(e) => handleDateChange(ex.courseCode, e.target.value)}
-                        className="px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 text-xs text-[#111111] dark:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06] focus:outline-none"
-                      />
-                      <select
-                        value={ex.session}
-                        onChange={(e) => handleSessionChange(ex.courseCode, e.target.value as 'FN' | 'AN')}
-                        className="px-2 py-1 rounded-xl bg-black/5 dark:bg-white/5 text-xs font-bold text-[#111111] dark:text-[#FAFAFA] border border-black/[0.06] dark:border-white/[0.06] focus:outline-none"
-                      >
-                        <option value="AN">AN (02-05)</option>
-                        <option value="FN">FN (10-01)</option>
-                      </select>
-                      <button
-                        onClick={() => handleRemoveCourse(ex.courseCode)}
-                        title="remove unscheduled subject"
-                        className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-colors"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
-                <SpringPress
-                  onClick={handleResetDefaults}
-                  scaleHover={1.02}
-                  scaleTap={0.97}
-                  className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase cursor-pointer"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>reset to defaults</span>
-                </SpringPress>
-
-                <div className="flex items-center space-x-2">
+                <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
                   <SpringPress
-                    onClick={() => setIsEditorOpen(false)}
+                    onClick={handleResetDefaults}
                     scaleHover={1.02}
                     scaleTap={0.97}
-                    className="px-4 py-2 rounded-2xl text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] lowercase transition-colors cursor-pointer"
+                    className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors lowercase cursor-pointer"
                   >
-                    <span>cancel</span>
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>reset to defaults</span>
                   </SpringPress>
-                  <SpringPress
-                    onClick={handleSaveEditor}
-                    scaleHover={1.03}
-                    scaleTap={0.96}
-                    style={{
-                      backgroundColor: 'var(--color-accent)',
-                      color: 'var(--color-accent-text)'
-                    }}
-                    className="px-5 py-2 rounded-2xl text-xs font-bold lowercase hover:opacity-90 transition-opacity shadow-sm cursor-pointer"
-                  >
-                    <span>save changes</span>
-                  </SpringPress>
+
+                  <div className="flex items-center space-x-2">
+                    <SpringPress
+                      onClick={() => setIsEditorOpen(false)}
+                      scaleHover={1.02}
+                      scaleTap={0.97}
+                      className="px-4 py-2 rounded-2xl text-xs text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] lowercase transition-colors cursor-pointer"
+                    >
+                      <span>cancel</span>
+                    </SpringPress>
+                    <SpringPress
+                      onClick={handleSaveEditor}
+                      scaleHover={1.03}
+                      scaleTap={0.96}
+                      style={{
+                        backgroundColor: 'var(--color-accent)',
+                        color: 'var(--color-accent-text)'
+                      }}
+                      className="px-5 py-2 rounded-2xl text-xs font-bold lowercase hover:opacity-90 transition-opacity shadow-sm cursor-pointer"
+                    >
+                      <span>save changes</span>
+                    </SpringPress>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>,
-      document.body
-    )}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { Calendar, MapPin } from 'lucide-react';
 import { hasAssignedVenue } from '../../api/types';
 
 export const TimetableView: React.FC = () => {
-  const { timetable, currentDayOrder } = useSession();
+  const { timetable, currentDayOrder, openFaculty } = useSession();
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder);
   const [activeBatch, setActiveBatch] = useState<number>(2);
 
@@ -121,7 +121,19 @@ export const TimetableView: React.FC = () => {
                         {slot.courseCode && slot.courseCode !== '-' && (
                           <span className="text-[#007AFF] dark:text-[#0A84FF]">{slot.courseCode}</span>
                         )}
-                        {slot.faculty && <span>{slot.faculty}</span>}
+                        {slot.faculty && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openFaculty(slot.faculty);
+                            }}
+                            className="hover:underline hover:text-[#007AFF] dark:hover:text-[#0A84FF] transition-colors cursor-pointer text-left"
+                            title="view faculty in finder"
+                          >
+                            {slot.faculty}
+                          </button>
+                        )}
                       </div>
                     )}
                   </div>

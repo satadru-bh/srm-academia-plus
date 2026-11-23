@@ -36,6 +36,7 @@ export const AtAGlanceView: React.FC = () => {
     lastSyncedAt,
     openCourseAttendance,
     openCourseMarks,
+    openFaculty,
     todayDateStr
   } = useSession();
   const [isGpaPredictorOpen, setIsGpaPredictorOpen] = useState(false);
@@ -295,7 +296,19 @@ export const AtAGlanceView: React.FC = () => {
                         </div>
                         <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-2 mt-0.5">
                           <span className="">{slot.courseCode}</span>
-                          {slot.faculty && <span>• {slot.faculty}</span>}
+                          {slot.faculty && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openFaculty(slot.faculty!);
+                              }}
+                              className="hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
+                              title="view faculty in finder"
+                            >
+                              • {slot.faculty}
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -565,12 +578,12 @@ export const AtAGlanceView: React.FC = () => {
                     <div
                       key={m.courseCode}
                       onClick={() => openCourseMarks(m.courseCode)}
-                      className={`p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border transition-all cursor-pointer hover:border-black/20 dark:hover:border-white/20 hover:scale-[1.01] active:scale-[0.99] ${
+                      className={`p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] transition-all cursor-pointer hover:bg-black/[0.04] dark:hover:bg-white/[0.06] hover:scale-[1.01] active:scale-[0.99] shadow-xs dark:shadow-md ${
                         isDanger 
-                          ? 'border-rose-500/20 glow-rose' 
+                          ? 'glow-rose' 
                           : isBorderline 
-                          ? 'border-amber-500/20 glow-amber' 
-                          : 'border-black/[0.06] dark:border-white/[0.06]'
+                          ? 'glow-amber' 
+                          : ''
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
@@ -604,8 +617,14 @@ export const AtAGlanceView: React.FC = () => {
                         <AnimatedProgressBar
                           value={m.percentage}
                           max={100}
-                          colorClass="bg-accent"
-                          className="h-1"
+                          colorClass={
+                            m.percentage >= 75
+                              ? 'bg-emerald-500 dark:bg-emerald-400'
+                              : m.percentage >= 50
+                              ? 'bg-amber-500 dark:bg-amber-400'
+                              : 'bg-rose-500 dark:bg-rose-400'
+                          }
+                          className="h-1.5"
                         />
                       </div>
 

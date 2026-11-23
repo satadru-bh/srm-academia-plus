@@ -171,11 +171,6 @@ export const MarksBentoView: React.FC = () => {
                       <span className="text-[11px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
                         {credits} credits
                       </span>
-                      {isBelow50 && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-600 dark:text-rose-400 font-bold border border-rose-500/25 lowercase shrink-0">
-                          critical &lt;50%
-                        </span>
-                      )}
                     </div>
 
                     <div className="flex items-center space-x-2">
@@ -225,18 +220,19 @@ export const MarksBentoView: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Single Sleek Overall Progress Bar */}
-                  <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden mt-2">
+                  {/* Single Sleek Overall Progress Bar with Strong Track Contrast */}
+                  <div className="w-full h-1.5 rounded-full bg-black/10 dark:bg-white/10 dark:bg-zinc-800 overflow-hidden mt-2">
                     <motion.div
                       className={`h-full rounded-full ${
                         bestGrade.status === 'outstanding' || bestGrade.status === 'safe'
-                          ? 'bg-gradient-to-r from-emerald-500 to-teal-400'
+                          ? 'bg-emerald-500 dark:bg-emerald-400'
                           : bestGrade.status === 'borderline'
-                          ? 'bg-gradient-to-r from-amber-500 to-yellow-400'
-                          : 'bg-gradient-to-r from-rose-500 to-pink-400'
+                          ? 'bg-amber-500 dark:bg-amber-400'
+                          : 'bg-rose-500 dark:bg-rose-400'
                       }`}
-                      initial={{ width: 0 }}
+                      initial={{ width: `${Math.min(100, Math.max(0, bestGrade.bestPossibleTotal))}%` }}
                       animate={{ width: `${Math.min(100, Math.max(0, bestGrade.bestPossibleTotal))}%` }}
+                      style={{ width: `${Math.min(100, Math.max(0, bestGrade.bestPossibleTotal))}%` }}
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   </div>
