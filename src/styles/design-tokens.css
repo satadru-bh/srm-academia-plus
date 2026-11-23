@@ -328,6 +328,58 @@ html.theme-batman {
   background-color: rgba(2, 132, 199, 0.16) !important;
 }
 
+/* 8. Banana: Light Warm Yellow / Golden Theme */
+.theme-banana {
+  --color-canvas: #FEF9C3;
+  --color-bento-card: #FEFCE8;
+  --color-bento-sub: #FEF08A;
+  --color-border: rgba(202, 138, 4, 0.28);
+  --color-border-hover: rgba(202, 138, 4, 0.52);
+  --color-text-primary: #422006;
+  --color-text-secondary: #854D0E;
+  --color-text-tertiary: #A16207;
+  --color-dock-bg: rgba(254, 252, 232, 0.94);
+  --color-dock-border: rgba(202, 138, 4, 0.35);
+  
+  --color-accent: #EAB308;
+  --color-accent-text: #422006;
+  --color-accent-sub: rgba(0, 0, 0, 0.12);
+  --color-selection-bg: #FDE047;
+  --color-selection-text: #422006;
+
+  --color-emerald: #16A34A;
+  --color-amber: #CA8A04;
+  --color-rose: #E11D48;
+}
+
+/* Color all elements in Banana Theme */
+.theme-banana .bento-card,
+.theme-banana .bg-white,
+.theme-banana .bg-\[\#FFFFFF\],
+.theme-banana .bg-\[\#ffffff\] {
+  background-color: var(--color-bento-card) !important;
+}
+.theme-banana .bg-black\/5,
+.theme-banana .bg-black\/\[0\.04\],
+.theme-banana .bg-black\/\[0\.05\] {
+  background-color: rgba(202, 138, 4, 0.12) !important;
+}
+.theme-banana .bg-black\/10 {
+  background-color: rgba(202, 138, 4, 0.22) !important;
+}
+.theme-banana .border-black\/\[0\.06\],
+.theme-banana .border-black\/10 {
+  border-color: rgba(202, 138, 4, 0.24) !important;
+}
+.theme-banana .glass-dock {
+  background-color: var(--color-dock-bg) !important;
+  border-color: var(--color-dock-border) !important;
+}
+.theme-banana .hover\:bg-black\/5:hover,
+.theme-banana .hover\:bg-black\/10:hover {
+  background-color: rgba(202, 138, 4, 0.16) !important;
+}
+
 /* =========================================================================
    Active & Selected Item Contrast Preservation
    Guarantees that icons, badges and text in selected items are crisp

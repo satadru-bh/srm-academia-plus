@@ -4,7 +4,7 @@ import { apiClient } from '../api/client';
 import { defaultCache } from '../api/cache';
 import { getDayOrderForDate } from '../data/academicCalendar';
 
-export type ThemeMode = 'oled' | 'batman' | 'slate' | 'barbie' | 'tropicana' | 'matcha' | 'blue-ice' | 'light';
+export type ThemeMode = 'oled' | 'batman' | 'slate' | 'barbie' | 'tropicana' | 'matcha' | 'blue-ice' | 'banana' | 'light';
 
 export const THEME_LIST: ThemeMode[] = [
   'oled',
@@ -14,6 +14,7 @@ export const THEME_LIST: ThemeMode[] = [
   'tropicana',
   'matcha',
   'blue-ice',
+  'banana',
   'light'
 ];
 
@@ -36,6 +37,7 @@ export const THEME_DETAILS: Record<ThemeMode, ThemeInfo> = {
   tropicana: { id: 'tropicana', name: 'tropicana', desc: 'light orange theme', accent: '#F97316', previewBg: '#FFEDD5', isDark: false },
   matcha: { id: 'matcha', name: 'matcha', desc: 'not performative at all', accent: '#16A34A', previewBg: '#DCFCE7', isDark: false },
   'blue-ice': { id: 'blue-ice', name: 'blue ice', desc: 'light blue theme', accent: '#0EA5E9', previewBg: '#E0F2FE', isDark: false },
+  banana: { id: 'banana', name: 'banana', desc: 'banana oo na na', accent: '#EAB308', previewBg: '#FEF9C3', isDark: false },
   light: { id: 'light', name: 'minimal light', desc: 'apple monochrome daylight', accent: '#111111', previewBg: '#FAFAFA', isDark: false }
 };
 
