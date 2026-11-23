@@ -108,31 +108,14 @@ h4,
   backface-visibility: hidden;
 }
 
-/* Dynamic Spotlight Glow on Bento Cards */
+/* Dynamic Spotlight Glow on Bento Cards - Disabled per user preference */
 .card-spotlight {
   position: relative;
   overflow: hidden;
 }
 
 .card-spotlight::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    var(--spotlight-color, rgba(255, 255, 255, 0.08)),
-    transparent 45%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .card-spotlight:hover::before {
-    opacity: 1;
-  }
+  display: none !important;
 }
 
 /* Accessible Reduced Motion Support */
