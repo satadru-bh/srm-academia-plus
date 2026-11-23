@@ -86,38 +86,11 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               )}
             </div>
           </button>
-
-          {/* User profile & registration */}
-          {user && (
-            <div className="flex items-center space-x-2 text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] lowercase">
-              <button
-                onClick={() => setActiveTab('profile')}
-                className="inline-flex items-center space-x-1.5 hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer group"
-                title="view student profile"
-              >
-                <span className="font-semibold text-[#111111] dark:text-[#FAFAFA] group-hover:underline underline-offset-2 truncate max-w-[120px] sm:max-w-none">
-                  {user.profile.name.toLowerCase()}
-                </span>
-              </button>
-              <span className="hidden md:inline">•</span>
-              <span className="hidden md:inline tabular-nums">batch {user.profile.comboBatch || '2/2'}</span>
-              <span className="hidden md:inline">•</span>
-              <span className="tabular-nums">sem {user.profile.semester || '3'}</span>
-              <span>•</span>
-              <button
-                onClick={() => setActiveTab('profile')}
-                className="text-[#111111] dark:text-[#FAFAFA] font-medium hover:underline underline-offset-2 cursor-pointer"
-                title="view registration profile"
-              >
-                {user.profile.regNo}
-              </button>
-            </div>
-          )}
         </div>
       </header>
 
       {/* Main Page Content */}
-      <main className="w-full pb-16">
+      <main className="w-full pb-32 sm:pb-24">
         {children}
       </main>
 

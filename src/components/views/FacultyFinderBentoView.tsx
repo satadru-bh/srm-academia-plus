@@ -342,13 +342,48 @@ export const FacultyFinderBentoView: React.FC = () => {
                         {f.coursesTaught.map(c => (
                           <span
                             key={c.code}
-                            title={`${c.title} • Slot ${c.slot || 'N/A'}`}
-                            className="text-[10px] px-2 py-0.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] text-[#111111] dark:text-[#FAFAFA] lowercase"
+                            title={c.title}
+                            className="text-[10px] px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 border border-black/[0.04] dark:border-white/[0.04] text-[#111111] dark:text-[#FAFAFA] lowercase flex items-center space-x-1.5"
                           >
-                            {c.code} {c.slot ? `(${c.slot})` : ''}
+                            <span className="font-semibold">{c.code}</span>
+                            {c.title && (
+                              <span className="text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[200px]">
+                                • {c.title.toLowerCase()}
+                              </span>
+                            )}
                           </span>
                         ))}
                       </div>
+                    </div>
+                  )}
+
+                  {/* Contact Info: Visible Email and Phone if available */}
+                  {(f.email || f.phone) && (
+                    <div className="space-y-1.5 pt-1 text-xs">
+                      {f.email && (
+                        <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
+                          <Mail className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
+                          <a
+                            href={`mailto:${f.email}`}
+                            title={`Send email to ${f.name}`}
+                            className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate lowercase"
+                          >
+                            {f.email}
+                          </a>
+                        </div>
+                      )}
+                      {f.phone && (
+                        <div className="flex items-center space-x-2 text-[#71717A] dark:text-[#A1A1AA]">
+                          <Phone className="w-3.5 h-3.5 shrink-0 text-[#111111] dark:text-[#FAFAFA]" />
+                          <a
+                            href={`tel:${f.phone.replace(/\s+/g, '')}`}
+                            title={`Call ${f.name}`}
+                            className="text-[#111111] dark:text-[#FAFAFA] hover:underline underline-offset-2 truncate"
+                          >
+                            {f.phone}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

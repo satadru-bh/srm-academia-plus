@@ -154,15 +154,21 @@ export function matchStudentFaculty(
     }
 
     // Check course instructor matches
+    const instructorCourses: { code: string; title: string; slot?: string }[] = [];
     for (const ct of courseTargets) {
       if (isFacultyMatch(f, ct.parsed)) {
-        return {
-          ...f,
-          isMyFaculty: true,
-          roleBadge: 'Course Instructor',
-          coursesTaught: [{ code: ct.code, title: ct.title, slot: ct.slot }]
-        };
+        if (!instructorCourses.some(x => x.code === ct.code)) {
+          instructorCourses.push({ code: ct.code, title: ct.title, slot: ct.slot });
+        }
       }
+    }
+    if (instructorCourses.length > 0) {
+      return {
+        ...f,
+        isMyFaculty: true,
+        roleBadge: 'Course Instructor',
+        coursesTaught: instructorCourses
+      };
     }
 
     // Not matched: explicitly false to prevent stale/incorrect flags

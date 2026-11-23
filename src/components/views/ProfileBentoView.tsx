@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
-import { Mail, Phone, Moon, Sun, RefreshCw, LogOut, CheckCircle, GraduationCap, Building2 } from 'lucide-react';
+import { Mail, Phone, Moon, Sun, RefreshCw, LogOut, CheckCircle, GraduationCap, Building2, Camera, Trash2 } from 'lucide-react';
 
 export const ProfileBentoView: React.FC = () => {
   const { user, logout, refreshData, isSyncing, isDarkMode, toggleDarkMode } = useSession();
+  const [customAvatar, setCustomAvatar] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('srm_student_custom_avatar');
+    }
+    return null;
+  });
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Photo must be less than 5MB');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      setCustomAvatar(result);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('srm_student_custom_avatar', result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeAvatar = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCustomAvatar(null);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('srm_student_custom_avatar');
+    }
+  };
 
   if (!user) return null;
 
@@ -51,21 +84,49 @@ export const ProfileBentoView: React.FC = () => {
             {/* Top Identity Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-black/[0.06] dark:border-white/[0.06]">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 rounded-2xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-2xl font-bold shadow-sm shrink-0">
-                  {(user.profile.name || 'S').charAt(0).toUpperCase()}
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500">
-                      active student
-                    </span>
-                    <span className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase">
-                      srmist ktr
-                    </span>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleAvatarChange}
+                />
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="relative group cursor-pointer shrink-0"
+                  title="Click to upload or change student photo"
+                >
+                  {customAvatar ? (
+                    <img
+                      src={customAvatar}
+                      alt={user.profile.name}
+                      className="w-16 h-16 rounded-2xl object-cover border border-black/10 dark:border-white/10 shadow-sm transition-transform group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-2xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-2xl font-bold shadow-sm border border-black/10 dark:border-white/10 transition-transform group-hover:scale-105">
+                      {(user.profile.name || 'S').charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="absolute inset-0 rounded-2xl bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity text-white text-[10px] font-medium backdrop-blur-2xs">
+                    <Camera className="w-4 h-4 mb-0.5" />
+                    <span>{customAvatar ? 'change' : 'upload'}</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#111111] dark:text-[#FAFAFA] lowercase mt-1">
+                </div>
+
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#111111] dark:text-[#FAFAFA] lowercase">
                     {user.profile.name.toLowerCase()}
                   </h2>
+                  {customAvatar && (
+                    <button
+                      type="button"
+                      onClick={removeAvatar}
+                      className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] hover:text-rose-500 transition-colors mt-0.5 flex items-center space-x-1 cursor-pointer"
+                    >
+                      <Trash2 className="w-2.5 h-2.5" />
+                      <span>remove photo</span>
+                    </button>
+                  )}
                 </div>
               </div>
 

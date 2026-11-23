@@ -157,18 +157,10 @@ export const AttendancePredictorModal: React.FC<AttendancePredictorModalProps> =
           >
           {/* Modal Header */}
           <div className="p-5 sm:p-6 border-b border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs">
-                ±
-              </div>
-              <div>
-                <h2 className="text-lg sm:text-xl font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
-                  attendance predictor & intelligence
-                </h2>
-                <p className="text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mt-0.5">
-                  forecast how attending or missing future classes impacts your 75% margin
-                </p>
-              </div>
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold lowercase text-[#111111] dark:text-[#FAFAFA]">
+                attendance predictor
+              </h2>
             </div>
 
             <button

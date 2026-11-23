@@ -165,15 +165,7 @@ export const GpaPredictorModal: React.FC<GpaPredictorModalProps> = ({ isOpen, on
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
               <div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#71717A] dark:text-[#A1A1AA]">
-                    srm academic simulation
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold lowercase">
-                    auto credit weighted
-                  </span>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase mt-0.5">
+                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase">
                   gpa predictor & end-sem targets
                 </h2>
               </div>
