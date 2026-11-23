@@ -72,6 +72,8 @@ interface SessionContextType {
   setFocusedCourseCode: (code: string | null) => void;
   openCourseAttendance: (courseCode: string) => void;
   openCourseMarks: (courseCode: string) => void;
+  attendanceTargetPercent: number;
+  setAttendanceTargetPercent: (target: number) => void;
 }
 
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
@@ -170,6 +172,27 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [error, setError] = useState<string | null>(null);
   const [inspectedNotesSubjectId, setInspectedNotesSubjectId] = useState<string | null>(null);
   const [focusedCourseCode, setFocusedCourseCode] = useState<string | null>(null);
+
+  const [attendanceTargetPercent, setAttendanceTargetPercentState] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('srm_attendance_target');
+      if (saved) {
+        const parsed = Number(saved);
+        if (!isNaN(parsed) && parsed >= 50 && parsed <= 99) {
+          return parsed;
+        }
+      }
+    }
+    return 75;
+  });
+
+  const setAttendanceTargetPercent = useCallback((target: number) => {
+    const clamped = Math.max(50, Math.min(99, Math.round(target)));
+    setAttendanceTargetPercentState(clamped);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('srm_attendance_target', String(clamped));
+    }
+  }, []);
 
   const setActiveTab = useCallback((tab: 'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty') => {
     setActiveTabState(tab);
@@ -362,7 +385,9 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         focusedCourseCode,
         setFocusedCourseCode,
         openCourseAttendance,
-        openCourseMarks
+        openCourseMarks,
+        attendanceTargetPercent,
+        setAttendanceTargetPercent
       }}
     >
       {children}

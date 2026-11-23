@@ -14,10 +14,17 @@ export interface SimulationResult {
 }
 
 /**
- * Calculates the exact attendance margin relative to SRM's strict 75% minimum requirement.
+ * Calculates the exact attendance margin relative to a target percentage (defaults to SRM's 75% minimum).
  * All labels are rendered in comfy lowercase.
  */
-export function calculateAttendanceMargin(hoursConducted: number, hoursPresent: number): AttendanceMargin {
+export function calculateAttendanceMargin(
+  hoursConducted: number,
+  hoursPresent: number,
+  targetPercent: number = 75
+): AttendanceMargin {
+  const target = Math.max(1, Math.min(99, targetPercent));
+  const t = target / 100;
+
   if (hoursConducted <= 0) {
     return {
       status: 'safe',
@@ -31,12 +38,12 @@ export function calculateAttendanceMargin(hoursConducted: number, hoursPresent: 
   const rawPercent = (hoursPresent / hoursConducted) * 100;
   const attendancePercent = Math.round(rawPercent * 100) / 100;
 
-  if (attendancePercent >= 75) {
-    const margin = Math.floor((hoursPresent - 0.75 * hoursConducted) / 0.75);
-    const status = attendancePercent >= 80 ? 'safe' : 'borderline';
+  if (attendancePercent >= target) {
+    const margin = Math.floor((hoursPresent - t * hoursConducted) / t + 1e-9);
+    const status = attendancePercent >= target + 5 ? 'safe' : 'borderline';
     const safeMargin = Math.max(0, margin);
 
-    let label = 'on 75% edge';
+    let label = `on ${target}% edge`;
     if (safeMargin > 0) {
       label = `can skip ${safeMargin} ${safeMargin === 1 ? 'class' : 'classes'}`;
     }
@@ -49,7 +56,7 @@ export function calculateAttendanceMargin(hoursConducted: number, hoursPresent: 
       label
     };
   } else {
-    const required = Math.ceil((0.75 * hoursConducted - hoursPresent) / 0.25);
+    const required = Math.ceil((t * hoursConducted - hoursPresent) / (1 - t) - 1e-9);
     const safeRequired = Math.max(1, required);
 
     return {
@@ -57,7 +64,7 @@ export function calculateAttendanceMargin(hoursConducted: number, hoursPresent: 
       margin: 0,
       required: safeRequired,
       attendancePercent,
-      label: `attend next ${safeRequired} ${safeRequired === 1 ? 'class' : 'classes'} to hit 75%`
+      label: `attend next ${safeRequired} ${safeRequired === 1 ? 'class' : 'classes'} to hit ${target}%`
     };
   }
 }
@@ -68,7 +75,8 @@ export function calculateAttendanceMargin(hoursConducted: number, hoursPresent: 
 export function simulateAttendance(
   hoursConducted: number,
   hoursPresent: number,
-  delta: number
+  delta: number,
+  targetPercent: number = 75
 ): SimulationResult {
   let simConducted = hoursConducted;
   let simPresent = hoursPresent;
@@ -82,7 +90,7 @@ export function simulateAttendance(
 
   const rawPercent = simConducted > 0 ? (simPresent / simConducted) * 100 : 100;
   const simulatedPercent = Math.round(rawPercent * 100) / 100;
-  const marginInfo = calculateAttendanceMargin(simConducted, simPresent);
+  const marginInfo = calculateAttendanceMargin(simConducted, simPresent, targetPercent);
 
   return {
     simulatedConducted: simConducted,

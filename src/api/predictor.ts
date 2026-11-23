@@ -38,7 +38,8 @@ export interface OverallPredictionResult {
 
 export function calculatePrediction(
   courses: AttendanceItem[],
-  predictions: ClassPredictionItem[]
+  predictions: ClassPredictionItem[],
+  targetPercent: number = 75
 ): OverallPredictionResult {
   let initialTotalConducted = 0;
   let initialTotalPresent = 0;
@@ -75,7 +76,7 @@ export function calculatePrediction(
       ? Math.round((newPresent / newConducted) * 1000) / 10 
       : 100;
 
-    const margin = calculateAttendanceMargin(newConducted, newPresent);
+    const margin = calculateAttendanceMargin(newConducted, newPresent, targetPercent);
     const delta = Math.round((newPercent - curPercent) * 10) / 10;
 
     initialTotalConducted += curConducted;
@@ -104,7 +105,7 @@ export function calculatePrediction(
   const predOverall = finalTotalConducted > 0 
     ? Math.round((finalTotalPresent / finalTotalConducted) * 1000) / 10 
     : 100;
-  const overallMargin = calculateAttendanceMargin(finalTotalConducted, finalTotalPresent);
+  const overallMargin = calculateAttendanceMargin(finalTotalConducted, finalTotalPresent, targetPercent);
 
   return {
     currentOverallPercent: curOverall,

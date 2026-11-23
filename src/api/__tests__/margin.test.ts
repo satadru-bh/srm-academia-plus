@@ -44,6 +44,27 @@ describe('calculateAttendanceMargin', () => {
     expect(res.required).toBe(0);
     expect(res.label).toBe('no classes conducted');
   });
+
+  it('supports custom target percentages (e.g. 80%, 85%, 90%)', () => {
+    // 20 conducted, 18 present = 90%.
+    // With 85% target: floor((18 - 0.85*20) / 0.85) = floor(1 / 0.85) = 1
+    const res85 = calculateAttendanceMargin(20, 18, 85);
+    expect(res85.margin).toBe(1);
+    expect(res85.label).toBe('can skip 1 class');
+    expect(res85.required).toBe(0);
+
+    // With 90% target: exactly on boundary
+    const res90 = calculateAttendanceMargin(20, 18, 90);
+    expect(res90.margin).toBe(0);
+    expect(res90.label).toBe('on 90% edge');
+
+    // With 80% target when at 70% (20 conducted, 14 present):
+    // required = ceil((0.80*20 - 14) / 0.20) = ceil(2 / 0.20) = 10 classes
+    const res80Danger = calculateAttendanceMargin(20, 14, 80);
+    expect(res80Danger.status).toBe('danger');
+    expect(res80Danger.required).toBe(10);
+    expect(res80Danger.label).toBe('attend next 10 classes to hit 80%');
+  });
 });
 
 describe('simulateAttendance', () => {

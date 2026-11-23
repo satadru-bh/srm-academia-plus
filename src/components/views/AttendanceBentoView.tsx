@@ -4,17 +4,27 @@ import { useSession } from '../../context/SessionContext';
 import { calculateAttendanceMargin } from '../../api/margin';
 import { formatCourseTitle } from '../../api/grades';
 import { AttendancePredictorModal } from '../common/AttendancePredictorModal';
+import { AttendanceTargetModal } from '../modals/AttendanceTargetModal';
 import { 
   Building, 
   User, 
   Search, 
-  RotateCcw
+  RotateCcw,
+  Target
 } from 'lucide-react';
 
 export const AttendanceBentoView: React.FC = () => {
-  const { user, timetable, focusedCourseCode, setFocusedCourseCode } = useSession();
+  const { 
+    user, 
+    timetable, 
+    focusedCourseCode, 
+    setFocusedCourseCode,
+    attendanceTargetPercent,
+    setAttendanceTargetPercent
+  } = useSession();
   const [searchTerm, setSearchTerm] = useState('');
   const [isPredictorOpen, setIsPredictorOpen] = useState(false);
+  const [isTargetModalOpen, setIsTargetModalOpen] = useState(false);
   
   // Applied prediction forecast state
   const [appliedPredictions, setAppliedPredictions] = useState<Record<string, { percent: number; marginLabel: string; status: 'safe' | 'borderline' | 'danger' }> | null>(null);
@@ -63,11 +73,13 @@ export const AttendanceBentoView: React.FC = () => {
             attendance & margin
           </h1>
           <p className="text-xs sm:text-sm text-[#71717A] dark:text-[#A1A1AA] lowercase mt-1">
-            calibrated against srm's strict 75% cutoff threshold
+            {attendanceTargetPercent === 75
+              ? "calibrated against srm's strict 75% cutoff threshold"
+              : `calibrated against your custom ${attendanceTargetPercent}% target threshold (srm min: 75%)`}
           </p>
         </div>
 
-        {/* Toolbar: Predictor Button & Search */}
+        {/* Toolbar: Predictor Button, Custom Target Setter & Search */}
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Attendance Predictor Button */}
           <button
@@ -75,6 +87,19 @@ export const AttendanceBentoView: React.FC = () => {
             className="flex items-center space-x-2 px-4 py-2 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-semibold text-xs lowercase shadow-sm hover:opacity-90 transition-opacity"
           >
             <span>attendance predictor</span>
+          </button>
+
+          {/* Custom Attendance Target Setter Button */}
+          <button
+            onClick={() => setIsTargetModalOpen(true)}
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/[0.06] dark:border-white/[0.06] text-xs font-semibold text-[#111111] dark:text-[#FAFAFA] lowercase transition-colors shadow-sm"
+            title="customize attendance target percentage"
+          >
+            <Target className="w-3.5 h-3.5 text-[#71717A] dark:text-[#A1A1AA]" />
+            <span>target: {attendanceTargetPercent}%</span>
+            {attendanceTargetPercent !== 75 && (
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            )}
           </button>
 
           {appliedPredictions && (
@@ -108,11 +133,11 @@ export const AttendanceBentoView: React.FC = () => {
           const applied = appliedPredictions ? appliedPredictions[course.courseCode] : null;
           const displayPercent = applied ? applied.percent : course.attendancePercent;
           const marginInfo = applied 
-            ? { ...calculateAttendanceMargin(course.hoursConducted, course.hoursPresent), label: applied.marginLabel, status: applied.status }
-            : calculateAttendanceMargin(course.hoursConducted, course.hoursPresent);
+            ? { ...calculateAttendanceMargin(course.hoursConducted, course.hoursPresent, attendanceTargetPercent), label: applied.marginLabel, status: applied.status }
+            : calculateAttendanceMargin(course.hoursConducted, course.hoursPresent, attendanceTargetPercent);
 
-          // Urgency rule: below 78% automatically expands into large prominent bento tile
-          const isUrgent = displayPercent < 78;
+          // Urgency rule: below target + 3% automatically expands into large prominent bento tile
+          const isUrgent = displayPercent < (attendanceTargetPercent + 3);
           const isDanger = marginInfo.status === 'danger';
           const isBorderline = marginInfo.status === 'borderline';
 
@@ -232,22 +257,34 @@ export const AttendanceBentoView: React.FC = () => {
                     animate={{ width: `${Math.min(100, Math.max(0, displayPercent))}%` }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
-                  {/* 75% Cutoff Marker */}
+                  {/* Target Cutoff Marker */}
                   <div
                     className="absolute top-0 bottom-0 w-0.5 bg-white dark:bg-black z-10 opacity-75"
-                    style={{ left: '75%' }}
-                    title="75% target threshold"
+                    style={{ left: `${attendanceTargetPercent}%` }}
+                    title={`${attendanceTargetPercent}% target threshold`}
                   />
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-[#71717A] dark:text-[#A1A1AA] pt-1">
-                  <span>minimum 75% required</span>
+                  <span>
+                    {attendanceTargetPercent === 75
+                      ? 'minimum 75% required'
+                      : `target ${attendanceTargetPercent}% (srm min: 75%)`}
+                  </span>
                 </div>
               </div>
             </motion.div>
           );
         })}
       </div>
+
+      {/* Custom Attendance Target Setter Modal */}
+      <AttendanceTargetModal
+        isOpen={isTargetModalOpen}
+        onClose={() => setIsTargetModalOpen(false)}
+        currentTarget={attendanceTargetPercent}
+        onSave={setAttendanceTargetPercent}
+      />
 
       {/* Attendance Predictor Modal */}
       <AttendancePredictorModal
