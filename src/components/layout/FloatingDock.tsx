@@ -20,6 +20,40 @@ interface FloatingDockProps {
   setActiveTab: (tab: 'overview' | 'attendance' | 'timetable' | 'marks' | 'calendar' | 'exam-timetable' | 'profile' | 'notes' | 'faculty') => void;
 }
 
+const popoverVariants = {
+  hidden: { opacity: 0, y: 12, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.22,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.04,
+      delayChildren: 0.03,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 12,
+    scale: 0.95,
+    transition: { duration: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 25,
+    },
+  },
+};
+
 export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActiveTab }) => {
   const { theme, cycleTheme, isSyncing, refreshData } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,10 +102,10 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.95 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            variants={popoverVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
           >
             <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
@@ -84,8 +118,11 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
                 const isSelected = activeTab === item.id;
 
                 return (
-                  <button
+                  <motion.button
                     key={item.id}
+                    variants={itemVariants}
+                    whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       setActiveTab(item.id);
                       setIsMenuOpen(false);
@@ -98,7 +135,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
                           }
                         : undefined
                     }
-                    className={`w-full flex items-center space-x-3 p-2.5 rounded-2xl text-left transition-colors ${
+                    className={`w-full flex items-center space-x-3 p-2.5 rounded-2xl text-left transition-colors cursor-pointer ${
                       isSelected
                         ? 'dock-item-selected font-bold'
                         : 'hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-[#FAFAFA]'
@@ -134,7 +171,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
                         {item.desc}
                       </div>
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -150,18 +187,19 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
             const Icon = item.icon;
 
             return (
-              <button
+              <motion.button
                 key={item.id}
                 onClick={() => {
                   setActiveTab(item.id);
                   setIsMenuOpen(false);
                 }}
-                className="relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold transition-all inline-flex items-center justify-center overflow-hidden active:scale-95 cursor-pointer"
+                whileTap={{ scale: 0.95 }}
+                className="relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold inline-flex items-center justify-center overflow-hidden cursor-pointer"
               >
                 {isActive && (
                   <motion.div
                     layoutId="active-dock-pill"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30, mass: 0.8 }}
+                    transition={{ type: 'spring', stiffness: 450, damping: 32, mass: 0.8 }}
                     className="absolute inset-0 rounded-full bg-[var(--color-bento-sub)] dark:bg-[#202025] border border-black/10 dark:border-white/10 shadow-sm"
                   />
                 )}
@@ -172,55 +210,78 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
                       : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <motion.span
+                    className="inline-flex items-center justify-center shrink-0"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.94 }}
+                    transition={{ type: 'spring', stiffness: 450, damping: 20 }}
+                  >
+                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  </motion.span>
                   <span className="hidden sm:inline lowercase tracking-tight">{item.label}</span>
                 </span>
-              </button>
+              </motion.button>
             );
           })}
 
           {/* More Menu Pill Button */}
-          <button
+          <motion.button
             onClick={() => setIsMenuOpen(prev => !prev)}
+            whileTap={{ scale: 0.95 }}
             title="more views & options"
             aria-label="more options"
-            className={`relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold transition-colors inline-flex items-center justify-center gap-2 leading-none ${
+            className={`relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2 leading-none cursor-pointer ${
               isSecondaryActive || isMenuOpen
                 ? 'bg-black/10 dark:bg-white/10 text-[#09090B] dark:text-[#FAFAFA]'
                 : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
             }`}
           >
-            <MoreHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            <motion.span
+              className="inline-flex items-center justify-center shrink-0"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ type: 'spring', stiffness: 450, damping: 20 }}
+            >
+              <MoreHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            </motion.span>
             <span className="hidden sm:inline lowercase tracking-tight">more</span>
-          </button>
+          </motion.button>
         </div>
 
         <div className="h-4 w-px bg-black/10 dark:bg-white/10 mx-2 shrink-0" />
 
         {/* Sync and Theme Quick Controls */}
         <div className="flex items-center space-x-1 pr-1">
-          <button
+          <motion.button
             onClick={refreshData}
             disabled={isSyncing}
+            whileHover={isSyncing ? undefined : { scale: 1.15 }}
+            whileTap={isSyncing ? undefined : { scale: 0.88 }}
+            transition={{ type: 'spring', stiffness: 450, damping: 20 }}
             title="sync live student data"
             aria-label="sync live student data"
-            className="p-2 rounded-full text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:bg-black/5 dark:hover:bg-white/5 transition-colors disabled:opacity-50"
+            className="p-2 rounded-full text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:bg-black/5 dark:hover:bg-white/5 transition-colors disabled:opacity-50 cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
-          </button>
+          </motion.button>
 
           {/* Theme Quick Cycle Button */}
-          <button
+          <motion.button
             onClick={cycleTheme}
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.88 }}
+            transition={{ type: 'spring', stiffness: 450, damping: 20 }}
             title={`current theme: ${activeThemeInfo.name} • click to cycle`}
             aria-label="cycle theme"
-            className="p-2 rounded-full text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-center"
+            className="p-2 rounded-full text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA] hover:bg-black/5 dark:hover:bg-white/5 transition-colors flex items-center justify-center cursor-pointer"
           >
-            <span
-              className="w-3.5 h-3.5 rounded-full border border-black/20 dark:border-white/20 transition-transform hover:scale-110 shadow-sm"
+            <motion.span
+              className="w-3.5 h-3.5 rounded-full border border-black/20 dark:border-white/20 shadow-sm block"
               style={{ backgroundColor: activeThemeInfo.accent }}
+              layout
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             />
-          </button>
+          </motion.button>
         </div>
       </nav>
     </div>

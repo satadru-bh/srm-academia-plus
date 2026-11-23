@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-export interface SpringPressProps {
+export interface SpringPressProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -19,6 +19,7 @@ export const SpringPress: React.FC<SpringPressProps> = ({
   scaleTap = 0.97,
   type = 'button',
   disabled = false,
+  ...props
 }) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -35,6 +36,7 @@ export const SpringPress: React.FC<SpringPressProps> = ({
         damping: 25,
       }}
       className={`inline-flex items-center justify-center focus:outline-none ${className}`.trim()}
+      {...props}
     >
       {children}
     </motion.button>

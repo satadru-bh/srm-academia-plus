@@ -76,6 +76,7 @@ export const InteractiveBentoCard: React.FC<InteractiveBentoCardProps> = ({
         rotateX: canTilt ? rotateX : 0,
         rotateY: canTilt ? rotateY : 0,
         transformStyle: 'preserve-3d',
+        transformPerspective: 1000,
         ...style,
       }}
       className={`bento-card card-spotlight perspective-1000 ${className}`.trim()}

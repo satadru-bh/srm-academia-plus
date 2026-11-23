@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { motion, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 
 export interface AnimatedNumberProps {
@@ -22,8 +22,6 @@ export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
     return `${prefix}${Number(current).toFixed(decimals)}${suffix}`;
   });
 
-  const spanRef = useRef<HTMLSpanElement>(null);
-
   useEffect(() => {
     if (shouldReduceMotion) {
       spring.jump(value);
@@ -32,22 +30,11 @@ export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
     }
   }, [value, spring, shouldReduceMotion]);
 
-  useEffect(() => {
-    return display.on('change', (latest) => {
-      if (spanRef.current) {
-        spanRef.current.textContent = latest;
-      }
-    });
-  }, [display]);
-
-  const formattedInitial = `${prefix}${value.toFixed(decimals)}${suffix}`;
-
   return (
     <motion.span
-      ref={spanRef}
       className={`tabular-nums inline-block ${className}`.trim()}
     >
-      {formattedInitial}
+      {display}
     </motion.span>
   );
 };
