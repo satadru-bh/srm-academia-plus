@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { Mail, Phone, Moon, Sun, RefreshCw, LogOut, CheckCircle, GraduationCap, Building2, Camera, Trash2 } from 'lucide-react';
 
@@ -55,13 +54,7 @@ export const ProfileBentoView: React.FC = () => {
   const officialEmail = user.profile.email || `${netId}@srmist.edu.in`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-      className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-6"
-    >
+    <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-6">
       {/* Page Title */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111111] dark:text-[#FAFAFA] lowercase">
@@ -384,6 +377,6 @@ export const ProfileBentoView: React.FC = () => {
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };

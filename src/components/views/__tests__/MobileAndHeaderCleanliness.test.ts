@@ -84,4 +84,18 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(html).toContain('href="/manifest.json?v=');
     expect(html).toContain('href="/icon-192.png?v=');
   });
+
+  it('TimetableBentoView conditionally renders exportRef only during active export to prevent ghosting', () => {
+    const timetable = fs.readFileSync(path.resolve(__dirname, '../TimetableBentoView.tsx'), 'utf-8');
+    expect(timetable).toContain('{isExporting && (');
+    expect(timetable).toContain('ref={exportRef}');
+  });
+
+  it('App implements mobile swipe navigation with spring physics and motion blur', () => {
+    const appTsx = fs.readFileSync(path.resolve(__dirname, '../../../App.tsx'), 'utf-8');
+    expect(appTsx).toContain('handleTouchStart');
+    expect(appTsx).toContain('handleTouchEnd');
+    expect(appTsx).toContain('blur(5px)');
+    expect(appTsx).toContain('ORDERED_TABS');
+  });
 });

@@ -157,13 +157,7 @@ export const NotesBentoView: React.FC = () => {
   }, [inspectedSubject, inspectedSubFilter, inspectedSearch]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-      className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-8"
-    >
+    <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-8">
       {/* Top Header & Search Controls */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
@@ -522,6 +516,6 @@ export const NotesBentoView: React.FC = () => {
         resourceKind={viewerState.resourceKind}
         url={viewerState.url}
       />
-    </motion.div>
+    </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { calculateAttendanceMargin } from '../../api/margin';
 import { 
@@ -89,13 +88,7 @@ export const AtAGlanceView: React.FC = () => {
   const studentFirstName = (user.profile.name || 'student').toLowerCase().split(' ')[0];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-      className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-5"
-    >
+    <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-5">
       {/* Interlocking Bento Grid with grid-auto-flow: dense */}
       <div className="grid grid-cols-12 gap-5 [grid-auto-flow:dense]">
         
@@ -624,6 +617,6 @@ export const AtAGlanceView: React.FC = () => {
         isOpen={isGpaPredictorOpen}
         onClose={() => setIsGpaPredictorOpen(false)}
       />
-    </motion.div>
+    </div>
   );
 };

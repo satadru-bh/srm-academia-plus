@@ -1,5 +1,5 @@
-import React from 'react';
-import { AnimatePresence } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { SessionProvider, useSession } from './context/SessionContext';
 import { AppLayout } from './components/layout/AppLayout';
 import { SignInBentoView } from './components/views/SignInBentoView';
@@ -12,6 +12,47 @@ import { ExamTimetableBentoView } from './components/views/ExamTimetableBentoVie
 import { ProfileBentoView } from './components/views/ProfileBentoView';
 import { NotesBentoView } from './components/views/NotesBentoView';
 import { FacultyFinderBentoView } from './components/views/FacultyFinderBentoView';
+
+export const ORDERED_TABS = [
+  'overview',
+  'attendance',
+  'timetable',
+  'marks',
+  'notes',
+  'faculty',
+  'exam-timetable',
+  'calendar',
+  'profile'
+] as const;
+
+// Buttery smooth Apple-grade spring slide with cinematic motion blur
+const pageMotionVariants: Variants = {
+  enter: (dir: number) => ({
+    x: dir > 0 ? 36 : -36,
+    opacity: 0,
+    filter: 'blur(5px)',
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      x: { type: 'spring' as const, stiffness: 380, damping: 32 },
+      opacity: { duration: 0.16, ease: 'easeOut' },
+      filter: { duration: 0.16, ease: 'easeOut' },
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir > 0 ? -36 : 36,
+    opacity: 0,
+    filter: 'blur(5px)',
+    transition: {
+      x: { duration: 0.14, ease: [0.16, 1, 0.3, 1] },
+      opacity: { duration: 0.14, ease: 'easeIn' },
+      filter: { duration: 0.14, ease: 'easeIn' },
+    },
+  }),
+};
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -62,7 +103,77 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 }
 
 const MainApp: React.FC = () => {
-  const { user, activeTab, isLoading } = useSession();
+  const { user, activeTab, setActiveTab, isLoading } = useSession();
+
+  // Track page transition direction
+  const prevTabRef = useRef(activeTab);
+  const prevIndex = ORDERED_TABS.indexOf(prevTabRef.current as any);
+  const currentIndex = ORDERED_TABS.indexOf(activeTab as any);
+  const direction = currentIndex >= prevIndex ? 1 : -1;
+
+  useEffect(() => {
+    prevTabRef.current = activeTab;
+  }, [activeTab]);
+
+  // Mobile horizontal swipe navigation (buttery smooth with directional spring)
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const target = touch.target as HTMLElement | null;
+
+    if (target) {
+      const tag = target.tagName.toLowerCase();
+      if (['input', 'textarea', 'select', 'button'].includes(tag) || target.closest('button, input, textarea, select, [data-no-swipe]')) {
+        touchStartRef.current = null;
+        return;
+      }
+      // Check for horizontal scrollable containers (e.g. timetable grid or tabs pill row)
+      const scrollable = target.closest('.overflow-x-auto, [data-scrollable]');
+      if (scrollable && scrollable.scrollWidth > scrollable.clientWidth) {
+        touchStartRef.current = null;
+        return;
+      }
+    }
+
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now()
+    };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.changedTouches.length !== 1) {
+      touchStartRef.current = null;
+      return;
+    }
+
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    const deltaTime = Date.now() - touchStartRef.current.time;
+    touchStartRef.current = null;
+
+    // Threshold: at least 42px horizontal, predominantly horizontal vs vertical, under 450ms
+    if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3 && deltaTime < 450) {
+      const currIdx = ORDERED_TABS.indexOf(activeTab as any);
+      if (currIdx === -1) return;
+
+      if (deltaX < 0) {
+        // Swiped Left -> Move forward
+        if (currIdx < ORDERED_TABS.length - 1) {
+          setActiveTab(ORDERED_TABS[currIdx + 1]);
+        }
+      } else {
+        // Swiped Right -> Move backward
+        if (currIdx > 0) {
+          setActiveTab(ORDERED_TABS[currIdx - 1]);
+        }
+      }
+    }
+  };
 
   if (isLoading && !user) {
     return (
@@ -108,9 +219,26 @@ const MainApp: React.FC = () => {
 
   return (
     <AppLayout>
-      <AnimatePresence mode="wait" initial={false}>
-        {renderActiveView()}
-      </AnimatePresence>
+      <div
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="w-full min-h-[calc(100vh-60px)] touch-pan-y"
+      >
+        <AnimatePresence mode="wait" custom={direction} initial={false}>
+          <motion.div
+            key={activeTab}
+            custom={direction}
+            variants={pageMotionVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="w-full will-change-[transform,opacity,filter]"
+            style={{ transform: 'translateZ(0)' }}
+          >
+            {renderActiveView()}
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </AppLayout>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import {
   Users,
@@ -115,13 +114,7 @@ export const FacultyFinderBentoView: React.FC = () => {
   }, [filteredFaculty, visibleCount]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-      className="max-w-7xl mx-auto px-4 sm:px-8 py-8 space-y-6"
-    >
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 space-y-6">
       {/* 1. Header Banner */}
       <div className="bento-card p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
@@ -477,6 +470,6 @@ export const FacultyFinderBentoView: React.FC = () => {
           </span>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 };

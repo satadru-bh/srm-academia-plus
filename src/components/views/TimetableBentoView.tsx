@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import { MapPin, LayoutGrid, ListFilter, Download } from 'lucide-react';
 import { TimetableSlot, hasAssignedVenue } from '../../api/types';
@@ -159,9 +158,14 @@ export const TimetableBentoView: React.FC = () => {
   };
 
   const handleExport = async () => {
-    const target = exportRef.current || timetableRef.current;
-    if (!target) return;
     setIsExporting(true);
+    // Allow React state update and DOM to mount exportRef before capturing
+    await new Promise((r) => setTimeout(r, 60));
+    const target = exportRef.current || timetableRef.current;
+    if (!target) {
+      setIsExporting(false);
+      return;
+    }
     try {
       if (typeof document !== 'undefined' && document.fonts) {
         await document.fonts.ready;
@@ -190,13 +194,7 @@ export const TimetableBentoView: React.FC = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-      className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-6"
-    >
+    <div className="p-4 sm:p-6 lg:p-8 pb-48 max-w-7xl mx-auto w-full space-y-6">
       {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -601,9 +599,10 @@ export const TimetableBentoView: React.FC = () => {
         </div>
       )}
 
-      {/* Pristine High-Resolution Export Template (Offscreen with positive DOM positioning and crisp anti-aliased font metrics) */}
-      <div
-        ref={exportRef}
+      {/* Pristine High-Resolution Export Template: Mounted strictly when exporting */}
+      {isExporting && (
+        <div
+          ref={exportRef}
         aria-hidden="true"
         style={{
           position: 'fixed',
@@ -713,6 +712,7 @@ export const TimetableBentoView: React.FC = () => {
           <span>5-day cycle verified</span>
         </div>
       </div>
-    </motion.div>
+      )}
+    </div>
   );
 };
