@@ -37,3 +37,4 @@ export const InteractiveBentoCard: React.FC<InteractiveBentoCardProps> = ({
     </motion.div>
   );
 };
+

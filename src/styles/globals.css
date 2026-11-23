@@ -66,11 +66,31 @@ h4,
       border-color 0.2s ease,
       box-shadow 0.2s ease;
   }
+
   .bento-card:hover {
     border-color: var(--color-border-hover);
     transform: translateY(-2px);
     box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
   }
+}
+
+/* Theme-specific bento-card shadows for clean, modern depth */
+.theme-barbie .bento-card {
+  box-shadow: 0 10px 28px -6px rgba(236, 72, 153, 0.18), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.theme-barbie .bento-card:hover {
+  box-shadow: 0 16px 36px -8px rgba(236, 72, 153, 0.28), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+}
+
+:root:not(.dark) .bento-card,
+.theme-light .bento-card {
+  box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+:root:not(.dark) .bento-card:hover,
+.theme-light .bento-card:hover {
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
 }
 
 /* Ambient glow backlights for critical bento states */
@@ -118,8 +138,153 @@ h4,
   display: none !important;
 }
 
+/* Timetable period cards: ultra-light subtle shadow to eliminate muddy 32px drop shadows */
+.timetable-period-card,
+[data-timetable] .timetable-period-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02) !important;
+}
+
+.timetable-period-card:hover,
+[data-timetable] .timetable-period-card:hover {
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Barbie theme soft gentle pink glow instead of black shadow */
+.theme-barbie .timetable-period-card,
+.theme-barbie [data-timetable] .timetable-period-card {
+  box-shadow: 0 2px 6px -1px rgba(236, 72, 153, 0.12), 0 1px 2px 0 rgba(236, 72, 153, 0.06) !important;
+}
+
+.theme-barbie .timetable-period-card:hover,
+.theme-barbie [data-timetable] .timetable-period-card:hover {
+  box-shadow: 0 4px 14px -2px rgba(236, 72, 153, 0.2) !important;
+}
+
+/* Dark / OLED / Batman subtle white glow */
+.dark .timetable-period-card,
+.theme-oled .timetable-period-card,
+.theme-batman .timetable-period-card,
+.dark [data-timetable] .timetable-period-card,
+.theme-oled [data-timetable] .timetable-period-card,
+.theme-batman [data-timetable] .timetable-period-card {
+  box-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark .timetable-period-card:hover,
+.theme-oled .timetable-period-card:hover,
+.theme-batman .timetable-period-card:hover,
+.dark [data-timetable] .timetable-period-card:hover,
+.theme-oled [data-timetable] .timetable-period-card:hover,
+.theme-batman [data-timetable] .timetable-period-card:hover {
+  box-shadow: 0 4px 12px -2px rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Timetable day cards: soft modern shadow instead of heavy drop shadow */
+.timetable-day-card,
+[data-timetable] .timetable-day-card {
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.timetable-day-card:hover,
+[data-timetable] .timetable-day-card:hover {
+  box-shadow: 0 6px 16px -3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.theme-barbie .timetable-day-card,
+.theme-barbie [data-timetable] .timetable-day-card {
+  box-shadow: 0 3px 10px -2px rgba(236, 72, 153, 0.12) !important;
+}
+
+.theme-barbie .timetable-day-card:hover,
+.theme-barbie [data-timetable] .timetable-day-card:hover {
+  box-shadow: 0 6px 18px -3px rgba(236, 72, 153, 0.2) !important;
+}
+
+.dark .timetable-day-card,
+.theme-oled .timetable-day-card,
+.theme-batman .timetable-day-card,
+.dark [data-timetable] .timetable-day-card,
+.theme-oled [data-timetable] .timetable-day-card,
+.theme-batman [data-timetable] .timetable-day-card {
+  box-shadow: 0 2px 8px -2px rgba(255, 255, 255, 0.04) !important;
+}
+
+.dark .timetable-day-card:hover,
+.theme-oled .timetable-day-card:hover,
+.theme-batman .timetable-day-card:hover,
+.dark [data-timetable] .timetable-day-card:hover,
+.theme-oled [data-timetable] .timetable-day-card:hover,
+.theme-batman [data-timetable] .timetable-day-card:hover {
+  box-shadow: 0 6px 16px -3px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Stunning Smooth Theme Transition (Native View Transition) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation-name: theme-fade-out;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  animation-name: theme-fade-in;
+}
+
+@keyframes theme-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.992);
+    filter: blur(6px);
+  }
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.008);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* While view transition is active, disable CSS property transitions so DOM snapshots stay clean */
+html:active-view-transition,
+html:active-view-transition * {
+  transition: none !important;
+}
+
+/* Gradual smooth theme morphing across surfaces when view transitions are not running */
+html:not(:active-view-transition),
+html:not(:active-view-transition) body,
+html:not(:active-view-transition) header,
+html:not(:active-view-transition) main,
+html:not(:active-view-transition) nav,
+html:not(:active-view-transition) .bento-card,
+html:not(:active-view-transition) .glass-dock {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Accessible Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   ::before,
   ::after {

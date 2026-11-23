@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { flushSync } from 'react-dom';
 import { StudentUserResponse, TimetableResponse } from '../api/types';
 import { apiClient } from '../api/client';
 import { defaultCache } from '../api/cache';
@@ -19,6 +20,24 @@ export const THEME_LIST: ThemeMode[] = [
 ];
 
 export const DARK_THEMES: ThemeMode[] = ['oled', 'batman', 'slate'];
+
+export const applyThemeToDOM = (newTheme: ThemeMode) => {
+  if (typeof document === 'undefined') return;
+  const root = document.documentElement;
+  THEME_LIST.forEach((t) => {
+    root.classList.remove(`theme-${t}`);
+  });
+  ['obsidian', 'midnight', 'emerald', 'sunset', 'amber', 'glacier', 'violet'].forEach((t) => {
+    root.classList.remove(`theme-${t}`);
+  });
+
+  if (DARK_THEMES.includes(newTheme)) {
+    root.classList.add('dark');
+  } else {
+    root.classList.remove('dark');
+  }
+  root.classList.add(`theme-${newTheme}`);
+};
 
 export interface ThemeInfo {
   id: ThemeMode;
@@ -136,29 +155,35 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   });
   const isDarkMode = DARK_THEMES.includes(theme);
 
+  const applyThemeTransition = useCallback((nextTheme: ThemeMode) => {
+    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+      (document as any).startViewTransition(() => {
+        applyThemeToDOM(nextTheme);
+        flushSync(() => {
+          setThemeState(nextTheme);
+        });
+      });
+    } else {
+      applyThemeToDOM(nextTheme);
+      setThemeState(nextTheme);
+    }
+  }, []);
+
   const setTheme = useCallback((newTheme: ThemeMode) => {
-    setThemeState(newTheme);
+    applyThemeTransition(newTheme);
     if (typeof window !== 'undefined') {
       try {
         window.localStorage.setItem('cw_theme_v3', newTheme);
         window.localStorage.setItem('cw_theme', DARK_THEMES.includes(newTheme) ? 'dark' : 'light');
       } catch { }
     }
-  }, []);
+  }, [applyThemeTransition]);
 
   const cycleTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const currIdx = THEME_LIST.indexOf(prev);
-      const nextTheme = THEME_LIST[(currIdx + 1) % THEME_LIST.length];
-      if (typeof window !== 'undefined') {
-        try {
-          window.localStorage.setItem('cw_theme_v3', nextTheme);
-          window.localStorage.setItem('cw_theme', DARK_THEMES.includes(nextTheme) ? 'dark' : 'light');
-        } catch { }
-      }
-      return nextTheme;
-    });
-  }, []);
+    const currIdx = THEME_LIST.indexOf(theme);
+    const nextTheme = THEME_LIST[(currIdx + 1) % THEME_LIST.length];
+    setTheme(nextTheme);
+  }, [theme, setTheme]);
 
   const toggleDarkMode = useCallback(() => {
     setTheme(DARK_THEMES.includes(theme) ? 'light' : 'oled');
@@ -233,20 +258,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Sync active theme class on <html> and persist preference
   useEffect(() => {
-    const root = document.documentElement;
-    THEME_LIST.forEach((t) => {
-      root.classList.remove(`theme-${t}`);
-    });
-    ['obsidian', 'midnight', 'emerald', 'sunset', 'amber', 'glacier', 'violet'].forEach((t) => {
-      root.classList.remove(`theme-${t}`);
-    });
-
-    if (DARK_THEMES.includes(theme)) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    root.classList.add(`theme-${theme}`);
+    applyThemeToDOM(theme);
   }, [theme]);
 
   // Background silent revalidation on mount (never blocks UI or wipes valid cached state)
