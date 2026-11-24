@@ -77,13 +77,24 @@ describe('Notification System Suite', () => {
     expect(html).toContain('view in marks');
   });
 
-  it('renders NotificationBell with unread count badge', () => {
+  it('renders NotificationBell with unread indicator dot and opaque popover', () => {
     const html = renderToString(React.createElement(NotificationBell));
 
     // Bell trigger renders
     expect(html).toContain('button');
-    // Unread count badge (2 items unread)
-    expect(html).toContain('>2<');
+    // Unread indicator dot
+    expect(html).toContain('bg-emerald-500');
+  });
+
+  it('renders DynamicIslandToast without bulky icon badges or enclosed pills', () => {
+    const html = renderToString(React.createElement(DynamicIslandToast));
+
+    // No left bulky icon badge
+    expect(html).not.toContain('lucide-award');
+    // No pill background classes
+    expect(html).not.toContain('rounded-full text-[10px]');
+    // Solid opaque background
+    expect(html).toContain('bg-white');
   });
 
   it('renders warning state for attendance cutoff notification', () => {

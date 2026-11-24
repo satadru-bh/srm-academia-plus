@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { useNotifications } from '../../context/NotificationContext';
-import { Wrench, X, RotateCcw, Clock, Calendar, Play, CheckCircle2, Bell, Award, AlertTriangle, Trash2 } from 'lucide-react';
+import { Wrench, X, RotateCcw, Clock, Calendar, Play, CheckCircle2, Bell, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -348,21 +348,20 @@ export const DevConsole: React.FC<{ forceShow?: boolean }> = ({ forceShow }) => 
                         message: 'scored 48/50 in cycle test 2 • projected grade a+'
                       })
                     }
-                    className="w-full text-left p-2 rounded-xl border border-violet-500/20 bg-violet-500/5 hover:bg-violet-500/10 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="min-w-0 pr-2">
-                      <div className="text-xs font-semibold text-violet-600 dark:text-violet-400 lowercase flex items-center space-x-1.5">
-                        <Award className="w-3.5 h-3.5" />
+                      <div className="text-xs font-semibold lowercase flex items-center space-x-1.5 text-[#111111] dark:text-[#FAFAFA]">
                         <span>marks: 21csc202j</span>
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-violet-500/15 border border-violet-500/30">
-                          cycle test 2
+                        <span className="text-[#71717A] dark:text-[#A1A1AA] font-normal">
+                          • cycle test 2
                         </span>
                       </div>
                       <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
                         scored 48/50 • projected grade a+
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold text-violet-500 shrink-0">test →</span>
+                    <span className="text-[10px] font-bold text-amber-500 shrink-0">test →</span>
                   </button>
 
                   {/* Marks Added: Assignment 1 */}
@@ -380,21 +379,20 @@ export const DevConsole: React.FC<{ forceShow?: boolean }> = ({ forceShow }) => 
                         message: 'scored 19/20 in assignment 1 (graph complexity analysis)'
                       })
                     }
-                    className="w-full text-left p-2 rounded-xl border border-violet-500/20 bg-violet-500/5 hover:bg-violet-500/10 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="min-w-0 pr-2">
-                      <div className="text-xs font-semibold text-violet-600 dark:text-violet-400 lowercase flex items-center space-x-1.5">
-                        <Award className="w-3.5 h-3.5" />
+                      <div className="text-xs font-semibold lowercase flex items-center space-x-1.5 text-[#111111] dark:text-[#FAFAFA]">
                         <span>marks: 21csc201j</span>
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-violet-500/15 border border-violet-500/30">
-                          assignment 1
+                        <span className="text-[#71717A] dark:text-[#A1A1AA] font-normal">
+                          • assignment 1
                         </span>
                       </div>
                       <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
                         scored 19/20 • graph complexity
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold text-violet-500 shrink-0">test →</span>
+                    <span className="text-[10px] font-bold text-amber-500 shrink-0">test →</span>
                   </button>
 
                   {/* Marks Added: Surprise Test */}
@@ -412,21 +410,20 @@ export const DevConsole: React.FC<{ forceShow?: boolean }> = ({ forceShow }) => 
                         message: 'scored 10/10 in surprise test (z-transforms)'
                       })
                     }
-                    className="w-full text-left p-2 rounded-xl border border-violet-500/20 bg-violet-500/5 hover:bg-violet-500/10 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="min-w-0 pr-2">
-                      <div className="text-xs font-semibold text-violet-600 dark:text-violet-400 lowercase flex items-center space-x-1.5">
-                        <Award className="w-3.5 h-3.5" />
+                      <div className="text-xs font-semibold lowercase flex items-center space-x-1.5 text-[#111111] dark:text-[#FAFAFA]">
                         <span>marks: 21mab201t</span>
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-violet-500/15 border border-violet-500/30">
-                          surprise test
+                        <span className="text-[#71717A] dark:text-[#A1A1AA] font-normal">
+                          • surprise test
                         </span>
                       </div>
                       <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
                         scored 10/10 • z-transforms
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold text-violet-500 shrink-0">test →</span>
+                    <span className="text-[10px] font-bold text-amber-500 shrink-0">test →</span>
                   </button>
 
                   {/* Attendance Present */}
@@ -445,21 +442,20 @@ export const DevConsole: React.FC<{ forceShow?: boolean }> = ({ forceShow }) => 
                         message: 'present recorded • 29/33 hrs (87.9% • +1 hr)'
                       })
                     }
-                    className="w-full text-left p-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="min-w-0 pr-2">
-                      <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 lowercase flex items-center space-x-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
+                      <div className="text-xs font-semibold lowercase flex items-center space-x-1.5 text-[#111111] dark:text-[#FAFAFA]">
                         <span>attendance: 21mab201t</span>
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-emerald-500/15 border border-emerald-500/30">
-                          +1 hr present
+                        <span className="text-[#71717A] dark:text-[#A1A1AA] font-normal">
+                          • +1 hr present
                         </span>
                       </div>
                       <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
                         29/33 hrs • 87.9% attended
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-500 shrink-0">test →</span>
+                    <span className="text-[10px] font-bold text-amber-500 shrink-0">test →</span>
                   </button>
 
                   {/* Attendance Critical Warning */}
@@ -478,14 +474,13 @@ export const DevConsole: React.FC<{ forceShow?: boolean }> = ({ forceShow }) => 
                         message: 'absent recorded • 22/30 hrs (73.3% • below 75% cutoff!)'
                       })
                     }
-                    className="w-full text-left p-2 rounded-xl border border-rose-500/25 bg-rose-500/5 hover:bg-rose-500/10 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-2.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="min-w-0 pr-2">
-                      <div className="text-xs font-semibold text-rose-600 dark:text-rose-400 lowercase flex items-center space-x-1.5">
-                        <AlertTriangle className="w-3.5 h-3.5" />
+                      <div className="text-xs font-semibold lowercase flex items-center space-x-1.5 text-[#111111] dark:text-[#FAFAFA]">
                         <span>attendance: 21css201t</span>
-                        <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-rose-500/15 border border-rose-500/30">
-                          73.3% cutoff alert
+                        <span className="text-rose-500 font-normal">
+                          • 73.3% warning
                         </span>
                       </div>
                       <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] lowercase truncate mt-0.5">
