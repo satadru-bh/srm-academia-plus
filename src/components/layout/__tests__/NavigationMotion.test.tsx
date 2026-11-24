@@ -71,14 +71,16 @@ describe('Navigation Motion & Tactile Interactions', () => {
     });
   });
 
-  describe('Scroll Spring Instant Return', () => {
-    it('uses smooth critically-damped spring configuration that eliminates jitter and rubberband oscillation', () => {
+  describe('Scroll Spring Mobile Exclusivity', () => {
+    it('restricts scroll spring resistance strictly to mobile touch and disables on PC', () => {
       const scrollPath = path.resolve(__dirname, '../../common/motion/ScrollResistance.tsx');
       const scrollContent = fs.readFileSync(scrollPath, 'utf-8');
-      expect(scrollContent).toContain('stiffness: 350');
-      expect(scrollContent).toContain('damping: 36');
-      expect(scrollContent).toContain('mass: 0.6');
-      expect(scrollContent).toContain('maxDisplacement = 8');
+      expect(scrollContent).toContain('MOBILE_SPRING_CONFIG');
+      expect(scrollContent).toContain('stiffness: 420');
+      expect(scrollContent).toContain('damping: 30');
+      expect(scrollContent).toContain('mass: 0.4');
+      expect(scrollContent).toContain('isMobile');
+      expect(scrollContent).not.toContain("addEventListener('wheel'");
     });
   });
 

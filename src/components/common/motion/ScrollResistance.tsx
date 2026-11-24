@@ -9,16 +9,16 @@ interface ScrollResistanceProps {
   disabled?: boolean;
 }
 
-// Smooth, critically-damped hydraulic cushion that eliminates jitter and floppy rubber-band oscillation
-const SPRING_CONFIG = {
-  stiffness: 350,
-  damping: 36,
-  mass: 0.6,
+// Mobile tactile rubber-band spring config
+const MOBILE_SPRING_CONFIG = {
+  stiffness: 420,
+  damping: 30,
+  mass: 0.4,
 };
 
 /**
- * Hook to provide tactile spring resistance when dragging or scrolling against boundaries.
- * Uses continuous frame-by-frame exponential decay to eliminate discrete mouse wheel jitter.
+ * Hook to provide tactile spring resistance exclusively on mobile touch devices.
+ * Completely disabled on PC to guarantee zero desktop jitter or interference.
  */
 export function useScrollResistance(options: {
   targetRef?: React.RefObject<HTMLElement | null>;
@@ -31,24 +31,40 @@ export function useScrollResistance(options: {
     targetRef,
     isWindow = false,
     direction = 'y',
-    maxDisplacement = 8,
+    maxDisplacement = 20,
     disabled = false,
   } = options;
+
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const hasTouch = 'ontouchstart' in window || (navigator && navigator.maxTouchPoints > 0);
+    const isNarrow = window.innerWidth < 768;
+    return Boolean(hasTouch && isNarrow);
+  });
 
   const rawY = useMotionValue(0);
   const rawX = useMotionValue(0);
 
-  const springY = useSpring(rawY, SPRING_CONFIG);
-  const springX = useSpring(rawX, SPRING_CONFIG);
+  const springY = useSpring(rawY, MOBILE_SPRING_CONFIG);
+  const springX = useSpring(rawX, MOBILE_SPRING_CONFIG);
 
   const [activeEdge, setActiveEdge] = useState<'top' | 'bottom' | 'left' | 'right' | null>(null);
-  const targetY = useRef(0);
-  const targetX = useRef(0);
-  const rafId = useRef<number | null>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
-    if (disabled) return;
+    const handleResize = () => {
+      const hasTouch = 'ontouchstart' in window || (navigator && navigator.maxTouchPoints > 0);
+      const isNarrow = window.innerWidth < 768;
+      setIsMobile(Boolean(hasTouch && isNarrow));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Strictly mobile-only: disable all listeners on PC
+    if (disabled || !isMobile) return;
 
     const getScrollMetrics = () => {
       if (isWindow || !targetRef?.current) {
@@ -74,126 +90,7 @@ export function useScrollResistance(options: {
       };
     };
 
-    // Smooth continuous RAF decay loop — eliminates all timer fights and discrete jumps
-    const startDecayLoop = () => {
-      if (rafId.current !== null) return;
-
-      const tick = () => {
-        targetY.current *= 0.82;
-        targetX.current *= 0.82;
-
-        if (Math.abs(targetY.current) < 0.08) targetY.current = 0;
-        if (Math.abs(targetX.current) < 0.08) targetX.current = 0;
-
-        rawY.set(targetY.current);
-        rawX.set(targetX.current);
-
-        if (targetY.current === 0 && targetX.current === 0) {
-          setActiveEdge(null);
-          rafId.current = null;
-        } else {
-          rafId.current = requestAnimationFrame(tick);
-        }
-      };
-
-      rafId.current = requestAnimationFrame(tick);
-    };
-
-    const stopDecayLoop = () => {
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
-        rafId.current = null;
-      }
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      const { scrollTop, scrollHeight, clientHeight, scrollLeft, scrollWidth, clientWidth } = getScrollMetrics();
-
-      let handled = false;
-
-      // Detect discrete notched mouse wheel clicks on desktop (typically increments of 50-120)
-      const isDiscreteWheel = Math.abs(e.deltaY) >= 40 && Number.isInteger(e.deltaY);
-
-      // Vertical Resistance
-      if (direction === 'y' || direction === 'both') {
-        const isAtTop = scrollTop <= 0.5;
-        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1.5;
-
-        if (isAtTop && e.deltaY < 0) {
-          // Pulling down at top edge: smooth hydraulic cushion
-          const impulse = isDiscreteWheel
-            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaY)) * 0.25)
-            : Math.min(4, Math.abs(e.deltaY) * 0.12);
-          targetY.current = Math.min(maxDisplacement, targetY.current + impulse);
-          rawY.set(targetY.current);
-          setActiveEdge('top');
-          handled = true;
-        } else if (isAtBottom && e.deltaY > 0) {
-          // Pushing up at bottom edge: smooth hydraulic cushion
-          const impulse = isDiscreteWheel
-            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaY)) * 0.25)
-            : Math.min(4, Math.abs(e.deltaY) * 0.12);
-          targetY.current = Math.max(-maxDisplacement, targetY.current - impulse);
-          rawY.set(targetY.current);
-          setActiveEdge('bottom');
-          handled = true;
-        } else if ((isAtTop && e.deltaY > 0) || (isAtBottom && e.deltaY < 0)) {
-          // Moving away from boundary: zero out instantly
-          targetY.current = 0;
-          rawY.set(0);
-          setActiveEdge(null);
-        }
-      }
-
-      // Horizontal Resistance
-      if (direction === 'x' || direction === 'both') {
-        const isAtLeft = scrollLeft <= 0.5;
-        const isAtRight = scrollLeft + clientWidth >= scrollWidth - 1.5;
-        const isDiscreteWheelX = Math.abs(e.deltaX) >= 40 && Number.isInteger(e.deltaX);
-
-        if (isAtLeft && e.deltaX < 0) {
-          const impulse = isDiscreteWheelX
-            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaX)) * 0.25)
-            : Math.min(4, Math.abs(e.deltaX) * 0.12);
-          targetX.current = Math.min(maxDisplacement, targetX.current + impulse);
-          rawX.set(targetX.current);
-          setActiveEdge('left');
-          handled = true;
-        } else if (isAtRight && e.deltaX > 0) {
-          const impulse = isDiscreteWheelX
-            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaX)) * 0.25)
-            : Math.min(4, Math.abs(e.deltaX) * 0.12);
-          targetX.current = Math.max(-maxDisplacement, targetX.current - impulse);
-          rawX.set(targetX.current);
-          setActiveEdge('right');
-          handled = true;
-        } else if ((isAtLeft && e.deltaX > 0) || (isAtRight && e.deltaX < 0)) {
-          // Moving away from boundary: zero out instantly
-          targetX.current = 0;
-          rawX.set(0);
-          setActiveEdge(null);
-        }
-      }
-
-      if (handled) {
-        startDecayLoop();
-      }
-    };
-
-    const handleScroll = () => {
-      // Whenever normal scroll happens inside content, clear any edge spring immediately
-      if (targetY.current !== 0 || targetX.current !== 0 || rawY.get() !== 0 || rawX.get() !== 0) {
-        stopDecayLoop();
-        targetY.current = 0;
-        targetX.current = 0;
-        rawY.set(0);
-        rawX.set(0);
-        setActiveEdge(null);
-      }
-    };
-
     const handleTouchStart = (e: TouchEvent) => {
-      stopDecayLoop();
       if (e.touches.length > 0) {
         touchStartRef.current = {
           x: e.touches[0].clientX,
@@ -216,17 +113,14 @@ export function useScrollResistance(options: {
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1.5;
 
         if (isAtTop && dy > 0) {
-          const tension = Math.min(maxDisplacement, Math.pow(dy, 0.55) * 1.0);
-          targetY.current = tension;
+          const tension = Math.min(maxDisplacement, Math.pow(dy, 0.65) * 1.3);
           rawY.set(tension);
           setActiveEdge('top');
         } else if (isAtBottom && dy < 0) {
-          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dy), 0.55) * 1.0);
-          targetY.current = tension;
+          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dy), 0.65) * 1.3);
           rawY.set(tension);
           setActiveEdge('bottom');
         } else {
-          targetY.current = 0;
           rawY.set(0);
           setActiveEdge(null);
         }
@@ -237,17 +131,14 @@ export function useScrollResistance(options: {
         const isAtRight = scrollLeft + clientWidth >= scrollWidth - 1.5;
 
         if (isAtLeft && dx > 0) {
-          const tension = Math.min(maxDisplacement, Math.pow(dx, 0.55) * 1.0);
-          targetX.current = tension;
+          const tension = Math.min(maxDisplacement, Math.pow(dx, 0.65) * 1.3);
           rawX.set(tension);
           setActiveEdge('left');
         } else if (isAtRight && dx < 0) {
-          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dx), 0.55) * 1.0);
-          targetX.current = tension;
+          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dx), 0.65) * 1.3);
           rawX.set(tension);
           setActiveEdge('right');
         } else {
-          targetX.current = 0;
           rawX.set(0);
           setActiveEdge(null);
         }
@@ -256,46 +147,43 @@ export function useScrollResistance(options: {
 
     const handleTouchEnd = () => {
       touchStartRef.current = null;
-      startDecayLoop();
+      rawY.set(0);
+      rawX.set(0);
+      setActiveEdge(null);
     };
 
     const element = isWindow ? window : targetRef?.current;
     if (!element) return;
 
-    element.addEventListener('wheel', handleWheel as any, { passive: true });
-    element.addEventListener('scroll', handleScroll as any, { passive: true });
     element.addEventListener('touchstart', handleTouchStart as any, { passive: true });
     element.addEventListener('touchmove', handleTouchMove as any, { passive: true });
     element.addEventListener('touchend', handleTouchEnd as any, { passive: true });
     element.addEventListener('touchcancel', handleTouchEnd as any, { passive: true });
 
     return () => {
-      element.removeEventListener('wheel', handleWheel as any);
-      element.removeEventListener('scroll', handleScroll as any);
       element.removeEventListener('touchstart', handleTouchStart as any);
       element.removeEventListener('touchmove', handleTouchMove as any);
       element.removeEventListener('touchend', handleTouchEnd as any);
       element.removeEventListener('touchcancel', handleTouchEnd as any);
-      stopDecayLoop();
     };
-  }, [targetRef, isWindow, direction, maxDisplacement, disabled, rawY, rawX]);
+  }, [targetRef, isWindow, direction, maxDisplacement, disabled, isMobile, rawY, rawX]);
 
-  return { springY, springX, activeEdge };
+  return { springY, springX, activeEdge, isMobile };
 }
 
 /**
- * Tactile boundary spring wrapper that simulates physical rubber-band resistance
- * when reaching the end of scrollable areas.
+ * Mobile-only tactile boundary spring wrapper.
+ * On PC, acts as a zero-overhead pass-through container.
  */
 export const ScrollResistanceBoundary: React.FC<ScrollResistanceProps> = ({
   children,
   className = '',
   direction = 'y',
-  maxDisplacement = 8,
+  maxDisplacement = 20,
   disabled = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { springY, springX, activeEdge } = useScrollResistance({
+  const { springY, springX, activeEdge, isMobile } = useScrollResistance({
     targetRef: containerRef,
     isWindow: false,
     direction,
@@ -303,23 +191,28 @@ export const ScrollResistanceBoundary: React.FC<ScrollResistanceProps> = ({
     disabled,
   });
 
+  // Zero-overhead passthrough on PC
+  if (!isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
-      {/* Resistance Aura Indicators at Limits */}
+      {/* Resistance Aura Indicators at Limits on Mobile */}
       {activeEdge === 'top' && (
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-b from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
       )}
       {activeEdge === 'bottom' && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-t from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
+        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-t from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
       )}
       {activeEdge === 'left' && (
-        <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-r from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
+        <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-gradient-to-r from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
       )}
       {activeEdge === 'right' && (
-        <div className="absolute top-0 bottom-0 right-0 w-1 bg-gradient-to-l from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
+        <div className="absolute top-0 bottom-0 right-0 w-1.5 bg-gradient-to-l from-black/10 dark:from-white/15 to-transparent pointer-events-none z-30 transition-opacity duration-150 animate-pulse" />
       )}
 
-      {/* Spring-damped Content */}
+      {/* Spring-damped Content on Mobile */}
       <motion.div
         style={{
           y: direction === 'x' ? 0 : springY,
@@ -334,28 +227,34 @@ export const ScrollResistanceBoundary: React.FC<ScrollResistanceProps> = ({
 };
 
 /**
- * Window-level scroll resistance wrapper for the main page view.
+ * Window-level mobile scroll resistance wrapper.
+ * On PC, acts as a zero-overhead pass-through container.
  */
 export const WindowScrollResistance: React.FC<{
   children?: React.ReactNode;
   className?: string;
   disabled?: boolean;
 }> = ({ children, className = '', disabled = false }) => {
-  const { springY, activeEdge } = useScrollResistance({
+  const { springY, activeEdge, isMobile } = useScrollResistance({
     isWindow: true,
     direction: 'y',
-    maxDisplacement: 8,
+    maxDisplacement: 20,
     disabled,
   });
 
+  // Zero-overhead passthrough on PC
+  if (!isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <div className={`relative ${className}`}>
-      {/* Resistance Edge Feedback at Top/Bottom of Viewport */}
+      {/* Resistance Edge Feedback at Top/Bottom of Viewport on Mobile */}
       {activeEdge === 'top' && (
-        <div className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-b from-black/10 dark:from-white/15 to-transparent pointer-events-none z-50 transition-opacity duration-150 animate-pulse" />
+        <div className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-b from-black/10 dark:from-white/15 to-transparent pointer-events-none z-50 transition-opacity duration-150 animate-pulse" />
       )}
       {activeEdge === 'bottom' && (
-        <div className="fixed bottom-0 left-0 right-0 h-1.5 bg-gradient-to-t from-black/10 dark:from-white/15 to-transparent pointer-events-none z-50 transition-opacity duration-150 animate-pulse" />
+        <div className="fixed bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-black/10 dark:from-white/15 to-transparent pointer-events-none z-50 transition-opacity duration-150 animate-pulse" />
       )}
 
       <motion.div style={{ y: springY }} className="w-full">
