@@ -23,6 +23,13 @@ vi.mock('../../../context/SessionContext', () => ({
     openCourseAttendance: vi.fn(),
     openCourseMarks: vi.fn(),
     todayDateStr: '2026-11-24',
+    currentTime: { hours: 10, minutes: 0, formattedTime: '10:00' },
+    simulatedDate: null,
+    setSimulatedDate: vi.fn(),
+    simulatedTime: null,
+    setSimulatedTime: vi.fn(),
+    resetSimulation: vi.fn(),
+    isSimulated: false,
     focusedCourseCode: null,
     setFocusedCourseCode: vi.fn(),
     attendanceTargetPercent: mockAttendanceTarget,
@@ -108,6 +115,9 @@ describe('Living Overview, Attendance, Timetable & Marks Bento Views Suite', () 
       expect(html).toContain('day order');
       expect(html).toContain('day 1');
       expect(html).toContain('day 2');
+
+      // Live pill removed from period cards
+      expect(html).not.toContain('>live<');
     });
   });
 

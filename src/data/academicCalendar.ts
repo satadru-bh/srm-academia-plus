@@ -84,15 +84,6 @@ export const BASE_ACADEMIC_CALENDAR_EVENTS: AcademicEvent[] = [
     description: 'festival holiday',
     isWorkingDay: false
   },
-  {
-    id: 'ev-sep-21',
-    title: 'continuous learning assessment 1 (cla-1)',
-    date: '2026-09-21',
-    endDate: '2026-09-25',
-    category: 'exam',
-    description: 'first cycle unit test across transforms, dsa and operating systems',
-    isWorkingDay: true
-  },
 
   // October 2026
   {
@@ -118,15 +109,6 @@ export const BASE_ACADEMIC_CALENDAR_EVENTS: AcademicEvent[] = [
     category: 'holiday',
     description: 'vijayadashami vacation',
     isWorkingDay: false
-  },
-  {
-    id: 'ev-oct-26',
-    title: 'continuous learning assessment 2 (cla-2)',
-    date: '2026-10-26',
-    endDate: '2026-10-30',
-    category: 'exam',
-    description: 'mid-term summative written examinations',
-    isWorkingDay: true
   },
 
   // November 2026 (Active Current Month)
@@ -274,14 +256,24 @@ export function getSyncedAcademicEvents(customExams?: ExamTimetableItem[]): Acad
     isWorkingDay: true
   }));
 
-  return [...nonExamEvents, ...examEvents].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const allEvents = [...nonExamEvents, ...examEvents]
+    .filter((e) => {
+      // Calendar only allows end-semester exams (all internal/unit exams excluded)
+      if (e.category === 'exam') {
+        return e.title.toLowerCase().includes('end sem');
+      }
+      return true;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  return allEvents;
 }
 
 /**
  * Returns upcoming academic events strictly from today (or reference date) onwards.
- * Excludes past events completely.
+ * Strictly ensures no displayed event date is in the past.
  */
-export function getUpcomingEvents(limit = 6, referenceDateStr?: string, customExams?: ExamTimetableItem[]): AcademicEvent[] {
+export function getUpcomingEvents(limit = 5, referenceDateStr?: string, customExams?: ExamTimetableItem[]): AcademicEvent[] {
   const todayStr = referenceDateStr || (() => {
     const now = new Date();
     const y = now.getFullYear();
@@ -294,8 +286,8 @@ export function getUpcomingEvents(limit = 6, referenceDateStr?: string, customEx
 
   return allEvents
     .filter(ev => {
-      const evDate = ev.endDate || ev.date;
-      return evDate >= todayStr;
+      // Must not be in the past: ev.date must be >= todayStr
+      return ev.date >= todayStr;
     })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, limit);

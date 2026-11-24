@@ -61,6 +61,12 @@ export const THEME_DETAILS: Record<ThemeMode, ThemeInfo> = {
   light: { id: 'light', name: 'minimal light', desc: 'apple monochrome daylight', accent: '#111111', previewBg: '#FAFAFA', isDark: false }
 };
 
+export interface CurrentTimeState {
+  hours: number;
+  minutes: number;
+  formattedTime: string;
+}
+
 interface SessionContextType {
   user: StudentUserResponse | null;
   timetable: TimetableResponse | null;
@@ -85,6 +91,13 @@ interface SessionContextType {
   isHoliday: boolean;
   holidayName?: string;
   todayDateStr: string;
+  simulatedDate: string | null;
+  setSimulatedDate: (d: string | null) => void;
+  simulatedTime: string | null;
+  setSimulatedTime: (t: string | null) => void;
+  resetSimulation: () => void;
+  isSimulated: boolean;
+  currentTime: CurrentTimeState;
   inspectedNotesSubjectId: string | null;
   setInspectedNotesSubjectId: (id: string | null) => void;
   openNotesSubject: (subjectIdOrCode: string) => void;
@@ -253,14 +266,94 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setActiveTabState('faculty');
   }, []);
 
-  // Dynamically resolve today's date & day order / holiday status
+  // Developer simulation state for testing specific dates, times and scenarios (persists in sessionStorage)
+  const [simulatedDate, setSimulatedDateState] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return window.sessionStorage.getItem('srm_sim_date');
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
+
+  const [simulatedTime, setSimulatedTimeState] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return window.sessionStorage.getItem('srm_sim_time');
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
+
+  const setSimulatedDate = useCallback((d: string | null) => {
+    setSimulatedDateState(d);
+    if (typeof window !== 'undefined') {
+      try {
+        if (d) window.sessionStorage.setItem('srm_sim_date', d);
+        else window.sessionStorage.removeItem('srm_sim_date');
+      } catch { }
+    }
+  }, []);
+
+  const setSimulatedTime = useCallback((t: string | null) => {
+    setSimulatedTimeState(t);
+    if (typeof window !== 'undefined') {
+      try {
+        if (t) window.sessionStorage.setItem('srm_sim_time', t);
+        else window.sessionStorage.removeItem('srm_sim_time');
+      } catch { }
+    }
+  }, []);
+
+  const resetSimulation = useCallback(() => {
+    setSimulatedDate(null);
+    setSimulatedTime(null);
+  }, [setSimulatedDate, setSimulatedTime]);
+
+  const isSimulated = Boolean(simulatedDate || simulatedTime);
+
+  // Live system minutes for time progression
+  const [liveMinutes, setLiveMinutes] = useState(() => {
+    const now = new Date();
+    return now.getHours() * 60 + now.getMinutes();
+  });
+
+  useEffect(() => {
+    if (simulatedTime) return;
+    const interval = setInterval(() => {
+      const now = new Date();
+      setLiveMinutes(now.getHours() * 60 + now.getMinutes());
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [simulatedTime]);
+
+  const currentTime = React.useMemo<CurrentTimeState>(() => {
+    if (simulatedTime) {
+      const [h, m] = simulatedTime.split(':').map(Number);
+      const hours = isNaN(h) ? 12 : h;
+      const minutes = isNaN(m) ? 0 : m;
+      const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+      return { hours, minutes, formattedTime };
+    }
+    const hours = Math.floor(liveMinutes / 60);
+    const minutes = liveMinutes % 60;
+    const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    return { hours, minutes, formattedTime };
+  }, [simulatedTime, liveMinutes]);
+
+  // Dynamically resolve today's date & day order / holiday status (respects developer simulation)
   const todayDateStr = React.useMemo(() => {
+    if (simulatedDate) return simulatedDate;
     const now = new Date();
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-  }, []);
+  }, [simulatedDate]);
 
   const todayStatus = React.useMemo(() => {
     return getDayOrderForDate(todayDateStr);
@@ -405,6 +498,13 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         isHoliday,
         holidayName,
         todayDateStr,
+        simulatedDate,
+        setSimulatedDate,
+        simulatedTime,
+        setSimulatedTime,
+        resetSimulation,
+        isSimulated,
+        currentTime,
         inspectedNotesSubjectId,
         setInspectedNotesSubjectId,
         openNotesSubject,

@@ -21,19 +21,25 @@ import {
 } from '../common/motion';
 
 export const CalendarBentoView: React.FC = () => {
-  const { timetable } = useSession();
+  const { timetable, todayDateStr } = useSession();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'exam' | 'holiday' | 'milestone' | 'cultural'>('all');
   
-  // Default to November 2026 (current active semester month)
-  const [currentYear, setCurrentYear] = useState<number>(() => new Date().getFullYear());
-  const [currentMonth, setCurrentMonth] = useState<number>(() => new Date().getMonth());
-  const [selectedDate, setSelectedDate] = useState<string>(() => {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, '0');
-    const d = String(now.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
+  // Default to active semester month / year
+  const [currentYear, setCurrentYear] = useState<number>(() => {
+    if (todayDateStr) {
+      const parts = todayDateStr.split('-');
+      if (parts[0]) return Number(parts[0]);
+    }
+    return new Date().getFullYear();
   });
+  const [currentMonth, setCurrentMonth] = useState<number>(() => {
+    if (todayDateStr) {
+      const parts = todayDateStr.split('-');
+      if (parts[1]) return Number(parts[1]) - 1;
+    }
+    return new Date().getMonth();
+  });
+  const [selectedDate, setSelectedDate] = useState<string>(() => todayDateStr || '2026-11-24');
 
   // Synchronized academic events including official exam timetable
   const allEvents = useMemo(() => getSyncedAcademicEvents(), []);
@@ -62,10 +68,10 @@ export const CalendarBentoView: React.FC = () => {
   };
 
   const handleGoToToday = () => {
-    const now = new Date();
-    setCurrentYear(now.getFullYear());
-    setCurrentMonth(now.getMonth());
-    setSelectedDate(todayStr);
+    const d = todayDateStr ? new Date(todayDateStr) : new Date();
+    setCurrentYear(d.getFullYear());
+    setCurrentMonth(d.getMonth());
+    setSelectedDate(todayDateStr);
   };
 
   // Generate calendar days for current month
@@ -85,22 +91,15 @@ export const CalendarBentoView: React.FC = () => {
     calendarCells.push(dateStr);
   }
 
-  // Filter only upcoming events from today onwards by default
-  const todayStr = useMemo(() => {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, '0');
-    const d = String(now.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
-  }, []);
+  // Filter only upcoming events from today onwards by default (strictly no past dates)
+  const todayStr = todayDateStr;
 
   const [showUpcomingOnly, setShowUpcomingOnly] = useState<boolean>(true);
 
-  // Filtered list of events
+  // Filtered list of events (calendar exams strictly restricted to end-semester examinations)
   const filteredEvents = allEvents.filter(e => {
     if (showUpcomingOnly) {
-      const eventEndOrDate = e.endDate || e.date;
-      if (eventEndOrDate < todayStr) return false;
+      if (e.date < todayStr) return false;
     }
     if (selectedCategory === 'all') return true;
     return e.category === selectedCategory;

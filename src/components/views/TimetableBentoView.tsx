@@ -14,7 +14,7 @@ import {
 } from '../common/motion';
 
 export const TimetableBentoView: React.FC = () => {
-  const { user, timetable, currentDayOrder, openFaculty } = useSession();
+  const { user, timetable, currentDayOrder, openFaculty, currentTime } = useSession();
   const [viewMode, setViewMode] = useState<'grid' | 'cards'>('grid');
   const [selectedDayOrder, setSelectedDayOrder] = useState<number>(currentDayOrder > 0 ? currentDayOrder : 1);
   const timetableRef = useRef<HTMLDivElement>(null);
@@ -45,8 +45,7 @@ export const TimetableBentoView: React.FC = () => {
   // Check if current time falls within startPeriod to endPeriod on dayOrder during active session
   const isSlotOngoing = (dayOrder: number, startPeriodId: number, endPeriodId: number): boolean => {
     if (dayOrder !== currentDayOrder || currentDayOrder <= 0) return false;
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const currentMinutes = currentTime ? (currentTime.hours * 60 + currentTime.minutes) : (new Date().getHours() * 60 + new Date().getMinutes());
 
     const periodTimes: Record<number, { start: number; end: number }> = {
       1: { start: 8 * 60, end: 8 * 60 + 50 },
@@ -340,12 +339,6 @@ export const TimetableBentoView: React.FC = () => {
                                     <span className="font-bold text-[11px] text-[#111111] dark:text-[#FAFAFA] truncate">
                                       {slot.courseCode}
                                     </span>
-                                    {isOngoing && (
-                                      <span className="inline-flex items-center space-x-1 px-1 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-bold text-emerald-500">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                                        <span className="leading-none">live</span>
-                                      </span>
-                                    )}
                                   </div>
                                   <span
                                     className={`font-bold text-xs shrink-0 ${isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
@@ -448,12 +441,6 @@ export const TimetableBentoView: React.FC = () => {
                                 <span className="font-bold text-xs text-[#111111] dark:text-[#FAFAFA]">
                                   {slot.courseCode}
                                 </span>
-                                {isOngoing && (
-                                  <span className="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-bold text-emerald-500">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                                    <span>live</span>
-                                  </span>
-                                )}
                                 <span
                                   className={`font-bold text-xs ${isLab ? 'text-emerald-500 dark:text-emerald-400' : 'text-blue-500 dark:text-blue-400'
                                     }`}
@@ -574,12 +561,6 @@ export const TimetableBentoView: React.FC = () => {
                               >
                                 {timeRangeDisplay}
                               </span>
-                              {isOngoing && (
-                                <span className="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 text-[10px] font-bold border border-emerald-500/25">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                                  <span>live</span>
-                                </span>
-                              )}
                             </div>
                             <div className="flex items-center space-x-2">
                               <span

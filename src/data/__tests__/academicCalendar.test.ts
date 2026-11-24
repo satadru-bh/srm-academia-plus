@@ -60,13 +60,25 @@ describe('getDayOrderForDate', () => {
     expect(upcomingEvents.length).toBeLessThan(allEvents.length);
   });
 
-  it('getUpcomingEvents returns strictly upcoming events from reference date onwards', async () => {
+  it('getUpcomingEvents returns strictly upcoming events from reference date onwards with no past dates', async () => {
     const { getUpcomingEvents } = await import('../academicCalendar');
-    const upcoming = getUpcomingEvents(10, '2026-11-23');
+    const upcoming = getUpcomingEvents(5, '2026-11-24');
     expect(upcoming.length).toBeGreaterThan(0);
     upcoming.forEach(e => {
-      const endOrDate = e.endDate || e.date;
-      expect(endOrDate >= '2026-11-23').toBe(true);
+      // Must strictly be on or after reference date (never in the past)
+      expect(e.date >= '2026-11-24').toBe(true);
+    });
+  });
+
+  it('calendar only contains end semester exams and excludes all unit/internal tests', async () => {
+    const { getSyncedAcademicEvents } = await import('../academicCalendar');
+    const events = getSyncedAcademicEvents();
+    const examEvents = events.filter(e => e.category === 'exam');
+    expect(examEvents.length).toBeGreaterThan(0);
+    examEvents.forEach(e => {
+      expect(e.title.toLowerCase()).toContain('end sem');
+      expect(e.title.toLowerCase()).not.toContain('cla-1');
+      expect(e.title.toLowerCase()).not.toContain('cla-2');
     });
   });
 });

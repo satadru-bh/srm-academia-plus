@@ -10,7 +10,7 @@ import {
 import { getUpcomingEvents } from '../../data/academicCalendar';
 import { stripEmployeeId } from '../../utils/facultyMatcher';
 import { REAL_TIMETABLE_DATA } from '../../data/studentData';
-import { hasAssignedVenue } from '../../api/types';
+import { TimetableSlot, hasAssignedVenue } from '../../api/types';
 import { GpaPredictorModal } from '../modals/GpaPredictorModal';
 import { 
   MapPin, 
@@ -37,7 +37,8 @@ export const AtAGlanceView: React.FC = () => {
     openCourseAttendance,
     openCourseMarks,
     openFaculty,
-    todayDateStr
+    todayDateStr,
+    currentTime
   } = useSession();
   const [isGpaPredictorOpen, setIsGpaPredictorOpen] = useState(false);
 
@@ -65,6 +66,56 @@ export const AtAGlanceView: React.FC = () => {
           (s) => s.courseTitle !== 'Free Period' && s.courseTitle !== 'No class' && hasAssignedVenue(s.room)
         )
     : [];
+
+  // Helper to determine if a class is currently ongoing based on current minutes
+  const currentMinutes = currentTime ? (currentTime.hours * 60 + currentTime.minutes) : (new Date().getHours() * 60 + new Date().getMinutes());
+
+  const isClassOngoing = (slot: TimetableSlot): boolean => {
+    if (isHoliday || currentDayOrder <= 0) return false;
+
+    // SRM standard 12-period timing map (in minutes from midnight)
+    const periodTimes: Record<number, { start: number; end: number }> = {
+      1: { start: 8 * 60, end: 8 * 60 + 50 },
+      2: { start: 8 * 60 + 50, end: 9 * 60 + 40 },
+      3: { start: 9 * 60 + 45, end: 10 * 60 + 35 },
+      4: { start: 10 * 60 + 40, end: 11 * 60 + 30 },
+      5: { start: 11 * 60 + 35, end: 12 * 60 + 25 },
+      6: { start: 12 * 60 + 30, end: 13 * 60 + 20 },
+      7: { start: 13 * 60 + 25, end: 14 * 60 + 15 },
+      8: { start: 14 * 60 + 20, end: 15 * 60 + 10 },
+      9: { start: 15 * 60 + 10, end: 16 * 60 },
+      10: { start: 16 * 60, end: 16 * 60 + 50 },
+      11: { start: 16 * 60 + 50, end: 17 * 60 + 30 },
+      12: { start: 17 * 60 + 30, end: 18 * 60 + 10 },
+    };
+
+    const slotNumMatch = slot.slotName?.match(/\d+/);
+    const slotNum = slotNumMatch ? parseInt(slotNumMatch[0], 10) : null;
+    if (slotNum && periodTimes[slotNum]) {
+      const { start, end } = periodTimes[slotNum];
+      return currentMinutes >= start && currentMinutes < end;
+    }
+
+    if (slot.timeRange && slot.timeRange.includes('-')) {
+      const parts = slot.timeRange.split('-');
+      const startStr = parts[0]?.trim() || '';
+      const endStr = parts[1]?.trim() || '';
+      const parseMins = (tStr: string) => {
+        const [hPart, mPart] = tStr.split(':').map(Number);
+        if (isNaN(hPart) || isNaN(mPart)) return null;
+        let h = hPart;
+        if (h >= 1 && h <= 7) h += 12; // 12-hour PM conversion for afternoon classes
+        return h * 60 + mPart;
+      };
+      const sMin = parseMins(startStr);
+      const eMin = parseMins(endStr);
+      if (sMin !== null && eMin !== null) {
+        return currentMinutes >= sMin && currentMinutes < eMin;
+      }
+    }
+
+    return false;
+  };
 
   // Critical attendance subjects closest to 75% cutoff
   const attentionCourses = user.attendance
@@ -281,43 +332,65 @@ export const AtAGlanceView: React.FC = () => {
                   no lectures scheduled for today
                 </div>
               ) : (
-                todayClasses.map((slot, idx) => (
-                  <div key={idx} className="py-3 flex items-start justify-between gap-3">
-                    <div className="flex items-start space-x-3 min-w-0">
-                      <div className="w-24 shrink-0 text-xs tabular-nums text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
-                        {slot.timeRange}
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs sm:text-sm font-semibold text-[#111111] dark:text-[#FAFAFA] truncate lowercase">
-                          {formatCourseTitle(slot.courseTitle)}
+                todayClasses.map((slot, idx) => {
+                  const isOngoing = isClassOngoing(slot);
+                  return (
+                    <div
+                      key={idx}
+                      className={`py-2.5 px-3 -mx-3 rounded-xl flex items-start justify-between gap-3 transition-colors ${
+                        isOngoing
+                          ? 'bg-emerald-500/[0.08] dark:bg-emerald-500/[0.14] border border-emerald-500/25 shadow-2xs'
+                          : 'border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-start space-x-3 min-w-0">
+                        <div
+                          className={`w-24 shrink-0 text-xs font-semibold tabular-nums pt-0.5 ${
+                            isOngoing
+                              ? 'text-emerald-700 dark:text-emerald-300 font-bold'
+                              : 'text-[#111111] dark:text-[#FAFAFA]'
+                          }`}
+                        >
+                          {slot.timeRange}
                         </div>
-                        <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-2 mt-0.5">
-                          <span className="">{slot.courseCode}</span>
-                          {slot.faculty && (
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                openFaculty(slot.faculty!);
-                              }}
-                              className="hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
-                              title="view faculty in finder"
-                            >
-                              • {stripEmployeeId(slot.faculty)}
-                            </button>
-                          )}
+                        <div className="min-w-0">
+                          <div className="text-xs sm:text-sm font-semibold text-[#111111] dark:text-[#FAFAFA] truncate lowercase">
+                            {formatCourseTitle(slot.courseTitle)}
+                          </div>
+                          <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] flex items-center space-x-2 mt-0.5">
+                            <span className="">{slot.courseCode}</span>
+                            {slot.faculty && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openFaculty(slot.faculty!);
+                                }}
+                                className="hover:underline hover:text-[#111111] dark:hover:text-[#FAFAFA] transition-colors cursor-pointer text-left"
+                                title="view faculty in finder"
+                              >
+                                • {stripEmployeeId(slot.faculty)}
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {slot.room && (
-                      <span className="shrink-0 inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] bg-black/5 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] text-[#71717A] dark:text-[#A1A1AA]">
-                        <MapPin className="w-2.5 h-2.5" />
-                        <span>{slot.room}</span>
-                      </span>
-                    )}
-                  </div>
-                ))
+                      {slot.room && (
+                        <span
+                          className={`shrink-0 inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] border transition-colors ${
+                            isOngoing
+                              ? 'bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-500/25'
+                              : 'bg-black/5 dark:bg-white/[0.05] border-black/[0.06] dark:border-white/[0.08] text-[#71717A] dark:text-[#A1A1AA]'
+                          }`}
+                        >
+                          <MapPin className="w-2.5 h-2.5" />
+                          <span>{slot.room}</span>
+                        </span>
+                      )}
+                    </div>
+                  );
+                })
               )}
             </div>
 
@@ -348,9 +421,9 @@ export const AtAGlanceView: React.FC = () => {
               </SpringPress>
             </div>
 
-            {/* Upcoming Academic Events */}
+            {/* Upcoming Academic Events (Strictly 5 upcoming events, no past dates) */}
             <div className="divide-y divide-black/[0.04] dark:divide-white/[0.04] my-2">
-              {getUpcomingEvents(6, todayDateStr).slice(0, 3).map((event, idx) => (
+              {getUpcomingEvents(5, todayDateStr).slice(0, 5).map((event, idx) => (
                 <div key={idx} className="py-2.5 flex items-center justify-between gap-3 text-xs">
                   <div className="min-w-0">
                     <div className="font-semibold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">

@@ -7,6 +7,7 @@ import { GpaPredictorModal } from '../modals/GpaPredictorModal';
 import { Keycap, useIsMac } from '../common/Keycap';
 import { SpringPress } from '../common/motion/SpringPress';
 import { WindowScrollResistance } from '../common/motion/ScrollResistance';
+import { DevConsole } from '../common/DevConsole';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -113,6 +114,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           onClose={() => setIsGpaPredictorOpen(false)}
         />
       )}
+
+      {/* Localhost Scenario Dev Console */}
+      <DevConsole />
     </div>
   );
 };
