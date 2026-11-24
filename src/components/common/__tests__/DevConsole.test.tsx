@@ -17,6 +17,19 @@ vi.mock('../../../context/SessionContext', () => ({
   }),
 }));
 
+vi.mock('../../../context/NotificationContext', () => ({
+  useNotifications: () => ({
+    notifications: [],
+    unreadCount: 0,
+    activeToast: null,
+    addNotification: vi.fn(),
+    markAsRead: vi.fn(),
+    markAllAsRead: vi.fn(),
+    clearAll: vi.fn(),
+    dismissToast: vi.fn(),
+  }),
+}));
+
 describe('DevConsole (localhost exclusive)', () => {
   beforeEach(() => {
     vi.restoreAllMocks();

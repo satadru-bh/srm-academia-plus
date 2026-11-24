@@ -8,6 +8,8 @@ import { Keycap, useIsMac } from '../common/Keycap';
 import { SpringPress } from '../common/motion/SpringPress';
 import { WindowScrollResistance } from '../common/motion/ScrollResistance';
 import { DevConsole } from '../common/DevConsole';
+import { NotificationBell } from '../notifications/NotificationBell';
+import { DynamicIslandToast } from '../notifications/DynamicIslandToast';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -34,6 +36,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen w-full bg-[var(--color-canvas)] text-[var(--color-text-primary)] antialiased">
+      {/* Floating Dynamic Island Notification Toast */}
+      <DynamicIslandToast />
+
       {/* Subtle Minimal Top Bar */}
       <header
         className="sticky top-0 z-40 w-full px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-black/[0.04] dark:border-white/[0.04] backdrop-blur-md gap-4"
@@ -52,8 +57,11 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           </span>
         </div>
 
-        {/* Right Side: Expanded search bar on mobile, fixed width on desktop */}
-        <div className="flex items-center space-x-3 sm:space-x-4 ml-auto flex-1 justify-end max-w-xs sm:max-w-sm">
+        {/* Right Side: Notification Bell & Expanded search bar */}
+        <div className="flex items-center space-x-2 sm:space-x-3 ml-auto flex-1 justify-end max-w-xs sm:max-w-sm">
+          {/* Notification Bell */}
+          {user && <NotificationBell />}
+
           {/* Command Palette Trigger Button (Ctrl + K / Cmd + K) */}
           <SpringPress
             onClick={() => setIsCommandPaletteOpen(true)}

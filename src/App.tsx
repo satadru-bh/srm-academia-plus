@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { SessionProvider, useSession } from './context/SessionContext';
+import { NotificationProvider } from './context/NotificationContext';
 import { AppLayout } from './components/layout/AppLayout';
 import { SignInBentoView } from './components/views/SignInBentoView';
 import { AtAGlanceView } from './components/views/AtAGlanceView';
@@ -256,7 +257,9 @@ export function App() {
   return (
     <ErrorBoundary>
       <SessionProvider>
-        <MainApp />
+        <NotificationProvider>
+          <MainApp />
+        </NotificationProvider>
       </SessionProvider>
     </ErrorBoundary>
   );
