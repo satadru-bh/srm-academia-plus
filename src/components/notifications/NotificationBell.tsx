@@ -56,15 +56,32 @@ export const NotificationBell: React.FC = () => {
         )}
       </SpringPress>
 
-      {/* Floating Notification Drawer Popover: 100% SOLID OPAQUE, NO TRANSPARENCY BLEED */}
+      {/* Floating Notification Drawer Popover: 100% SOLID OPAQUE, NEVER OPENS OFF-SCREEN ON MOBILE */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            key="mobile-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/20 z-40 sm:hidden"
+          />
+        )}
+        {isOpen && (
+          <motion.div
+            key="notification-popover"
+            initial={{ opacity: 0, y: -8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            exit={{
+              opacity: 0,
+              y: -8,
+              scale: 0.95,
+              transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+            }}
             transition={{ type: 'spring', damping: 25, stiffness: 360 }}
-            className="absolute right-0 mt-2.5 w-80 sm:w-96 rounded-2xl bg-white dark:bg-[#18181B] border border-black/10 dark:border-white/10 shadow-2xl p-4 z-50 text-[#111111] dark:text-[#FAFAFA]"
+            className="fixed inset-x-3 top-16 max-w-sm mx-auto sm:inset-auto sm:absolute sm:right-0 sm:top-full sm:mt-2.5 sm:w-96 sm:max-w-none rounded-2xl bg-white dark:bg-[#18181B] border border-black/10 dark:border-white/10 shadow-2xl p-4 z-50 text-[#111111] dark:text-[#FAFAFA]"
           >
             {/* Popover Header (NO pills) */}
             <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.06]">
