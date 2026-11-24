@@ -59,7 +59,20 @@ const itemVariants: Variants = {
 export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActiveTab }) => {
   const { theme, cycleTheme, isSyncing, refreshData } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Responsive mobile viewport listener
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Close menu on outside click or touch
   useEffect(() => {
@@ -98,88 +111,96 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
   const isSecondaryActive = secondaryTabs.some(t => t.id === activeTab);
   const activeThemeInfo = THEME_DETAILS[theme] || THEME_DETAILS['light'];
 
+  const renderMenuContent = () => (
+    <>
+      <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
+        more workspace views
+      </div>
+
+      <div className="space-y-1 mt-1">
+        {secondaryTabs.map((item) => {
+          const Icon = item.icon;
+          const isSelected = activeTab === item.id;
+
+          return (
+            <motion.button
+              key={item.id}
+              variants={itemVariants}
+              whileHover={{ x: 3 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                setActiveTab(item.id);
+                setIsMenuOpen(false);
+              }}
+              style={
+                isSelected
+                  ? {
+                      backgroundColor: 'var(--color-accent)',
+                      color: 'var(--color-accent-text)'
+                    }
+                  : undefined
+              }
+              className={`w-full flex items-center space-x-3 p-2.5 rounded-2xl text-left transition-colors cursor-pointer ${
+                isSelected
+                  ? 'dock-item-selected font-bold'
+                  : 'hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-[#FAFAFA]'
+              }`}
+            >
+              <div
+                style={
+                  isSelected
+                    ? {
+                        backgroundColor: 'var(--color-accent-sub)',
+                        color: 'var(--color-accent-text)'
+                      }
+                    : undefined
+                }
+                className={`p-2 rounded-xl ${
+                  isSelected
+                    ? 'palette-icon-box font-semibold'
+                    : 'bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-xs font-bold lowercase">
+                  {item.label}
+                </div>
+                <div
+                  style={isSelected ? { color: 'var(--color-accent-text)' } : undefined}
+                  className={`text-[10px] truncate ${
+                    isSelected ? 'opacity-85' : 'text-[#71717A] dark:text-[#A1A1AA]'
+                  }`}
+                >
+                  {item.desc}
+                </div>
+              </div>
+            </motion.button>
+          );
+        })}
+      </div>
+    </>
+  );
+
   return (
     <div ref={menuRef} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 select-none">
-      {/* Animated Floating Popover "More" Menu: Explicitly fixed directly above the dock */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            variants={popoverVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] max-w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
-          >
-            <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
-              more workspace views
-            </div>
-
-            <div className="space-y-1 mt-1">
-              {secondaryTabs.map((item) => {
-                const Icon = item.icon;
-                const isSelected = activeTab === item.id;
-
-                return (
-                  <motion.button
-                    key={item.id}
-                    variants={itemVariants}
-                    whileHover={{ x: 3 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setIsMenuOpen(false);
-                    }}
-                    style={
-                      isSelected
-                        ? {
-                            backgroundColor: 'var(--color-accent)',
-                            color: 'var(--color-accent-text)'
-                          }
-                        : undefined
-                    }
-                    className={`w-full flex items-center space-x-3 p-2.5 rounded-2xl text-left transition-colors cursor-pointer ${
-                      isSelected
-                        ? 'dock-item-selected font-bold'
-                        : 'hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-[#FAFAFA]'
-                    }`}
-                  >
-                    <div
-                      style={
-                        isSelected
-                          ? {
-                              backgroundColor: 'var(--color-accent-sub)',
-                              color: 'var(--color-accent-text)'
-                            }
-                          : undefined
-                      }
-                      className={`p-2 rounded-xl ${
-                        isSelected
-                          ? 'palette-icon-box font-semibold'
-                          : 'bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold lowercase">
-                        {item.label}
-                      </div>
-                      <div
-                        style={isSelected ? { color: 'var(--color-accent-text)' } : undefined}
-                        className={`text-[10px] truncate ${
-                          isSelected ? 'opacity-85' : 'text-[#71717A] dark:text-[#A1A1AA]'
-                        }`}
-                      >
-                        {item.desc}
-                      </div>
-                    </div>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Popover Menu: Centered in the horizontal center of the mobile screen */}
+      {isMobile && (
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              variants={popoverVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] max-w-[calc(100vw-32px)] bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50 pointer-events-auto"
+            >
+              {renderMenuContent()}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
 
       {/* Main Glass Capsule Dock */}
       <nav className="flex items-center p-1.5 rounded-full glass-dock max-w-[95vw] shadow-2xl">
@@ -226,28 +247,47 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
             );
           })}
 
-          {/* More Menu Pill Button */}
-          <motion.button
-            onClick={() => setIsMenuOpen(prev => !prev)}
-            whileTap={{ scale: 0.95 }}
-            title="more views & options"
-            aria-label="more options"
-            className={`relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2 leading-none cursor-pointer ${
-              isSecondaryActive || isMenuOpen
-                ? 'bg-black/10 dark:bg-white/10 text-[#09090B] dark:text-[#FAFAFA]'
-                : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
-            }`}
-          >
-            <motion.span
-              className="inline-flex items-center justify-center shrink-0"
-              whileHover={{ y: -2, scale: 1.05 }}
-              whileTap={{ scale: 0.94 }}
-              transition={{ type: 'spring', stiffness: 450, damping: 20 }}
+          {/* More Menu Pill Button & Desktop Popover Anchor */}
+          <div className="relative inline-flex items-center">
+            <motion.button
+              onClick={() => setIsMenuOpen(prev => !prev)}
+              whileTap={{ scale: 0.95 }}
+              title="more views & options"
+              aria-label="more options"
+              className={`relative h-9 px-3 sm:px-4 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2 leading-none cursor-pointer ${
+                isSecondaryActive || isMenuOpen
+                  ? 'bg-black/10 dark:bg-white/10 text-[#09090B] dark:text-[#FAFAFA]'
+                  : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#111111] dark:hover:text-[#FAFAFA]'
+              }`}
             >
-              <MoreHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-            </motion.span>
-            <span className="hidden sm:inline lowercase tracking-tight">more</span>
-          </motion.button>
+              <motion.span
+                className="inline-flex items-center justify-center shrink-0"
+                whileHover={{ y: -2, scale: 1.05 }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ type: 'spring', stiffness: 450, damping: 20 }}
+              >
+                <MoreHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              </motion.span>
+              <span className="hidden sm:inline lowercase tracking-tight">more</span>
+            </motion.button>
+
+            {/* Desktop Popover: Directly anchored above the More button */}
+            {!isMobile && (
+              <AnimatePresence>
+                {isMenuOpen && (
+                  <motion.div
+                    variants={popoverVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute bottom-full mb-3.5 left-1/2 w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50 pointer-events-auto"
+                  >
+                    {renderMenuContent()}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
+          </div>
         </div>
 
         <div className="h-4 w-px bg-black/10 dark:bg-white/10 mx-2 shrink-0" />

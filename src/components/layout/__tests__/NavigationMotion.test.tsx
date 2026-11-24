@@ -61,6 +61,25 @@ describe('Navigation Motion & Tactile Interactions', () => {
       expect(floatingDockContent).toContain("x: '-50%'");
       expect(floatingDockContent).toContain('max-w-[calc(100vw-32px)]');
     });
+
+    it('anchors popover directly above more button on PC and horizontally centered on mobile', () => {
+      // Desktop: inside relative container directly above the more button
+      expect(floatingDockContent).toContain('absolute bottom-full mb-3.5 left-1/2 w-80');
+      // Mobile: centered in viewport with safe margins
+      expect(floatingDockContent).toContain('fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)]');
+      expect(floatingDockContent).toContain('isMobile');
+    });
+  });
+
+  describe('Scroll Spring Instant Return', () => {
+    it('uses ultra-snappy spring configuration that returns instantly without hanging', () => {
+      const scrollPath = path.resolve(__dirname, '../../common/motion/ScrollResistance.tsx');
+      const scrollContent = fs.readFileSync(scrollPath, 'utf-8');
+      expect(scrollContent).toContain('stiffness: 750');
+      expect(scrollContent).toContain('damping: 38');
+      expect(scrollContent).toContain('mass: 0.15');
+      expect(scrollContent).toContain('maxDisplacement = 14');
+    });
   });
 
   describe('Task 1 Review Improvements', () => {
