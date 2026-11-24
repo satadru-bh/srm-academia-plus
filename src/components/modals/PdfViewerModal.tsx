@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, FileText, Loader2 } from 'lucide-react';
+import { X, ExternalLink, Loader2 } from 'lucide-react';
 import { extractGoogleDrivePreviewUrl } from '../../api/notes';
 
 interface PdfViewerModalProps {
@@ -18,7 +18,6 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
   onClose,
   title,
   subjectName,
-  resourceKind = 'note',
   url
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,15 +67,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
             {/* Header */}
             <div className="px-5 py-3.5 border-b border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3 shrink-0">
               <div className="min-w-0">
-                <div className="flex items-center space-x-2">
-                  <span className="p-1 rounded-lg bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
-                    <FileText className="w-3.5 h-3.5" />
-                  </span>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-[#71717A] dark:text-[#A1A1AA]">
-                    {resourceKind === 'paper' ? 'Past Question Paper' : resourceKind === 'syllabus' ? 'Official Syllabus' : 'Lecture Resource'}
-                  </span>
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-[#111111] dark:text-[#FAFAFA] lowercase truncate mt-0.5">
+                <h3 className="text-sm sm:text-base font-bold text-[#111111] dark:text-[#FAFAFA] lowercase truncate">
                   {title} {subjectName && <span className="text-[#71717A] dark:text-[#A1A1AA] font-normal">• {subjectName}</span>}
                 </h3>
               </div>
