@@ -44,8 +44,22 @@ describe('Navigation Motion & Tactile Interactions', () => {
       expect(appLayoutContent).toContain('setIsCommandPaletteOpen(true)');
     });
 
-    it('renders clean status indicator badge for campus status', () => {
-      expect(appLayoutContent).toContain('holiday');
+    it('renders clean brand title and window scroll resistance without redundant status pill', () => {
+      expect(appLayoutContent).toContain('academia plus');
+      expect(appLayoutContent).toContain('WindowScrollResistance');
+      expect(appLayoutContent).not.toContain("<span>{isHoliday ? 'holiday' : `day order ${currentDayOrder}`}</span>");
+    });
+
+    it('expands search bar on mobile while keeping keyboard keys hidden on mobile', () => {
+      expect(appLayoutContent).toContain('w-full max-w-[210px] sm:max-w-[240px]');
+      expect(appLayoutContent).toContain('hidden sm:inline-flex items-center space-x-1 pl-1');
+    });
+  });
+
+  describe('FloatingDock Viewport Boundaries', () => {
+    it('popover variants include x: -50% to prevent right-hand mobile overflow', () => {
+      expect(floatingDockContent).toContain("x: '-50%'");
+      expect(floatingDockContent).toContain('max-w-[calc(100vw-32px)]');
     });
   });
 

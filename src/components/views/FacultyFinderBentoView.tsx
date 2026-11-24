@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useSession } from '../../context/SessionContext';
 import {
-  Users,
   Search,
   Mail,
   Phone,
@@ -136,10 +135,6 @@ export const FacultyFinderBentoView: React.FC = () => {
       {/* 1. Header Banner */}
       <div className="bento-card p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center space-x-2 text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase mb-1">
-            <Users className="w-3.5 h-3.5" />
-            <span>university directory</span>
-          </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight lowercase text-[#111111] dark:text-[#FAFAFA]">
             faculty finder
           </h1>

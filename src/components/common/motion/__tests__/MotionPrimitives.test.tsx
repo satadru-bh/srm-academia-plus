@@ -7,6 +7,7 @@ import { InteractiveBentoCard } from '../InteractiveBentoCard';
 import { SpringPress } from '../SpringPress';
 import { StaggerContainer, StaggerItem } from '../StaggerContainer';
 import { PerimeterWarningBorder } from '../PerimeterWarningBorder';
+import { ScrollResistanceBoundary, WindowScrollResistance } from '../ScrollResistance';
 
 describe('MotionPrimitives Suite', () => {
   describe('AnimatedNumber', () => {
@@ -188,6 +189,30 @@ describe('MotionPrimitives Suite', () => {
       expect(html).toContain('stroke-dasharray="6 6"');
       expect(html).toContain('rx="24"');
       expect(html).toContain('text-rose-500');
+    });
+
+    it('ScrollResistanceBoundary renders container with spring-damped content wrapper', () => {
+      const html = renderToString(
+        React.createElement(
+          ScrollResistanceBoundary,
+          { direction: 'both', className: 'custom-scroll-container' },
+          React.createElement('div', null, 'Scrollable Content')
+        )
+      );
+      expect(html).toContain('custom-scroll-container');
+      expect(html).toContain('Scrollable Content');
+    });
+
+    it('WindowScrollResistance wraps page view seamlessly', () => {
+      const html = renderToString(
+        React.createElement(
+          WindowScrollResistance,
+          { className: 'main-page' },
+          React.createElement('span', null, 'Page Body')
+        )
+      );
+      expect(html).toContain('main-page');
+      expect(html).toContain('Page Body');
     });
   });
 });

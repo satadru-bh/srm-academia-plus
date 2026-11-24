@@ -34,7 +34,6 @@ export const AtAGlanceView: React.FC = () => {
     currentDayOrder, 
     isHoliday, 
     setActiveTab, 
-    lastSyncedAt,
     openCourseAttendance,
     openCourseMarks,
     openFaculty,
@@ -114,9 +113,6 @@ export const AtAGlanceView: React.FC = () => {
                 overview
               </span>
               <div className="flex items-center space-x-2">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] text-xs font-medium text-[#71717A] dark:text-[#A1A1AA] lowercase">
-                  {lastSyncedAt ? 'synced' : 'live'}
-                </span>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] text-xs font-medium text-[#111111] dark:text-[#FAFAFA] lowercase">
                   {isHoliday ? 'holiday' : `day order ${currentDayOrder}`}
                 </span>
@@ -137,7 +133,7 @@ export const AtAGlanceView: React.FC = () => {
               </h1>
               <p className="text-sm text-[#71717A] dark:text-[#A1A1AA] mt-2 lowercase font-normal leading-relaxed">
                 {isHoliday
-                  ? 'no lectures scheduled today • holiday'
+                  ? 'no lectures scheduled today'
                   : todayClasses.length === 0
                   ? 'no classes scheduled today'
                   : `${todayClasses.length} lectures scheduled today • margin ${overallMargin.label}`}
@@ -282,7 +278,7 @@ export const AtAGlanceView: React.FC = () => {
             <div className="divide-y divide-black/[0.04] dark:divide-white/[0.04] my-2">
               {todayClasses.length === 0 ? (
                 <div className="py-8 text-center text-xs text-[#71717A] dark:text-[#A1A1AA] lowercase">
-                  {isHoliday ? 'no lectures scheduled for today • holiday' : 'no lectures scheduled for today'}
+                  no lectures scheduled for today
                 </div>
               ) : (
                 todayClasses.map((slot, idx) => (

@@ -9,6 +9,8 @@
     scrollbar-gutter: stable;
     overflow-y: scroll;
     overflow-x: clip;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {

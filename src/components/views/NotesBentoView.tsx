@@ -17,7 +17,6 @@ import {
   ChevronRight,
   FileText,
   ExternalLink,
-  Layers,
   X
 } from 'lucide-react';
 import { PdfViewerModal } from '../modals/PdfViewerModal';
@@ -322,12 +321,9 @@ export const NotesBentoView: React.FC = () => {
       {/* SECTION 2: All Subjects Directory */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Layers className="w-4 h-4 text-[#71717A] dark:text-[#A1A1AA]" />
-            <h2 className="text-base font-bold text-[#111111] dark:text-[#FAFAFA] lowercase">
-              {searchQuery ? `search results for “${searchQuery}”` : 'all university subjects'}
-            </h2>
-          </div>
+          <h2 className="text-base font-bold text-[#111111] dark:text-[#FAFAFA] lowercase">
+            {searchQuery ? `search results for “${searchQuery}”` : 'all university subjects'}
+          </h2>
           <span className="text-xs text-[#71717A] dark:text-[#A1A1AA]">
             {filteredSubjects.length} subjects found
           </span>

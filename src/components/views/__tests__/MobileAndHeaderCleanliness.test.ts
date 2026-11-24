@@ -146,9 +146,24 @@ describe('Header Cleanliness and Design Verification', () => {
     expect(dock).toContain('w-[calc(100vw-32px)]');
   });
 
-  it('NotesBentoView portals subject file browser to document.body', () => {
+  it('NotesBentoView portals subject file browser to document.body and has removed Layers icon from all university subjects', () => {
     const notes = fs.readFileSync(path.resolve(__dirname, '../NotesBentoView.tsx'), 'utf-8');
     expect(notes).toContain('createPortal');
     expect(notes).toContain('document.body');
+    expect(notes).not.toContain('<Layers');
+  });
+
+  it('FacultyFinderBentoView has removed university directory eyebrow text and icon', () => {
+    const faculty = fs.readFileSync(path.resolve(__dirname, '../FacultyFinderBentoView.tsx'), 'utf-8');
+    expect(faculty).not.toContain('university directory');
+    expect(faculty).not.toContain('<Users');
+  });
+
+  it('AtAGlanceView has removed synced pill and holiday text next to no lectures scheduled', () => {
+    const glance = fs.readFileSync(path.resolve(__dirname, '../AtAGlanceView.tsx'), 'utf-8');
+    expect(glance).not.toContain("{lastSyncedAt ? 'synced' : 'live'}");
+    expect(glance).not.toContain('no lectures scheduled today • holiday');
+    expect(glance).not.toContain('no lectures scheduled for today • holiday');
+    expect(glance).toContain("'no lectures scheduled today'");
   });
 });

@@ -10,6 +10,7 @@ import {
   StaggerContainer,
   StaggerItem,
   SpringPress,
+  ScrollResistanceBoundary,
 } from '../common/motion';
 
 export const TimetableBentoView: React.FC = () => {
@@ -254,9 +255,10 @@ export const TimetableBentoView: React.FC = () => {
             </span>
           </div>
 
-          {/* Desktop & Tablet: Horizontally Scrollable Traditional Grid Table */}
-          <div className="hidden md:block overflow-x-auto pb-4" style={{ contain: 'paint' }}>
-            <table className="w-full min-w-[1360px] table-fixed border-collapse text-left">
+          {/* Desktop & Tablet: Horizontally Scrollable Traditional Grid Table with tactile edge spring resistance */}
+          <ScrollResistanceBoundary direction="x" className="hidden md:block pb-4">
+            <div className="overflow-x-auto" style={{ contain: 'paint' }}>
+              <table className="w-full min-w-[1360px] table-fixed border-collapse text-left">
               <colgroup>
                 <col style={{ width: '112px' }} />
                 {periods.map((p) => (
@@ -385,7 +387,8 @@ export const TimetableBentoView: React.FC = () => {
                 })}
               </tbody>
             </table>
-          </div>
+            </div>
+          </ScrollResistanceBoundary>
 
           {/* Mobile / Vertical Mode: Timetable Vertical with StaggerContainer */}
           <StaggerContainer className="block md:hidden space-y-4">

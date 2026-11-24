@@ -4,3 +4,4 @@ export * from './AnimatedProgressBar';
 export * from './SpringPress';
 export * from './InteractiveBentoCard';
 export * from './PerimeterWarningBorder';
+export * from './ScrollResistance';

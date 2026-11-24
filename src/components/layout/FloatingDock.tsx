@@ -21,10 +21,11 @@ interface FloatingDockProps {
 }
 
 const popoverVariants: Variants = {
-  hidden: { opacity: 0, y: 12, scale: 0.95 },
+  hidden: { opacity: 0, y: 12, x: '-50%', scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    x: '-50%',
     scale: 1,
     transition: {
       duration: 0.22,
@@ -36,6 +37,7 @@ const popoverVariants: Variants = {
   exit: {
     opacity: 0,
     y: 12,
+    x: '-50%',
     scale: 0.95,
     transition: { duration: 0.15 },
   },
@@ -106,7 +108,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ activeTab, setActive
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
+            className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100vw-32px)] max-w-[calc(100vw-32px)] sm:w-80 bento-card p-3 shadow-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl z-50"
           >
             <div className="px-3 py-1.5 text-xs font-semibold text-[#71717A] dark:text-[#A1A1AA] lowercase tracking-tight">
               more workspace views
