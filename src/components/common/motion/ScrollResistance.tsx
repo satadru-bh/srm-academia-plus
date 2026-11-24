@@ -9,16 +9,16 @@ interface ScrollResistanceProps {
   disabled?: boolean;
 }
 
-// Ultra-snappy, tactile spring that returns back instantly without hanging or sluggish float
+// Smooth, critically-damped hydraulic cushion that eliminates jitter and floppy rubber-band oscillation
 const SPRING_CONFIG = {
-  stiffness: 750,
-  damping: 38,
-  mass: 0.15,
+  stiffness: 350,
+  damping: 36,
+  mass: 0.6,
 };
 
 /**
  * Hook to provide tactile spring resistance when dragging or scrolling against boundaries.
- * Rebounds instantly to 0 without hanging in the middle.
+ * Uses continuous frame-by-frame exponential decay to eliminate discrete mouse wheel jitter.
  */
 export function useScrollResistance(options: {
   targetRef?: React.RefObject<HTMLElement | null>;
@@ -31,7 +31,7 @@ export function useScrollResistance(options: {
     targetRef,
     isWindow = false,
     direction = 'y',
-    maxDisplacement = 14,
+    maxDisplacement = 8,
     disabled = false,
   } = options;
 
@@ -42,7 +42,9 @@ export function useScrollResistance(options: {
   const springX = useSpring(rawX, SPRING_CONFIG);
 
   const [activeEdge, setActiveEdge] = useState<'top' | 'bottom' | 'left' | 'right' | null>(null);
-  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const targetY = useRef(0);
+  const targetX = useRef(0);
+  const rafId = useRef<number | null>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
@@ -72,14 +74,36 @@ export function useScrollResistance(options: {
       };
     };
 
-    // Instant return back to zero without lingering
-    const triggerReset = () => {
-      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-      resetTimerRef.current = setTimeout(() => {
-        rawY.set(0);
-        rawX.set(0);
-        setActiveEdge(null);
-      }, 16);
+    // Smooth continuous RAF decay loop — eliminates all timer fights and discrete jumps
+    const startDecayLoop = () => {
+      if (rafId.current !== null) return;
+
+      const tick = () => {
+        targetY.current *= 0.82;
+        targetX.current *= 0.82;
+
+        if (Math.abs(targetY.current) < 0.08) targetY.current = 0;
+        if (Math.abs(targetX.current) < 0.08) targetX.current = 0;
+
+        rawY.set(targetY.current);
+        rawX.set(targetX.current);
+
+        if (targetY.current === 0 && targetX.current === 0) {
+          setActiveEdge(null);
+          rafId.current = null;
+        } else {
+          rafId.current = requestAnimationFrame(tick);
+        }
+      };
+
+      rafId.current = requestAnimationFrame(tick);
+    };
+
+    const stopDecayLoop = () => {
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+        rafId.current = null;
+      }
     };
 
     const handleWheel = (e: WheelEvent) => {
@@ -87,29 +111,35 @@ export function useScrollResistance(options: {
 
       let handled = false;
 
+      // Detect discrete notched mouse wheel clicks on desktop (typically increments of 50-120)
+      const isDiscreteWheel = Math.abs(e.deltaY) >= 40 && Number.isInteger(e.deltaY);
+
       // Vertical Resistance
       if (direction === 'y' || direction === 'both') {
         const isAtTop = scrollTop <= 0.5;
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1.5;
 
         if (isAtTop && e.deltaY < 0) {
-          // Pulling down at top edge: quick impulse, instantly returns
-          const current = rawY.get();
-          const tensionDamping = 1 / (1 + Math.abs(current) / 8);
-          const next = Math.min(maxDisplacement, current - e.deltaY * 0.12 * tensionDamping);
-          rawY.set(next);
+          // Pulling down at top edge: smooth hydraulic cushion
+          const impulse = isDiscreteWheel
+            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaY)) * 0.25)
+            : Math.min(4, Math.abs(e.deltaY) * 0.12);
+          targetY.current = Math.min(maxDisplacement, targetY.current + impulse);
+          rawY.set(targetY.current);
           setActiveEdge('top');
           handled = true;
         } else if (isAtBottom && e.deltaY > 0) {
-          // Pushing up at bottom edge: quick impulse, instantly returns
-          const current = rawY.get();
-          const tensionDamping = 1 / (1 + Math.abs(current) / 8);
-          const next = Math.max(-maxDisplacement, current - e.deltaY * 0.12 * tensionDamping);
-          rawY.set(next);
+          // Pushing up at bottom edge: smooth hydraulic cushion
+          const impulse = isDiscreteWheel
+            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaY)) * 0.25)
+            : Math.min(4, Math.abs(e.deltaY) * 0.12);
+          targetY.current = Math.max(-maxDisplacement, targetY.current - impulse);
+          rawY.set(targetY.current);
           setActiveEdge('bottom');
           handled = true;
         } else if ((isAtTop && e.deltaY > 0) || (isAtBottom && e.deltaY < 0)) {
           // Moving away from boundary: zero out instantly
+          targetY.current = 0;
           rawY.set(0);
           setActiveEdge(null);
         }
@@ -119,36 +149,43 @@ export function useScrollResistance(options: {
       if (direction === 'x' || direction === 'both') {
         const isAtLeft = scrollLeft <= 0.5;
         const isAtRight = scrollLeft + clientWidth >= scrollWidth - 1.5;
+        const isDiscreteWheelX = Math.abs(e.deltaX) >= 40 && Number.isInteger(e.deltaX);
 
         if (isAtLeft && e.deltaX < 0) {
-          const current = rawX.get();
-          const tensionDamping = 1 / (1 + Math.abs(current) / 8);
-          const next = Math.min(maxDisplacement, current - e.deltaX * 0.12 * tensionDamping);
-          rawX.set(next);
+          const impulse = isDiscreteWheelX
+            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaX)) * 0.25)
+            : Math.min(4, Math.abs(e.deltaX) * 0.12);
+          targetX.current = Math.min(maxDisplacement, targetX.current + impulse);
+          rawX.set(targetX.current);
           setActiveEdge('left');
           handled = true;
         } else if (isAtRight && e.deltaX > 0) {
-          const current = rawX.get();
-          const tensionDamping = 1 / (1 + Math.abs(current) / 8);
-          const next = Math.max(-maxDisplacement, current - e.deltaX * 0.12 * tensionDamping);
-          rawX.set(next);
+          const impulse = isDiscreteWheelX
+            ? Math.min(2.5, Math.sqrt(Math.abs(e.deltaX)) * 0.25)
+            : Math.min(4, Math.abs(e.deltaX) * 0.12);
+          targetX.current = Math.max(-maxDisplacement, targetX.current - impulse);
+          rawX.set(targetX.current);
           setActiveEdge('right');
           handled = true;
         } else if ((isAtLeft && e.deltaX > 0) || (isAtRight && e.deltaX < 0)) {
           // Moving away from boundary: zero out instantly
+          targetX.current = 0;
           rawX.set(0);
           setActiveEdge(null);
         }
       }
 
       if (handled) {
-        triggerReset();
+        startDecayLoop();
       }
     };
 
     const handleScroll = () => {
       // Whenever normal scroll happens inside content, clear any edge spring immediately
-      if (rawY.get() !== 0 || rawX.get() !== 0) {
+      if (targetY.current !== 0 || targetX.current !== 0 || rawY.get() !== 0 || rawX.get() !== 0) {
+        stopDecayLoop();
+        targetY.current = 0;
+        targetX.current = 0;
         rawY.set(0);
         rawX.set(0);
         setActiveEdge(null);
@@ -156,6 +193,7 @@ export function useScrollResistance(options: {
     };
 
     const handleTouchStart = (e: TouchEvent) => {
+      stopDecayLoop();
       if (e.touches.length > 0) {
         touchStartRef.current = {
           x: e.touches[0].clientX,
@@ -178,14 +216,17 @@ export function useScrollResistance(options: {
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1.5;
 
         if (isAtTop && dy > 0) {
-          const tension = Math.min(maxDisplacement, Math.pow(dy, 0.6) * 1.2);
+          const tension = Math.min(maxDisplacement, Math.pow(dy, 0.55) * 1.0);
+          targetY.current = tension;
           rawY.set(tension);
           setActiveEdge('top');
         } else if (isAtBottom && dy < 0) {
-          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dy), 0.6) * 1.2);
+          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dy), 0.55) * 1.0);
+          targetY.current = tension;
           rawY.set(tension);
           setActiveEdge('bottom');
         } else {
+          targetY.current = 0;
           rawY.set(0);
           setActiveEdge(null);
         }
@@ -196,14 +237,17 @@ export function useScrollResistance(options: {
         const isAtRight = scrollLeft + clientWidth >= scrollWidth - 1.5;
 
         if (isAtLeft && dx > 0) {
-          const tension = Math.min(maxDisplacement, Math.pow(dx, 0.6) * 1.2);
+          const tension = Math.min(maxDisplacement, Math.pow(dx, 0.55) * 1.0);
+          targetX.current = tension;
           rawX.set(tension);
           setActiveEdge('left');
         } else if (isAtRight && dx < 0) {
-          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dx), 0.6) * 1.2);
+          const tension = Math.max(-maxDisplacement, -Math.pow(Math.abs(dx), 0.55) * 1.0);
+          targetX.current = tension;
           rawX.set(tension);
           setActiveEdge('right');
         } else {
+          targetX.current = 0;
           rawX.set(0);
           setActiveEdge(null);
         }
@@ -212,9 +256,7 @@ export function useScrollResistance(options: {
 
     const handleTouchEnd = () => {
       touchStartRef.current = null;
-      rawY.set(0);
-      rawX.set(0);
-      setActiveEdge(null);
+      startDecayLoop();
     };
 
     const element = isWindow ? window : targetRef?.current;
@@ -234,7 +276,7 @@ export function useScrollResistance(options: {
       element.removeEventListener('touchmove', handleTouchMove as any);
       element.removeEventListener('touchend', handleTouchEnd as any);
       element.removeEventListener('touchcancel', handleTouchEnd as any);
-      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+      stopDecayLoop();
     };
   }, [targetRef, isWindow, direction, maxDisplacement, disabled, rawY, rawX]);
 
@@ -249,7 +291,7 @@ export const ScrollResistanceBoundary: React.FC<ScrollResistanceProps> = ({
   children,
   className = '',
   direction = 'y',
-  maxDisplacement = 14,
+  maxDisplacement = 8,
   disabled = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -302,7 +344,7 @@ export const WindowScrollResistance: React.FC<{
   const { springY, activeEdge } = useScrollResistance({
     isWindow: true,
     direction: 'y',
-    maxDisplacement: 14,
+    maxDisplacement: 8,
     disabled,
   });
 

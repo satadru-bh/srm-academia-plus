@@ -72,13 +72,13 @@ describe('Navigation Motion & Tactile Interactions', () => {
   });
 
   describe('Scroll Spring Instant Return', () => {
-    it('uses ultra-snappy spring configuration that returns instantly without hanging', () => {
+    it('uses smooth critically-damped spring configuration that eliminates jitter and rubberband oscillation', () => {
       const scrollPath = path.resolve(__dirname, '../../common/motion/ScrollResistance.tsx');
       const scrollContent = fs.readFileSync(scrollPath, 'utf-8');
-      expect(scrollContent).toContain('stiffness: 750');
-      expect(scrollContent).toContain('damping: 38');
-      expect(scrollContent).toContain('mass: 0.15');
-      expect(scrollContent).toContain('maxDisplacement = 14');
+      expect(scrollContent).toContain('stiffness: 350');
+      expect(scrollContent).toContain('damping: 36');
+      expect(scrollContent).toContain('mass: 0.6');
+      expect(scrollContent).toContain('maxDisplacement = 8');
     });
   });
 
